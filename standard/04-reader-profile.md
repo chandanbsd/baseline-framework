@@ -45,18 +45,18 @@ The intake asks for a level for each **knowledge area**, a subject that the proj
 
 ## When it runs
 
-The profile is written when a project starts and changed later in two ways, and the diagram shows all three. Two commands that the kit will provide run the intake: `/baseline:init` at project start and `/baseline:profile`, which runs the intake in update mode, later (the part before the colon is the name of the Claude Code plugin that provides the command). The **kit** is the part of the baseline that is copied into a new project, and it is not built yet, so until it exists the intake is run by hand, as "At project start" says. The diagram also uses one more term: a **docs-only stack** is a stack made only of description PRs.
+The profile is written when a project starts and changed later in two ways, and the diagram shows all three. Two commands that the baseline's skills, a Claude Code plugin, are to provide run the intake: `/baseline:init` at project start and `/baseline:profile`, which runs the intake in update mode, later (the part before the colon is the name of the plugin). Where the skills are not available, the intake is run by hand, as "At project start" says. The diagram also uses one more term: a **docs-only stack** is a stack made only of description PRs.
 
 ```mermaid
 flowchart TD
-    A["Project start: the intake, run by hand or by /baseline:init once the kit exists"] --> B["Ask: the project's name, kind and Software Engineer"]
+    A["Project start: the intake, run by the skills' /baseline:init or, without them, by hand"] --> B["Ask: the project's name, kind and Software Engineer"]
     B --> C["Ask: knowledge areas, suggested from the kind, then a level for each"]
     C --> D["Ask: technologies already chosen, with a level and a comparison setting for each"]
     D --> E["Ask once: build standards from the Software Engineer's preferences over time?"]
     E --> F["Write docs/reader-profile.md"]
     G["Later: a technology enters the project and the docs agent finds no entry"] --> H["The docs agent stops and asks the Software Engineer"]
     H -->|"the answer is recorded"| F
-    I["Later: the intake in update mode, run by hand or by /baseline:profile once the kit exists"] --> J["List the lessons whose basics would be added or removed"]
+    I["Later: the intake in update mode, run by the skills' /baseline:profile or, without them, by hand"] --> J["List the lessons whose basics would be added or removed"]
     J --> K["A docs-only stack regenerates them"]
     K --> F
 ```
@@ -76,7 +76,7 @@ It then writes `docs/reader-profile.md` from the answers.
 
 **Run the intake at the start of every project, before the documents are written.** Because: the profile is a prescriptive input to the documents, so it comes before them, and a technology with no entry stops the docs agent.
 
-**Run the intake by hand until the kit exists.** `/baseline:init` and `/baseline:profile` are commands that the kit will provide, and the kit is not built yet. Until it is, the same questions are put to the Software Engineer in the same order and the file is written from their answers. The baseline's own profile, [docs/reader-profile.md](../docs/reader-profile.md), was made this way. Because: the standard is plain Markdown and works without the kit, so no project is locked in to one tool.
+**Run the intake by hand where the skills are not available.** `/baseline:init` and `/baseline:profile` are commands that the baseline's skills are to provide. Without them, the same questions are put to the Software Engineer in the same order and the file is written from their answers. The baseline's own profile, [docs/reader-profile.md](../docs/reader-profile.md), was made this way. Because: the standard is plain Markdown and works without the skills, so no project is locked in to one tool.
 
 ### When a technology has no entry
 
@@ -84,7 +84,7 @@ It then writes `docs/reader-profile.md` from the answers.
 
 ### When the profile changes
 
-The Software Engineer decides every change to the profile, and "The saved file" says how a change is made. The intake in update mode lists the lessons whose basics the change would add or remove, and a docs-only stack regenerates them. Until the kit exists, update mode is run by hand in the same way.
+The Software Engineer decides every change to the profile, and "The saved file" says how a change is made. The intake in update mode lists the lessons whose basics the change would add or remove, and a docs-only stack regenerates them. Where the skills are not available, update mode is run by hand in the same way.
 
 **Regenerate what depends on the header after every change to it:** the lessons whose basics change and the generated sections of the profile. The change to the header is a thinking PR, and the regeneration sits on top of it. Because: documents pitched at the old level contradict the new header until they are regenerated, and the reviewer then reads the changed profile before the documents that follow from it.
 

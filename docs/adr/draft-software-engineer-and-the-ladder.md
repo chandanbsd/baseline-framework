@@ -1,7 +1,9 @@
 # The Software Engineer and the ladder as the baseline's why
 
 Status: Draft
+
 Date: 2026-11-14
+
 Deciders: the Software Engineer
 
 ## Context

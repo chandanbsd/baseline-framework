@@ -1,7 +1,9 @@
 # Delivery
 
 Status: Draft
+
 Date: 2026-11-14
+
 Deciders: the Software Engineer
 
 ## Context

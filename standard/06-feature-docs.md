@@ -68,7 +68,7 @@ The overview page is the front of the folder, `docs/features/README.md`. It tell
 | What the product is and who uses it | A statement, in plain words, of what the product is and of the people and other users who use it. | Every other page describes one part of the product, so this is the page that says what the whole product is and who it is for. |
 | A capability map | A diagram that groups everything the product can do by what people are trying to achieve. | A map answers at a glance what a table of features cannot show as well: how all the capabilities fall under what people want to do. |
 | A table of the features | One row for each feature: the feature, who it is for and a link to its page. | It is the way into the feature pages: a reader who knows what they want to do finds the page and sees whether it is for them. |
-| The who-can-do-what matrix | A pointer to the matrix, which lives only on the Users and access page. The overview holds no copy of it. | A second copy would be a second view of access, and two views of access must not drift apart. |
+| The who-can-do-what matrix | A pointer to the matrix, which lives only on the Users and access page. The overview holds no copy of it. | Roles apply to every feature, so one page prevents repetition, and the matrix is held on that page. |
 | Pointers to the access page | Links to the Users and access page for the kinds of user, the roles and claims, and how access is gained, changed and lost. | Roles apply to every feature, so the overview sends the reader to the one page that holds them. |
 
 **Group the capability map by what people are trying to achieve, and not by how the product is built.** Because: the feature docs explain the system from the point of view of whoever interacts with it, so the map is drawn in the goals of those people.
@@ -167,7 +167,7 @@ The same role can do different things in different circumstances. Four condition
 | Tenant | What a principal may do within one group, organisation or customer. | A group leader approves hikes only for their own group. |
 | Time | What a principal may do before or after a moment. | Members can sign up only until sign-ups close. |
 
-**State, in plain words, which conditions change which rights, and repeat the condition in the matrix cell that it changes.** Because: the same role can do different things depending on status, ownership, tenant or time, so a cell that said only "yes" would be wrong whenever a condition applies, and one wrong sentence costs more than a missing one.
+**State, in plain words, which conditions change which rights.** Because: the same role can do different things depending on status, ownership, tenant or time, so a right stated without its condition would be wrong whenever a condition applies, and one wrong sentence costs more than a missing one.
 
 ### How access is gained, changed and lost
 
@@ -197,9 +197,9 @@ stateDiagram-v2
 
 ### The who-can-do-what matrix
 
-The matrix is a table with one row for each capability and one column for each role or claim. Each cell says whether the role or claim can do it and, in plain words, under which condition.
+The matrix is a table with one row for each capability and one column for each role or claim. A cell says whether the role or claim can do it, and may say in plain words under which condition.
 
-**Keep the matrix on the Users and access page only, and let the other pages link to it.** Because: the matrix and the architecture reference's account of how access is enforced are two views of access that must not drift apart, so the matrix lives once, here. The architecture reference links to it and maps each of its rows to the policy that enforces it and the test that proves it (`07-architecture-reference.md`). A feature page carries only its own small table of who can use that feature, and that table links back to this page ("Each feature page").
+**Keep the matrix on the Users and access page only, and let the other pages link to it.** Because: roles apply to every feature, so one page prevents repetition, and the matrix lives once, here. The architecture reference links to it and maps each of its rows to the policy that enforces it and the test that proves it (`07-architecture-reference.md`). A feature page carries only its own small table of who can use that feature, and that table links back to this page ("Each feature page").
 
 **Write one row for each capability.** Because: the architecture reference maps each row of the matrix to a policy and a test, so a row has to be one thing that can be enforced and tested.
 
@@ -225,7 +225,7 @@ The first two are shown above. An access journey is drawn the way a feature jour
 A feature page is `docs/features/<feature>.md`, one for each feature. It has eight parts, in this order, and the list gives each part with the reason for it.
 
 1. **What it is and why it exists.** Say what the feature is and why it exists, in the user's terms. Because: the feature docs explain the system from the point of view of whoever interacts with it, so a feature is described by what it gives that person and not by how it is built.
-2. **Who can use it.** A small table of which roles or claims can do what within this feature, under which conditions, with a link to the Users and access page. Because: roles apply to every feature, so the access page says what each role and claim is and this table says only what they mean for this feature, and the two views of access must not drift apart.
+2. **Who can use it.** A small table of which roles or claims can do what within this feature, under which conditions, with a link to the Users and access page. Because: roles apply to every feature, so one page prevents repetition: the access page says what each role and claim is, and this table says only what they mean for this feature.
 3. **What a person can do.** A list of the capabilities that the feature gives. Because: the feature docs say what the application is capable of, and this list says it for one feature.
 4. **Journeys.** Each main journey, step by step, with a journey or flow diagram and with evidence captured from the running system. Because: a journey is how a person reaches a capability, so it shows the feature from the person's side, and the evidence shows that the steps were run and not imagined.
 5. **The rules a person experiences.** The limits, statuses and notifications that a person meets, in plain words, with a plain-language state diagram. Because: a status changes what a person can do next, and a state diagram shows from each status what can happen next, which the text cannot show as well.
@@ -387,6 +387,6 @@ What data a screenshot may show is not a rule of the baseline. The baseline sets
 | Record the seed, the model and the versions of output that is not deterministic, or mark it illustrative. | A transcript of an agent run carries them or says that it is illustrative. |
 | Never hand-edit a generated index. | The glossary is generated, so no one edits it by hand. |
 | Keep a section that does not apply as one line, `Not applicable: why`. | A part of a feature page that does not apply to a feature stays, as one line. |
-| While no generator exists, write the indexes yourself, in the format that the generators will produce, as the single writer of your stack. | Where no generator exists yet, the docs agent writes the glossary in that way. |
+| In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), write the indexes yourself, in the format that the generators will produce, as the single writer of your stack. | In such a repository, the docs agent writes the glossary in that way. |
 
 **Where there is nothing to run, as in a product made only of Markdown, the written text is the evidence.** Because: nothing can be captured by running it, and the written text is then the only source of what exists.

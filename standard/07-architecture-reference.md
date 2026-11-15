@@ -12,13 +12,13 @@ The architecture reference is the technical document of a project: the system as
 
 **Pitch the reference from the reader profile, and write it at full detail.** Because: the levels in the reader profile decide only which basics a file explains, and the architecture is always fully documented, since humans keep control of code that agents write only if they can understand the system well enough to read it, review it and challenge it ([04-reader-profile.md](04-reader-profile.md); constraint C6 in [01-why-and-scope.md](01-why-and-scope.md)).
 
-**Make the reference a folder, with one file for each area and a generated index.** The folder is `docs/architecture/`: `README.md` is the generated index, and every other file is `NN-<area>.md`, where `NN` is the number that gives the file its place in the order ([05-project-layout.md](05-project-layout.md)). Because: a line-by-line read and a PR review stay manageable. The cost is more files, and an index that is generated.
+**Make the reference a folder, with one file for each area and a generated index.** The folder is `docs/architecture/`: `README.md` is the generated index, and every other file is `NN-<area>.md`, where `NN` is the number that gives the file its place in the order ([05-project-layout.md](05-project-layout.md)). Because: a line-by-line read and a PR review stay manageable.
 
 **Never edit the index by hand.** Because: a file that every PR in a stack edits conflicts at every rebase of the stack, so indexes are generated and never hand-edited (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). `17-evidence-and-truth.md` gives the rule, and the exception for a repository whose generators do not exist yet.
 
 **Let the docs agent decide the areas, and which of the thirteen minimum sections each file holds, and record the decision as a ruling.** An **area** is a part of the system or a concern that gets a file of its own. The standard fixes the sections and does not fix how they are spread over the files. Because: the areas depend on the system, and the baseline is the same for every kind of project and cannot know them in advance (anti-goal A1 in [01-why-and-scope.md](01-why-and-scope.md)).
 
-**Check every sentence against the code, and apply every evidence rule.** Because: the reference is read line by line, and one wrong sentence costs more than a missing one. A diagram that names a real file, module or class puts the name in backticks, and CI checks that it exists, so that diagrams stay true as the code moves (`16-diagrams.md`).
+**Check every sentence against the code, and apply every evidence rule.** Because: the reference is read line by line, and one wrong sentence costs more than a missing one. A diagram that names a real file, module or class puts the name in backticks, and the standard requires CI to check that it exists, so that diagrams stay true as the code moves (`16-diagrams.md`).
 
 The diagram shows what the folder holds, and which parts of it are generated and which are written. The data file is the file that holds the data section, and "The thirteen minimum sections" says what it carries.
 
@@ -146,7 +146,7 @@ flowchart LR
 
 ### The security section and the access matrix
 
-**Link to the access matrix and never copy it, and map each of its rows to the policy that enforces it and the test that proves it.** Because: the matrix lives only in the feature docs ([06-feature-docs.md](06-feature-docs.md)), and the two views of access, who can do what and how that is enforced, must not drift apart. A table from each row to its policy and its test is how the reference documents enforcement.
+**Link to the access matrix and never copy it, and map each of its rows to the policy that enforces it and the test that proves it.** Because: roles apply to every feature, so one page prevents repetition, and the matrix lives once, on the Users and access page of the feature docs ([06-feature-docs.md](06-feature-docs.md)), which the reference links to. A table from each row to its policy and its test is how the reference documents enforcement.
 
 The table below is for the made-up hiking club app of [06-feature-docs.md](06-feature-docs.md). In a real reference each cell names the real policy or the real test, in backticks.
 

@@ -20,7 +20,7 @@ Two other playbooks cover neighbouring topics: `pr-descriptions.md` for what goe
 
 A PR is based on a branch, and an ordinary PR is based on `main`. In a stack, the first PR is based on `main`, the second is based on the first PR's branch, the third on the second's, and so on to the top. This chain of bases is why each PR shows only the changes it adds on top of the PR below. The PR nearest `main` is the **bottom** of the stack, the last PR is the **top**, and a PR is merged only after the ones below it.
 
-GitHub has a native feature for stacked PRs, in public preview. Its documented rules are: a stack is two or more PRs in the same repository, merged bottom-up, with linear history, and required checks are evaluated for every PR in the stack.
+GitHub has a native feature for stacked PRs, in public preview. Its documented rules are: a stack is two or more PRs in the same repository, merged bottom-up, with linear history, and required checks are evaluated for every PR in the stack. These are the rules as GitHub documents them, and they have not yet been confirmed against GitHub's actual behaviour.
 
 A stack lives in one repository, and a project is one repository, with no exceptions. Because: a stack cannot span repositories, and in one repository an agent sees the whole product, with front-end and back-end PRs in the same stack. Anything that must be published separately, an SDK for example, is a folder in the repository that CI publishes as a package.
 
@@ -48,14 +48,14 @@ flowchart BT
 
 ### The tool
 
-`gh stack` is the GitHub CLI extension for stacked PRs: it builds a stack on your machine, pushes it, opens the PRs and registers the stack with GitHub. `gh stack --version` prints the installed version (for example `gh stack version 0.3.0`, the one the commands in this playbook were checked against), `gh stack --help` lists every command, and `gh stack <command> --help` explains one. The feature is in public preview, so the help is the authority if a command behaves differently from what is written here.
+`gh stack` is the GitHub CLI extension for stacked PRs: it builds a stack on your machine, pushes it, opens the PRs and registers the stack with GitHub. `gh stack --version` prints the installed version (for example `gh stack version 0.3.0`, the version whose help the commands in this playbook are taken from), `gh stack --help` lists every command, and `gh stack <command> --help` explains one. The feature is in public preview, so the help is the authority if a command behaves differently from what is written here.
 
 It has two ways of working.
 
-- `gh stack init`, `add`, `submit`, `sync` and `rebase` work from a local record of the stack that `gh stack` keeps on your machine: they create branches, rebase them onto each other, push them and open PRs.
+- `gh stack add`, `submit`, `sync` and `rebase` work from a local record of the stack that `gh stack` keeps on your machine: they create branches, rebase them onto each other, push them and open PRs. `gh stack init` starts a stack on your machine, and its help says that existing branches are adopted automatically and missing ones are created.
 - `gh stack link` keeps no local record. You give it branch names and it creates or updates the stack on GitHub from them. Its help says it is designed for branches that are managed outside `gh stack`.
 
-**This baseline uses `gh stack link` over branches made with plain git.** The branches of a stack here are pointers into one linear history, made with `git branch` (see "Cutting the stack from linear history"). Because: `link` is the command meant for branches that `gh stack` did not create, and a pointer needs nothing but its name to be linked, so there is no local stack for the other commands to track.
+**This baseline uses `gh stack link` over branches made with plain git.** The branches of a stack here are pointers into one linear history, made with `git branch` (see "Cutting the stack from linear history"). Because: `link` is the command meant for branches that `gh stack` did not create, and a pointer needs nothing but its name to be linked. Two points have not yet been confirmed against GitHub: that branches cut as pointers into one linear history link cleanly with `gh stack link`, and what `gh stack view` shows for a stack made this way. Confirm both before relying on them, and rely on the `gh pr list` check in "Opening and updating the stack" meanwhile.
 
 `gh stack link` takes branch names in stack order, bottom to top:
 
@@ -74,8 +74,8 @@ It needs at least two branches, because a stack is two or more PRs. "Opening and
 
 Other commands you will see in `gh stack --help`:
 
-- `gh stack view` lists the stack's branches and the status of each PR. It is used to check a stack after linking it.
-- `gh stack init`, `add`, `submit`, `sync`, `rebase`, `push`, `modify` and `checkout` work on a stack that `gh stack` tracks locally, and `up`, `down`, `top`, `bottom`, `trunk` and `switch` move between its branches. This baseline does not use them to build or update a stack. Because: its branches are pointers made by plain git, so there is no local record for them to work on.
+- `gh stack view` lists the stack's branches and the status of each PR. This baseline uses it as an extra look at a stack after linking it, and what it shows for a stack made with `gh stack link` has not yet been confirmed against GitHub.
+- `gh stack add`, `submit`, `sync`, `rebase`, `push`, `modify` and `checkout` work on a stack that `gh stack` tracks locally, and `up`, `down`, `top`, `bottom`, `trunk` and `switch` move between its branches. `gh stack init` creates such a stack and, its help says, adopts existing branches. This baseline does not use them to build or update a stack. Because: it makes its branches as pointers with plain git and links them with `gh stack link`, the command whose help says it is designed for branches that are managed outside `gh stack`.
 - `gh stack unstack` removes a stack on GitHub and from local tracking. It is not part of the normal flow.
 - `gh stack merge` merges a stack on GitHub in one atomic operation. Never run it unless the Software Engineer asks. Because: nothing merges, deploys or publishes unless the Software Engineer asks.
 
@@ -108,10 +108,10 @@ A **slice** is a logical group of code that becomes one code PR. An **ADR draft*
 7. **The docs section is last**, in reading order from foundational to integrated: reference, language lessons, stack lessons, system chapters. The docs agent writes it. Because: the docs describe what was built, so they sit on top of the final built state, and a reader moves from the foundation to the integrated whole.
 8. **Plan and spec edits made during the build get their own PR.** A skill may revise its spec or plan in a later loop, and nothing stops it. When the stack is cut, the revision becomes its own thinking PR at the point in the stack where it happened, below the code that needed it. PR 2 stays as first written. A change to a decision is also a new ADR draft, not only a spec edit. Because: the reviewer reads the changed thinking first and then the code that needed it. The skill is neither stopped nor edited, and a decision is recorded in an ADR, so a spec edit alone would leave that record unchanged.
 9. **Code PRs carry an "Implements" line** linking the spec, the plan and the ADRs they follow, and the docs link back to the PRs. Because: a future reader can then follow why, how and what through the history.
-10. **Approve the whole stack, docs section included, then merge it bottom-up in one sitting.** Nothing merges, deploys or publishes unless the Software Engineer asks. Because: the docs section describes what the lower PRs built, so the stack is complete only with it, and GitHub merges a stack from the bottom up. Merging ships the work, so it is the Software Engineer's call.
+10. **Approve the whole stack, docs section included, then merge it bottom-up in one sitting.** Nothing merges, deploys or publishes unless the Software Engineer asks. Because: the docs section describes what the lower PRs built, so the stack is complete only with it, and GitHub merges a stack from the bottom up, as it documents.
 11. **A change with no spec stays a single code PR.** If it affects documents, it becomes a two-PR stack: the code PR, then a description PR from the docs agent. A change with no documentary impact needs no description PR. "Small changes" below shows how. Because: this keeps each PR to one kind, which is what makes it quick to review, and one PR that carried its own docs would put two kinds in it.
 12. **Cut the stack's branches as pointers into the linear commit history** that the execution skills produce, at the slice boundaries you chose. No re-commit and no edit to the plan is needed. If a commit mixes kinds, or a thinking commit sits inside a slice, split or move it when you cut. Keeping each commit to one kind makes the cut pointer-only. Because: the skills commit task by task on one branch and are not changed to do otherwise, so the stack has to be made from the history they produce, and a pointer leaves that history exactly as produced.
-13. **Every PR leaves the repository working:** it builds, and the project's own checks pass. What those checks are is the project's decision. Because: GitHub evaluates required checks for every PR in a stack and merges from the bottom up, so each PR has to stand on its own.
+13. **Every PR leaves the repository working:** it builds, and the project's own checks pass. What those checks are is the project's decision. Because: GitHub documents that required checks are evaluated for every PR in a stack and that a stack merges from the bottom up, so each PR has to stand on its own.
 
 ### Conventions
 
@@ -120,7 +120,7 @@ A **slice** is a logical group of code that becomes one code PR. An **ADR draft*
 - **Attribution:** never add an attribution line to a commit or a PR description, that is, no co-author trailer and no "generated with" line. Because: the Software Engineer does not want them, and Claude Code adds such lines by default, so the rule has to be stated explicitly.
 - **One idea per PR:** a refactor or a move goes in its own PR, apart from any behaviour change. Because: each diff can then be read for what it is.
 - **Size guide:** about 400 changed lines for a code PR, not counting tests and generated files. Thinking and description PRs are exempt. Because: a code PR is read for correctness, line by line, so it has to stay small enough to review properly. Thinking and description PRs are read for intent and for whether they match the code, not line by line.
-- **Stack tooling** is `gh stack`: the stack is registered as a native GitHub stack and its PRs are marked ready. A repair that rewrites pushed history waits for the Software Engineer's yes. A cross-cutting fix goes in as a new PR on top. Because: a native stack is what GitHub merges bottom-up with required checks on every PR, and a draft is not ready for the review the stack exists for. A rewrite of pushed history replaces commits the Software Engineer may be reading, and a fix on top leaves every PR below as they read it.
+- **Stack tooling** is `gh stack`: the stack is registered as a native GitHub stack and its PRs are marked ready. A repair that rewrites pushed history waits for the Software Engineer's yes. A cross-cutting fix goes in as a new PR on top. Because: a native stack is what GitHub merges bottom-up with required checks on every PR, as it documents, and a draft is not ready for the review the stack exists for. A rewrite of pushed history replaces commits the Software Engineer may be reading, and a fix on top leaves every PR below as they read it.
 - **Everything is a PR.** The one exception is the very first commit of a new repository, the bootstrap, since there is nothing yet to branch from. The foundation itself (CI, the document skeleton, the first code) is then its own stack. Because: a PR needs something to be based on, and a new repository has nothing before its first commit.
 
 ## Cutting the stack from linear history
@@ -176,7 +176,7 @@ Cut like this:
 5. **After any split or move, check that the tree did not change.** `git diff <the tip you noted> HEAD` must print nothing. Because: splitting and moving change the order of the work, not the work. They should touch only commits that have not been pushed, and a repair that rewrites pushed history waits for the Software Engineer's yes (see "Opening and updating the stack").
 6. **Cut the pointers**, bottom to top, named by the branch-name convention: `git branch sync-engine/03-op-log <commit>`. Because: a pointer is all the cut needs, and the number in each name fixes its place in the stack.
 7. **Check the chain.** For each pair of neighbouring pointers, `git merge-base --is-ancestor <lower> <upper>` must exit with status 0, and when you have cut the whole stack the top pointer must be the tip: `git rev-parse <top pointer>` equals `git rev-parse HEAD`. Because: a stack whose branches are not in one chain cannot be linked with the right bases.
-8. **Check that every pointer leaves the repository working.** Check out each one in turn with `git switch --detach <pointer>` and run the project's checks. If one fails, move the boundary so that the PR stands on its own. Because: every PR leaves the repository working, and GitHub evaluates required checks for each PR in the stack.
+8. **Check that every pointer leaves the repository working.** Check out each one in turn with `git switch --detach <pointer>` and run the project's checks. If one fails, move the boundary so that the PR stands on its own. Because: every PR leaves the repository working, and GitHub documents that required checks are evaluated for each PR in the stack.
 
 ### Where each commit goes
 
@@ -224,18 +224,18 @@ sequenceDiagram
 
 *One command, `gh stack link`, pushes the branches, opens each PR on the branch below it and registers the stack; titles and descriptions are set afterwards with `gh pr edit`.*
 
-**Check the result.**
+**Check the result.** The `gh pr list` check is the one to rely on, and `gh stack view` is an extra look.
 
 ```bash
 gh pr list --json number,headRefName,baseRefName,isDraft
 gh stack view
 ```
 
-It is done when the first PR's base is `main`, every other PR's base is the branch below it, no PR is a draft, and `gh stack view` lists the stack's branches. Because: a PR shows its changes against its base, so a wrong base shows the reviewer the wrong diff, and a draft is not ready for review.
+It is done when the `gh pr list` output shows that the first PR's base is `main`, every other PR's base is the branch below it, and no PR is a draft. Because: a PR shows its changes against its base, so a wrong base shows the reviewer the wrong diff, and a draft is not ready for review. `gh stack view` lists the stack's branches and the status of each PR, but what it shows for a stack made with `gh stack link` has not yet been confirmed against GitHub, so nothing here depends on it.
 
 **Set every title and description** with `gh pr edit <number> --title "<title>" --body-file <file>`, as `pr-descriptions.md` says. Because: the description is what the reviewer reads first and it carries the stack table, and the numbers the table needs exist only after the PRs do.
 
-**Open the rest of the stack when the docs section is in.** Cut the remaining pointers when the build is finished. At the finish menu keep the branch as it is (see the seam "Finish menu"). When the docs section is in, publish the whole stack by running `gh stack link` with every branch from the first to the last, bottom to top, and `--open`. PRs 1 and 2 already exist and are reused. Because: the stack is complete only with its docs section on top. Publishing is outward work, so put it to the Software Engineer in your report and publish when they say so, in line with the rule that nothing merges, deploys or publishes unless they ask.
+**Open the rest of the stack when the docs section is in.** Cut the remaining pointers when the build is finished. At the finish menu keep the branch as it is (see the seam "Finish menu"). When the docs section is in, publish the whole stack with `gh stack link`, listing every branch from the first to the last, bottom to top, with `--open`. PRs 1 and 2 already exist and are reused. Because: the stack is complete only with its docs section on top, and this playbook adds no ask of its own before the stack is published. A project that wants an ask before any push says so in the conversation or in `AGENTS.md`, and the conversation wins for that task.
 
 **Grow the stack** by listing every branch again, bottom to top (PRs that already exist are reused), or by giving the stack's number first, which appends the branches after it to the top of that stack:
 

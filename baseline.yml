@@ -1,0 +1,8 @@
+baseline_version: 0.1.0
+standards_enabled: true
+artifact_map:
+  spec: ["docs/superpowers/specs/**"]
+  plan: ["docs/superpowers/plans/**"]
+  other: []
+# Folders whose changes are code for PR-kind purposes
+stack_folders: [standard, kit, checkers, skills, examples]

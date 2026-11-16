@@ -40,7 +40,7 @@ A PR that mixes kinds gets a notice, and the notice never blocks the PR: it is a
 
 ### Attribution lines
 
-**Add no attribution line to the description of a PR, and none to a commit message: no co-author trailer and no "generated with" line.** Because: Claude Code adds such lines by default, so `AGENTS.md` states the rule explicitly (`15-agents-md-and-playbooks.md`; the convention is in [03-stack-model.md](03-stack-model.md)). The checker verifies the rule for the description of every PR, as the list above says.
+**Add no attribution line to the description of a PR, and none to a commit message: no co-author trailer and no "generated with" line.** Because: Claude Code adds such lines by default, so `AGENTS.md` states the rule explicitly (`15-agents-md-and-playbooks.md`; the convention is in [03-stack-model.md](03-stack-model.md)). The standard requires the checker to verify the rule for the description of every PR, as the list above says.
 
 ## The header every PR starts with
 
@@ -71,7 +71,7 @@ PR <n> of <N>
 <thinking, code or description>
 ````
 
-The example is the header of PR 4 in a made-up stack of six PRs for the hiking club app of [06-feature-docs.md](06-feature-docs.md): the stack adds the reminders that members get before a hike. "n of N" counts the PRs from the bottom of the stack, so this is PR 4 of 6, and `#34` is the number that GitHub gives the PR. The PR being read is marked in the table with "(this PR)" and in the diagram by the rounded node, and the two code PRs show that the agent grouped the code into two slices.
+The example is the header of PR 4 in a made-up stack of six PRs for the hiking club app of [06-feature-docs.md](06-feature-docs.md): the stack replaces the club's old reminder log with a schedule of due reminders and a sender, which together give members their reminders before a hike. "n of N" counts the PRs from the bottom of the stack, so this is PR 4 of 6, and `#34` is the number that GitHub gives the PR. The PR being read is marked in the table with "(this PR)" and in the diagram by the rounded node, and the two code PRs show that the agent grouped the code into two slices.
 
 The first line of the header reads "PR 4 of 6", and the header carries this table:
 
@@ -79,9 +79,9 @@ The first line of the header reads "PR 4 of 6", and the header carries this tabl
 |---|---|---|
 | #31 | thinking | The spec for the reminders, as brainstorming produced it |
 | #32 | thinking | The plan, as writing-plans produced it |
-| #33 | thinking | ADR drafts: where the reminders are sent from |
-| #34 (this PR) | code | Slice 1: the reminder schedule and its table |
-| #35 | code | Slice 2: sending the reminders |
+| #33 | thinking | ADR drafts: how the schedule of due reminders is stored and found |
+| #34 (this PR) | code | Slice 1: the schedule of due reminders and its table |
+| #35 | code | Slice 2: the sender that sends the due reminders |
 | #36 | description | The reference documents for the reminders |
 
 It carries this diagram, because the stack has six PRs. In a Mermaid flowchart, a node written with `([` and `])` is drawn rounded, which is how the diagram marks the PR being read.
@@ -295,7 +295,7 @@ A PR that changes the database, one whose migrations change the shape of the sto
 
 **Show the schema as it is after the PR, in a colour-coded diagram that highlights what the PR changes against the PR's base.** In a stack the base is the PR below. Because: each PR then shows only its own change.
 
-CI maintains the diagram: it keeps it current inside a marked block of the PR description and refreshes it on every push. The standard requires the checker to fail a PR whose migrations changed and whose block is missing, and to verify that the block is fresh (`22-tooling-requirements.md`). The standard fixes that the block is marked and leaves the form of the marker to the tooling.
+The standard requires CI to maintain the diagram: to keep it current inside a marked block of the PR description and to refresh it on every push. The standard requires the checker to fail a PR whose migrations changed and whose block is missing, and to verify that the block is fresh (`22-tooling-requirements.md`). The standard fixes that the block is marked and leaves the form of the marker to the tooling.
 
 Four colours carry the meaning of the diagram.
 
@@ -308,9 +308,9 @@ Four colours carry the meaning of the diagram.
 
 **Use the approved palette for the colours, and no other colour in the diagram.** The palette is a translucent tint and a solid border of the same colour, with no text colour set, and its three `classDef` lines are in the example below. Because: hard-coded colours are what break a diagram in one theme, so emphasis colour comes only from the approved palette (`16-diagrams.md`). The standard requires the checker to reject any hard-coded colour outside the palette (`22-tooling-requirements.md`).
 
-**Mark every change to a column or to a relationship in the text of the diagram, with `+` for added, `~` for changed and `-` for removed.** Because: Mermaid can colour a whole table but not a single column or a relationship line, so the markers say what the colour cannot, and colour never carries the meaning alone. Mermaid accepts the markers in two places, the quoted comment at the end of an attribute and the quoted label of a relationship, so they go there.
+**Mark every change to a column or to a relationship in the text of the diagram, with `+` for added, `~` for changed and `-` for removed.** Because: Mermaid can colour a whole table but not a single column or a relationship line, so the markers say what the colour cannot, and colour never carries the meaning alone.
 
-The example is the diagram that PR 4 of the made-up stack above would carry, for a made-up schema of the hiking club app. Slice 1 adds the `REMINDER` table, drops the `REMINDER_LOG` table that it replaces, and changes `SIGN_UP`: the `contact` column takes a phone number as well as an email address, and the `reminder_sent` column is dropped. `HIKE` is unchanged, so it stays plain. In a Mermaid entity-relationship diagram, `classDef` defines a named style, and `class SIGN_UP changed` gives the entity `SIGN_UP` the style `changed`. The three `classDef` lines are the approved palette, exactly.
+The example is the diagram that PR 4 of the made-up stack above would carry, for a made-up schema of the hiking club app. Slice 1 is the schedule of due reminders: it adds the `REMINDER` table, which holds the schedule, drops the `REMINDER_LOG` table that the schedule replaces, and changes `SIGN_UP`: the `contact` column takes a phone number as well as an email address, and the `reminder_sent` column is dropped. `HIKE` is unchanged, so it stays plain. In the example below, the markers sit in the quoted comment of an attribute and in the quoted label of a relationship. In a Mermaid entity-relationship diagram, `classDef` defines a named style, and `class SIGN_UP changed` gives the entity `SIGN_UP` the style `changed`. The three `classDef` lines are the approved palette, exactly.
 
 ```mermaid
 erDiagram

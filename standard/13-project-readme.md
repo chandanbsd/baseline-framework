@@ -76,7 +76,7 @@ Part 2 groups its links by what the reader wants to do: understand, contribute o
 
 ### Parts 6 and 7: the map and the way of working
 
-**Give every folder in the repo map one line, and link each folder's own README and `AGENTS.md`, where it has them.** Because: each stack folder has its own README and its own `AGENTS.md` ([05-project-layout.md](05-project-layout.md)), so the map has them to link.
+Part 6 gives every folder of the tree one line and links each folder's own README and `AGENTS.md`, where it has them. Each stack folder has its own README and its own `AGENTS.md` ([05-project-layout.md](05-project-layout.md)), and "Stack READMEs" sets the README.
 
 **In "How we work", say in brief how stacked PRs are used and how AI agents are used, and link to the playbooks.** The playbook [stacks.md](../docs/agents/stacks.md) covers the stacked-PR workflow, and `15-agents-md-and-playbooks.md` lists the playbooks. Because: the rules reach the agents through one short instruction file and playbooks that give the reason beside each rule, so the README says it in brief and links to the playbooks.
 
@@ -84,7 +84,7 @@ Part 2 groups its links by what the reader wants to do: understand, contribute o
 
 Part 8 gives the essentials for local development and says where the full table lives: the deployment docs hold a table of every setting, in the area "Configuration and secrets" ([12-deployment-docs.md](12-deployment-docs.md)).
 
-**Capture an error message that part 9 quotes by running the step that causes it, and mark an error that could not be reproduced "not verified".** Because: output is captured by running it and never written from memory, and an error message is output, and anything that could not be verified says so, in a "not verified" note (`17-evidence-and-truth.md`).
+An error message that part 9 quotes is output, so it is captured by running the step that causes it, and an error that could not be reproduced is marked "not verified". This is not a rule of its own: it follows from the evidence rules that output is captured by running it and never written from memory, and that anything that could not be verified says so, in a "not verified" note (`17-evidence-and-truth.md`).
 
 The table of part 9 of the made-up hiking club app, as an illustration:
 
@@ -160,8 +160,6 @@ This skeleton shows the title and the ten parts as headings, in order, for the m
 ## Stack READMEs
 
 Each stack folder gets its own small README with the same run, test and build structure as the root README, scoped to that stack. A stack folder is the folder of one technology stack. Its `AGENTS.md` is a separate file: a short one that holds the commands and the layout of the stack, filled in when the stack is introduced (`15-agents-md-and-playbooks.md`).
-
-**Give each stack folder its own small README, with the same run, test and build structure as the root README, scoped to that stack.** Because: the repo map of the root README links each folder's own README (part 6), so each stack folder has one for the map to link.
 
 **Let the docs agent write the READMEs of the stack folders, as it writes the root README.** Because: the stack folders' READMEs are descriptive documents like the root README ([05-project-layout.md](05-project-layout.md)), and descriptive documents are written only by the docs agent, from the finished tip.
 

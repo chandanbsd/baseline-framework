@@ -71,7 +71,7 @@ flowchart TB
     end
     subgraph T4["The execution skills"]
         direction LR
-        S4["They commit task by task on one branch,<br/>log rulings and stop only in the cases<br/>that the Execution stops row lists"] -.-> B4["The baseline: skips any step that writes a doc family<br/>and adds no stop. Afterwards it cuts the stack<br/>branches as pointers and copies the rulings<br/>into the PR descriptions"]
+        S4["They commit task by task on one branch,<br/>log rulings and stop only in the cases<br/>that the Execution stops row lists"] -.-> B4["The baseline: skips any step that writes a doc family<br/>and adds no stop"]
     end
     subgraph T5["The final reviewer"]
         direction LR

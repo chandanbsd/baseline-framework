@@ -95,14 +95,14 @@ Each rule records its reason, its scope, its date and its source, beside the rul
 
 **Record the reason, the scope, the date and the source of every rule, beside the rule.** Because: every rule has its reason beside it, which is the first of the two rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and a coding preference goes to `docs/standards/` and never into a stack folder's `AGENTS.md`, so the scope of a rule can be one technology stack and a preference for one stack still has its home here ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)).
 
-The standard fixes the four records and not how they are laid out. The two rules below are made up for the hiking club app, in a layout that is only an illustration. The first has the whole project as its scope.
+The standard fixes the four records and not how they are laid out. The two rules below are made up for the hiking club app, in a layout that is only an illustration. The first has the whole project as its scope. Its source is a review comment on PR 4, the PR of the first slice in the stack that "Where changes land" draws.
 
 ```text
 Rule: Never put a member's phone number in a log line.
 Reason: "A log is read by more people than the member agreed to." (the Software Engineer)
 Scope: the whole project
 Date: 2027-03-02
-Source: a review comment on PR 21
+Source: a review comment on PR 4
 ```
 
 The second has one technology stack as its scope, the back end in the folder `api/`.
@@ -119,7 +119,7 @@ Source: the conversation while slice 2 was being built
 
 ## Where changes land
 
-A rule is written as a thinking PR, at the point in the stack where the preference came up. [03-stack-model.md](03-stack-model.md) explains the stack, and the example below is made up for the hiking club app: the Software Engineer states a preference after the first slice has been built and before the second is started, and approves the rule.
+A rule is written as a thinking PR, at the point in the stack where the preference came up. [03-stack-model.md](03-stack-model.md) explains the stack. The example below is made up for the hiking club app. It is the stack of [14-pr-descriptions.md](14-pr-descriptions.md), with one PR more. In that stack, PR 3 holds the ADR drafts for the first slice: the slice adds a table of due reminders, which is a data model, and a data model is a decision of impact ([11-adrs.md](11-adrs.md)), so its drafts sit directly beneath it (rule 4 in [03-stack-model.md](03-stack-model.md)). The PR that is added is the standard: the Software Engineer states a preference after the first slice has been built and before the second is started, and approves the rule, so the rule gets a thinking PR of its own between the two slices.
 
 **Write an approved rule as a thinking PR, at the point in the stack where the preference came up.** Because: a standards update is a thinking PR, and a change that comes up later goes in its own PR of the matching kind, at the point in the stack where it happened ([03-stack-model.md](03-stack-model.md)); and thinking goes below the code it governs, so the reviewer reads the rule before the code that follows it.
 
@@ -130,11 +130,12 @@ flowchart BT
     M["main"]
     P1["PR 1  spec<br/>thinking"]
     P2["PR 2  plan<br/>thinking"]
-    P3["PR 3  slice 1: the schedule of due reminders<br/>code"]
-    P4(["PR 4  standard: no phone numbers in logs<br/>thinking"])
-    P5["PR 5  slice 2: the sender<br/>code"]
-    P6["PR 6  reference docs<br/>description"]
-    M --> P1 --> P2 --> P3 --> P4 --> P5 --> P6
+    P3["PR 3  ADR drafts for slice 1<br/>thinking"]
+    P4["PR 4  slice 1: the schedule of due reminders<br/>code"]
+    P5(["PR 5  standard: no phone numbers in logs<br/>thinking"])
+    P6["PR 6  slice 2: the sender<br/>code"]
+    P7["PR 7  reference docs<br/>description"]
+    M --> P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7
 ```
 
 *A standard is a thinking PR placed where the preference came up, and the one thing to notice is that the rounded node sits between the two code slices: after the code that was built before the preference came up, and below the code that follows it.*

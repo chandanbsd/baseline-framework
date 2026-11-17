@@ -112,7 +112,7 @@ The table gives each document that the docs agent writes with the file of the st
 | The generated sections of the reader profile | [04-reader-profile.md](04-reader-profile.md) |
 | The description of each description PR | [14-pr-descriptions.md](14-pr-descriptions.md) |
 
-Where no generator exists yet for an index, the docs agent writes the index itself, in the format that the generators will produce, as the single writer of its stack ([17-evidence-and-truth.md](17-evidence-and-truth.md) gives the exception and [10-course-reference-pages.md](10-course-reference-pages.md) says how it applies to the reference pages).
+In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), the docs agent writes the indexes itself, in the format that the generators will produce, as the single writer of its stack ([17-evidence-and-truth.md](17-evidence-and-truth.md) gives the exception and [10-course-reference-pages.md](10-course-reference-pages.md) says how it applies to the reference pages).
 
 ## The rules
 

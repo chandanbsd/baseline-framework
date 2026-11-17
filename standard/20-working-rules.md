@@ -4,7 +4,7 @@ This file sets the working rules of the baseline: who decides what between the S
 
 A few words appear here before the standard defines them in full. The **Software Engineer** is the person who decides, named in the project's `AGENTS.md`, and the person the baseline is built for: an engineer working toward Distinguished Engineer by taking on the responsibilities of the Lead Engineer, the Principal Engineer and the Solutions Architect ([01-why-and-scope.md](01-why-and-scope.md)). The agents are of two kinds. The **regular agent** is the agent that works on a task: it brainstorms, plans, builds and writes ADR drafts. The **docs agent** is a fresh agent, started from the finished code, that writes the descriptive documents ([18-docs-agent.md](18-docs-agent.md)). Work is delivered as a **stack** of pull requests (PRs), an ordered series in which each PR is based on the one below it and merged from the bottom up. A stack holds three kinds of PR: a **thinking PR** holds the prescriptive documents, the ones that say what will be built or how work is done; a **code PR** holds code and tests; and a **description PR** holds the descriptive documents, the ones that say only what exists at the **tip**, the last commit of the stack. [03-stack-model.md](03-stack-model.md) explains the stack and its three kinds in full.
 
-Some more words are used below. An **ADR** is an architecture decision record: one file for one decision, with the options that were explored. A **skill** is a packaged set of instructions that an agent follows for one kind of work, and superpowers is a set of skills. **Brainstorming** is the work of the `brainstorming` skill, which produces the spec, and the plan is what the `writing-plans` skill produces. An **execution skill** is a skill that carries out a plan task by task; in superpowers they are `subagent-driven-development` and `executing-plans`. A **ruling** is a decision that an agent takes on the Software Engineer's behalf, without stopping to ask, and records as `Ruling: what, why, cost if wrong`. Every ruling is listed under "Rulings I made" in the description of a code PR ([14-pr-descriptions.md](14-pr-descriptions.md)). The **reader profile** is the project's record of who its documents are written for, and its answers are also the bar that the Software Engineer hires against ([04-reader-profile.md](04-reader-profile.md)). A **generated index** is an index that no one edits by hand: the course index, the file map, the glossaries and the ADR index ([17-evidence-and-truth.md](17-evidence-and-truth.md)). Each rule below is followed by `Because:` and its reason wherever the rules of the standard give one.
+Some more words are used below. An **ADR** is an architecture decision record: one file for one decision, with the options that were explored. A **skill** is a packaged set of instructions that an agent follows for one kind of work, and superpowers is a set of skills. **Brainstorming** is the work of the `brainstorming` skill, which produces the spec, and the plan is what the `writing-plans` skill produces. An **execution skill** is a skill that carries out a plan task by task; in superpowers they are `subagent-driven-development` and `executing-plans`. A **ruling** is a decision that an agent takes on the Software Engineer's behalf, without stopping to ask, and records as `Ruling: what, why, cost if wrong`. Every ruling is listed under "Rulings I made" in the description of a code PR ([14-pr-descriptions.md](14-pr-descriptions.md)). The **reader profile** is the project's record of who its documents are written for, and its answers are also the bar that the Software Engineer hires against ([04-reader-profile.md](04-reader-profile.md)). A **generated index** is an index that no one edits by hand, such as the course index, the file map, the glossaries and the ADR index ([17-evidence-and-truth.md](17-evidence-and-truth.md)). Each rule below is followed by `Because:` and its reason wherever the rules of the standard give one.
 
 ## Who decides what
 
@@ -14,18 +14,18 @@ The Software Engineer decides what only they can decide, and the agents decide t
 
 ### The Software Engineer decides, and the agents stop and ask
 
-An agent that reaches one of these calls stops and asks the Software Engineer ("How decisions are put to the Software Engineer"). [02-vocabulary.md](02-vocabulary.md) gives the same list in short. The table gives each call with its reason.
+An agent that reaches one of these calls stops and asks the Software Engineer ("How decisions are put to the Software Engineer"). [02-vocabulary.md](02-vocabulary.md) gives the same list in short. The table gives each call, and its reason in the rows that have one.
 
 | What the Software Engineer decides | Because |
 |---|---|
 | What to build and why: the scope, and the approach picked during brainstorming. | The Software Engineer is the one who directs the agents (the why in [01-why-and-scope.md](01-why-and-scope.md)), and brainstorming already requires the approaches and the Software Engineer's pick before any design exists ([11-adrs.md](11-adrs.md)). |
-| Anything that changes how work is done: branching, release, CI, tooling. | What suits a project depends on its kind and goal, which the baseline cannot know, and the Software Engineer decides what the baseline cannot know (constraint C7 in [01-why-and-scope.md](01-why-and-scope.md)). |
+| Anything that changes how work is done: branching, release, CI, tooling. | No reason is stated for this call. |
 | Merging a stack, deploying, releasing and store submissions, which are submissions of an app to an app store. Nothing merges, deploys or publishes unless the Software Engineer asks. | This is rule 10 of the stack ([03-stack-model.md](03-stack-model.md)), and the merge of a stack is also the acceptance of the ADRs in it ([11-adrs.md](11-adrs.md)). |
-| Anything that persists or ships and cannot be undone: production data, destructive migrations (changes to the shape of the stored data that discard data), domains, accounts, secrets, billing and third-party sign-ups. | What a project does with its production data, its domains, its accounts, its secrets and its billing is the project's own, which the baseline cannot know, so it is the Software Engineer's to decide (constraint C7 in [01-why-and-scope.md](01-why-and-scope.md)). `21-skills-seams.md` records that the execution skills themselves stop for irreversible or destructive operations and for outside side effects, and that the baseline adds no stop of its own to theirs. |
+| Anything that persists or ships and cannot be undone: production data, destructive migrations (changes to the shape of the stored data that discard data), domains, accounts, secrets, billing and third-party sign-ups. | No reason is stated for this call. `21-skills-seams.md` records that the execution skills themselves stop for irreversible or destructive operations and for outside side effects, and that the baseline adds no stop of its own to theirs. |
 | Accepting or rejecting an ADR (the merge of the stack is the acceptance), and what to do with a finding that cannot be fixed, such as dismissing an alert or accepting a risk. | The merge of a stack is the Software Engineer's (rule 10 in [03-stack-model.md](03-stack-model.md)), it is the acceptance of the ADRs in it, and an ADR is rejected when the Software Engineer sends it back ([11-adrs.md](11-adrs.md)). Vulnerability and security policy are per-project (non-goal N1 in [01-why-and-scope.md](01-why-and-scope.md)), so what to do with a finding that cannot be fixed is the project's own, which the Software Engineer decides (constraint C7). |
 | Changing the reader profile. | The reader profile says who the documents are written for, and its answers are also the bar that the Software Engineer hires against ([04-reader-profile.md](04-reader-profile.md)). |
 
-**Stop and ask the Software Engineer on every call in the table, and decide none of them yourself.** Because: the Software Engineer is the person who decides, and each row gives its call a reason of its own. The Software Engineer also approves every standard before it is written ([19-standards-mechanism.md](19-standards-mechanism.md)).
+**Stop and ask the Software Engineer on every call in the table, and decide none of them yourself.** Each row that has a reason gives it in the table. The Software Engineer also approves every standard before it is written ([19-standards-mechanism.md](19-standards-mechanism.md)).
 
 ### The agents decide, and record each decision as a ruling
 
@@ -88,7 +88,7 @@ This is how an agent asks when it stops and asks, as "Who decides what" requires
 ```text
 Decisions needed
 
-1. Should members also get a reminder by text message?
+1. How should members get the reminder?
    Recommended: email only, because sending text messages needs an account with a messaging provider, and opening one is your decision.
    Other option: email and text message.
 2. Should a release of the app be named by a version number or by its date?
@@ -183,7 +183,7 @@ A made-up report for the stack of the hiking club app in [14-pr-descriptions.md]
 
 ```text
 Decisions needed
-1. Should members also get a reminder by text message?
+1. How should members get the reminder?
    Recommended: email only, because sending text messages needs an account with a messaging provider, and opening one is your decision.
    Other option: email and text message.
 

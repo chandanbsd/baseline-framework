@@ -35,7 +35,7 @@ Standards and ADRs drive code together, and they are different documents. An ADR
 
 ## Opt-in
 
-The standard requires the intake to ask once whether to build standards from the Software Engineer's preferences over time and, when the answer is yes, to create an empty `docs/standards/` folder with a README that explains how the folder fills (`22-tooling-requirements.md`). When the answer is no, there is no folder. [04-reader-profile.md](04-reader-profile.md) describes the intake, and says that until the skills that will run it exist, it is run by hand.
+The standard requires the intake to ask once whether to build standards from the Software Engineer's preferences over time and, when the answer is yes, to create an empty `docs/standards/` folder with a README that explains how the folder fills (`22-tooling-requirements.md`). When the answer is no, there is no folder. [04-reader-profile.md](04-reader-profile.md) describes the intake, and says that where the skills that run it are not available, it is run by hand.
 
 The answer is recorded as `standards_enabled`, which is `true` or `false`, in the header of the reader profile ([04-reader-profile.md](04-reader-profile.md)) and in `baseline.yml` ([05-project-layout.md](05-project-layout.md)).
 
@@ -65,10 +65,10 @@ flowchart LR
 
 *A preference becomes a rule only through the Software Engineer's approval, and the one thing to notice is that the branch for a no ends with nothing written.*
 
-The exchange below is made up, for the hiking club app of [06-feature-docs.md](06-feature-docs.md). The Software Engineer says a preference in a review comment, and the agent proposes a rule and asks as it asks for any decision, in the numbered form that `20-working-rules.md` sets. Nothing is written until the answer is yes.
+The exchange below is made up, for the hiking club app of [06-feature-docs.md](06-feature-docs.md). The Software Engineer says a preference in the conversation, and the agent proposes a rule and asks as it asks for any decision, in the numbered form that `20-working-rules.md` sets. Nothing is written until the answer is yes.
 
 ```text
-Software Engineer, in a review comment: "Don't log phone numbers. A log is read by more
+Software Engineer, in the conversation: "Don't log phone numbers. A log is read by more
 people than the member agreed to."
 
 Agent, in the chat:
@@ -76,8 +76,8 @@ Agent, in the chat:
    Rule: Never put a member's phone number in a log line.
    Reason, in your words: "A log is read by more people than the member agreed to."
    Scope: the whole project
-   Recommended: yes, because you asked for it in the review comment.
-   Other option: do not add a rule, and keep the preference to that one PR.
+   Recommended: yes, because you said it in this conversation.
+   Other option: do not add a rule, and keep the preference to this conversation.
 
 Software Engineer: 1. yes
 ```
@@ -95,14 +95,14 @@ Each rule records its reason, its scope, its date and its source, beside the rul
 
 **Record the reason, the scope, the date and the source of every rule, beside the rule.** Because: every rule has its reason beside it, which is the first of the two rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and a coding preference goes to `docs/standards/` and never into a stack folder's `AGENTS.md`, so the scope of a rule can be one technology stack and a preference for one stack still has its home here ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)).
 
-The standard fixes the four records and not how they are laid out. The two rules below are made up for the hiking club app, in a layout that is only an illustration. The first has the whole project as its scope. Its source is a review comment on PR 4, the PR of the first slice in the stack that "Where changes land" draws.
+The standard fixes the four records and not how they are laid out. The two rules below are made up for the hiking club app, in a layout that is only an illustration. The first has the whole project as its scope. Its source is the conversation after the first slice of the stack that "Where changes land" draws was built.
 
 ```text
 Rule: Never put a member's phone number in a log line.
 Reason: "A log is read by more people than the member agreed to." (the Software Engineer)
 Scope: the whole project
 Date: 2027-03-02
-Source: a review comment on PR 4
+Source: the conversation after slice 1 was built
 ```
 
 The second has one technology stack as its scope, the back end in the folder `api/`.

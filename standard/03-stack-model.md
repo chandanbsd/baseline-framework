@@ -79,7 +79,7 @@ A **doc family** is one of the groups of descriptive documents that the docs age
 
 ## How the kind is decided
 
-The kind is inferred from the paths a PR touches, using the artifact map in `baseline.yml`, so no naming rule is needed. `baseline.yml` is the project's baseline configuration, at the root of its repository. Its **artifact map** lists the paths where skills write their spec, their plan and their other documents, and it holds the superpowers paths, `docs/superpowers/specs/**` and `docs/superpowers/plans/**`, by default. Its **stack folders** list the folders that hold code.
+The kind is inferred from the paths a PR touches, using the artifact map in `baseline.yml`, so no naming rule is needed. `baseline.yml` is the project's baseline configuration, at the root of its repository. Its **artifact map** lists the paths where skills write their spec, their plan and their other documents, and it holds the superpowers paths, `docs/superpowers/specs/**` and `docs/superpowers/plans/**`, by default. Its **stack folders** list the folders that hold code, with the two exceptions that the rule under the diagram gives.
 
 ```mermaid
 flowchart LR
@@ -87,12 +87,14 @@ flowchart LR
     T["Thinking PR"]
     C["Code PR"]
     D["Description PR<br/>the one crossover: it may also<br/>edit ADR files, for review edits<br/>and numbering"]
-    P -->|"a path in the artifact map<br/>(spec, plan, other skill artifacts),<br/>or another prescriptive document<br/>(ADR drafts, standards, reader profile,<br/>playbooks, AGENTS.md)"| T
-    P -->|"a path in a stack folder:<br/>code and tests"| C
-    P -->|"a path of the docs section:<br/>features, architecture, course,<br/>deployment, README, reference pages"| D
+    P -->|"a path in the artifact map<br/>(spec, plan, other skill artifacts),<br/>or another prescriptive document<br/>(ADR drafts, standards, reader profile,<br/>playbooks, AGENTS.md of the root<br/>or of a stack folder)"| T
+    P -->|"a path in a stack folder<br/>(code and tests, not its README.md<br/>or AGENTS.md), or baseline.yml"| C
+    P -->|"a path of the docs section:<br/>features, architecture, course,<br/>deployment, README, reference pages,<br/>or the README.md of a stack folder"| D
 ```
 
 *The kind of a PR is read off the paths it touches, so no naming rule is needed, and the one crossover is that a description PR may edit ADR files.*
+
+**A stack folder's own `README.md` is description, its own `AGENTS.md` is thinking, every other path in a stack folder is code, and `baseline.yml` is code.** Because: the standard counts a stack folder's `README.md` among the descriptive documents and its `AGENTS.md` among the prescriptive ones (`05-project-layout.md`), so a change to either has the kind of its document, and the update's code group moves `baseline_version` in `baseline.yml` (`22-tooling-requirements.md`).
 
 The artifact map records where the skills write and never tells a skill where to write. Because: the skills run untouched, so the baseline cannot choose where they write, and it reads the paths and arranges the PRs around them. A project that uses another tool adds that tool's paths to the map, so that swapping or adding a tool means editing the mapping and never the baseline (`05-project-layout.md` describes `baseline.yml`).
 

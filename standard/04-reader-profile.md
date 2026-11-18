@@ -120,7 +120,7 @@ The header has five keys.
 |---|---|
 | `project` | The project's name. |
 | `software_engineer` | The name of the person who decides. |
-| `standards_enabled` | `true` or `false`: the answer to the intake's one question about standards. |
+| `standards_enabled` | `true` or `false`: the answer to the intake's one question about standards. `baseline.yml` records the same answer, so neither record wins over the other (`05-project-layout.md`). |
 | `knowledge_areas` | A list. Each entry has a `name` and a `level`. |
 | `technologies` | A list. Each entry has a `name`, a `level` and a `compare_with`. |
 

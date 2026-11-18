@@ -37,7 +37,7 @@ Standards and ADRs drive code together, and they are different documents. An ADR
 
 The standard requires the intake to ask once whether to build standards from the Software Engineer's preferences over time and, when the answer is yes, to create an empty `docs/standards/` folder with a README that explains how the folder fills (`22-tooling-requirements.md`). When the answer is no, there is no folder. [04-reader-profile.md](04-reader-profile.md) describes the intake, and says that where the skills that run it are not available, it is run by hand.
 
-The answer is recorded as `standards_enabled`, which is `true` or `false`, in the header of the reader profile ([04-reader-profile.md](04-reader-profile.md)) and in `baseline.yml` ([05-project-layout.md](05-project-layout.md)).
+The answer is recorded as `standards_enabled`, which is `true` or `false`, in the header of the reader profile ([04-reader-profile.md](04-reader-profile.md)) and in `baseline.yml` ([05-project-layout.md](05-project-layout.md)). Neither record wins over the other, because both record the one answer, and how a difference between them is reported is for the tooling's design to settle.
 
 **Create `docs/standards/` only on a yes at the intake, and leave a project that said no with no folder.** An agent does not create the folder on its own initiative. Because: the answer is part of the reader profile, and changing the reader profile is the Software Engineer's call ([05-project-layout.md](05-project-layout.md); `20-working-rules.md`).
 

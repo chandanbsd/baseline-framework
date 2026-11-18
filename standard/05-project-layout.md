@@ -122,7 +122,7 @@ artifact_map:
   spec: ["docs/superpowers/specs/**"]
   plan: ["docs/superpowers/plans/**"]
   other: []
-# Folders whose changes are code for PR-kind purposes
+# Folders whose changes are code for PR-kind purposes, apart from each folder's own README.md and AGENTS.md
 stack_folders: [web, api]
 ```
 
@@ -132,10 +132,10 @@ It holds at least four keys.
 |---|---|---|
 | `baseline_version` | The pinned version of the baseline that the project follows. | The update starts from it: it reads the pinned version, compares the owned files with their pristine copies, the files as the baseline shipped them, and runs the migrations that each release ships for the versions in between (`22-tooling-requirements.md`). The update's code group then moves it to the new version. |
 | `artifact_map` | The paths where skills write their documents, in three lists: `spec`, `plan` and `other`. | The kind of a PR is inferred from the paths it touches, and the map says which paths are the skills' ("The artifact map" below). |
-| `stack_folders` | The folders of the repository that hold the project's code, one for each technology stack. | The kind of a PR is inferred from the paths it touches, and the stack folders are the folders whose changes are code ([03-stack-model.md](03-stack-model.md)). |
-| `standards_enabled` | `true` if the project builds standards from the Software Engineer's preferences over time, otherwise `false`. | It records the intake's answer to its one question about standards, which the header of the reader profile records too ([04-reader-profile.md](04-reader-profile.md)). |
+| `stack_folders` | The folders of the repository that hold the project's code, one for each technology stack. | The kind of a PR is inferred from the paths it touches, and the stack folders are the folders whose changes are code, apart from a stack folder's own `README.md`, a description path, and its own `AGENTS.md`, a thinking path ([03-stack-model.md](03-stack-model.md)). |
+| `standards_enabled` | `true` if the project builds standards from the Software Engineer's preferences over time, otherwise `false`. | It records the intake's answer to its one question about standards, which the header of the reader profile records too ([04-reader-profile.md](04-reader-profile.md)). Neither record wins over the other, because both record that one answer, and how a difference between them is reported is for the tooling's design to settle. |
 
-A path such as `docs/superpowers/specs/**` runs from the root of the repository and ends in `**`, which stands for everything below that folder. `stack_folders` lists the folders themselves, with no pattern. The baseline's own repository is a real example of the format: [baseline.yml](../baseline.yml).
+A path such as `docs/superpowers/specs/**` runs from the root of the repository and ends in `**`, which stands for everything below that folder. `stack_folders` lists the folders themselves, with no pattern. The baseline's own repository is a real example of the format: [baseline.yml](../baseline.yml). A change to `baseline.yml` is a code change ([03-stack-model.md](03-stack-model.md) gives the reason).
 
 These four keys are the least that a `baseline.yml` holds. Because: the standard fixes only what the tooling must do and leaves how the tooling is built to the tooling, so the tooling may add keys of its own.
 

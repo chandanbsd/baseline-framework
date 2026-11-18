@@ -14,18 +14,18 @@ The Software Engineer decides what only they can decide, and the agents decide t
 
 ### The Software Engineer decides, and the agents stop and ask
 
-An agent that reaches one of these calls stops and asks the Software Engineer ("How decisions are put to the Software Engineer"). [02-vocabulary.md](02-vocabulary.md) gives the same list in short. The table gives each call, and its reason in the rows that have one.
+An agent that reaches one of these calls stops and asks the Software Engineer ("How decisions are put to the Software Engineer"). [02-vocabulary.md](02-vocabulary.md) gives the same list in short. The table gives each call and its reason.
 
 | What the Software Engineer decides | Because |
 |---|---|
 | What to build and why: the scope, and the approach picked during brainstorming. | The Software Engineer is the one who directs the agents (the why in [01-why-and-scope.md](01-why-and-scope.md)), and brainstorming already requires the approaches and the Software Engineer's pick before any design exists ([11-adrs.md](11-adrs.md)). |
-| Anything that changes how work is done: branching, release, CI, tooling. | No reason is stated for this call. |
+| Anything that changes how work is done: branching, release, CI, tooling. | The baseline cannot know what suits a project's kind and goals. |
 | Merging a stack, deploying, releasing and store submissions, which are submissions of an app to an app store. Nothing merges, deploys or publishes unless the Software Engineer asks. | This is rule 10 of the stack ([03-stack-model.md](03-stack-model.md)), and the merge of a stack is also the acceptance of the ADRs in it ([11-adrs.md](11-adrs.md)). |
-| Anything that persists or ships and cannot be undone: production data, destructive migrations (changes to the shape of the stored data that discard data), domains, accounts, secrets, billing and third-party sign-ups. | No reason is stated for this call. `21-skills-seams.md` records that the execution skills themselves stop for irreversible or destructive operations and for outside side effects, and that the baseline adds no stop of its own to theirs. |
+| Anything that persists or ships and cannot be undone: production data, destructive migrations (changes to the shape of the stored data that discard data), domains, accounts, secrets, billing and third-party sign-ups. | A wrong call cannot be taken back, and its cost falls outside the repository. `21-skills-seams.md` records that the execution skills themselves stop for irreversible or destructive operations and for outside side effects, and that the baseline adds no stop of its own to theirs. |
 | Accepting or rejecting an ADR (the merge of the stack is the acceptance), and what to do with a finding that cannot be fixed, such as dismissing an alert or accepting a risk. | The merge of a stack is the Software Engineer's (rule 10 in [03-stack-model.md](03-stack-model.md)), it is the acceptance of the ADRs in it, and an ADR is rejected when the Software Engineer sends it back ([11-adrs.md](11-adrs.md)). Vulnerability and security policy are per-project (non-goal N1 in [01-why-and-scope.md](01-why-and-scope.md)), so what to do with a finding that cannot be fixed is the project's own, which the Software Engineer decides (constraint C7). |
 | Changing the reader profile. | The reader profile says who the documents are written for, and its answers are also the bar that the Software Engineer hires against ([04-reader-profile.md](04-reader-profile.md)). |
 
-**Stop and ask the Software Engineer on every call in the table, and decide none of them yourself.** Each row that has a reason gives it in the table. The Software Engineer also approves every standard before it is written ([19-standards-mechanism.md](19-standards-mechanism.md)).
+**Stop and ask the Software Engineer on every call in the table, and decide none of them yourself.** Each row gives its reason in the table. The Software Engineer also approves every standard before it is written ([19-standards-mechanism.md](19-standards-mechanism.md)).
 
 ### The agents decide, and record each decision as a ruling
 

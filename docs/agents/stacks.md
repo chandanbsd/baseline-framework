@@ -55,7 +55,7 @@ It has two ways of working.
 - `gh stack add`, `submit`, `sync` and `rebase` work from a local record of the stack that `gh stack` keeps on your machine: they create branches, rebase them onto each other, push them and open PRs. `gh stack init` starts a stack on your machine, and its help says that existing branches are adopted automatically and missing ones are created.
 - `gh stack link` keeps no local record. You give it branch names and it creates or updates the stack on GitHub from them. Its help says it is designed for branches that are managed outside `gh stack`.
 
-**This baseline uses `gh stack link` over branches made with plain git.** The branches of a stack here are pointers into one linear history, made with `git branch` (see "Cutting the stack from linear history"). Because: `link` is the command meant for branches that `gh stack` did not create, and a pointer needs nothing but its name to be linked. Two points have not yet been confirmed against GitHub: that branches cut as pointers into one linear history link cleanly with `gh stack link`, and what `gh stack view` shows for a stack made this way. Confirm both before relying on them, and rely on the `gh pr list` check in "Opening and updating the stack" meanwhile.
+**This baseline uses `gh stack link` over branches made with plain git.** The branches of a stack here are pointers into one linear history, made with `git branch` (see "Cutting the stack from linear history"). Because: `link` is the command meant for branches that `gh stack` did not create, and a pointer needs nothing but its name to be linked. Two points were open, and both were checked on 2026-11-18 with `gh stack` 0.3.0, in a throwaway repository. Branches cut as pointers into one linear history link cleanly: `gh stack link` pushed them in one atomic push, created a PR for each branch based on the branch below it (the first on `main`), and created the stack, and it did the same for the first two PRs of this baseline's own repository. `gh stack view` was run in three states. Right after the link, on the branch that the commits were made on, it said that the branch is not part of a stack. After `gh stack checkout <stack number>` had imported the stack, it listed the stack's branches with their PRs. After `gh stack unstack --local` had removed the local tracking, it said that the current branch is not part of a stack on each of the stack's own branches too. What GitHub documents about stacks, at the start of this playbook, was not checked. Rely on the `gh pr list` check in "Opening and updating the stack" to check a link, and use `gh stack view` as an extra look.
 
 `gh stack link` takes branch names in stack order, bottom to top:
 
@@ -74,7 +74,7 @@ It needs at least two branches, because a stack is two or more PRs. "Opening and
 
 Other commands you will see in `gh stack --help`:
 
-- `gh stack view` lists the stack's branches and the status of each PR. This baseline uses it as an extra look at a stack after linking it, and what it shows for a stack made with `gh stack link` has not yet been confirmed against GitHub.
+- `gh stack view` lists the stack's branches and the status of each PR. This baseline uses it as an extra look at a stack after linking it, and the paragraph on `gh stack link` above says what it showed for a stack made that way when this was checked.
 - `gh stack add`, `submit`, `sync`, `rebase`, `push`, `modify` and `checkout` work on a stack that `gh stack` tracks locally, and `up`, `down`, `top`, `bottom`, `trunk` and `switch` move between its branches. `gh stack init` creates such a stack and, its help says, adopts existing branches. This baseline does not use them to build or update a stack. Because: it makes its branches as pointers with plain git and links them with `gh stack link`, the command whose help says it is designed for branches that are managed outside `gh stack`.
 - `gh stack unstack` removes a stack on GitHub and from local tracking. It is not part of the normal flow.
 - `gh stack merge` merges a stack on GitHub in one atomic operation. Never run it unless the Software Engineer asks. Because: nothing merges, deploys or publishes unless the Software Engineer asks.
@@ -101,7 +101,7 @@ A **slice** is a logical group of code that becomes one code PR. An **ADR draft*
 
 1. **The spec is PR 1.** When brainstorming finishes and the Software Engineer approves the spec, commit it untouched and point the stack's first branch at that commit. Because: thinking goes below the code it governs so the reviewer reads the intent first, and an untouched spec is what the skill produced and the Software Engineer approved.
 2. **The plan is PR 2.** When the plan is written, commit it untouched and point the stack's second branch at that commit. Because: the plan is thinking too and sits below the code it governs, and PR 2 stays as first written even if the plan is revised later (rule 8).
-3. **Open PRs 1 and 2 immediately.** Because: they contain only documents and nothing merges early, and the Software Engineer can read and comment while the build runs.
+3. **Open PRs 1 and 2 immediately.** Where the project's `AGENTS.md` or the conversation asks for the Software Engineer's yes before anything is opened, open them once they have said yes. Because: they contain only documents and nothing merges early, and the Software Engineer can read and comment while the build runs.
 4. **ADR drafts are small PRs of their own**, one per slice that has any, directly beneath the first slice that depends on them. Because: the reviewer reads the thinking first, and each PR stays one kind.
 5. **Any other kept skill artifact gets its own PR**, as produced, in the order produced, below the code it governs. An artifact produced mid-build sits between the slices around it. The skill decides where the file is written, and the artifact map only records the path. Scratch files (a skill's execution ledger, briefs, review packages) are git-ignored and never a PR. Because: every kept artifact can then be reviewed on its own. The skills run untouched, so they decide where they write, and scratch files are working material, not artifacts.
 6. **You decide how code is grouped into logical slices.** The grouping appears in the stack table at the top of every PR description, so the reviewer sees the shape before reading any code. There is no approval step for the layout. Because: the plan stays untouched, so it carries no layout, and how the stack is grouped is a ruling that you make. The stack table shows the Software Engineer the result before any code.
@@ -199,7 +199,7 @@ Cut like this:
 
 ## Opening and updating the stack
 
-**Open PRs 1 and 2 as soon as the plan is committed** (rule 3). Point the first two branches at the spec and plan commits, then link them. The base branch, `main` here, must already be on the remote, because the first PR is based on it.
+**Open PRs 1 and 2 as soon as the plan is committed** (rule 3), after the Software Engineer's yes where the project asks for one. Point the first two branches at the spec and plan commits, then link them. The base branch, `main` here, must already be on the remote, because the first PR is based on it.
 
 ```bash
 git branch sync-engine/01-spec <the spec commit>
@@ -231,7 +231,7 @@ gh pr list --json number,headRefName,baseRefName,isDraft
 gh stack view
 ```
 
-It is done when the `gh pr list` output shows that the first PR's base is `main`, every other PR's base is the branch below it, and no PR is a draft. Because: a PR shows its changes against its base, so a wrong base shows the reviewer the wrong diff, and a draft is not ready for review. `gh stack view` lists the stack's branches and the status of each PR, but what it shows for a stack made with `gh stack link` has not yet been confirmed against GitHub, so nothing here depends on it.
+It is done when the `gh pr list` output shows that the first PR's base is `main`, every other PR's base is the branch below it, and no PR is a draft. Because: a PR shows its changes against its base, so a wrong base shows the reviewer the wrong diff, and a draft is not ready for review. `gh stack view` lists the stack's branches and the status of each PR, but when this was checked it listed a stack made with `gh stack link` after `gh stack checkout <stack number>` had imported the stack and not before (see "The tool"), so nothing here depends on it.
 
 **Set every title and description** with `gh pr edit <number> --title "<title>" --body-file <file>`, as `pr-descriptions.md` says. Because: the description is what the reviewer reads first and it carries the stack table, and the numbers the table needs exist only after the PRs do.
 

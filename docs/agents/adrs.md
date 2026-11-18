@@ -108,6 +108,7 @@ stateDiagram-v2
 1. **The Software Engineer's merge of the stack is the acceptance of the ADRs in it.** Neither you nor the docs agent decides that an ADR is Accepted or Rejected: the status records the Software Engineer's merge or send-back. Because: accepting or rejecting an ADR is the Software Engineer's call, and the merge of a stack is theirs.
 2. **An Accepted ADR is append-only.** A change to it is a new ADR that supersedes it, and its status and its links are the only edits it takes. Because: an ADR records why a decision was made at the time, and a rewrite would replace that record with a later view.
 3. **Drafts are unnumbered, and the docs agent gives the number when it publishes the ADR.** It renames `draft-<slug>.md` to `<number>-<slug>.md` and puts the number in the title, and `docs-agent.md` says where the number comes from. Because: two stacks in flight cannot collide when no draft has a number until it is published.
+4. **After the merge, the Software Engineer, or an agent at their ask, changes the status of each ADR in the merged stack from Proposed to Accepted.** The merge is the acceptance, and this edit records it. Because: accepting an ADR is the Software Engineer's call, so recording it is theirs to make or to ask for.
 
 ## The guard rail for the docs agent
 

@@ -114,7 +114,7 @@ flowchart BT
 
 **Name each docs branch `<topic>/docs-<nn>-<slug>`, and carry on the numbering of the stack.** The topic is the stack's, and the number continues after the last branch of the stack so far. If the stack ends at `sync-engine/05-conflicts`, the first docs branch is `sync-engine/docs-06-reference`, as in the picture, and a made-up name like this one shows only the form. `git branch --list '<topic>/*'` lists the stack's branches, and the number in each name is its place in the stack. Because: the number gives the stack order at a glance, and the `docs-` prefix marks a description PR.
 
-**Commit group by group, in the order above, and cut and open the docs branches as `stacks.md` describes in "Opening and updating the stack".** `stacks.md` also says which steps of that flow have not yet been confirmed against GitHub. Because: a branch is a pointer at the last commit of its group, so commits made in order are all the cut needs.
+**Commit group by group, in the order above, and cut and open the docs branches as `stacks.md` describes in "Opening and updating the stack".** Where the project's `AGENTS.md` or the conversation asks for the Software Engineer's yes before anything is opened, cut the branches and wait for the yes before you open them. `stacks.md` also says which parts of that flow were checked against GitHub and which were not. Because: a branch is a pointer at the last commit of its group, so commits made in order are all the cut needs.
 
 ### Where each document lives
 
@@ -162,9 +162,9 @@ The profile otherwise belongs to the thinking kind, and changes to its header ar
 
 ### Indexes, while no generator exists
 
-The course index, the file map, the glossaries and the ADR index are generated and never edited by hand. In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), you write these four by hand, in the format the generators will produce, as the single writer of your stack. When a generator exists for one of them, do not write that one: the generator takes over, and the checks reconcile any difference. Because: the indexes are generated so that rebases never conflict on them, and where no generator exists yet, one writer of these files in the stack gives the same protection, while the generators' format lets them take over later.
+The course index, the architecture reference's index, the file map, the glossaries and the ADR index are generated and never edited by hand. In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), you write these five by hand, in the format the generators will produce, as the single writer of your stack. When a generator exists for one of them, do not write that one: the generator takes over, and the checks reconcile any difference. Because: the indexes are generated so that rebases never conflict on them, and where no generator exists yet, one writer of these files in the stack gives the same protection, while the generators' format lets them take over later.
 
-The ADR index goes in the reference PR with the ADR review, and the file map and the glossaries go in the reference PR with the other reference pages. Where this playbook does not say which PR holds a document, such as the course index, decide, and record a ruling. Because: names and the order of work are calls that the agents decide and record, and the Software Engineer still sees each one, with what it costs if wrong.
+The ADR index goes in the reference PR with the ADR review, the architecture reference's index goes in the reference PR with the architecture reference, and the file map and the glossaries go in the reference PR with the other reference pages. Where this playbook does not say which PR holds a document, such as the course index, decide, and record a ruling. Because: names and the order of work are calls that the agents decide and record, and the Software Engineer still sees each one, with what it costs if wrong.
 
 ### Links back and stack tables
 
@@ -241,7 +241,7 @@ The team reads line by line, so one wrong sentence costs more than a missing one
 6. **Say what you could not verify, in a "not verified" note.** Because: a statement that nobody ran or measured and that is not marked "not verified" is a failure, even when everything else works.
 7. **Measure the numbers you quote** (file counts, test counts and versions), and never type them from memory. Because: a typed number is a claim that nobody checked.
 8. **For output that is not deterministic, such as a model's answer, record the seed, the model and the versions, or mark it illustrative.** Because: the reader cannot repeat it without them, and an unmarked sample reads as a promise.
-9. **Never hand-edit a generated index:** the course index, the file map, the glossaries and the ADR index. Because: rebases never conflict on an index that nobody edits by hand.
+9. **Never hand-edit a generated index:** the course index, the architecture reference's index, the file map, the glossaries and the ADR index. Because: rebases never conflict on an index that nobody edits by hand.
 10. **A minimum section that does not apply stays as a one-line "Not applicable: why".** Because: the reader then sees it was considered, and nothing is invented to fill it.
 11. **In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), write the indexes yourself, in the format the generators will produce, as the single writer of your stack.** "Indexes, while no generator exists" under "What to produce" says how. Because: it is the one exception to rule 9, and the generators take over when they exist, with the checks reconciling any difference.
 

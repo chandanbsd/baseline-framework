@@ -34,11 +34,11 @@ Each rule is followed by its reason and by the playbook that explains it. A rule
 
    Playbook: [stacks.md](docs/agents/stacks.md).
 
-4. **Nothing merges, deploys or publishes unless the Software Engineer asks.**
+4. **Nothing merges, deploys or publishes unless the Software Engineer asks.** Opening the PRs of a stack is publishing, so it waits for their yes too, the first two PRs included, and the rest of the stack waits until its docs section is in.
 
-   Because: merging, deploying and publishing are the Software Engineer's calls, and the merge of a stack is also the acceptance of its ADRs.
+   Because: merging, deploying and publishing are the Software Engineer's calls, and the merge of a stack is also the acceptance of its ADRs. The rest of the stack waits for its docs section because the stack is complete only with the docs section on top (`stacks.md` has the rules of a stack).
 
-   Playbook: [working-with-the-engineer.md](docs/agents/working-with-the-engineer.md).
+   Playbooks: [working-with-the-engineer.md](docs/agents/working-with-the-engineer.md) and [stacks.md](docs/agents/stacks.md).
 
 5. **Add no attribution lines to commits or PR descriptions:** no co-author trailer and no "generated with" line.
 

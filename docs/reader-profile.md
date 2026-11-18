@@ -70,7 +70,7 @@ From the header the docs agent generates three more sections inside this file: w
 
 ## Changing it
 
-Edit the header, and update the reading of it in "What this file is" in the same PR, so the two never disagree. Leave the generated sections to the docs agent. Because: it regenerates them from the header, so a hand edit would be replaced.
+Edit the header. Leave the generated sections to the docs agent. Because: it regenerates them from the header, so a hand edit would be replaced.
 
 - **The Software Engineer decides every change.** An agent that thinks a level is wrong proposes the change and asks; it does not edit the header. Because: the levels say who the documents are for and who is hired, and both are the Software Engineer's call.
 - **A change is a thinking PR.** A thinking PR is the kind of pull request that holds prescriptive documents: the spec, the plan, decisions, standards updates, the playbooks and this file. Because: the profile is a prescriptive input that decides how every descriptive document is pitched, so it is read for intent and soundness before any document is regenerated from it, and apart from code and descriptions. Git keeps the history of the profile, so the file holds only the current answers.

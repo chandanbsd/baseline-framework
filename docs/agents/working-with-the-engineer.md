@@ -39,9 +39,9 @@ flowchart TD
 | What | Because |
 |---|---|
 | What to build and why: the scope, and the approach picked during brainstorming. | Directing what gets built is the Software Engineer's part of the work, and brainstorming already requires their pick of the approach before any design exists. |
-| Anything that changes how work is done: branching, release, CI, tooling. | No reason is stated for this call. |
+| Anything that changes how work is done: branching, release, CI, tooling. | The baseline cannot know what suits a project's kind and goals. |
 | Merging a stack, deploying, releasing and store submissions. Nothing merges, deploys or publishes unless the Software Engineer asks. | This is rule 10 of the stack (`stacks.md`), and the merge of a stack is also when its ADRs are accepted. |
-| Anything that persists or ships and cannot be undone: production data, destructive migrations, domains, accounts, secrets, billing and third-party sign-ups. | No reason is stated for this call. The execution skills themselves stop for irreversible or destructive operations and for outside side effects, and the baseline adds no stop of its own to theirs (`stacks.md`, the seam "Execution stops"). |
+| Anything that persists or ships and cannot be undone: production data, destructive migrations, domains, accounts, secrets, billing and third-party sign-ups. | A wrong call cannot be taken back, and its cost falls outside the repository. The execution skills themselves stop for irreversible or destructive operations and for outside side effects, and the baseline adds no stop of its own to theirs (`stacks.md`, the seam "Execution stops"). |
 | Accepting or rejecting an ADR (the merge of the stack is the acceptance), and what to do with a finding that cannot be fixed, such as dismissing an alert or accepting a risk. | Acceptance is the merge, which is theirs, and what to do with a finding that cannot be fixed is the project's own policy, which the Software Engineer decides. |
 | Changing the reader profile. | It says who the documents are for and who is hired, and both are the Software Engineer's call. |
 

@@ -6,7 +6,7 @@
 
 Read it when you notice a preference in a conversation or a review comment, before you generate code, when generated code is wrong, when you are asked to add, change or remove a rule, and, if you are the docs agent, when you write a lesson that shows code a standard shaped.
 
-The folder exists only if the project opted in at the start. The intake, the set of questions asked when a project starts, asks once whether to build standards from the Software Engineer's preferences over time. A yes is recorded as `standards_enabled: true` in `baseline.yml` and in the header of `docs/reader-profile.md`, and it creates an empty folder with a `README.md` that explains how it fills. A no means there is no folder. Do not create one yourself. Because: the answer is part of the reader profile, and changing the reader profile is the Software Engineer's call.
+The folder exists only if the project opted in at the start. The intake, the set of questions asked when a project starts, asks once whether to build standards from the Software Engineer's preferences over time. A yes is recorded as `standards_enabled: true` in `baseline.yml` and in the header of `docs/reader-profile.md`, and neither record wins over the other, because both record the intake's one answer. A yes also creates an empty folder with a `README.md` that explains how it fills. A no means there is no folder. Do not create one yourself. Because: the answer is part of the reader profile, and changing the reader profile is the Software Engineer's call.
 
 Some words are used throughout, and the rest of the baseline assumes them.
 

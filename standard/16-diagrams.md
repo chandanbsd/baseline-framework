@@ -8,9 +8,9 @@ A few words appear here before the standard defines them in full. Work is delive
 
 Mermaid is the baseline's default for diagrams. Another text-based tool is for what Mermaid cannot draw, and a hand-drawn image with no source is never used. Three rules say how, and the diagram after them sums them up.
 
-**Draw a diagram in Mermaid, unless Mermaid cannot draw it.** Mermaid covers flowcharts, sequence diagrams, state diagrams, entity-relationship diagrams, user journeys, mind maps, timelines and byte-layout diagrams, which Mermaid calls `packet` diagrams. Because: Mermaid is plain text, so a PR can show a diff of it and an agent can write and fix it; GitHub renders it natively, and the documents are GitHub-flavoured Markdown plus Mermaid (constraint C2 in [01-why-and-scope.md](01-why-and-scope.md)); and the standard requires the checker to verify that every diagram parses (`22-tooling-requirements.md`).
+**Draw a diagram in Mermaid, unless Mermaid cannot draw it.** Mermaid covers flowcharts, sequence diagrams, state diagrams, entity-relationship diagrams, user journeys, timelines and byte-layout diagrams, which Mermaid calls `packet` diagrams. Because: Mermaid is plain text, so a PR can show a diff of it and an agent can write and fix it; GitHub renders it natively, and the documents are GitHub-flavoured Markdown plus Mermaid (constraint C2 in [01-why-and-scope.md](01-why-and-scope.md)); and the standard requires the checker to verify that every diagram parses (`22-tooling-requirements.md`).
 
-**When Mermaid cannot draw a diagram, use another text-based tool, commit its source next to the rendered image, and have the checker re-render the source to prove that the two match.** The standard names three tools, and the table says what each is for. Because: an image with no source cannot be diffed or verified, so the source is kept as text beside the image, and a re-render proves that the image matches it. The standard requires the checker to make the re-render (`22-tooling-requirements.md`).
+**When Mermaid cannot draw a diagram, use another text-based tool, commit its source next to the rendered image, and have the checker re-render the source to prove that the two match.** The standard names three tools, and the table says what each is for. Fenced ASCII is the exception to the commit and the re-render: it is text already, so it is its own source, and there is no rendered image to commit beside it, to re-render or to render in two variants. Because: an image with no source cannot be diffed or verified, so the source is kept as text beside the image, and a re-render proves that the image matches it, while a fenced ASCII drawing is its own source and needs neither. The standard requires the checker to make the re-render (`22-tooling-requirements.md`).
 
 | What it draws | The tool | What the tool is |
 |---|---|---|
@@ -26,13 +26,14 @@ In a Mermaid flowchart, a dotted arrow with a label is written `-. "label" .->`,
 flowchart TD
     A["A diagram is needed"] --> B{"Can Mermaid draw it?"}
     B -->|"yes: the default"| C["Draw it in Mermaid,<br/>as text in the document"]
-    B -->|"no"| D["Use another text-based tool:<br/>WaveDrom, Graphviz or fenced ASCII"]
+    B -->|"no: timing or a state-space graph"| D["Use WaveDrom or Graphviz"]
+    B -->|"no: a memory layout"| H["Use fenced ASCII:<br/>the drawing is its own source"]
     D --> E["Commit the source<br/>next to the rendered image"]
     E --> F["Required: the checker re-renders the source<br/>to prove that the two match"]
     A -. "never" .-> G["A hand-drawn image<br/>with no source"]
 ```
 
-*A diagram is drawn in Mermaid when Mermaid can draw it and with another text-based tool when it cannot, and the one thing to notice is that the only arrow to a hand-drawn image with no source is the dotted one marked never.*
+*A diagram is drawn in Mermaid when Mermaid can draw it, with WaveDrom or Graphviz and a committed source when it cannot, or as fenced ASCII, which is its own source, and the one thing to notice is that the only arrow to a hand-drawn image with no source is the dotted one marked never.*
 
 ## Minimum diagrams per document
 

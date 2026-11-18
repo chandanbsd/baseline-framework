@@ -64,6 +64,7 @@ The tree shows where each document lives. A name in angle brackets is a placehol
     features/        README.md, access.md, glossary.md, <feature>.md
     architecture/    README.md (generated index), NN-<area>.md
     course/
+      README.md               (generated index of the course)
       languages/<language>/   README.md (what else it offers), NN-<lesson>.md
       stacks/<stack>/         README.md (what else it offers), NN-<lesson>.md
       system/                 NN-<flow-or-concern>.md
@@ -89,6 +90,7 @@ The root, `<project>/`, is the project's repository: one repository for each pro
 | `docs/reader-profile.md` | Who the documents are written for: a machine-readable header with the answers of the intake, the text that explains it and three sections that the docs agent generates. | [04-reader-profile.md](04-reader-profile.md) |
 | `docs/features/` | What the product can do, in plain language and with no code or file paths: an overview (`README.md`), the Users and access page (`access.md`), a plain-language glossary (`glossary.md`) and one page for each feature (`<feature>.md`). | `06-feature-docs.md` |
 | `docs/architecture/` | How the system is built, as it is now: a generated index (`README.md`) and one file for each area (`NN-<area>.md`). | `07-architecture-reference.md` |
+| `docs/course/README.md` | The course index: the generated index of the guided course. | `17-evidence-and-truth.md`, in its rule 9 |
 | `docs/course/languages/<language>/` and `docs/course/stacks/<stack>/` | The lessons of the guided course for one language or one technology stack (`NN-<lesson>.md`), and a `README.md` that is the "what else it offers" map, a short page that shows the boundary of the course. | `08-course-lessons.md` for the lessons, `10-course-reference-pages.md` for the map |
 | `docs/course/system/` | The system chapters of the guided course: one for each end-to-end flow and one for each concern that cuts across the stacks (`NN-<flow-or-concern>.md`). | `09-course-system-chapters.md` |
 | `docs/course/reference/` | The file map and the technical glossary, both generated (`file-map.md` and `glossary.md`). | `10-course-reference-pages.md` |
@@ -101,7 +103,7 @@ The root, `<project>/`, is the project's repository: one repository for each pro
 
 The descriptive documents are the README, the stack folders' READMEs and everything under `docs/features/`, `docs/architecture/`, `docs/course/` and `docs/deploy/`. The prescriptive documents are the reader profile, `AGENTS.md`, the stack folders' `AGENTS.md` files, the ADRs, the standards, the playbooks, and the specs and plans under `docs/superpowers/`.
 
-**Do not edit a generated file by hand.** The tree marks the generated files: the index of the architecture reference, the index of the ADRs, and the file map and the glossary under `docs/course/reference/`. Because: a file that every PR in a stack edits conflicts at every rebase of the stack, so indexes are generated and never hand-edited (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), the docs agent writes the indexes in the format the generators will produce, as the single writer of its stack (`17-evidence-and-truth.md`). That file names the indexes in its rule 9, and one of them, a course index, is not in the tree.
+**Do not edit a generated file by hand.** The tree marks the generated files: the course index, the index of the architecture reference, the index of the ADRs, and the file map and the glossary under `docs/course/reference/`. Because: a file that every PR in a stack edits conflicts at every rebase of the stack, so indexes are generated and never hand-edited (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), the docs agent writes the indexes in the format the generators will produce, as the single writer of its stack (`17-evidence-and-truth.md`). That file names the indexes in its rule 9.
 
 **Create `docs/standards/` only if the project opted in.** The intake asks once whether to build standards from the Software Engineer's preferences over time, and a no means there is no folder. An agent does not create the folder itself. Because: the answer is part of the reader profile, and changing the reader profile is the Software Engineer's call.
 
@@ -128,7 +130,7 @@ It holds at least four keys.
 
 | Key | What it holds | What it is for |
 |---|---|---|
-| `baseline_version` | The pinned version of the baseline that the project follows. | The update starts from it: it reads the pinned version, compares the owned files with their pristine copies, the files as the baseline shipped them, and runs the migrations that each release ships for the versions in between (`22-tooling-requirements.md`). |
+| `baseline_version` | The pinned version of the baseline that the project follows. | The update starts from it: it reads the pinned version, compares the owned files with their pristine copies, the files as the baseline shipped them, and runs the migrations that each release ships for the versions in between (`22-tooling-requirements.md`). The update's code group then moves it to the new version. |
 | `artifact_map` | The paths where skills write their documents, in three lists: `spec`, `plan` and `other`. | The kind of a PR is inferred from the paths it touches, and the map says which paths are the skills' ("The artifact map" below). |
 | `stack_folders` | The folders of the repository that hold the project's code, one for each technology stack. | The kind of a PR is inferred from the paths it touches, and the stack folders are the folders whose changes are code ([03-stack-model.md](03-stack-model.md)). |
 | `standards_enabled` | `true` if the project builds standards from the Software Engineer's preferences over time, otherwise `false`. | It records the intake's answer to its one question about standards, which the header of the reader profile records too ([04-reader-profile.md](04-reader-profile.md)). |
@@ -171,6 +173,8 @@ flowchart TB
 ### What an update may touch
 
 **An update replaces baseline-owned files and never touches project-owned files.** Because: an update that could replace what the project wrote would erase it, so the split fixes in advance which files an update may replace and which it may not, and that is what makes an update safe and testable.
+
+**The update itself never touches a project-owned file, and the stack that it opens carries two changes to project-owned things, each in a PR that the Software Engineer reviews like any other.** The code group moves `baseline_version` in `baseline.yml`, and the description PRs, which exist only if the new standard makes existing documents non-compliant, are the docs agent's own change to the project's documents (`22-tooling-requirements.md` has the update flow). Because: that keeps "never touches" true of the update itself, since what the update replaces is baseline-owned only, and the project's own files change only in PRs that the Software Engineer reviews like any other.
 
 **Every baseline-owned file carries a marker with the baseline version.** The standard fixes that the marker exists and names the version, and leaves its form to the tooling. Because: an update compares each owned file with its pristine copy, and the marker tells it which version the file came from.
 

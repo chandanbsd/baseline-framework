@@ -198,6 +198,8 @@ The table says what each status means and what moves an ADR on from it.
 
 **Let the Software Engineer's merge of the stack be the acceptance of the ADRs in it.** Neither the regular agent nor the docs agent decides that an ADR is Accepted or Rejected: the status records the Software Engineer's merge or send-back. Because: accepting or rejecting an ADR is the Software Engineer's call, and the merge of a stack is theirs (`20-working-rules.md` lists what they decide).
 
+**After the merge, let the Software Engineer, or an agent at their ask, change the status of each ADR in the merged stack from Proposed to Accepted.** The merge is the acceptance, and this edit records it. Because: accepting an ADR is the Software Engineer's call, so recording it is theirs to make or to ask for.
+
 The checker that the standard requires verifies, on every PR, that the status of an ADR is valid, that the index is consistent and that no Accepted ADR is rewritten (`22-tooling-requirements.md`).
 
 The sequence below follows one draft from the decision to its acceptance or rejection. In a Mermaid sequence diagram, `alt` and `else` draw the two branches of a choice, and `Note over` puts a note on a participant.

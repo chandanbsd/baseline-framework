@@ -171,7 +171,7 @@ The table gives the nine commands and what each must do.
 
 The standard requires the intake to ask once whether to build standards from the Software Engineer's preferences over time, to create an empty `docs/standards/` folder with a README that explains how the folder fills when the answer is yes, and to create no folder when the answer is no. [04-reader-profile.md](04-reader-profile.md) describes the intake, and [19-standards-mechanism.md](19-standards-mechanism.md) sets the standards.
 
-Two points about these commands have not yet been confirmed, and each is to be proven against the real thing before it is relied on. The first is whether branches cut as pointers into the linear history link cleanly with `gh stack link`, and what `gh stack view`, the command that shows a stack, displays for a stack made that way. It bears on `/baseline:stack`. The second is how a fresh docs agent is dispatched in practice, and what its brief has to hold. It bears on `/baseline:docs`.
+One point about these commands has not yet been confirmed, and it is to be proven against the real thing before it is relied on: how a fresh docs agent is dispatched in practice, and what its brief has to hold. It bears on `/baseline:docs`. A second point was checked on 2026-11-18, with `gh stack` 0.3.0, in a throwaway repository: branches cut as pointers into the linear history link cleanly with `gh stack link`. The same check ran `gh stack view`, the command that shows a stack, in three states. Right after the link, on the branch that the commits were made on, it said that the branch is not part of a stack. After `gh stack checkout <stack number>` had imported the stack, it listed the stack's branches. After `gh stack unstack --local` had removed the local tracking, it said that the current branch is not part of a stack on each of the stack's own branches too. It bears on `/baseline:stack`.
 
 ## The update flow
 
@@ -236,14 +236,14 @@ The standard requires the stack that the update opens to have the groups in the 
 | Group | Kind | What it holds |
 |---|---|---|
 | 1 | Thinking | The playbooks, the `AGENTS.md` block and the PR template. |
-| 2 | Code | The workflow and the checker pins. |
+| 2 | Code | The workflow, the checker pins and the new `baseline_version`. |
 | 3 onwards | Description | Only if the new standard makes existing documents non-compliant. |
 
 ```mermaid
 flowchart BT
     M["main"]
     G1["Group 1: thinking<br/>the playbooks, the AGENTS.md block,<br/>the PR template"]
-    G2["Group 2: code<br/>the workflow and the checker pins"]
+    G2["Group 2: code<br/>the workflow, the checker pins<br/>and the new baseline_version"]
     G3["Group 3 onwards: description"]
     M --> G1 --> G2
     G2 -. "only if the new standard makes<br/>existing documents non-compliant" .-> G3
@@ -252,6 +252,8 @@ flowchart BT
 *The update's normal stack has a thinking group and a code group, and the one thing to notice is that the description group hangs from the code group by a dotted arrow, because it exists only if the new standard makes existing documents non-compliant.*
 
 The standard requires an update to replace baseline-owned files and never to touch project-owned files ([05-project-layout.md](05-project-layout.md)). The stack that `/baseline:update` is to open is a normal stack, and its description PRs, which exist only if the new standard makes existing documents non-compliant, are written by the docs agent, as the rest of the baseline says ([18-docs-agent.md](18-docs-agent.md)).
+
+**The standard requires the code group to move `baseline_version`, and it treats the description PRs as the docs agent's own change to the project's documents, reviewed like any other.** Because: that keeps "never touches" true of the update itself, since what the update replaces is baseline-owned only, and the project's own files change only in PRs that the Software Engineer reviews like any other.
 
 **Ship the migrations with every baseline release, and test the update from the previous version against a worked example.** The standard requires each release to do both. A **worked example** is an example project with its complete set of documents.
 

@@ -1,7 +1,7 @@
 ---
 learn: "How a fresh docs agent turns a finished tip into the docs section: how it is started, what it reads and never reads, the four groups it writes in reading order, how it checks each claim, and how it hands over."
 prerequisites: [languages/mermaid/01-flowcharts, stacks/gh-stack/01-a-stack-of-pull-requests]
-reading_time_min: 21
+reading_time_min: 22
 files: [docs/agents/docs-agent.md, standard/18-docs-agent.md, standard/17-evidence-and-truth.md, docs/reader-profile.md, docs/course/reference/file-map.md]
 terms:
   - term: "docs agent"
@@ -182,7 +182,7 @@ When the docs section is written, hand it over in a report, in the five parts of
 Because: what the Software Engineer has to do is what they read the report for, and the evidence supports it and can be read after. If anything this brief did not tell you made your work harder, say so in the report too, because what a start has to hold is learned from what each run lacked.
 ```
 
-The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run once, for decisions rather than code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
+The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run once, for decisions rather than code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). The Software Engineer approved the second report's recommendations too. Only one of them changed a file: the standard's index, whose row for file 15 still named two rules for the files themselves. The index is a description path, so the docs agent corrected the row in the reference PR.
 
 ## Invariants
 
@@ -220,7 +220,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-The work grows with the tip: more code, more documents, more lessons. In this repository's first docs section the first three groups changed 80 files, adding 6,016 lines and removing 70, against the finished tip (`git diff --shortstat standard/20-revision-3-standard standard/docs-23-stack-lessons`, run on 2026-11-19), and this fourth group adds the seven chapters. What breaks first is the read at review: the Software Engineer reviews every document, and the standard has no length budget, so the shapes, the reading times and the reading paths are what keep it manageable. The second limit is the docs agent's own: it has to hold the tip, the sources and the anatomies at once, which is why the brief lists exactly what to read and what not to.
+The work grows with the tip: more code, more documents, more lessons. In this repository's first docs section the first three groups changed 81 files, adding 6,017 lines and removing 71, against the finished tip (`git diff --shortstat standard/20-revision-3-standard standard/docs-23-stack-lessons`, run on 2026-11-19), and this fourth group adds the seven chapters. What breaks first is the read at review: the Software Engineer reviews every document, and the standard has no length budget, so the shapes, the reading times and the reading paths are what keep it manageable. The second limit is the docs agent's own: it has to hold the tip, the sources and the anatomies at once, which is why the brief lists exactly what to read and what not to.
 
 ```mermaid
 flowchart LR
@@ -241,12 +241,13 @@ git log --format='%h %s' standard/20-revision-3-standard..standard/docs-23-stack
 ```
 
 ```text
-1283174 docs: re-check the gh stack lessons against revision 3
-1b491be docs: add the gh stack lessons to the indexes and the reading paths
-37ca3f2 docs: write the gh stack lessons and the gh stack what-else-it-offers map
-6e20676 docs: re-check the Mermaid lessons against revision 3
-49e87bc docs: add the Mermaid lessons to the indexes, the README and the reading paths
-3fe3c47 docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+ebe5a3c docs: re-check the gh stack lessons against revision 3
+9644e81 docs: add the gh stack lessons to the indexes and the reading paths
+277c548 docs: write the gh stack lessons and the gh stack what-else-it-offers map
+51f0792 docs: re-check the Mermaid lessons against revision 3
+a4b2859 docs: add the Mermaid lessons to the indexes, the README and the reading paths
+9ce80b5 docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+1b7d163 docs: name the third rule of file 15 in the standard's index
 fd2dbe5 docs: re-check the reference documents against revision 3
 4e6f26e docs(adr): number the four drafts of revision 3 and move them to Proposed
 7a421a7 docs: write the course index, the file map and the glossaries
@@ -262,10 +263,10 @@ git diff --name-only standard/20-revision-3-standard standard/docs-23-stack-less
 ```
 
 ```text
-no path in standard/ and not baseline.yml
+standard/README.md
 ```
 
-Output captured on 2026-11-19, after the docs section was rebased onto revision 3. Each group ends with its re-check commit, the work of the loop described under hop 4.
+Output captured on 2026-11-19, after the docs section was rebased onto revision 3. Each group ends with its re-check commit, the work of the loop described under hop 4, and the reference group then with one more: the correction of the standard's index that the Software Engineer approved after the second report. That index, `standard/README.md`, is the one path in `standard/` the second command finds. It is a description path, so its correction goes in a description PR, and the docs section changes no code path and not `baseline.yml`.
 
 ## Summary and cheat sheet
 

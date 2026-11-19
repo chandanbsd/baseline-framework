@@ -1,6 +1,6 @@
-# Five generated indexes
+# 0032. Five generated indexes
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-18
 
@@ -91,3 +91,6 @@ Not recorded.
 - Revision 3, D1: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
 - PR 14 of this stack (branch `standard/14-revision-1-decisions`) records the decision, and PR 15 (branch `standard/15-revision-1-standard`) writes the five indexes into the standard.
 - The decision it extends: ADR 0019, Indexes (design 1, Appendix A, 0019).
+- Added at review: [ADR 0019](0019-generated-indexes.md), the decision this one extends.
+- Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D1).
+- Added at review: PR 20 of this stack (branch `standard/20-revision-3-standard`), which names the technical glossary among the five indexes in `standard/10-course-reference-pages.md`, `standard/17-evidence-and-truth.md`, `standard/20-working-rules.md` and `standard/22-tooling-requirements.md` (revision 3, D5).

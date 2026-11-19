@@ -132,3 +132,4 @@ Not recorded.
 - Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the baseline-owned and project-owned files into `standard/05-project-layout.md`.
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the update flow as a requirement into `standard/22-tooling-requirements.md`.
 - Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records who moves `baseline_version` (revision 1, D8).
+- Added at review: [ADR 0034](0034-update-moves-baseline-version.md), which extends this decision with who moves `baseline_version` (revision 3, D2).

@@ -1,6 +1,6 @@
-# The PR kinds of baseline.yml and of a stack folder's README.md and AGENTS.md
+# 0035. The PR kinds of baseline.yml and of a stack folder's README.md and AGENTS.md
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-18
 
@@ -94,3 +94,6 @@ Not recorded.
 - Revision 3, D2: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
 - PR 16 of this stack (branch `standard/16-revision-2-decisions`) records the decision, and PR 17 (branch `standard/17-revision-2-standard`) writes it into the standard.
 - The decision it extends: ADR 0009, One kind per PR (design 1, Appendix A, 0009).
+- Added at review: [ADR 0009](0009-one-kind-per-pr.md), the decision this one extends.
+- Added at review: PR 18 of this stack (branch `standard/18-revision-3-decisions`), which adds `standard/AGENTS.md`, the first stack folder's own `AGENTS.md`, as a thinking path (revision 3, D6).
+- Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D2).

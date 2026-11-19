@@ -6,7 +6,7 @@ The baseline's own decisions, one file each, with the options that were explored
 
 | Status | Count |
 |---|---|
-| Proposed | 31 |
+| Proposed | 35 |
 
 ## By area
 
@@ -43,6 +43,7 @@ The baseline's own decisions, one file each, with the options that were explored
 | [0010](0010-skill-artifacts.md) | Skill-produced artifacts | Proposed | 2026-11-14 |
 | [0029](0029-conventions.md) | Conventions | Proposed | 2026-11-14 |
 | [0030](0030-agents-md-shape.md) | Shape of AGENTS.md | Proposed | 2026-11-14 |
+| [0035](0035-pr-kinds-of-baseline-yml-and-folder-files.md) | The PR kinds of baseline.yml and of a stack folder's README.md and AGENTS.md | Proposed | 2026-11-18 |
 
 ### Decisions and standards
 
@@ -52,6 +53,7 @@ The baseline's own decisions, one file each, with the options that were explored
 | [0011](0011-adr-authorship-and-approval.md) | ADR authorship and approval | Proposed | 2026-11-14 |
 | [0012](0012-adr-placement-in-stack.md) | ADR placement in the stack | Proposed | 2026-11-14 |
 | [0024](0024-standards-folder.md) | Standards folder | Proposed | 2026-11-14 |
+| [0033](0033-adr-status-recording.md) | Who records an ADR's acceptance and rejection | Proposed | 2026-11-18 |
 
 ### The documents and their diagrams
 
@@ -62,6 +64,7 @@ The baseline's own decisions, one file each, with the options that were explored
 | [0019](0019-generated-indexes.md) | Indexes | Proposed | 2026-11-14 |
 | [0020](0020-diagram-tooling-and-theme.md) | Diagram tooling and theme | Proposed | 2026-11-14 |
 | [0021](0021-database-diagrams.md) | Database diagrams | Proposed | 2026-11-14 |
+| [0032](0032-five-generated-indexes.md) | Five generated indexes | Proposed | 2026-11-18 |
 
 ### Enforcement and tooling
 
@@ -70,6 +73,7 @@ The baseline's own decisions, one file each, with the options that were explored
 | [0023](0023-enforcement.md) | Enforcement | Proposed | 2026-11-14 |
 | [0025](0025-update-mechanism.md) | The update mechanism | Proposed | 2026-11-14 |
 | [0026](0026-checker-language.md) | Checker language | Proposed | 2026-11-14 |
+| [0034](0034-update-moves-baseline-version.md) | The update's code group moves baseline_version | Proposed | 2026-11-18 |
 
 ## By number
 
@@ -106,3 +110,7 @@ The baseline's own decisions, one file each, with the options that were explored
 | [0029](0029-conventions.md) | Conventions | Proposed |
 | [0030](0030-agents-md-shape.md) | Shape of AGENTS.md | Proposed |
 | [0031](0031-software-engineer-and-the-ladder.md) | The Software Engineer and the ladder as the baseline's why | Proposed |
+| [0032](0032-five-generated-indexes.md) | Five generated indexes | Proposed |
+| [0033](0033-adr-status-recording.md) | Who records an ADR's acceptance and rejection | Proposed |
+| [0034](0034-update-moves-baseline-version.md) | The update's code group moves baseline_version | Proposed |
+| [0035](0035-pr-kinds-of-baseline-yml-and-folder-files.md) | The PR kinds of baseline.yml and of a stack folder's README.md and AGENTS.md | Proposed |

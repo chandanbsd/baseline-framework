@@ -102,3 +102,4 @@ Not recorded.
 - Added at review: PR 11 of this stack (branch `standard/11-diagrams-and-evidence`), which writes the evidence rule on generated indexes into `standard/17-evidence-and-truth.md`.
 - Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records the five generated indexes and the place of the course index (revision 1, D7).
 - Added at review: PR 15 of this stack (branch `standard/15-revision-1-standard`), which writes the five indexes into `standard/05-project-layout.md`, `standard/10-course-reference-pages.md` and `standard/17-evidence-and-truth.md`.
+- Added at review: [ADR 0032](0032-five-generated-indexes.md), which extends this decision to five indexes (revision 3, D1).

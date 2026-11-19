@@ -1,6 +1,6 @@
-# Who records an ADR's acceptance and rejection
+# 0033. Who records an ADR's acceptance and rejection
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-18
 
@@ -142,3 +142,5 @@ Not recorded.
 - Revision 3, D2: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
 - PRs 14 and 15 (branches `standard/14-revision-1-decisions` and `standard/15-revision-1-standard`) record and write the decision for Accepted, and PRs 16 and 17 (branches `standard/16-revision-2-decisions` and `standard/17-revision-2-standard`) do the same for Rejected and the PR.
 - The decision it extends: ADR 0011, ADR authorship and approval (design 1, Appendix A, 0011).
+- Added at review: [ADR 0011](0011-adr-authorship-and-approval.md), the decision this one extends.
+- Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D2).

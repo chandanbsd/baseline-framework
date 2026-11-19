@@ -102,3 +102,4 @@ Not recorded.
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes the three kinds of PR into `standard/03-stack-model.md`.
 - Added at review: PR 16 of this stack (branch `standard/16-revision-2-decisions`), which records the PR kinds of `baseline.yml` and of a stack folder's own `README.md` and `AGENTS.md` (revision 2).
 - Added at review: PR 17 of this stack (branch `standard/17-revision-2-standard`), which writes those kinds into `standard/03-stack-model.md` and `standard/05-project-layout.md`.
+- Added at review: [ADR 0035](0035-pr-kinds-of-baseline-yml-and-folder-files.md), which extends this decision with the PR kinds of `baseline.yml` and of a stack folder's own `README.md` and `AGENTS.md` (revision 3, D2).

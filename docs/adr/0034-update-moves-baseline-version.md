@@ -1,6 +1,6 @@
-# The update's code group moves baseline_version
+# 0034. The update's code group moves baseline_version
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-18
 
@@ -86,3 +86,5 @@ Not recorded.
 - Revision 3, D2: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
 - PR 14 of this stack (branch `standard/14-revision-1-decisions`) records the decision, and PR 15 (branch `standard/15-revision-1-standard`) writes it into the standard.
 - The decision it extends: ADR 0025, Update mechanism (design 1, Appendix A, 0025).
+- Added at review: [ADR 0025](0025-update-mechanism.md), the decision this one extends.
+- Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D2).

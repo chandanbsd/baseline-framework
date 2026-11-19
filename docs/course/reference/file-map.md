@@ -4,7 +4,7 @@
 
 Every tracked file of the repository, with one line on what it does and the lesson or chapter of the course that explains it, taken from the `files` in each one's header. A Markdown file's opening paragraph serves as its line ([standard/10-course-reference-pages.md](../../../standard/10-course-reference-pages.md)), and the standard leaves to the tooling how the line is cut from it. No tool does that yet, so the docs agent wrote each line from the file, and for an ADR the line is its number and title. The two files that are not Markdown, `.gitignore` and `baseline.yml`, carry no one-line header comment, so their lines too were written from the file.
 
-Files: 118.
+Files: 121.
 
 | Path | What it does | The lesson that explains it |
 |---|---|---|
@@ -12,7 +12,7 @@ Files: 118.
 | [`AGENTS.md`](../../../AGENTS.md) | The primary instruction for agents: who decides, the seven core rules with their reasons, the playbooks and the repo map. | None |
 | [`CLAUDE.md`](../../../CLAUDE.md) | A two-line pointer to `AGENTS.md`. | None |
 | [`README.md`](../../../README.md) | The front door: why the baseline exists, what it is, how to apply it by hand and how to contribute. | None |
-| [`baseline.yml`](../../../baseline.yml) | The baseline's configuration for this repository: version, artifact map, stack folders and standards. | None |
+| [`baseline.yml`](../../../baseline.yml) | The baseline's configuration for this repository: version, artifact map, stack folders and standards. | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md) |
 | [`docs/adr/0001-adrs-with-options-explored.md`](../../../docs/adr/0001-adrs-with-options-explored.md) | ADR 0001: Record decisions as ADRs with the options explored. | None |
 | [`docs/adr/0002-baseline-scope.md`](../../../docs/adr/0002-baseline-scope.md) | ADR 0002: Baseline scope. | None |
 | [`docs/adr/0003-delivery-standard-kit-skills.md`](../../../docs/adr/0003-delivery-standard-kit-skills.md) | ADR 0003: Delivery. | None |
@@ -52,7 +52,7 @@ Files: 118.
 | [`docs/agents/adrs.md`](../../../docs/agents/adrs.md) | The playbook on ADR drafts, their lifecycle, the docs agent's guard rail and the presence check. | None |
 | [`docs/agents/docs-agent.md`](../../../docs/agents/docs-agent.md) | The brief of the docs agent: what it reads, never reads and produces, and when it stops and asks. | None |
 | [`docs/agents/pr-descriptions.md`](../../../docs/agents/pr-descriptions.md) | The playbook on PR descriptions: the header, the three forms and keeping stack tables current. | None |
-| [`docs/agents/stacks.md`](../../../docs/agents/stacks.md) | The playbook on stacks: the three kinds, the rules, `gh stack`, cutting and opening a stack, and the seams. | None |
+| [`docs/agents/stacks.md`](../../../docs/agents/stacks.md) | The playbook on stacks: the three kinds, the rules, `gh stack`, cutting and opening a stack, and the seams. | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md) |
 | [`docs/agents/standards.md`](../../../docs/agents/standards.md) | The playbook on a project's standards: what belongs, how a preference becomes a rule, and wrong code. | None |
 | [`docs/agents/working-with-the-engineer.md`](../../../docs/agents/working-with-the-engineer.md) | The playbook on who decides what, numbered decisions, hand-overs, reports and rulings. | None |
 | [`docs/architecture/01-overview.md`](../../../docs/architecture/01-overview.md) | Architecture: what the baseline is, its technology choices, quality goals and big picture. | None |
@@ -71,6 +71,9 @@ Files: 118.
 | [`docs/course/languages/mermaid/README.md`](../../../docs/course/languages/mermaid/README.md) | The Mermaid map: what else Mermaid offers, and whether this repository uses it. | None |
 | [`docs/course/reference/file-map.md`](../../../docs/course/reference/file-map.md) | This file map: every tracked file, what it does and where it is taught. | None |
 | [`docs/course/reference/glossary.md`](../../../docs/course/reference/glossary.md) | The technical glossary, assembled from the terms that the lessons and chapters declare. | None |
+| [`docs/course/stacks/gh-stack/01-a-stack-of-pull-requests.md`](../../../docs/course/stacks/gh-stack/01-a-stack-of-pull-requests.md) | Lesson: a stack of pull requests, cut from one linear history with plain git. | None |
+| [`docs/course/stacks/gh-stack/02-gh-stack-on-github.md`](../../../docs/course/stacks/gh-stack/02-gh-stack-on-github.md) | Lesson: gh stack link, the check with gh pr list, and gh stack view. | None |
+| [`docs/course/stacks/gh-stack/README.md`](../../../docs/course/stacks/gh-stack/README.md) | The gh stack map: every command of gh stack 0.3.0, and whether the baseline uses it. | None |
 | [`docs/deploy/01-topology.md`](../../../docs/deploy/01-topology.md) | Deployment: the local repository and the private repository on GitHub, and how work reaches readers. | None |
 | [`docs/deploy/02-environments.md`](../../../docs/deploy/02-environments.md) | Deployment: the two environments, and the absence of CI, staging and production. | None |
 | [`docs/deploy/03-infrastructure-as-code.md`](../../../docs/deploy/03-infrastructure-as-code.md) | Deployment: infrastructure as code, not applicable. | None |
@@ -104,7 +107,7 @@ Files: 118.
 | [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md) | Revision 3 of design 1: the answers to the decisions in the first docs run's report. | None |
 | [`standard/01-why-and-scope.md`](../../../standard/01-why-and-scope.md) | The standard: who the baseline is for, the ladder, and the goals, non-goals, anti-goals and constraints. | None |
 | [`standard/02-vocabulary.md`](../../../standard/02-vocabulary.md) | The standard: the three roles and every term. | None |
-| [`standard/03-stack-model.md`](../../../standard/03-stack-model.md) | The standard: the stack of PRs, the three kinds, the thirteen rules and the conventions. | [Flowcharts](../languages/mermaid/01-flowcharts.md) |
+| [`standard/03-stack-model.md`](../../../standard/03-stack-model.md) | The standard: the stack of PRs, the three kinds, the thirteen rules and the conventions. | [Flowcharts](../languages/mermaid/01-flowcharts.md), [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md) |
 | [`standard/04-reader-profile.md`](../../../standard/04-reader-profile.md) | The standard: the reader profile, the intake and the sections generated from it. | None |
 | [`standard/05-project-layout.md`](../../../standard/05-project-layout.md) | The standard: where every document lives, `baseline.yml`, ownership and the artifact map. | [Flowcharts](../languages/mermaid/01-flowcharts.md) |
 | [`standard/06-feature-docs.md`](../../../standard/06-feature-docs.md) | The standard: the feature docs. | [Sequence and state diagrams](../languages/mermaid/02-sequence-and-state-diagrams.md) |
@@ -123,6 +126,6 @@ Files: 118.
 | [`standard/19-standards-mechanism.md`](../../../standard/19-standards-mechanism.md) | The standard: how approved preferences become a project's standards. | None |
 | [`standard/20-working-rules.md`](../../../standard/20-working-rules.md) | The standard: who decides what, decisions, hand-overs and reports. | None |
 | [`standard/21-skills-seams.md`](../../../standard/21-skills-seams.md) | The standard: the nine seams with the skills. | None |
-| [`standard/22-tooling-requirements.md`](../../../standard/22-tooling-requirements.md) | The standard: what the kit, the checkers and the skills must do. | None |
+| [`standard/22-tooling-requirements.md`](../../../standard/22-tooling-requirements.md) | The standard: what the kit, the checkers and the skills must do. | [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md) |
 | [`standard/AGENTS.md`](../../../standard/AGENTS.md) | The instructions for working in `standard/`: no commands, its layout and the rule for links between its numbered files. | None |
 | [`standard/README.md`](../../../standard/README.md) | The standard's index: what it is, the why, how to read it and its contents. | [Flowcharts](../languages/mermaid/01-flowcharts.md) |

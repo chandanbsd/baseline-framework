@@ -14,7 +14,7 @@ terms:
     definition: "A pull request marked as not yet ready for review; gh stack link with --open marks every PR of the stack ready."
   - term: "local tracking"
     definition: "The record of a stack that gh stack keeps on one machine for its other commands; gh stack link keeps none."
-verified_against: { commit: cb4fb22, versions: { gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { gh: "2.103.3", gh-stack: "0.3.0" } }
 ---
 
 # gh stack link and the stack on GitHub
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { gh: "2.103.3", gh-stack: "0.3.0
 | What you should already know | [A stack of pull requests](01-a-stack-of-pull-requests.md): bases, pointers and the chain check. |
 | Reading time | 21 minutes, worked out from its length. |
 | Files in this codebase | `standard/03-stack-model.md`, `docs/agents/stacks.md`, `standard/22-tooling-requirements.md` |
-| Versions verified against | Commit `cb4fb22`; `gh` 2.103.3 and `gh stack` 0.3.0, whose help and output below were captured on 2026-11-18, and the output on this repository again on 2026-11-19. |
+| Versions verified against | Commit `bd7b1ce`; `gh` 2.103.3 and `gh stack` 0.3.0, whose help and output below were captured on 2026-11-18, and the output on this repository again on 2026-11-19. |
 | Terms introduced | gh stack, gh stack link, atomic push, draft, local tracking |
 
 ## Orientation
@@ -114,7 +114,7 @@ flowchart TB
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `bd7b1ce`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The four things `link` does
 

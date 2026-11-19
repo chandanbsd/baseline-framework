@@ -16,7 +16,7 @@ terms:
     definition: "The one branch on which the work of a stack is committed, task by task, before the stack is cut."
   - term: "ancestor"
     definition: "A commit that another commit was built on, directly or through others; git merge-base --is-ancestor tells whether one commit is an ancestor of another."
-verified_against: { commit: cb4fb22, versions: { git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { git: "2.54.0" } }
 ---
 
 # A stack of pull requests
@@ -27,7 +27,7 @@ verified_against: { commit: cb4fb22, versions: { git: "2.54.0" } }
 | What you should already know | No earlier lesson. The reader profile records git and GitHub as advanced and stacked PRs as beginner, so this lesson takes git for granted and explains stacks from the first command. |
 | Reading time | 25 minutes, worked out from its length. |
 | Files in this codebase | `standard/03-stack-model.md`, `docs/agents/stacks.md`, `baseline.yml` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0, with which every command's output below was captured. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0, with which every command's output below was captured. |
 | Terms introduced | stack of pull requests, base, linear history, pointer, build branch, ancestor |
 
 ## Orientation
@@ -108,7 +108,7 @@ flowchart BT
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `bd7b1ce`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The chain of bases
 
@@ -525,6 +525,6 @@ PR 17: `git diff --name-only standard/16-revision-2-decisions standard/17-revisi
 
 <details><summary>Model solution</summary>
 
-`git rev-parse standard/build` and `git rev-parse standard/17-revision-2-standard` print the same commit: `standard/build` is the build branch, and its tip is already PR 17's pointer. A PR of `standard/build` would show nothing that PR 17 does not, so it is never linked. Both commands were run on 2026-11-19 and printed `9d4518e2b82532043f2b0bd092cc54d160367f24`. The same holds for `standard/revision-3` and PR 20's pointer, `standard/20-revision-3-standard`, which both print `cb4fb22400936eb1a2793a46ba0043b9eeb8e946`.
+`git rev-parse standard/build` and `git rev-parse standard/17-revision-2-standard` print the same commit: `standard/build` is the build branch, and its tip is already PR 17's pointer. A PR of `standard/build` would show nothing that PR 17 does not, so it is never linked. Both commands were run on 2026-11-19 and printed `9d4518e2b82532043f2b0bd092cc54d160367f24`. The same holds for `standard/revision-3` and PR 20's pointer, `standard/20-revision-3-standard`, which both print `bd7b1ce21f7340ca5593d9e06b062b76e13ecefa`.
 
 </details>

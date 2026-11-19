@@ -56,7 +56,7 @@ Every ruling goes in "Rulings I made" with what it costs if wrong. The "Rulings"
 ### You never
 
 - **Edit a skill's documents to fit the baseline.** A skill may revise its own documents, and that revision gets its own PR. Because: the baseline sits beside the skills and changes nothing about how they work, so a document a skill produced stays as the skill produced it.
-- **Hand-edit a generated index** (the course index, the architecture reference's index, the file map, the glossaries, the ADR index). Because: they are generated, so a hand edit is overwritten, and a table that every PR in a stack edits by hand makes every rebase conflict.
+- **Hand-edit a generated index** (the course index, the architecture reference's index, the file map, the technical glossary, the ADR index). Because: they are generated, so a hand edit is overwritten, and a table that every PR in a stack edits by hand makes every rebase conflict.
 - **Change code in a description PR.** If writing a document exposes a bug or unclear code, the fix goes in the code PR it belongs to, and the docs are rebased and re-verified. Because: a description PR is read for whether it matches the code, and a code change hidden in it would not be reviewed as code.
 
 ## How decisions are put to the Software Engineer

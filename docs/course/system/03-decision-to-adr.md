@@ -1,7 +1,7 @@
 ---
 learn: "How a decision becomes an ADR: the test that tells a decision of impact from a ruling, the draft written at decision time, the docs agent's review within its guard rail, the number and the move to Proposed, and acceptance at the merge."
 prerequisites: [languages/mermaid/02-sequence-and-state-diagrams, stacks/gh-stack/01-a-stack-of-pull-requests]
-reading_time_min: 17
+reading_time_min: 18
 files: [standard/11-adrs.md, docs/agents/adrs.md, docs/superpowers/specs/2026-11-14-baseline-decision-trail.md, docs/adr/0001-adrs-with-options-explored.md, docs/adr/README.md]
 terms:
   - term: "ADR"
@@ -14,7 +14,7 @@ terms:
     definition: "The limit on the docs agent's review of an ADR draft: it may clean up, add, review, number and flag, and may not rewrite the decision, the drivers, the options or the rationale."
   - term: "backfilled rationale"
     definition: "Reasoning written after a decision to justify it, which a decision record exists to prevent; anti-goal A4."
-verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # A decision becomes an ADR
@@ -23,9 +23,9 @@ verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.
 |---|---|
 | What you will learn | How a decision becomes an ADR: the test that tells a decision of impact from a ruling, the draft written at decision time, the docs agent's review within its guard rail, the number and the move to Proposed, and acceptance at the merge. |
 | Lessons to read first | [Sequence and state diagrams](../languages/mermaid/02-sequence-and-state-diagrams.md), for the ADR lifecycle, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md). |
-| Reading time | 17 minutes, worked out from its length. |
+| Reading time | 18 minutes, worked out from its length. |
 | Files it covers | `standard/11-adrs.md`, `docs/agents/adrs.md`, `docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`, `docs/adr/0001-adrs-with-options-explored.md`, `docs/adr/README.md` |
-| Versions verified against | Commit `9d4518e`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -105,7 +105,7 @@ flowchart TD
 | The contract covers | Here |
 |---|---|
 | Format or schema | Six criteria, any one of which makes a decision of impact. |
-| Versions | The standard at commit `9d4518e`. |
+| Versions | The standard at commit `cb4fb22`. |
 | Timeouts | Not applicable. |
 | Retries | Not applicable. |
 | Ordering | The test is made as the decision is made, never afterwards. |
@@ -152,7 +152,7 @@ Deciders: the Software Engineer
 | The contract covers | Here |
 |---|---|
 | Format or schema | The template of [standard/11-adrs.md](../../../standard/11-adrs.md): title, three header lines, then eight parts in order. |
-| Versions | The trail at commit `9d4518e`; the ADR as the reference PR of the docs section left it. |
+| Versions | The trail at commit `cb4fb22`; the ADR as the reference PR of the docs section left it. |
 | Timeouts, retries | Not applicable. |
 | Ordering | The draft's options come before its decision. |
 | Idempotency | Where the trail records nothing, the ADR says "Not recorded", so drafting it again from the trail gives the same gaps. |
@@ -179,12 +179,13 @@ git log --follow --format='%h %s' -- docs/adr/0001-adrs-with-options-explored.md
 ```
 
 ```text
-feba3ed docs(adr): number the 31 ADR drafts and move them to Proposed
+9e98926 docs: link the system chapters from the reference documents and the indexes
+dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
 5f62712 docs(adr): render each draft header line on its own line on GitHub
 6c6530a docs(adr): add draft decisions on scope and approach
 ```
 
-Read bottom to top: the regular agent's draft, a fix of its header during the build, and the docs agent's review, which `--follow` traces through the rename from `draft-adrs-with-options-explored.md`.
+Read bottom to top: the regular agent's draft, a fix of its header during the build, the docs agent's review, which `--follow` traces through the rename from `draft-adrs-with-options-explored.md`, and a link marked "Added at review" that the docs agent added when it wrote these chapters.
 
 ### Hop 4: acceptance at the merge
 
@@ -225,7 +226,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-At commit `9d4518e` the repository holds 31 ADR drafts, 3,469 lines with 147 diagrams, all reviewed in one docs section. What grows with a project is the number of decisions per stack, and what breaks first is the review at the end: a stack with many drafts gives the docs agent and the Software Engineer many records to read at once. Two properties keep it bounded: drafts sit in small PRs directly beneath the slice that depends on them, so they are read beside the code they govern, and numbers are given at publish, so stacks in flight never wait on each other.
+At commit `cb4fb22` the repository holds 35 ADR drafts, 3,836 lines with 162 diagrams, all reviewed in one docs section. What grows with a project is the number of decisions per stack, and what breaks first is the review at the end: a stack with many drafts gives the docs agent and the Software Engineer many records to read at once. Two properties keep it bounded: drafts sit in small PRs directly beneath the slice that depends on them, so they are read beside the code they govern, and numbers are given at publish, so stacks in flight never wait on each other.
 
 ```mermaid
 flowchart LR
@@ -243,19 +244,23 @@ git log --follow --format='%h %s' -- docs/adr/0019-generated-indexes.md
 ```
 
 ```text
-feba3ed docs(adr): number the 31 ADR drafts and move them to Proposed
+9e98926 docs: link the system chapters from the reference documents and the indexes
+4e6f26e docs(adr): number the four drafts of revision 3 and move them to Proposed
+dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
 1464590 docs(adr): add draft decisions on documents and diagrams
 ```
+
+ADR 0019 keeps the text of its decision. Its two later commits only add links marked "Added at review": one to ADR 0032, the draft that extends it to five indexes, and one to this course.
 
 ```bash
 grep -l '^Status: Proposed' docs/adr/0*.md | wc -l
 ```
 
 ```text
-      31
+      35
 ```
 
-Output captured on 2026-11-18, while the docs section was being written; `wc` pads its numbers with spaces on the machine where it ran.
+Output captured on 2026-11-19, after the docs section was rebased onto revision 3; `wc` pads its numbers with spaces on the machine where it ran.
 
 ## Summary and cheat sheet
 
@@ -369,7 +374,7 @@ The record would no longer show what was decided at the time, so the departure w
 
 <details><summary>Worked answer</summary>
 
-A new ADR draft, because a change to a decision is a new ADR draft and not only an edit of the spec. It is flagged for the Software Engineer because the docs agent may not edit ADR 0019 to match the built standard.
+A new ADR draft, because a change to a decision is a new ADR draft and not only an edit of the spec. It is flagged for the Software Engineer because the docs agent may not edit ADR 0019 to match the built standard. In this repository that is what happened: the first docs run flagged it, the Software Engineer approved a new draft (revision 3, D1), and the draft became [ADR 0032](../../adr/0032-five-generated-indexes.md), while ADR 0019 keeps its text.
 
 **Common wrong answers.** "The docs agent should update ADR 0019", which breaks the guard rail.
 

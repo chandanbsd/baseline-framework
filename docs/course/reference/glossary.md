@@ -64,7 +64,7 @@ Terms: 60.
 
 **front matter.** A block of YAML between two lines of three dashes at the very start of a Markdown file, which keeps data a program can read in the file a person reads. Taught in [A project starts with the intake](../system/06-a-project-starts-with-the-intake.md).
 
-**generated index.** An index that no one edits by hand: the course index, the architecture reference's index, the file map, the glossaries and the ADR index. Taught in [How documents stay true](../system/07-how-documents-stay-true.md).
+**generated index.** An index that no one edits by hand: the course index, the architecture reference's index, the file map, the technical glossary and the ADR index. Taught in [How documents stay true](../system/07-how-documents-stay-true.md).
 
 **gh stack.** The GitHub CLI extension for stacked pull requests, run as a subcommand of gh. Taught in [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md).
 

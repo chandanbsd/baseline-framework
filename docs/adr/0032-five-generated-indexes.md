@@ -94,3 +94,5 @@ Not recorded.
 - Added at review: [ADR 0019](0019-generated-indexes.md), the decision this one extends.
 - Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D1).
 - Added at review: PR 20 of this stack (branch `standard/20-revision-3-standard`), which names the technical glossary among the five indexes in `standard/10-course-reference-pages.md`, `standard/17-evidence-and-truth.md`, `standard/20-working-rules.md` and `standard/22-tooling-requirements.md` (revision 3, D5).
+- Added at review: the course chapter [How documents stay true](../course/system/07-how-documents-stay-true.md), which follows this decision at work in the repository.
+- Added at review: the course chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md), which follows this decision at work in the repository.

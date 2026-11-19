@@ -1,7 +1,7 @@
 ---
 learn: "How a fresh docs agent turns a finished tip into the docs section: how it is started, what it reads and never reads, the four groups it writes in reading order, how it checks each claim, and how it hands over."
 prerequisites: [languages/mermaid/01-flowcharts, stacks/gh-stack/01-a-stack-of-pull-requests]
-reading_time_min: 20
+reading_time_min: 21
 files: [docs/agents/docs-agent.md, standard/18-docs-agent.md, standard/17-evidence-and-truth.md, docs/reader-profile.md, docs/course/reference/file-map.md]
 terms:
   - term: "docs agent"
@@ -14,7 +14,7 @@ terms:
     definition: "The part of a description PR that lists where the built work departs from the plan, taken only from the Rulings I made lists."
   - term: "flagged code"
     definition: "A place where the code was unclear to a fresh reader, named in a description PR with the code PR its fix belongs in."
-verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # The docs agent writes the docs section
@@ -23,9 +23,9 @@ verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.
 |---|---|
 | What you will learn | How a fresh docs agent turns a finished tip into the docs section: how it is started, what it reads and never reads, the four groups it writes in reading order, how it checks each claim, and how it hands over. |
 | Lessons to read first | [Flowcharts](../languages/mermaid/01-flowcharts.md), because every document carries diagrams, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md). |
-| Reading time | 20 minutes, worked out from its length. |
+| Reading time | 21 minutes, worked out from its length. |
 | Files it covers | `docs/agents/docs-agent.md`, `standard/18-docs-agent.md`, `standard/17-evidence-and-truth.md`, `docs/reader-profile.md`, `docs/course/reference/file-map.md` |
-| Versions verified against | Commit `9d4518e`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -71,10 +71,10 @@ sequenceDiagram
     E->>D: Follow the brief, at the finished tip
     D->>D: Read the tip, the ADRs, the spec, the profile, the rulings, the stack table
     D->>D: Check that every technology has a profile entry
-    D->>G: Commit the reference group, cut docs-18
-    D->>G: Commit the language lessons, cut docs-19
-    D->>G: Commit the stack lessons, cut docs-20
-    D->>G: Commit the system chapters, cut docs-21
+    D->>G: Commit the reference group, cut docs-21
+    D->>G: Commit the language lessons, cut docs-22
+    D->>G: Commit the stack lessons, cut docs-23
+    D->>G: Commit the system chapters, cut docs-24
     D->>E: Report: decisions needed, open for merge, verified, not verified, rulings
 ```
 
@@ -87,15 +87,15 @@ sequenceDiagram
 *Excerpt from [`docs/agents/docs-agent.md`](../../agents/docs-agent.md), lines 17 to 17.*
 
 ```text
-**How you are started.** The Software Engineer starts you by hand: a fresh session at the repository root, on the tip of the stack, with no earlier conversation, told to follow this file, for example "Follow `docs/agents/docs-agent.md` to write the docs section for this repository." A fresh session needs no kit to start. How a fresh agent is dispatched in practice, and what its brief has to hold besides this file (for example where the "Rulings I made" lists and the stack table are when the PRs are not open yet), is not yet confirmed in practice. If you needed something this brief did not give you, say so in your report. Because: the first runs are how what a fresh agent needs gets confirmed, and only you can say what you were missing.
+**How you are started.** The Software Engineer starts you by hand: a fresh session at the repository root, on the tip of the stack, with no earlier conversation, told to follow this file, for example "Follow `docs/agents/docs-agent.md` to write the docs section for this repository." A fresh session needs no kit to start. The first run of a docs agent, in the baseline's own repository on 2026-11-18, was started this way with a start text that also named the folder and the branch to work in, the paths of two files that held the "Rulings I made" list and the stack table (the PRs were not open yet, so they had no descriptions), and what not to do: push, open a PR, merge or publish. That worked, and the docs agent wrote the docs section. Its report said what neither this file nor those two files had told it. The standard now answers two of those points: a part of the deployment docs that does not apply has no diagram, and the product glossary is written from the terms that the feature pages use. The others, which the docs agent had to find out or decide, were how a course adapts to a product made only of Markdown and which technologies count as used by the code; how the "Rulings I made" list divides between PRs; where to keep PR descriptions while no PR is open, how to refresh the stack tables and the lesson links in "Ideas introduced", and how to name a PR that has no number yet; the format of the generated indexes and how to work out a reading time; how a reference page draws on lessons that come in later PRs; and that drawing the diagrams needed approval to install a renderer, as did read-only `gh` calls and `git ls-remote`, which the Software Engineer gave. If you need something else that this brief does not give you, say so in your report. Because: only you can say what you were missing, and what a start has to hold is learned from what each run lacked.
 ```
 
-The brief says that how a fresh agent is started in practice, and where the rulings and the stack table are when the PRs are not open, is not confirmed. For this repository's first docs section, revision 1 settled it by handing over the two as files, by path, in the start instruction, and this run is the check of that choice.
+The brief records how its first run was started: by hand, with a start text that also named the folder and the branch, gave the rulings and the stack table as two files, by path, and said what not to do, which is the way revision 1 picked. It also lists what that run reported it lacked, and marks the two points that the standard now answers. This repository's first docs section is that run. When it was rebased onto revision 3, the descriptions of PRs 1 to 20 had been written as files, so the re-check read the rulings and the stack table from them.
 
 | The contract covers | Here |
 |---|---|
 | Format or schema | A start instruction naming the brief, and, while the PRs are not open, the rulings and the stack table as files. |
-| Versions | The finished tip: commit `9d4518e` for this repository. |
+| Versions | The finished tip: commit `cb4fb22` for this repository. |
 | Timeouts | Not applicable. |
 | Retries | Not applicable: a run that stops can be started again from the same tip. |
 | Ordering | The docs agent starts only after the build is finished. |
@@ -145,10 +145,10 @@ Each group is one description PR, and a group with nothing to write gets none. I
 
 ```mermaid
 flowchart BT
-    R["docs-18: reference<br/>README, features, architecture,<br/>deployment, ADR review, indexes"]
-    L["docs-19: language lessons<br/>Mermaid"]
-    S["docs-20: stack lessons<br/>gh stack and stacked PRs"]
-    C["docs-21: system chapters<br/>How we build"]
+    R["docs-21: reference<br/>README, features, architecture,<br/>deployment, ADR review, indexes"]
+    L["docs-22: language lessons<br/>Mermaid"]
+    S["docs-23: stack lessons<br/>gh stack and stacked PRs"]
+    C["docs-24: system chapters<br/>How we build"]
     R --> L --> S --> C
     L -.->|"adds its files and terms<br/>to the indexes"| R
     S -.-> R
@@ -179,10 +179,10 @@ When the docs section is written, hand it over in a report, in the five parts of
 4. **What was not verified, and why.**
 5. **Rulings made.** Every decision you took without stopping, each as `Ruling: what, why, cost if wrong`.
 
-Because: what the Software Engineer has to do is what they read the report for, and the evidence supports it and can be read after. If anything this brief did not tell you made your work harder, say so in the report too, because how a fresh agent is started, and what its brief has to hold, is not yet confirmed in practice.
+Because: what the Software Engineer has to do is what they read the report for, and the evidence supports it and can be read after. If anything this brief did not tell you made your work harder, say so in the report too, because what a start has to hold is learned from what each run lacked.
 ```
 
-The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified.
+The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run once, for decisions rather than code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
 
 ## Invariants
 
@@ -220,7 +220,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-The work grows with the tip: more code, more documents, more lessons. In this repository's first docs section the four groups added 5,968 lines in 76 files, and removed 62, against the finished tip (`git diff --shortstat standard/build standard/docs-20-stack-lessons`, run on 2026-11-18), and this fourth group adds the seven chapters. What breaks first is the read at review: the Software Engineer reviews every document, and the standard has no length budget, so the shapes, the reading times and the reading paths are what keep it manageable. The second limit is the docs agent's own: it has to hold the tip, the sources and the anatomies at once, which is why the brief lists exactly what to read and what not to.
+The work grows with the tip: more code, more documents, more lessons. In this repository's first docs section the first three groups changed 80 files, adding 6,016 lines and removing 70, against the finished tip (`git diff --shortstat standard/20-revision-3-standard standard/docs-23-stack-lessons`, run on 2026-11-19), and this fourth group adds the seven chapters. What breaks first is the read at review: the Software Engineer reviews every document, and the standard has no length budget, so the shapes, the reading times and the reading paths are what keep it manageable. The second limit is the docs agent's own: it has to hold the tip, the sources and the anatomies at once, which is why the brief lists exactly what to read and what not to.
 
 ```mermaid
 flowchart LR
@@ -237,31 +237,35 @@ flowchart LR
 Read the first three groups of this docs section, the ones below this chapter's own PR, from the repository root.
 
 ```bash
-git log --format='%h %s' standard/build..standard/docs-20-stack-lessons
+git log --format='%h %s' standard/20-revision-3-standard..standard/docs-23-stack-lessons
 ```
 
 ```text
-e9a399c docs: add the gh stack lessons to the indexes and the reading paths
-ccf0697 docs: write the gh stack lessons and the gh stack what-else-it-offers map
-3fcf255 docs: add the Mermaid lessons to the indexes, the README and the reading paths
-5aba2ef docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
-82132da docs: write the course index, the file map and the glossaries
-a0e4df3 docs: generate the reader profile's three sections from its header
-8e4c510 docs: write the README
-847e2c4 docs: write the feature docs and the deployment docs
-82114dd docs: write the architecture reference and the ADR index
-feba3ed docs(adr): number the 31 ADR drafts and move them to Proposed
+1283174 docs: re-check the gh stack lessons against revision 3
+1b491be docs: add the gh stack lessons to the indexes and the reading paths
+37ca3f2 docs: write the gh stack lessons and the gh stack what-else-it-offers map
+6e20676 docs: re-check the Mermaid lessons against revision 3
+49e87bc docs: add the Mermaid lessons to the indexes, the README and the reading paths
+3fe3c47 docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+fd2dbe5 docs: re-check the reference documents against revision 3
+4e6f26e docs(adr): number the four drafts of revision 3 and move them to Proposed
+7a421a7 docs: write the course index, the file map and the glossaries
+8b7bf6b docs: generate the reader profile's three sections from its header
+0475fb8 docs: write the README
+46f38c7 docs: write the feature docs and the deployment docs
+8eca734 docs: write the architecture reference and the ADR index
+dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
 ```
 
 ```bash
-git diff --name-only standard/build standard/docs-20-stack-lessons | grep -E '^(standard/|baseline\.yml)' || echo 'no path in standard/ and not baseline.yml'
+git diff --name-only standard/20-revision-3-standard standard/docs-23-stack-lessons | grep -E '^(standard/|baseline\.yml)' || echo 'no path in standard/ and not baseline.yml'
 ```
 
 ```text
 no path in standard/ and not baseline.yml
 ```
 
-Output captured on 2026-11-18, while the docs section was being written.
+Output captured on 2026-11-19, after the docs section was rebased onto revision 3. Each group ends with its re-check commit, the work of the loop described under hop 4.
 
 ## Summary and cheat sheet
 
@@ -390,7 +394,7 @@ Each is the single writer of the indexes in its own stack, and the stacks are me
 
 | Kind | What you do | A checkable outcome |
 |---|---|---|
-| Run it | List the four docs branches and the commits of each, with `git log` between neighbouring branches. | Four branches, `standard/docs-18-reference` to `standard/docs-21-system-chapters`, each holding only description paths and ADR files. |
+| Run it | List the four docs branches and the commits of each, with `git log` between neighbouring branches. | Four branches, `standard/docs-21-reference` to `standard/docs-24-system-chapters`, each holding only description paths and ADR files. |
 | Break it on purpose | Suppose a technology were missing from `docs/reader-profile.md`. Say which parts of this docs section would stop and which would go on. | Only that technology's course stops; everything else goes on. |
 | Trace what happened | Trace ADR 0019 from draft to Proposed in the reference PR. | `git log --follow` shows the docs agent's numbering commit on the reference branch. |
 | Fix it | A made-up description PR fixes a typo in `standard/03-stack-model.md`. Fix the stack. | You move the fix to the code PR that holds the file and flag it in the description PR. |

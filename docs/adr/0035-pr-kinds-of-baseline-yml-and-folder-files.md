@@ -97,3 +97,5 @@ Not recorded.
 - Added at review: [ADR 0009](0009-one-kind-per-pr.md), the decision this one extends.
 - Added at review: PR 18 of this stack (branch `standard/18-revision-3-decisions`), which adds `standard/AGENTS.md`, the first stack folder's own `AGENTS.md`, as a thinking path (revision 3, D6).
 - Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D2).
+- Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.
+- Added at review: the lesson [A stack of pull requests](../course/stacks/gh-stack/01-a-stack-of-pull-requests.md), which teaches what this decision chose.

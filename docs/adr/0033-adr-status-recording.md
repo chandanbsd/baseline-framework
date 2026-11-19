@@ -144,3 +144,4 @@ Not recorded.
 - The decision it extends: ADR 0011, ADR authorship and approval (design 1, Appendix A, 0011).
 - Added at review: [ADR 0011](0011-adr-authorship-and-approval.md), the decision this one extends.
 - Added at review: PR 19 of this stack (branch `standard/19-revision-3-adr-drafts`), which holds this draft (revision 3, D2).
+- Added at review: the course chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md), which follows this decision at work in the repository.

@@ -9,12 +9,12 @@ terms:
   - term: "not verified note"
     definition: "The note that marks a statement nobody ran or measured, so that a reader does not take it as checked."
   - term: "generated index"
-    definition: "An index that no one edits by hand: the course index, the architecture reference's index, the file map, the glossaries and the ADR index."
+    definition: "An index that no one edits by hand: the course index, the architecture reference's index, the file map, the technical glossary and the ADR index."
   - term: "stack gate"
     definition: "The check the standard requires over the whole change of a stack, from main to the tip, which keeps the lower PRs pending until the tip passes."
   - term: "presence check"
     definition: "The check that a changed dependency manifest, schema or interface file is covered by an ADR or a ruling; it looks for a record, not for whether the decision was right."
-verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # How documents stay true
@@ -25,7 +25,7 @@ verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [Flowcharts](../languages/mermaid/01-flowcharts.md), for the diagram rules, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), for the whole change from `main` to the tip. |
 | Reading time | 18 minutes, worked out from its length. |
 | Files it covers | `standard/17-evidence-and-truth.md`, `standard/22-tooling-requirements.md`, `standard/16-diagrams.md`, `standard/10-course-reference-pages.md`, `docs/agents/docs-agent.md` |
-| Versions verified against | Commit `9d4518e`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -57,7 +57,7 @@ sequenceDiagram
     participant G as git
     participant F as The document
     D->>D: Does the claim say what exists at the tip? Yes
-    D->>G: git diff --name-only main...standard/build
+    D->>G: git diff --name-only main...standard/20-revision-3-standard
     G-->>D: Every changed path
     D->>D: Filter the paths that are not Markdown: only baseline.yml
     D->>F: Write the sentence, with how it was checked
@@ -153,12 +153,12 @@ The standard requires the stack gate to be made over the whole change, from `mai
 *Excerpt from [`standard/17-evidence-and-truth.md`](../../../standard/17-evidence-and-truth.md), lines 76 to 78.*
 
 ```text
-Rule 9 says that an index is generated and never hand-edited, and the indexes that it names are the course index, the architecture reference's index, the file map, the glossaries and the ADR index. [05-project-layout.md](05-project-layout.md) gives the place of the course index and of the architecture reference's index, [07-architecture-reference.md](07-architecture-reference.md) sets the architecture reference's index, [10-course-reference-pages.md](10-course-reference-pages.md) says how the file map and the glossaries are produced, and [11-adrs.md](11-adrs.md) sets the ADR index. In a repository whose generators do not exist yet, nothing generates them. Rule 11 is the one exception to rule 9, and it is for that case: a repository whose generators do not exist yet, which is only the baseline's own repository, during its first stacks.
+Rule 9 says that an index is generated and never hand-edited, and the indexes that it names are the course index, the architecture reference's index, the file map, the technical glossary and the ADR index. [05-project-layout.md](05-project-layout.md) gives the place of the course index and of the architecture reference's index, [07-architecture-reference.md](07-architecture-reference.md) sets the architecture reference's index, [10-course-reference-pages.md](10-course-reference-pages.md) says how the file map and the technical glossary are produced, and [11-adrs.md](11-adrs.md) sets the ADR index. In a repository whose generators do not exist yet, nothing generates them. Rule 11 is the one exception to rule 9, and it is for that case: a repository whose generators do not exist yet, which is only the baseline's own repository, during its first stacks.
 
 In such a repository the docs agent writes the indexes itself, in the format that the generators will produce, as the single writer of its stack. When a generator lands, which is to say when it is merged into the repository, it takes over, and the checks reconcile any difference. The playbook [docs-agent.md](../docs/agents/docs-agent.md) gives the same exception from the docs agent's side.
 ```
 
-This repository is that case. The docs agent wrote the five indexes, and wrote them again in each PR of the docs section as the lessons and chapters were added, so that no PR links to a page that does not exist. No format for a generator's output is written anywhere, so their form is the docs agent's.
+This repository is that case. The docs agent wrote the five indexes, and wrote them again in each PR of the docs section as the lessons and chapters were added, so that no PR links to a page that does not exist. No format for a generator's output is written anywhere, so their form is the docs agent's. The product glossary is not one of the five: the docs agent writes it from the terms that the feature pages use, as [standard/10-course-reference-pages.md](../../../standard/10-course-reference-pages.md) says.
 
 ## Invariants
 
@@ -213,7 +213,7 @@ flowchart LR
 Run the checks that can be run by hand, from the repository root.
 
 ```bash
-git diff --name-only main...standard/build | grep -v '\.md$'
+git diff --name-only main...standard/20-revision-3-standard | grep -v '\.md$'
 ```
 
 ```text
@@ -221,11 +221,11 @@ baseline.yml
 ```
 
 ```bash
-git ls-tree -r --name-only 9d4518e | wc -l
+git ls-tree -r --name-only cb4fb22 | wc -l
 ```
 
 ```text
-      71
+      77
 ```
 
 ```bash
@@ -240,7 +240,7 @@ docs/deploy/07-rollback-and-recovery.md
 docs/deploy/08-operations.md
 ```
 
-Output captured on 2026-11-18, while the docs section was being written; `wc` pads its numbers with spaces on the machine where it ran.
+Output captured on 2026-11-19, after the docs section was rebased onto revision 3; `wc` pads its numbers with spaces on the machine where it ran.
 
 ## Summary and cheat sheet
 
@@ -280,7 +280,7 @@ Rule 5, measure performance claims: keep the benchmark in the repository or cite
 
 <details><summary>Worked answer</summary>
 
-Filtering `git diff --name-only main...standard/build` to the paths that are not Markdown prints only `baseline.yml`. The one file a tool would read changed only in PR 17's comment, which revision 2 records.
+Filtering `git diff --name-only main...standard/20-revision-3-standard` to the paths that are not Markdown prints only `baseline.yml`. The one file a tool would read changed only in PR 17's comment, which revision 2 records.
 
 **Common wrong answers.** "Nothing, because there is no code", which forgets `baseline.yml`.
 
@@ -374,5 +374,5 @@ A file that every PR of a stack edits conflicts at every rebase, and with many s
 |---|---|---|
 | Run it | Run the presence check of part 7 on the first stack. | It prints `baseline.yml` and nothing else. |
 | Break it on purpose | Change one word inside an excerpt of a lesson, in a scratch copy. Which rule now fails, and how would you find it? | You name rule 2, and find the difference by comparing the excerpt with the lines its caption names. |
-| Trace what happened | Trace one number in the architecture reference, such as the 71 tracked files at commit `9d4518e`, to the command that measures it. | `git ls-tree -r --name-only 9d4518e` piped to `wc -l` prints 71. |
+| Trace what happened | Trace one number in the architecture reference, such as the 77 tracked files at commit `cb4fb22`, to the command that measures it. | `git ls-tree -r --name-only cb4fb22` piped to `wc -l` prints 77. |
 | Fix it | A made-up deployment doc says a runbook command "works in production". Fix it under the honesty rule. | You rewrite it as run in staging or a local reproduction, with production marked "not verified". |

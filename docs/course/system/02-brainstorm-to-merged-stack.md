@@ -1,7 +1,7 @@
 ---
 learn: "How one piece of work travels from a brainstorm to a merged stack: the spec and the plan as the first two PRs, the build that the baseline leaves untouched, the cut, the docs section on top, the publish and the merge, and where each step can go wrong."
 prerequisites: [stacks/gh-stack/01-a-stack-of-pull-requests, stacks/gh-stack/02-gh-stack-on-github]
-reading_time_min: 20
+reading_time_min: 21
 files: [standard/03-stack-model.md, standard/21-skills-seams.md, docs/agents/stacks.md, AGENTS.md, docs/superpowers/specs/2026-11-14-baseline-standard-design.md]
 terms:
   - term: "thinking PR"
@@ -16,7 +16,7 @@ terms:
     definition: "A point where what a skill does meets what the baseline does; the baseline keeps each seam small and never changes the skill."
   - term: "finish menu"
     definition: "The choice an execution skill offers straight after its final review; for stack work the pick is to keep the branch as it is until the docs are in."
-verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 ---
 
 # A feature goes from brainstorm to merged stack
@@ -25,9 +25,9 @@ verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", git: "2.
 |---|---|
 | What you will learn | How one piece of work travels from a brainstorm to a merged stack: the spec and the plan as the first two PRs, the build that the baseline leaves untouched, the cut, the docs section on top, the publish and the merge, and where each step can go wrong. |
 | Lessons to read first | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md) and [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md). |
-| Reading time | 20 minutes, worked out from its length. |
+| Reading time | 21 minutes, worked out from its length. |
 | Files it covers | `standard/03-stack-model.md`, `standard/21-skills-seams.md`, `docs/agents/stacks.md`, `AGENTS.md`, `docs/superpowers/specs/2026-11-14-baseline-standard-design.md` |
-| Versions verified against | Commit `9d4518e`; git 2.54.0, `gh` 2.103.3 and `gh stack` 0.3.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `cb4fb22`; git 2.54.0, `gh` 2.103.3 and `gh stack` 0.3.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -128,7 +128,7 @@ The status line still reads "draft for approval" although the Software Engineer 
    Because: merging, deploying and publishing are the Software Engineer's calls, and the merge of a stack is also the acceptance of its ADRs. The rest of the stack waits for its docs section because the stack is complete only with the docs section on top (`stacks.md` has the rules of a stack).
 ```
 
-This repository asks for the yes before anything is opened, so rule 3's "opened immediately" waited for it. The two PRs as GitHub holds them, captured on 2026-11-18:
+This repository asks for the yes before anything is opened, so rule 3's "opened immediately" waited for it. The two PRs as GitHub holds them, captured on 2026-11-19:
 
 ```bash
 gh pr view 1 --json number,headRefName,baseRefName,isDraft,state
@@ -221,7 +221,7 @@ With the Software Engineer's yes, `gh stack link` lists every branch, bottom to 
 | Reordered | The spec is revised after code that needed it. | A thinking change above code. | The revision becomes its own thinking PR, moved below the code that needed it; PR 2 stays as first written. |
 | Lying | A PR description claims a check that was not run. | A false "verified". | The evidence rules: say what was not verified. |
 
-The failure flow for the reordered case, which this repository met twice, with revisions 1 and 2:
+The failure flow for the reordered case, which this repository met three times, with revisions 1 to 3:
 
 ```mermaid
 flowchart TD
@@ -234,11 +234,11 @@ flowchart TD
     F --> G["The original spec stays<br/>as first committed in PR 1"]
 ```
 
-*A later decision becomes a thinking PR placed below the code it governs, and the one thing to notice is that the original spec is never edited: this repository's revisions are PRs 14 and 16, each below the code PR that applies it.*
+*A later decision becomes a thinking PR placed below the code it governs, and the one thing to notice is that the original spec is never edited: this repository's revisions are PRs 14, 16 and 18, each below the code PR that applies it.*
 
 ## How it scales and what breaks first
 
-The bottleneck is the review. Each code PR is to stay at about 400 changed lines, because it is read for correctness line by line; thinking and description PRs are exempt. The first stack, measured with `git diff --shortstat` between neighbouring branches on 2026-11-18:
+The bottleneck is the review. Each code PR is to stay at about 400 changed lines, because it is read for correctness line by line; thinking and description PRs are exempt. The first stack, measured with `git diff --shortstat` between neighbouring branches on 2026-11-18, and PRs 18 to 20 on 2026-11-19:
 
 | PR | Kind | Lines added | Lines removed |
 |---|---|---|---|
@@ -259,8 +259,11 @@ The bottleneck is the review. Each code PR is to stay at about 400 changed lines
 | 15 | code | 27 | 18 |
 | 16 | thinking | 95 | 6 |
 | 17 | code | 18 | 16 |
+| 18 | thinking | 182 | 10 |
+| 19 | thinking | 421 | 0 |
+| 20 | code | 44 | 33 |
 
-Six of the nine code PRs of the first build, 7 to 10, 12 and 13, are above the size guide of about 400 lines. Rule 6 makes the grouping of the code into slices a ruling; no ruling in the list the docs agent was given records why the code was grouped this way, so the reason is not recorded.
+Six of the nine code PRs of the first build, 7 to 10, 12 and 13, are above the size guide of about 400 lines. Rule 6 makes the grouping of the code into slices a ruling of the agent, and its reason says that the plan carries no layout. The descriptions of those six PRs record the grouping as a ruling: the agent grouped the standard's text into nine slices by whole files, following the plan's layout of nine branches "of about 400 lines each", so this build departs from rule 6, and the Software Engineer decided on 2026-11-18 to keep the grouping ([revision 3, D7](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). Whether rule 6's reason should change is left open.
 
 ```mermaid
 flowchart LR
@@ -297,6 +300,9 @@ standard/14-revision-1-decisions
 standard/15-revision-1-standard
 standard/16-revision-2-decisions
 standard/17-revision-2-standard
+standard/18-revision-3-decisions
+standard/19-revision-3-adr-drafts
+standard/20-revision-3-standard
 ```
 
 ```bash
@@ -315,7 +321,7 @@ git diff --shortstat standard/04-playbooks standard/05-foundations
  3 files changed, 398 insertions(+)
 ```
 
-Output captured on 2026-11-18, while the docs section was being written.
+Output captured on 2026-11-19, after the docs section was rebased onto revision 3.
 
 ## Summary and cheat sheet
 
@@ -331,7 +337,7 @@ Output captured on 2026-11-18, while the docs section was being written.
 
 Further reading: [standard/03-stack-model.md](../../../standard/03-stack-model.md), [standard/21-skills-seams.md](../../../standard/21-skills-seams.md) and [docs/agents/stacks.md](../../agents/stacks.md).
 
-**What was verified.** The excerpts, by a script; every diagram, by rendering it in dark and light with mermaid-cli 12.2.0; the sizes of the PRs, the PR on GitHub and the commands of part 7, by running them on 2026-11-18. **Not verified.** The publish of the whole stack and the merge, which have not happened; and the labs.
+**What was verified.** The excerpts, by a script; every diagram, by rendering it in dark and light with mermaid-cli 12.2.0; the sizes of the PRs, the PR on GitHub and the commands of part 7, by running them on 2026-11-18, and again on 2026-11-19 after revision 3. **Not verified.** The publish of the whole stack and the merge, which have not happened; and the labs.
 
 ## Practice
 
@@ -391,7 +397,7 @@ The publish: PR 7 was given the wrong base, because a branch was missing or out 
 
 <details><summary>Worked answer</summary>
 
-It departs from a guide, "about 400 changed lines", and the grouping is the agent's call, recorded as a ruling. The reviewer can ask for a different grouping before merging, because the grouping is visible in the stack table.
+It departs from a guide, "about 400 changed lines", and the grouping is recorded as a ruling in each of those PRs' descriptions, with the Software Engineer's decision to keep it. The reviewer can still ask for a different grouping before merging, because the grouping is visible in the stack table.
 
 **Common wrong answers.** "No, the guide is only for thinking PRs", which reverses it. "Yes, the PRs must be split now", which is the Software Engineer's call to make in review.
 
@@ -443,7 +449,7 @@ Because the baseline sits beside the skills and changes nothing about how they w
 
 | Kind | What you do | A checkable outcome |
 |---|---|---|
-| Run it | Follow the scenario through the first stack: for each of the 17 branches, name its kind from its paths with `git diff --name-only`. | Your list matches the stack table: 1 to 4, 14 and 16 thinking; 5 to 13, 15 and 17 code. |
+| Run it | Follow the scenario through the first stack: for each of the 20 branches, name its kind from its paths with `git diff --name-only`. | Your list matches the stack table: 1 to 4, 14, 16, 18 and 19 thinking; 5 to 13, 15, 17 and 20 code. |
 | Break it on purpose | Pretend the spec revision of PR 14 had been committed after PR 15. Say where it would have to move. | You place it below PR 15, as its own thinking PR. |
 | Trace what happened | Trace revision 1 from its document to the standard: which files PR 14 and PR 15 change. | `git diff --name-only` shows the revision document and the playbooks in PR 14, and nine files of `standard/` in PR 15. |
 | Fix it | A made-up code PR holds `standard/16-diagrams.md` and `docs/features/README.md`. Fix the stack. | You move the feature page out of the code PR, into the docs section. |

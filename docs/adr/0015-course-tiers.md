@@ -1,6 +1,6 @@
-# Course tiers
+# 0015. Course tiers
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -106,3 +106,4 @@ Not recorded.
 
 - Design 1, Appendix A, 0015: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0015: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 8 of this stack (branch `standard/08-course`), which writes the three tiers into `standard/08-course-lessons.md` and `standard/09-course-system-chapters.md`.

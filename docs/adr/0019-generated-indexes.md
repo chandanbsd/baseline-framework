@@ -1,6 +1,6 @@
-# Indexes
+# 0019. Indexes
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -99,3 +99,6 @@ Not recorded.
 
 - Design 1, Appendix A, 0019: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0019: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 11 of this stack (branch `standard/11-diagrams-and-evidence`), which writes the evidence rule on generated indexes into `standard/17-evidence-and-truth.md`.
+- Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records the five generated indexes and the place of the course index (revision 1, D7).
+- Added at review: PR 15 of this stack (branch `standard/15-revision-1-standard`), which writes the five indexes into `standard/05-project-layout.md`, `standard/10-course-reference-pages.md` and `standard/17-evidence-and-truth.md`.

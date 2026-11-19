@@ -1,6 +1,6 @@
-# Shape of AGENTS.md
+# 0030. Shape of AGENTS.md
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -108,3 +108,5 @@ The Boost behaviour is confirmed (design 1, V3).
 
 - Design 1, Appendix A, 0030: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0030: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 4 of this stack (branch `standard/04-playbooks`), which writes `AGENTS.md`, `CLAUDE.md` and the six playbooks.
+- Added at review: PR 10 of this stack (branch `standard/10-pr-descriptions-and-agents`), which writes their standard into `standard/15-agents-md-and-playbooks.md`.

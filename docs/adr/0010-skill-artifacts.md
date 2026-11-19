@@ -1,6 +1,6 @@
-# Skill-produced artifacts
+# 0010. Skill-produced artifacts
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -96,3 +96,5 @@ A skill changes where or how it writes its artifacts.
 
 - Design 1, Appendix A, 0010: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0010: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the artifact map into `standard/05-project-layout.md`.
+- Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the seams into `standard/21-skills-seams.md`.

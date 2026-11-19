@@ -1,6 +1,6 @@
-# Standards folder
+# 0024. Standards folder
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -96,3 +96,5 @@ Not recorded.
 
 - Design 1, Appendix A, 0024: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0024: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the standards mechanism into `standard/19-standards-mechanism.md`.
+- Added at review: PR 17 of this stack (branch `standard/17-revision-2-standard`), which writes that neither record of `standards_enabled` wins into `standard/19-standards-mechanism.md` (revision 2).

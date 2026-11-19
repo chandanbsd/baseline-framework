@@ -1,6 +1,6 @@
-# ADR authorship and approval
+# 0011. ADR authorship and approval
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -117,3 +117,6 @@ Mid-build decisions of impact prove frequent and costly.
 
 - Design 1, Appendix A, 0011: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0011: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 9 of this stack (branch `standard/09-adrs-deployment-readme`), which writes the lifecycle and the guard rail into `standard/11-adrs.md`.
+- Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records who records an acceptance (revision 1, D5).
+- Added at review: PR 16 of this stack (branch `standard/16-revision-2-decisions`), which records who records a rejection, and that a status edit goes in a small PR (revision 2).

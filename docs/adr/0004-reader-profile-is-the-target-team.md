@@ -1,6 +1,6 @@
-# The reader profile is the target team
+# 0004. The reader profile is the target team
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -116,3 +116,4 @@ The team grows and areas get their own deciders.
 
 - Design 1, Appendix A, 0004: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0004: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the reader profile and the intake into `standard/04-reader-profile.md`.

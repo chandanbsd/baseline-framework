@@ -1,6 +1,6 @@
-# Conventions
+# 0029. Conventions
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -96,3 +96,5 @@ Not recorded.
 
 - Design 1, Appendix A, 0029: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0029: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 4 of this stack (branch `standard/04-playbooks`), which writes the conventions into `AGENTS.md` and `docs/agents/stacks.md`.
+- Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes the seven conventions into `standard/03-stack-model.md`.

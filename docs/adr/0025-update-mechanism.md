@@ -1,6 +1,6 @@
-# The update mechanism
+# 0025. The update mechanism
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -129,3 +129,6 @@ Not recorded.
 
 - Design 1, Appendix A, 0025: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0025: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the baseline-owned and project-owned files into `standard/05-project-layout.md`.
+- Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the update flow as a requirement into `standard/22-tooling-requirements.md`.
+- Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records who moves `baseline_version` (revision 1, D8).

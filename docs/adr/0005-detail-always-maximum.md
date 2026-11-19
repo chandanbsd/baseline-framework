@@ -1,6 +1,6 @@
-# Detail is always maximum
+# 0005. Detail is always maximum
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -91,3 +91,5 @@ Not recorded.
 
 - Design 1, Appendix A, 0005: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0005: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes constraint C6 into `standard/01-why-and-scope.md`.
+- Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the levels into `standard/04-reader-profile.md`.

@@ -1,6 +1,6 @@
-# The docs author
+# 0008. The docs author
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -99,3 +99,4 @@ Not recorded.
 
 - Design 1, Appendix A, 0008: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0008: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the docs agent into `standard/18-docs-agent.md`.

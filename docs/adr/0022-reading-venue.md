@@ -1,6 +1,6 @@
-# Reading venue
+# 0022. Reading venue
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -106,3 +106,4 @@ The Software Engineer wants a site.
 
 - Design 1, Appendix A, 0022: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0022: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes constraint C2 and non-goal N5 into `standard/01-why-and-scope.md`.

@@ -1,6 +1,6 @@
-# Descriptive docs at the top of the stack
+# 0007. Descriptive docs at the top of the stack
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -115,3 +115,5 @@ The stack gate cannot be made to work on GitHub's stacked-PR feature (design 1, 
 
 - Design 1, Appendix A, 0007: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0007: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes rule 7 of the stack into `standard/03-stack-model.md`.
+- Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the docs agent's PR order into `standard/18-docs-agent.md`.

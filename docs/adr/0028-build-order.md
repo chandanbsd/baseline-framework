@@ -1,6 +1,6 @@
-# Build order
+# 0028. Build order
 
-Status: Draft
+Status: Proposed
 
 Date: 2026-11-14
 
@@ -104,3 +104,4 @@ Not recorded.
 
 - Design 1, Appendix A, 0028: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0028: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Added at review: PR 1 of this stack (#1 on GitHub, branch `standard/01-spec`), which holds design 1, whose section 4 gives the build order and whose section 16.3 gives this first stack.

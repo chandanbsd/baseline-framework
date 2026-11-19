@@ -179,7 +179,7 @@ git log --follow --format='%h %s' -- docs/adr/0001-adrs-with-options-explored.md
 ```
 
 ```text
-6b0953e docs: link the system chapters from the reference documents and the indexes
+e72d879 docs: link the system chapters from the reference documents and the indexes
 af2d4e4 docs(adr): number the 31 ADR drafts and move them to Proposed
 5f62712 docs(adr): render each draft header line on its own line on GitHub
 6c6530a docs(adr): add draft decisions on scope and approach
@@ -244,7 +244,7 @@ git log --follow --format='%h %s' -- docs/adr/0019-generated-indexes.md
 ```
 
 ```text
-6b0953e docs: link the system chapters from the reference documents and the indexes
+e72d879 docs: link the system chapters from the reference documents and the indexes
 775aaa3 docs(adr): number the four drafts of revision 3 and move them to Proposed
 af2d4e4 docs(adr): number the 31 ADR drafts and move them to Proposed
 1464590 docs(adr): add draft decisions on documents and diagrams

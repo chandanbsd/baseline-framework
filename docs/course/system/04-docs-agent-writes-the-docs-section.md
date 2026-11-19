@@ -182,7 +182,7 @@ When the docs section is written, hand it over in a report, in the five parts of
 Because: what the Software Engineer has to do is what they read the report for, and the evidence supports it and can be read after. If anything this brief did not tell you made your work harder, say so in the report too, because what a start has to hold is learned from what each run lacked.
 ```
 
-The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run twice, first for decisions and then for code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). The Software Engineer approved the second report's recommendations too. Only one of them changed a file: the standard's index, whose row for file 15 still named two rules for the files themselves. The index is a description path, so the docs agent corrected the row in the reference PR. The next report flagged code: the opening paragraph of `standard/15` still counted two rules for the files themselves. The regular agent fixed it, and the same phrase twice in `standard/19`, by amending PR 20, and the docs section was rebased onto the amended PR and re-checked, which gave each group one more commit.
+The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run twice, first for decisions and then for code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). The Software Engineer approved the second report's recommendations too. Only one of them changed a file: the standard's index, whose row for file 15 still named two rules for the files themselves. The index is a description path, so the docs agent corrected the row in the reference PR. The next report flagged code: the opening paragraph of `standard/15` still counted two rules for the files themselves. The regular agent fixed it, and the same phrase twice in `standard/19`, by amending PR 20, and the docs section was rebased onto the amended PR and re-checked, which gave each group one more commit. The last report found three sentences of the reference documents that said in the present tense that PRs 3 and up waited to be published, which would turn false at the publish. The Software Engineer approved dating them, and the docs agent did so in the reference PR before the publish.
 
 ## Invariants
 
@@ -241,14 +241,15 @@ git log --format='%h %s' standard/20-revision-3-standard..standard/docs-23-stack
 ```
 
 ```text
-491804e docs: re-check the gh stack lessons against the amended PR 20
-bf73829 docs: re-check the gh stack lessons against revision 3
-760ab8a docs: add the gh stack lessons to the indexes and the reading paths
-9d52a4a docs: write the gh stack lessons and the gh stack what-else-it-offers map
-ae2fa11 docs: re-check the Mermaid lessons against the amended PR 20
-ec42670 docs: re-check the Mermaid lessons against revision 3
-e4cb3bf docs: add the Mermaid lessons to the indexes, the README and the reading paths
-970098d docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+4883017 docs: re-check the gh stack lessons against the amended PR 20
+7ce4e11 docs: re-check the gh stack lessons against revision 3
+d13e2e3 docs: add the gh stack lessons to the indexes and the reading paths
+95ab3a6 docs: write the gh stack lessons and the gh stack what-else-it-offers map
+6c54bc2 docs: re-check the Mermaid lessons against the amended PR 20
+2a2f448 docs: re-check the Mermaid lessons against revision 3
+5c69486 docs: add the Mermaid lessons to the indexes, the README and the reading paths
+fd706d2 docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+8eac1bf docs: date the three sentences on publish state before the publish
 5a9284a docs: re-check the reference documents against the amended PR 20
 61860ca docs: name the third rule of file 15 in the standard's index
 3e782bf docs: re-check the reference documents against revision 3
@@ -269,7 +270,7 @@ git diff --name-only standard/20-revision-3-standard standard/docs-23-stack-less
 standard/README.md
 ```
 
-Output captured on 2026-11-19, after the docs section was rebased onto the amended PR 20. The top commits of each group are the work of the loop described under hop 4: a re-check after the rebase onto revision 3 and another after the rebase onto the amended PR 20, with, in the reference group, the correction of the standard's index between them. That index, `standard/README.md`, is the one path in `standard/` the second command finds. It is a description path, so its correction goes in a description PR, and the docs section changes no code path and not `baseline.yml`.
+Output captured on 2026-11-19, after the docs section was rebased onto the amended PR 20. The top commits of each group are the work of the loop described under hop 4: a re-check after the rebase onto revision 3 and another after the rebase onto the amended PR 20, with, in the reference group, the correction of the standard's index between them and, above them, the dating of three sentences just before the publish. That index, `standard/README.md`, is the one path in `standard/` the second command finds. It is a description path, so its correction goes in a description PR, and the docs section changes no code path and not `baseline.yml`.
 
 ## Summary and cheat sheet
 

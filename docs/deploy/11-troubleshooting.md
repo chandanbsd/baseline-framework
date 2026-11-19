@@ -20,4 +20,4 @@ flowchart TD
     Q -->|"no"| B["Run git ls-remote and gh pr list,<br/>and compare with the stack table"]
 ```
 
-*Most of what seems missing on GitHub is simply not published yet, and the one thing to notice is that the first question is where in the stack the thing is: everything above PR 2 waits for the docs section and the Software Engineer's yes.*
+*Most of what seems missing on GitHub is simply not published yet, and the one thing to notice is that the first question is where in the stack the thing is: on 2026-11-19, when this was written, everything above PR 2 was waiting for the docs section and the Software Engineer's yes.*

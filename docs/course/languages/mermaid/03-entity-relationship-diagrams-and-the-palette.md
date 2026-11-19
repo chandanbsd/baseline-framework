@@ -14,7 +14,7 @@ terms:
     definition: "The one set of colours a diagram of the baseline may hard-code: a translucent green, red or amber tint with a solid border of the same colour, and no text colour."
   - term: "change marker"
     definition: "The text +, ~ or - written in a diagram to say that a column or relationship was added, changed or removed, because Mermaid colours only whole tables."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
 ---
 
 # Entity-relationship diagrams and the palette
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", mermaid:
 | What you should already know | [Flowcharts](01-flowcharts.md): quoted labels, captions and the theme rules. |
 | Reading time | 20 minutes, worked out from its length. |
 | Files in this codebase | `standard/16-diagrams.md`, `standard/14-pr-descriptions.md` |
-| Versions verified against | Commit `cb4fb22`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
+| Versions verified against | Commit `bd7b1ce`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
 | Terms introduced | entity-relationship diagram, cardinality, classDef, approved palette, change marker |
 
 ## Orientation
@@ -108,7 +108,7 @@ flowchart TB
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `bd7b1ce`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The palette, exactly
 

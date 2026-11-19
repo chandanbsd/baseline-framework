@@ -14,7 +14,7 @@ terms:
     definition: "A Mermaid diagram of states and the transitions between them, each transition labelled with what causes it."
   - term: "start and end state"
     definition: "The point written [*] in a state diagram: the start when an arrow leaves it, the end when an arrow enters it."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
 ---
 
 # Sequence and state diagrams
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", mermaid:
 | What you should already know | [Flowcharts](01-flowcharts.md): quoted labels, `<br/>`, captions and the theme rules. |
 | Reading time | 25 minutes, worked out from its length. |
 | Files in this codebase | `standard/11-adrs.md`, `standard/06-feature-docs.md`, `standard/17-evidence-and-truth.md` |
-| Versions verified against | Commit `cb4fb22`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
+| Versions verified against | Commit `bd7b1ce`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
 | Terms introduced | sequence diagram, participant, alt block, state diagram, start and end state |
 
 ## Orientation
@@ -111,7 +111,7 @@ flowchart TB
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `bd7b1ce`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The lifecycle of an ADR
 
@@ -284,7 +284,7 @@ No size limit is quoted, because none was measured.
 
 Further reading: Mermaid's documentation of sequence diagrams and state diagrams, at mermaid.js.org, and [standard/16-diagrams.md](../../../../standard/16-diagrams.md).
 
-**What was verified.** Every excerpt, by a script, against its file at commit `cb4fb22`; the counts of each kind of diagram, by reading every block; every diagram of the lesson and every diagram it quotes, by rendering it in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0; and the behaviour of the pitfalls, by rendering the broken text. **Not verified.** How GitHub's own Mermaid draws the diagrams.
+**What was verified.** Every excerpt, by a script, against its file at commit `bd7b1ce`; the counts of each kind of diagram, by reading every block; every diagram of the lesson and every diagram it quotes, by rendering it in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0; and the behaviour of the pitfalls, by rendering the broken text. **Not verified.** How GitHub's own Mermaid draws the diagrams.
 
 ## Practice
 

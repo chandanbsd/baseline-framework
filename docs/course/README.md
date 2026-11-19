@@ -24,7 +24,7 @@ How work reaches GitHub as a stack of pull requests. [What else it offers](stack
 
 | Lesson | What you will learn | Reading time |
 |---|---|---|
-| [A stack of pull requests](stacks/gh-stack/01-a-stack-of-pull-requests.md) | What a stack of pull requests is, and how this repository makes one by hand with plain git: bases, one linear history, pointer branches, the kind of each commit read from its paths, and the check that the branches form one chain. | 24 min |
+| [A stack of pull requests](stacks/gh-stack/01-a-stack-of-pull-requests.md) | What a stack of pull requests is, and how this repository makes one by hand with plain git: bases, one linear history, pointer branches, the kind of each commit read from its paths, and the check that the branches form one chain. | 25 min |
 | [gh stack link and the stack on GitHub](stacks/gh-stack/02-gh-stack-on-github.md) | How a stack cut with plain git becomes a stack on GitHub with gh stack link, how to check that every PR has the right base and is ready, what gh stack view shows for such a stack, and which commands of gh stack the baseline never uses. | 21 min |
 
 ## Reference pages

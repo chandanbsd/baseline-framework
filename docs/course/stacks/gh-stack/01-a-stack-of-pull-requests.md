@@ -1,7 +1,7 @@
 ---
 learn: "What a stack of pull requests is, and how this repository makes one by hand with plain git: bases, one linear history, pointer branches, the kind of each commit read from its paths, and the check that the branches form one chain."
 prerequisites: []
-reading_time_min: 24
+reading_time_min: 25
 files: [standard/03-stack-model.md, docs/agents/stacks.md, baseline.yml]
 terms:
   - term: "stack of pull requests"
@@ -16,7 +16,7 @@ terms:
     definition: "The one branch on which the work of a stack is committed, task by task, before the stack is cut."
   - term: "ancestor"
     definition: "A commit that another commit was built on, directly or through others; git merge-base --is-ancestor tells whether one commit is an ancestor of another."
-verified_against: { commit: 9d4518e, versions: { git: "2.54.0" } }
+verified_against: { commit: cb4fb22, versions: { git: "2.54.0" } }
 ---
 
 # A stack of pull requests
@@ -25,14 +25,14 @@ verified_against: { commit: 9d4518e, versions: { git: "2.54.0" } }
 |---|---|
 | What you will learn | What a stack of pull requests is, and how this repository makes one by hand with plain git: bases, one linear history, pointer branches, the kind of each commit read from its paths, and the check that the branches form one chain. |
 | What you should already know | No earlier lesson. The reader profile records git and GitHub as advanced and stacked PRs as beginner, so this lesson takes git for granted and explains stacks from the first command. |
-| Reading time | 24 minutes, worked out from the length of the lesson. |
+| Reading time | 25 minutes, worked out from its length. |
 | Files in this codebase | `standard/03-stack-model.md`, `docs/agents/stacks.md`, `baseline.yml` |
-| Versions verified against | Commit `9d4518e`, and git 2.54.0, with which every command's output below was captured. |
+| Versions verified against | Commit `cb4fb22`, and git 2.54.0, with which every command's output below was captured. |
 | Terms introduced | stack of pull requests, base, linear history, pointer, build branch, ancestor |
 
 ## Orientation
 
-Every piece of work in this repository reaches GitHub as one stack of pull requests (PRs), and the repository's own first stack is seventeen branches, `standard/01-spec` to `standard/17-revision-2-standard`, with the docs section on top. You will meet the stack the moment you read a PR description, because each one opens with a table of the whole stack, and the moment you look for a file, because most of the repository sits on branches above `main` until the stack is merged.
+Every piece of work in this repository reaches GitHub as one stack of pull requests (PRs), and the repository's own first stack is twenty branches, `standard/01-spec` to `standard/20-revision-3-standard`, with the docs section on top. You will meet the stack the moment you read a PR description, because each one opens with a table of the whole stack, and the moment you look for a file, because most of the repository sits on branches above `main` until the stack is merged.
 
 This lesson covers the half of a stack that is plain git and runs on your machine: how a stack is made from one line of commits, how each PR's kind is read, and how to check that the branches are in order. The next lesson, [gh stack link and the stack on GitHub](02-gh-stack-on-github.md), covers putting the stack on GitHub. After this one you can read a stack table, cut a stack from a linear history and check it, with every command explained.
 
@@ -85,8 +85,8 @@ flowchart BT
     M["main: the bootstrap commit"]
     T["01 to 04: thinking<br/>spec, plan, ADR drafts, playbooks"]
     C["05 to 13: code<br/>the standard in slices"]
-    R["14 to 17: revisions 1 and 2<br/>thinking, then code"]
-    D["docs-18 and up: description<br/>the docs section"]
+    R["14 to 20: revisions 1 to 3<br/>thinking, then code"]
+    D["docs-21 and up: description<br/>the docs section"]
     M --> T --> C --> R --> D
 ```
 
@@ -108,7 +108,7 @@ flowchart BT
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `9d4518e`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The chain of bases
 
@@ -128,7 +128,7 @@ The standard explains the stack from the base of each PR. Every term this lesson
 The execution skills commit task by task on one branch, called here the **build branch**, so its commits form one line with no merges and no side branches. A **pointer** is a branch name that points at one commit of that line. Cutting the stack means making one pointer per PR, with `git branch <name> <commit>`, at the slice boundaries the agent chose. The PR for a pointer holds the commits after the pointer below it, up to its own commit. No commit is copied, re-made or edited, and the plan is not touched.
 ```
 
-- "The build branch" is the one line of commits. In the baseline's own first build it was `standard/build`, which still points at the finished tip.
+- "The build branch" is the one line of commits. In the baseline's own first build it was `standard/build`, which still points at PR 17, where that build ended; revision 3 was built the same way on `standard/revision-3`, which points at PR 20, the finished tip.
 - "Cutting the stack means making one pointer per PR": nothing is re-committed.
 - "No commit is copied, re-made or edited, and the plan is not touched": the history stays exactly as the skills produced it.
 
@@ -273,7 +273,7 @@ standard/README.md
 9cb2806 feat(standard): add the skill seams, tooling requirements and the index
 ```
 
-The output of every command in this part was captured on 2026-11-18 with git 2.54.0; the small repository's commit ids are the same on every build, because its names and dates are fixed.
+The output of every command in this part was captured on 2026-11-18 with git 2.54.0, and the commands on the repository's own stack were run again on 2026-11-19 with the same output; the small repository's commit ids are the same on every build, because its names and dates are fixed.
 
 ## Pitfalls
 
@@ -290,7 +290,7 @@ A git branch is a name stored with the id of one commit; making one writes that 
 ## How it fails and scales
 
 - **A broken chain.** If any branch is not an ancestor of the one above it, the stack cannot be linked with the right bases, and a reviewer would see the wrong diff. The chain check catches it before anything is pushed.
-- **Many slices.** Each slice adds a pointer and a check, and nothing else; the check stays one command per neighbouring pair. The baseline's first stack has seventeen branches below its docs section, and its chain check printed `ok` for every pair on 2026-11-18.
+- **Many slices.** Each slice adds a pointer and a check, and nothing else; the check stays one command per neighbouring pair. The baseline's first stack has twenty branches below its docs section, and its chain check printed `ok` for every pair on 2026-11-19.
 - **Size.** A code PR is to stay at about 400 changed lines, not counting tests and generated files; thinking and description PRs are exempt.
 - **What to measure.** The exit status of each chain check, and `git diff` between the old tip and the new after any split or move.
 
@@ -308,7 +308,7 @@ A git branch is a name stored with the id of one commit; making one writes that 
 
 Further reading: [docs/agents/stacks.md](../../../agents/stacks.md), "Cutting the stack from linear history", and [standard/03-stack-model.md](../../../../standard/03-stack-model.md).
 
-**What was verified.** Every excerpt, by a script; every command's output, by running it on 2026-11-18 with git 2.54.0, in the small repository and in this one. **Not verified.** Nothing in this lesson depends on GitHub; the next lesson covers what does.
+**What was verified.** Every excerpt, by a script; every command's output, by running it on 2026-11-18 with git 2.54.0, in the small repository and in this one, and the commands in this one again on 2026-11-19. **Not verified.** Nothing in this lesson depends on GitHub; the next lesson covers what does.
 
 ## Practice
 
@@ -406,7 +406,7 @@ A pointer can only split the line between commits, never inside one. If a commit
 
 </details>
 
-**Question 10 (systems reasoning).** A stack of seventeen branches is checked pair by pair. What does a single failing pair in the middle mean for the PRs above it?
+**Question 10 (systems reasoning).** A stack of twenty branches is checked pair by pair. What does a single failing pair in the middle mean for the PRs above it?
 
 <details><summary>Worked answer</summary>
 
@@ -517,7 +517,7 @@ The last command prints nothing: the two commits hold exactly what the mixed one
 
 <details><summary>Model solution</summary>
 
-PR 17: `git diff --name-only standard/16-revision-2-decisions standard/17-revision-2-standard` lists `baseline.yml` among its files. Checked on 2026-11-18 by listing the paths of every PR of the stack.
+PR 17: `git diff --name-only standard/16-revision-2-decisions standard/17-revision-2-standard` lists `baseline.yml` among its files. Checked on 2026-11-19 by listing the paths of every PR of the stack, from PR 1 to PR 20.
 
 </details>
 
@@ -525,6 +525,6 @@ PR 17: `git diff --name-only standard/16-revision-2-decisions standard/17-revisi
 
 <details><summary>Model solution</summary>
 
-`git rev-parse standard/build` and `git rev-parse standard/17-revision-2-standard` print the same commit: `standard/build` is the build branch, and its tip is already PR 17's pointer. A PR of `standard/build` would show nothing that PR 17 does not, so it is never linked. Both commands were run on 2026-11-18 and printed `9d4518e2b82532043f2b0bd092cc54d160367f24`.
+`git rev-parse standard/build` and `git rev-parse standard/17-revision-2-standard` print the same commit: `standard/build` is the build branch, and its tip is already PR 17's pointer. A PR of `standard/build` would show nothing that PR 17 does not, so it is never linked. Both commands were run on 2026-11-19 and printed `9d4518e2b82532043f2b0bd092cc54d160367f24`. The same holds for `standard/revision-3` and PR 20's pointer, `standard/20-revision-3-standard`, which both print `cb4fb22400936eb1a2793a46ba0043b9eeb8e946`.
 
 </details>

@@ -14,7 +14,7 @@ terms:
     definition: "A pull request marked as not yet ready for review; gh stack link with --open marks every PR of the stack ready."
   - term: "local tracking"
     definition: "The record of a stack that gh stack keeps on one machine for its other commands; gh stack link keeps none."
-verified_against: { commit: 9d4518e, versions: { gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: cb4fb22, versions: { gh: "2.103.3", gh-stack: "0.3.0" } }
 ---
 
 # gh stack link and the stack on GitHub
@@ -23,9 +23,9 @@ verified_against: { commit: 9d4518e, versions: { gh: "2.103.3", gh-stack: "0.3.0
 |---|---|
 | What you will learn | How a stack cut with plain git becomes a stack on GitHub with gh stack link, how to check that every PR has the right base and is ready, what gh stack view shows for such a stack, and which commands of gh stack the baseline never uses. |
 | What you should already know | [A stack of pull requests](01-a-stack-of-pull-requests.md): bases, pointers and the chain check. |
-| Reading time | 21 minutes, worked out from the length of the lesson. |
+| Reading time | 21 minutes, worked out from its length. |
 | Files in this codebase | `standard/03-stack-model.md`, `docs/agents/stacks.md`, `standard/22-tooling-requirements.md` |
-| Versions verified against | Commit `9d4518e`; `gh` 2.103.3 and `gh stack` 0.3.0, whose help and output below were captured on 2026-11-18. |
+| Versions verified against | Commit `cb4fb22`; `gh` 2.103.3 and `gh stack` 0.3.0, whose help and output below were captured on 2026-11-18, and the output on this repository again on 2026-11-19. |
 | Terms introduced | gh stack, gh stack link, atomic push, draft, local tracking |
 
 ## Orientation
@@ -114,7 +114,7 @@ flowchart TB
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `9d4518e`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### The four things `link` does
 
@@ -178,7 +178,7 @@ The baseline uses `--open` and, for a stack not based on the default branch, `--
 
 ### The check on this repository
 
-The check, run on 2026-11-18 against this repository, where only PRs 1 and 2 are open:
+The check, run on 2026-11-19 against this repository, where only PRs 1 and 2 are open:
 
 ```bash
 gh pr list --json number,headRefName,baseRefName,isDraft
@@ -199,7 +199,7 @@ gh stack view
 ```
 
 ```text
-✗ current branch "standard/docs-20-stack-lessons" is not part of a stack
+✗ current branch "standard/docs-23-stack-lessons" is not part of a stack
 Checkout an existing stack using `gh stack checkout` or create a new stack using `gh stack init`
 ```
 
@@ -241,7 +241,7 @@ Apart from the `gh stack view` message above, the errors these mistakes produce 
 
 Further reading: `gh stack --help` and `gh stack <command> --help`; [docs/agents/stacks.md](../../../agents/stacks.md), "What gh stack is" and "Opening and updating the stack"; GitHub's documentation, at https://gh.io/stacks, which the help links.
 
-**What was verified.** Every excerpt, by a script; the help text and the outputs of `gh pr list` and `gh stack view`, by running them on 2026-11-18. **Not verified.** Linking, growing, merging and unstacking a stack, because each changes GitHub; the lesson relies on the check recorded in revision 1 for linking, and on the help for the rest.
+**What was verified.** Every excerpt, by a script; the help text and the outputs of `gh pr list` and `gh stack view`, by running them on 2026-11-18 and again on 2026-11-19. **Not verified.** Linking, growing, merging and unstacking a stack, because each changes GitHub; the lesson relies on the check recorded in revision 1 for linking, and on the help for the rest.
 
 ## Practice
 

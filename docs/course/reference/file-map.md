@@ -4,7 +4,7 @@
 
 Every tracked file of the repository, with one line on what it does and the lesson or chapter of the course that explains it, taken from the `files` in each one's header. A Markdown file's opening paragraph serves as its line ([standard/10-course-reference-pages.md](../../../standard/10-course-reference-pages.md)), and the standard leaves to the tooling how the line is cut from it. No tool does that yet, so the docs agent wrote each line from the file, and for an ADR the line is its number and title. The two files that are not Markdown, `.gitignore` and `baseline.yml`, carry no one-line header comment, so their lines too were written from the file.
 
-Files: 122.
+Files: 118.
 
 | Path | What it does | The lesson that explains it |
 |---|---|---|
@@ -70,8 +70,6 @@ Files: 122.
 | [`docs/course/languages/mermaid/03-entity-relationship-diagrams-and-the-palette.md`](../../../docs/course/languages/mermaid/03-entity-relationship-diagrams-and-the-palette.md) | Lesson: entity-relationship diagrams, the change markers and the approved palette. | None |
 | [`docs/course/languages/mermaid/README.md`](../../../docs/course/languages/mermaid/README.md) | The Mermaid map: what else Mermaid offers, and whether this repository uses it. | None |
 | [`docs/course/reference/file-map.md`](../../../docs/course/reference/file-map.md) | This file map: every tracked file, what it does and where it is taught. | None |
-| [`docs/course/reference/file-map.md`](../../../docs/course/reference/file-map.md) | This file map: every tracked file, what it does and where it is taught. | None |
-| [`docs/course/reference/file-map.md`](../../../docs/course/reference/file-map.md) | This file map: every tracked file, what it does and where it is taught. | None |
 | [`docs/course/reference/glossary.md`](../../../docs/course/reference/glossary.md) | The technical glossary, assembled from the terms that the lessons and chapters declare. | None |
 | [`docs/deploy/01-topology.md`](../../../docs/deploy/01-topology.md) | Deployment: the local repository and the private repository on GitHub, and how work reaches readers. | None |
 | [`docs/deploy/02-environments.md`](../../../docs/deploy/02-environments.md) | Deployment: the two environments, and the absence of CI, staging and production. | None |
@@ -96,8 +94,6 @@ Files: 122.
 | [`docs/features/glossary.md`](../../../docs/features/glossary.md) | The product glossary, in plain language. | None |
 | [`docs/features/standards.md`](../../../docs/features/standards.md) | Feature page: rules from the Software Engineer's approved preferences. | None |
 | [`docs/features/working-with-the-software-engineer.md`](../../../docs/features/working-with-the-software-engineer.md) | Feature page: who decides what, numbered decisions and reports. | None |
-| [`docs/reader-profile.md`](../../../docs/reader-profile.md) | Who the documents are written for: the header of levels, and the sections generated from it. | None |
-| [`docs/reader-profile.md`](../../../docs/reader-profile.md) | Who the documents are written for: the header of levels, and the sections generated from it. | None |
 | [`docs/reader-profile.md`](../../../docs/reader-profile.md) | Who the documents are written for: the header of levels, and the sections generated from it. | None |
 | [`docs/standards/README.md`](../../../docs/standards/README.md) | How the standards folder fills; it holds no approved rule yet. | None |
 | [`docs/superpowers/plans/2026-11-14-baseline-standard.md`](../../../docs/superpowers/plans/2026-11-14-baseline-standard.md) | The plan of design 1's build, as `writing-plans` produced it. | None |

@@ -16,7 +16,7 @@ terms:
     definition: "The one-line italic sentence under every diagram that says what it shows and the one thing to notice."
   - term: "backtick string"
     definition: "A Mermaid label written as a quote and a backtick at each end, whose text Mermaid formats as Markdown; the baseline uses it to name a real file in backticks."
-verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
+verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", mermaid: "12.3.0" } }
 ---
 
 # Flowcharts
@@ -25,14 +25,14 @@ verified_against: { commit: 9d4518e, versions: { mermaid-cli: "12.2.0", mermaid:
 |---|---|
 | What you will learn | How the standard's flowcharts are built, from direction and node shapes to edge labels, dotted edges and subgraphs, and the rules that keep every one readable in both themes. |
 | What you should already know | No earlier lesson. The reader profile records Mermaid at average: you have read Mermaid before, and this lesson explains its idioms and sharp edges. |
-| Reading time | 27 minutes, worked out from the length of the lesson. |
+| Reading time | 27 minutes, worked out from its length. |
 | Files in this codebase | `standard/README.md`, `standard/16-diagrams.md`, `standard/13-project-readme.md`, `standard/03-stack-model.md`, `standard/05-project-layout.md` |
-| Versions verified against | Commit `9d4518e`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
+| Versions verified against | Commit `cb4fb22`; every diagram of the lesson, and every diagram it quotes from the standard, rendered in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0. |
 | Terms introduced | flowchart, node shape, edge label, subgraph, caption, backtick string |
 
 ## Orientation
 
-Every document of the baseline carries diagrams beside its text, and Mermaid is the default way to draw them ([standard/16-diagrams.md](../../../../standard/16-diagrams.md)). Of the 87 diagrams in the 22 files of the standard and its index, 75 are flowcharts; the other twelve are seven sequence diagrams, three state diagrams and two entity-relationship diagrams. The 19 diagrams of the playbooks and the 147 of the ADRs are mostly flowcharts too. The counts come from reading every `mermaid` block in those folders, leaving out the four that sit inside the ADR template as text.
+Every document of the baseline carries diagrams beside its text, and Mermaid is the default way to draw them ([standard/16-diagrams.md](../../../../standard/16-diagrams.md)). Of the 87 diagrams in the 22 files of the standard and its index, 75 are flowcharts; the other twelve are seven sequence diagrams, three state diagrams and two entity-relationship diagrams. The 19 diagrams of the playbooks and the 162 of the ADRs are mostly flowcharts too. The counts come from reading every `mermaid` block in those folders, leaving out the four that sit inside the ADR template as text.
 
 So reading and writing a flowchart is the one Mermaid skill every contributor uses. After this lesson you can read any flowchart in the repository line by line, write one that follows the baseline's four quality rules and its theme rules, and see at a glance the mistakes that stop a diagram from drawing at all.
 
@@ -113,7 +113,7 @@ flowchart TB
 
 ## In this codebase
 
-The excerpts are verbatim, and a script compared each one with its file at commit `9d4518e`. No standard of this project shaped them: `docs/standards/` holds no rule.
+The excerpts are verbatim, and a script compared each one with its file at commit `cb4fb22`. No standard of this project shaped them: `docs/standards/` holds no rule.
 
 ### A chain drawn from the bottom up
 
@@ -301,7 +301,7 @@ Every diagram: a one-line italic caption, glossary terms in its labels, a questi
 
 Further reading: Mermaid's own documentation of flowcharts, at mermaid.js.org, and [standard/16-diagrams.md](../../../../standard/16-diagrams.md).
 
-**What was verified.** Every excerpt, by a script, against its file at commit `9d4518e`; the counts of diagrams, by reading every block; every diagram of the lesson and every diagram it quotes, by rendering it in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0; and the error messages of the pitfalls, by running the broken text. **Not verified.** How GitHub's own Mermaid draws the diagrams.
+**What was verified.** Every excerpt, by a script, against its file at commit `cb4fb22`; the counts of diagrams, by reading every block; every diagram of the lesson and every diagram it quotes, by rendering it in dark and light with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0; and the error messages of the pitfalls, by running the broken text. **Not verified.** How GitHub's own Mermaid draws the diagrams.
 
 ## Practice
 

@@ -2,7 +2,7 @@
 
 # Architecture reference
 
-How the baseline is built, as it is at commit `cb4fb22`. The shape of this folder is set in [standard/07-architecture-reference.md](../../standard/07-architecture-reference.md).
+How the baseline is built, as it is at commit `bd7b1ce`. The shape of this folder is set in [standard/07-architecture-reference.md](../../standard/07-architecture-reference.md).
 
 | File | Scope | Reading time |
 |---|---|---|

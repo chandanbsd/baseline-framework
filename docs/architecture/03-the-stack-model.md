@@ -1,6 +1,6 @@
 ---
 scope: "How work is delivered as one stack of PRs: the flow from brainstorm to merged stack, the workflow a PR of the stack goes through, and the contracts that make a stack: branch names, how a PR's kind is read from its paths, the PR description and gh stack link."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 8
 ---
 

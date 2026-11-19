@@ -1,6 +1,6 @@
 # Users and access
 
-*Verified against commit cb4fb22.*
+*Verified against commit bd7b1ce.*
 
 This page holds everything about who can do what under the baseline, once. The feature pages name the roles and link here.
 

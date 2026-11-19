@@ -1,6 +1,6 @@
 ---
 scope: "How the documents are kept true: the flow from a claim to a sentence, the eleven evidence rules, the checks and the stack gate that the standard requires of the tooling, and the quality section: performance and the testing strategy at this tip."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 7
 ---
 
@@ -76,7 +76,7 @@ Not applicable: the baseline at this tip is text that people and agents read, an
 
 ### The testing strategy
 
-The repository holds no tests, no CI workflow and no checker at commit `cb4fb22` (`git ls-tree -r --name-only cb4fb22` lists 77 files, none of them code that runs, and the docs section adds only Markdown). The quality of the standard rests on three things that exist:
+The repository holds no tests, no CI workflow and no checker at commit `bd7b1ce` (`git ls-tree -r --name-only bd7b1ce` lists 77 files, none of them code that runs, and the docs section adds only Markdown). The quality of the standard rests on three things that exist:
 
 - **Review in the stack.** Each kind of PR is read in its own way: thinking for intent and soundness, code for correctness, and descriptions for whether they match the code. The Software Engineer reviews the whole stack before it merges.
 - **The evidence rules applied by the docs agent.** The docs agent checks every claim of the documents it writes against the tip and records how in each description PR.

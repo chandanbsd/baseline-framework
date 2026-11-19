@@ -1,6 +1,6 @@
 ---
 scope: "The docs agent as a procedure: the flow by which it writes the docs section, the states it goes through, and its contract: what it reads, what it never reads and what it produces."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 7
 ---
 

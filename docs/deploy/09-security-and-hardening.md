@@ -1,6 +1,6 @@
 ---
 scope: "The access model of the repository on GitHub and on the local machine, what was checked about it, and the network rules, hardening and audit logs, of which the baseline has none of its own."
-verified_against: { commit: cb4fb22, versions: { gh: "2.103.3" } }
+verified_against: { commit: bd7b1ce, versions: { gh: "2.103.3" } }
 reading_time_min: 2
 ---
 

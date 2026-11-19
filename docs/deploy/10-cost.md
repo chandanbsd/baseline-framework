@@ -1,6 +1,6 @@
 ---
 scope: "What the baseline costs to run today, per component, and what would grow it."
-verified_against: { commit: cb4fb22, versions: { gh: "2.103.3" } }
+verified_against: { commit: bd7b1ce, versions: { gh: "2.103.3" } }
 reading_time_min: 1
 ---
 

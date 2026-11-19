@@ -1,6 +1,6 @@
 ---
 scope: "The two places the repository lives, what each is for, how it was created, how they differ, what lives there and who has access; and the absence of CI, staging and production."
-verified_against: { commit: cb4fb22, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 reading_time_min: 2
 ---
 

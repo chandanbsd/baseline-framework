@@ -1,6 +1,6 @@
 # Work delivered as a stack
 
-*Verified against commit cb4fb22.*
+*Verified against commit bd7b1ce.*
 
 ## What it is and why it exists
 

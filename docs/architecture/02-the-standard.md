@@ -1,6 +1,6 @@
 ---
 scope: "The components of the baseline: the 22 files of the standard and its index, grouped as the index groups them, the six playbooks and the two instruction files that carry the rules to agents, what each is responsible for, and the direction in which they depend on each other."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 8
 ---
 

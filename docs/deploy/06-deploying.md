@@ -1,6 +1,6 @@
 ---
 scope: "The runbook for putting the first stack in front of readers: check the chain, publish the stack on GitHub with gh stack link, check the PRs, and merge bottom-up; what a successful publish and merge look like. Publishing and merging are the Software Engineer's steps."
-verified_against: { commit: cb4fb22, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 reading_time_min: 4
 ---
 

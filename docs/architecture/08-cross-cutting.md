@@ -1,12 +1,12 @@
 ---
 scope: "The minimum sections that cut across the whole baseline: data, the concurrency and failure model of stacks in flight, security and trust, the operations summary, the known limits found while documenting it, and where the decisions live."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 12
 ---
 
 # Cross-cutting sections
 
-This file holds six of the thirteen minimum sections of the architecture reference. Each either describes what exists at commit `cb4fb22` or is one line that says why it does not apply.
+This file holds six of the thirteen minimum sections of the architecture reference. Each either describes what exists at commit `bd7b1ce` or is one line that says why it does not apply.
 
 ## Data
 

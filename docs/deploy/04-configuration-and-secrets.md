@@ -1,6 +1,6 @@
 ---
 scope: "Every setting of the baseline in this repository: the keys of baseline.yml and of the reader profile's header, with their purpose, default, where each is set and whether it is secret; and secrets, of which there are none."
-verified_against: { commit: cb4fb22, versions: { git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { git: "2.54.0" } }
 reading_time_min: 3
 ---
 

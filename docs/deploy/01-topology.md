@@ -1,6 +1,6 @@
 ---
 scope: "Where the repository lives: the local repository in which the agents work and the private repository on GitHub, what each holds and the path by which work reaches a reader."
-verified_against: { commit: cb4fb22, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 reading_time_min: 2
 ---
 

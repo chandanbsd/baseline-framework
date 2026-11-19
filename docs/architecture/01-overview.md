@@ -1,12 +1,12 @@
 ---
 scope: "What the baseline is at this tip, the technology choices with the ADR that records each, the quality goals that drive the design, and the big picture: who and what the repository works with, and the parts it is made of."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 8
 ---
 
 # Overview
 
-This file holds two of the thirteen minimum sections of the architecture reference: "What the system is" and "The big picture". The other files of the folder hold the rest, and [the index](README.md) says which file holds which section. Every sentence here was checked against the repository at commit `cb4fb22`, the finished tip of the first stack, and every reason is taken from [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md) or from the [ADRs](../adr/README.md).
+This file holds two of the thirteen minimum sections of the architecture reference: "What the system is" and "The big picture". The other files of the folder hold the rest, and [the index](README.md) says which file holds which section. Every sentence here was checked against the repository at commit `bd7b1ce`, the finished tip of the first stack, and every reason is taken from [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md) or from the [ADRs](../adr/README.md).
 
 ## What the system is
 

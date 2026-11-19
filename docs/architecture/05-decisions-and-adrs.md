@@ -1,6 +1,6 @@
 ---
 scope: "The ADR model: the flow by which a decision becomes an ADR, the lifecycle of an ADR's status, and the ADR's contract: its template, its file name, its number and the guard rail on the docs agent's review."
-verified_against: { commit: cb4fb22 }
+verified_against: { commit: bd7b1ce }
 reading_time_min: 7
 ---
 
@@ -64,7 +64,7 @@ stateDiagram-v2
 | Rejected | Nothing: it ends here | None |
 | Superseded by NNNN | Nothing: it ends here | None |
 
-At commit `cb4fb22` the 35 ADRs of this repository were drafts. The docs agent's review in the reference PR, the first PR of the docs section, numbered them and moved them to Proposed, and the [index](../adr/README.md) lists them. Where the small PR that records a rejection sits in a stack that has not merged is left open by revision 2 ([revision 2, section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md)).
+At commit `bd7b1ce` the 35 ADRs of this repository were drafts. The docs agent's review in the reference PR, the first PR of the docs section, numbered them and moved them to Proposed, and the [index](../adr/README.md) lists them. Where the small PR that records a rejection sits in a stack that has not merged is left open by revision 2 ([revision 2, section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md)).
 
 ## Interfaces and contracts
 
@@ -109,4 +109,4 @@ The review and the numbering ride in a description PR, which is the one crossove
 
 ### The presence check
 
-A changed dependency manifest, schema or interface file must be covered by an ADR or a ruling. The standard requires the checker to make this check over the whole change, from `main` to the tip, and to look for presence only. Where no checker exists, the same check is made by hand with `git diff --name-only main...HEAD` ([adrs.md](../agents/adrs.md)). The first stack changes no dependency manifest and no schema: its 77 tracked files at commit `cb4fb22` are Markdown files, `baseline.yml` and `.gitignore`. The one file that the tooling is to read, `baseline.yml`, changes only in PR 17, where its comment on `stack_folders` gains the two exceptions that revision 2 recorded (D11), and revision 2 is the record that covers it.
+A changed dependency manifest, schema or interface file must be covered by an ADR or a ruling. The standard requires the checker to make this check over the whole change, from `main` to the tip, and to look for presence only. Where no checker exists, the same check is made by hand with `git diff --name-only main...HEAD` ([adrs.md](../agents/adrs.md)). The first stack changes no dependency manifest and no schema: its 77 tracked files at commit `bd7b1ce` are Markdown files, `baseline.yml` and `.gitignore`. The one file that the tooling is to read, `baseline.yml`, changes only in PR 17, where its comment on `stack_folders` gains the two exceptions that revision 2 recorded (D11), and revision 2 is the record that covers it.

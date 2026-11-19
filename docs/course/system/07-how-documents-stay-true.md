@@ -14,7 +14,7 @@ terms:
     definition: "The check the standard requires over the whole change of a stack, from main to the tip, which keeps the lower PRs pending until the tip passes."
   - term: "presence check"
     definition: "The check that a changed dependency manifest, schema or interface file is covered by an ADR or a ruling; it looks for a record, not for whether the decision was right."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # How documents stay true
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [Flowcharts](../languages/mermaid/01-flowcharts.md), for the diagram rules, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), for the whole change from `main` to the tip. |
 | Reading time | 18 minutes, worked out from its length. |
 | Files it covers | `standard/17-evidence-and-truth.md`, `standard/22-tooling-requirements.md`, `standard/16-diagrams.md`, `standard/10-course-reference-pages.md`, `docs/agents/docs-agent.md` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -221,7 +221,7 @@ baseline.yml
 ```
 
 ```bash
-git ls-tree -r --name-only cb4fb22 | wc -l
+git ls-tree -r --name-only bd7b1ce | wc -l
 ```
 
 ```text
@@ -374,5 +374,5 @@ A file that every PR of a stack edits conflicts at every rebase, and with many s
 |---|---|---|
 | Run it | Run the presence check of part 7 on the first stack. | It prints `baseline.yml` and nothing else. |
 | Break it on purpose | Change one word inside an excerpt of a lesson, in a scratch copy. Which rule now fails, and how would you find it? | You name rule 2, and find the difference by comparing the excerpt with the lines its caption names. |
-| Trace what happened | Trace one number in the architecture reference, such as the 77 tracked files at commit `cb4fb22`, to the command that measures it. | `git ls-tree -r --name-only cb4fb22` piped to `wc -l` prints 77. |
+| Trace what happened | Trace one number in the architecture reference, such as the 77 tracked files at commit `bd7b1ce`, to the command that measures it. | `git ls-tree -r --name-only bd7b1ce` piped to `wc -l` prints 77. |
 | Fix it | A made-up deployment doc says a runbook command "works in production". Fix it under the honesty rule. | You rewrite it as run in staging or a local reproduction, with production marked "not verified". |

@@ -14,7 +14,7 @@ terms:
     definition: "The very first commit of a new repository, the one commit that goes straight to main, since there is nothing yet to branch from."
   - term: "front matter"
     definition: "A block of YAML between two lines of three dashes at the very start of a Markdown file, which keeps data a program can read in the file a person reads."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # A project starts with the intake
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), for what comes after the bootstrap. |
 | Reading time | 15 minutes, worked out from its length. |
 | Files it covers | `standard/04-reader-profile.md`, `standard/05-project-layout.md`, `standard/22-tooling-requirements.md`, `docs/reader-profile.md`, `baseline.yml` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -94,7 +94,7 @@ It then writes `docs/reader-profile.md` from the answers.
 | The contract covers | Here |
 |---|---|
 | Format or schema | Four groups of questions, in a fixed order. |
-| Versions | The standard at commit `cb4fb22`. |
+| Versions | The standard at commit `bd7b1ce`. |
 | Timeouts | Not applicable. |
 | Retries | Not applicable: an answer can be changed later, in the intake's update mode. |
 | Ordering | Fixed: the project first, the standards question last and once. |

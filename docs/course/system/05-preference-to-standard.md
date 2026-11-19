@@ -12,7 +12,7 @@ terms:
     definition: "The four things recorded beside every standard: its reason in the Software Engineer's words, its scope, its date and its source."
   - term: "regenerate"
     definition: "To have an agent write code again, in a fresh context, from corrected standards or ADRs, instead of patching the code."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # A preference becomes a standard
@@ -23,7 +23,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [Flowcharts](../languages/mermaid/01-flowcharts.md). |
 | Reading time | 16 minutes, worked out from its length. |
 | Files it covers | `standard/19-standards-mechanism.md`, `docs/agents/standards.md`, `docs/standards/README.md`, `AGENTS.md` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -206,7 +206,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-At commit `cb4fb22` this repository's standards folder holds one file, its README, and no rule. The nearest case is revision 3's two link rules: the agent proposed each with a reason, the Software Engineer approved both, and they were written in `standard/AGENTS.md`, `standard/15-agents-md-and-playbooks.md` and `AGENTS.md`, not in `docs/standards/` ([revision 3, D8](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). As a project's standards grow, what breaks first is finding the rule that applies: the folder has one file for each topic, and each rule's scope says where it applies, so an agent reads only what concerns the work in front of it. The second limit is rules that outlive their reasons, which the removal rule answers: a rule whose reason is gone is removed, and git keeps its history.
+At commit `bd7b1ce` this repository's standards folder holds one file, its README, and no rule. The nearest case is revision 3's two link rules: the agent proposed each with a reason, the Software Engineer approved both, and they were written in `standard/AGENTS.md`, `standard/15-agents-md-and-playbooks.md` and `AGENTS.md`, not in `docs/standards/` ([revision 3, D8](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). As a project's standards grow, what breaks first is finding the rule that applies: the folder has one file for each topic, and each rule's scope says where it applies, so an agent reads only what concerns the work in front of it. The second limit is rules that outlive their reasons, which the removal rule answers: a rule whose reason is gone is removed, and git keeps its history.
 
 ```mermaid
 flowchart LR

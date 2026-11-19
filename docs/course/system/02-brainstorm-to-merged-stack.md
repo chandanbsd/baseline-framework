@@ -16,7 +16,7 @@ terms:
     definition: "A point where what a skill does meets what the baseline does; the baseline keeps each seam small and never changes the skill."
   - term: "finish menu"
     definition: "The choice an execution skill offers straight after its final review; for stack work the pick is to keep the branch as it is until the docs are in."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 ---
 
 # A feature goes from brainstorm to merged stack
@@ -27,7 +27,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md) and [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md). |
 | Reading time | 21 minutes, worked out from its length. |
 | Files it covers | `standard/03-stack-model.md`, `standard/21-skills-seams.md`, `docs/agents/stacks.md`, `AGENTS.md`, `docs/superpowers/specs/2026-11-14-baseline-standard-design.md` |
-| Versions verified against | Commit `cb4fb22`; git 2.54.0, `gh` 2.103.3 and `gh stack` 0.3.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`; git 2.54.0, `gh` 2.103.3 and `gh stack` 0.3.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -261,7 +261,7 @@ The bottleneck is the review. Each code PR is to stay at about 400 changed lines
 | 17 | code | 18 | 16 |
 | 18 | thinking | 182 | 10 |
 | 19 | thinking | 421 | 0 |
-| 20 | code | 44 | 33 |
+| 20 | code | 47 | 36 |
 
 Six of the nine code PRs of the first build, 7 to 10, 12 and 13, are above the size guide of about 400 lines. Rule 6 makes the grouping of the code into slices a ruling of the agent, and its reason says that the plan carries no layout. The descriptions of those six PRs record the grouping as a ruling: the agent grouped the standard's text into nine slices by whole files, following the plan's layout of nine branches "of about 400 lines each", so this build departs from rule 6, and the Software Engineer decided on 2026-11-18 to keep the grouping ([revision 3, D7](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). Whether rule 6's reason should change is left open.
 

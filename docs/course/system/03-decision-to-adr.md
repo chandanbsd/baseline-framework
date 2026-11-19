@@ -14,7 +14,7 @@ terms:
     definition: "The limit on the docs agent's review of an ADR draft: it may clean up, add, review, number and flag, and may not rewrite the decision, the drivers, the options or the rationale."
   - term: "backfilled rationale"
     definition: "Reasoning written after a decision to justify it, which a decision record exists to prevent; anti-goal A4."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # A decision becomes an ADR
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [Sequence and state diagrams](../languages/mermaid/02-sequence-and-state-diagrams.md), for the ADR lifecycle, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md). |
 | Reading time | 18 minutes, worked out from its length. |
 | Files it covers | `standard/11-adrs.md`, `docs/agents/adrs.md`, `docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`, `docs/adr/0001-adrs-with-options-explored.md`, `docs/adr/README.md` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -105,7 +105,7 @@ flowchart TD
 | The contract covers | Here |
 |---|---|
 | Format or schema | Six criteria, any one of which makes a decision of impact. |
-| Versions | The standard at commit `cb4fb22`. |
+| Versions | The standard at commit `bd7b1ce`. |
 | Timeouts | Not applicable. |
 | Retries | Not applicable. |
 | Ordering | The test is made as the decision is made, never afterwards. |
@@ -152,7 +152,7 @@ Deciders: the Software Engineer
 | The contract covers | Here |
 |---|---|
 | Format or schema | The template of [standard/11-adrs.md](../../../standard/11-adrs.md): title, three header lines, then eight parts in order. |
-| Versions | The trail at commit `cb4fb22`; the ADR as the reference PR of the docs section left it. |
+| Versions | The trail at commit `bd7b1ce`; the ADR as the reference PR of the docs section left it. |
 | Timeouts, retries | Not applicable. |
 | Ordering | The draft's options come before its decision. |
 | Idempotency | Where the trail records nothing, the ADR says "Not recorded", so drafting it again from the trail gives the same gaps. |
@@ -179,8 +179,8 @@ git log --follow --format='%h %s' -- docs/adr/0001-adrs-with-options-explored.md
 ```
 
 ```text
-b2795e6 docs: link the system chapters from the reference documents and the indexes
-dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
+6b0953e docs: link the system chapters from the reference documents and the indexes
+af2d4e4 docs(adr): number the 31 ADR drafts and move them to Proposed
 5f62712 docs(adr): render each draft header line on its own line on GitHub
 6c6530a docs(adr): add draft decisions on scope and approach
 ```
@@ -226,7 +226,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-At commit `cb4fb22` the repository holds 35 ADR drafts, 3,836 lines with 162 diagrams, all reviewed in one docs section. What grows with a project is the number of decisions per stack, and what breaks first is the review at the end: a stack with many drafts gives the docs agent and the Software Engineer many records to read at once. Two properties keep it bounded: drafts sit in small PRs directly beneath the slice that depends on them, so they are read beside the code they govern, and numbers are given at publish, so stacks in flight never wait on each other.
+At commit `bd7b1ce` the repository holds 35 ADR drafts, 3,836 lines with 162 diagrams, all reviewed in one docs section. What grows with a project is the number of decisions per stack, and what breaks first is the review at the end: a stack with many drafts gives the docs agent and the Software Engineer many records to read at once. Two properties keep it bounded: drafts sit in small PRs directly beneath the slice that depends on them, so they are read beside the code they govern, and numbers are given at publish, so stacks in flight never wait on each other.
 
 ```mermaid
 flowchart LR
@@ -244,9 +244,9 @@ git log --follow --format='%h %s' -- docs/adr/0019-generated-indexes.md
 ```
 
 ```text
-b2795e6 docs: link the system chapters from the reference documents and the indexes
-4e6f26e docs(adr): number the four drafts of revision 3 and move them to Proposed
-dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
+6b0953e docs: link the system chapters from the reference documents and the indexes
+775aaa3 docs(adr): number the four drafts of revision 3 and move them to Proposed
+af2d4e4 docs(adr): number the 31 ADR drafts and move them to Proposed
 1464590 docs(adr): add draft decisions on documents and diagrams
 ```
 

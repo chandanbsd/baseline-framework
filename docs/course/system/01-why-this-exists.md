@@ -10,7 +10,7 @@ terms:
     definition: "One step of the ladder: a responsibility, and what the baseline gives the Software Engineer to carry it."
   - term: "the principle that outranks all others"
     definition: "The rule that the reader's level shapes the documents only, and never the scope, scale, architecture or quality of what is built."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # Why this exists
@@ -21,7 +21,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | None. This chapter opens the course. |
 | Reading time | 16 minutes, worked out from its length. |
 | Files it covers | `standard/01-why-and-scope.md`, `standard/README.md`, `docs/adr/0031-software-engineer-and-the-ladder.md`, `README.md` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for the commands of part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for the commands of part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 This chapter and the six after it are "How we build", the course on the baseline itself. The baseline has no language or stack code of its own beyond Markdown, Mermaid, YAML and git, so its course takes the form of system chapters, one for each flow of the framework, after this one on its why (design 1, section 16.4). In these chapters, "the real code on both sides" of a hop is the real artifacts on both sides: a rule of the standard, a playbook, an ADR, a PR. "Observe it" is reading the recorded first stack. The labs are tabletop exercises, marked "not verified", because the checkers and the worked example that would let them run do not exist.
 
@@ -92,7 +92,7 @@ The first side is the standard's statement of the ladder; the second is what the
 | The contract covers | Here |
 |---|---|
 | Format or schema | A Markdown table: the rung, its responsibility, what the baseline gives. |
-| Versions | The standard at commit `cb4fb22`; the ladder is ADR 0031, Proposed. |
+| Versions | The standard at commit `bd7b1ce`; the ladder is ADR 0031, Proposed. |
 | Timeouts | Not applicable: nothing waits on this hop. |
 | Retries | Not applicable: nothing is sent. |
 | Ordering | The rungs are in order, and each is kept on the way up. |
@@ -119,7 +119,7 @@ Item 6 is the scenario of this chapter. Items 1 to 5 are what each rung's docume
 | The contract covers | Here |
 |---|---|
 | Format or schema | A numbered list of six outcomes. |
-| Versions | The standard at commit `cb4fb22`. |
+| Versions | The standard at commit `bd7b1ce`. |
 | Timeouts, retries | Not applicable. |
 | Ordering | Not significant: the six hold together. |
 | Idempotency | The same documents give the same answer to item 6. |
@@ -173,7 +173,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-The bottleneck is the one person reading. At commit `cb4fb22`, the standard alone is 4,845 lines and 77,352 words in 22 files and its index, the playbooks 1,260 lines and the 35 ADR drafts 3,836 lines (`wc -l` and `wc -w`, run on 2026-11-19). Reading every document of every project in full does not scale, which is why each document has a fixed shape a reader can rely on, a reading time, and a place in a reading path by role. What breaks first is the time to read, not the structure.
+The bottleneck is the one person reading. At commit `bd7b1ce`, the standard alone is 4,845 lines and 77,367 words in 22 files and its index, the playbooks 1,260 lines and the 35 ADR drafts 3,836 lines (`wc -l` and `wc -w`, run on 2026-11-19). Reading every document of every project in full does not scale, which is why each document has a fixed shape a reader can rely on, a reading time, and a place in a reading path by role. What breaks first is the time to read, not the structure.
 
 ```mermaid
 flowchart LR

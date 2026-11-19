@@ -1,7 +1,7 @@
 ---
 learn: "How a fresh docs agent turns a finished tip into the docs section: how it is started, what it reads and never reads, the four groups it writes in reading order, how it checks each claim, and how it hands over."
 prerequisites: [languages/mermaid/01-flowcharts, stacks/gh-stack/01-a-stack-of-pull-requests]
-reading_time_min: 22
+reading_time_min: 23
 files: [docs/agents/docs-agent.md, standard/18-docs-agent.md, standard/17-evidence-and-truth.md, docs/reader-profile.md, docs/course/reference/file-map.md]
 terms:
   - term: "docs agent"
@@ -14,7 +14,7 @@ terms:
     definition: "The part of a description PR that lists where the built work departs from the plan, taken only from the Rulings I made lists."
   - term: "flagged code"
     definition: "A place where the code was unclear to a fresh reader, named in a description PR with the code PR its fix belongs in."
-verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
+verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.54.0" } }
 ---
 
 # The docs agent writes the docs section
@@ -25,7 +25,7 @@ verified_against: { commit: cb4fb22, versions: { mermaid-cli: "12.2.0", git: "2.
 | Lessons to read first | [Flowcharts](../languages/mermaid/01-flowcharts.md), because every document carries diagrams, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md). |
 | Reading time | 21 minutes, worked out from its length. |
 | Files it covers | `docs/agents/docs-agent.md`, `standard/18-docs-agent.md`, `standard/17-evidence-and-truth.md`, `docs/reader-profile.md`, `docs/course/reference/file-map.md` |
-| Versions verified against | Commit `cb4fb22`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
+| Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for part 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
 
@@ -95,7 +95,7 @@ The brief records how its first run was started: by hand, with a start text that
 | The contract covers | Here |
 |---|---|
 | Format or schema | A start instruction naming the brief, and, while the PRs are not open, the rulings and the stack table as files. |
-| Versions | The finished tip: commit `cb4fb22` for this repository. |
+| Versions | The finished tip: commit `bd7b1ce` for this repository. |
 | Timeouts | Not applicable. |
 | Retries | Not applicable: a run that stops can be started again from the same tip. |
 | Ordering | The docs agent starts only after the build is finished. |
@@ -182,7 +182,7 @@ When the docs section is written, hand it over in a report, in the five parts of
 Because: what the Software Engineer has to do is what they read the report for, and the evidence supports it and can be read after. If anything this brief did not tell you made your work harder, say so in the report too, because what a start has to hold is learned from what each run lacked.
 ```
 
-The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run once, for decisions rather than code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). The Software Engineer approved the second report's recommendations too. Only one of them changed a file: the standard's index, whose row for file 15 still named two rules for the files themselves. The index is a description path, so the docs agent corrected the row in the reference PR.
+The report puts first what the Software Engineer has to do, then the evidence. Flagged code is not fixed by the docs agent: the fix is made in the code PR it belongs to, and the docs are then rebased and re-verified. In this repository the loop has run twice, first for decisions and then for code. The first report put nine numbered decisions, the Software Engineer approved the recommendations, and the regular agent built the answers as revision 3, PRs 18 to 20, below the docs section. The docs section was then rebased onto them, its branches renumbered from `docs-18` to `docs-21` and up, and every document re-checked against the new tip ([revision 3](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). The Software Engineer approved the second report's recommendations too. Only one of them changed a file: the standard's index, whose row for file 15 still named two rules for the files themselves. The index is a description path, so the docs agent corrected the row in the reference PR. The next report flagged code: the opening paragraph of `standard/15` still counted two rules for the files themselves. The regular agent fixed it, and the same phrase twice in `standard/19`, by amending PR 20, and the docs section was rebased onto the amended PR and re-checked, which gave each group one more commit.
 
 ## Invariants
 
@@ -241,21 +241,24 @@ git log --format='%h %s' standard/20-revision-3-standard..standard/docs-23-stack
 ```
 
 ```text
-ebe5a3c docs: re-check the gh stack lessons against revision 3
-9644e81 docs: add the gh stack lessons to the indexes and the reading paths
-277c548 docs: write the gh stack lessons and the gh stack what-else-it-offers map
-51f0792 docs: re-check the Mermaid lessons against revision 3
-a4b2859 docs: add the Mermaid lessons to the indexes, the README and the reading paths
-9ce80b5 docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
-1b7d163 docs: name the third rule of file 15 in the standard's index
-fd2dbe5 docs: re-check the reference documents against revision 3
-4e6f26e docs(adr): number the four drafts of revision 3 and move them to Proposed
-7a421a7 docs: write the course index, the file map and the glossaries
-8b7bf6b docs: generate the reader profile's three sections from its header
-0475fb8 docs: write the README
-46f38c7 docs: write the feature docs and the deployment docs
-8eca734 docs: write the architecture reference and the ADR index
-dca2207 docs(adr): number the 31 ADR drafts and move them to Proposed
+491804e docs: re-check the gh stack lessons against the amended PR 20
+bf73829 docs: re-check the gh stack lessons against revision 3
+760ab8a docs: add the gh stack lessons to the indexes and the reading paths
+9d52a4a docs: write the gh stack lessons and the gh stack what-else-it-offers map
+ae2fa11 docs: re-check the Mermaid lessons against the amended PR 20
+ec42670 docs: re-check the Mermaid lessons against revision 3
+e4cb3bf docs: add the Mermaid lessons to the indexes, the README and the reading paths
+970098d docs: write the Mermaid lessons and Mermaid's what-else-it-offers map
+5a9284a docs: re-check the reference documents against the amended PR 20
+61860ca docs: name the third rule of file 15 in the standard's index
+3e782bf docs: re-check the reference documents against revision 3
+775aaa3 docs(adr): number the four drafts of revision 3 and move them to Proposed
+ec57d39 docs: write the course index, the file map and the glossaries
+4b29fb6 docs: generate the reader profile's three sections from its header
+6774ae0 docs: write the README
+f3efb1b docs: write the feature docs and the deployment docs
+64e5fc7 docs: write the architecture reference and the ADR index
+af2d4e4 docs(adr): number the 31 ADR drafts and move them to Proposed
 ```
 
 ```bash
@@ -266,7 +269,7 @@ git diff --name-only standard/20-revision-3-standard standard/docs-23-stack-less
 standard/README.md
 ```
 
-Output captured on 2026-11-19, after the docs section was rebased onto revision 3. Each group ends with its re-check commit, the work of the loop described under hop 4, and the reference group then with one more: the correction of the standard's index that the Software Engineer approved after the second report. That index, `standard/README.md`, is the one path in `standard/` the second command finds. It is a description path, so its correction goes in a description PR, and the docs section changes no code path and not `baseline.yml`.
+Output captured on 2026-11-19, after the docs section was rebased onto the amended PR 20. The top commits of each group are the work of the loop described under hop 4: a re-check after the rebase onto revision 3 and another after the rebase onto the amended PR 20, with, in the reference group, the correction of the standard's index between them. That index, `standard/README.md`, is the one path in `standard/` the second command finds. It is a description path, so its correction goes in a description PR, and the docs section changes no code path and not `baseline.yml`.
 
 ## Summary and cheat sheet
 
@@ -283,7 +286,7 @@ Output captured on 2026-11-19, after the docs section was rebased onto revision 
 
 Further reading: [docs/agents/docs-agent.md](../../agents/docs-agent.md) and [standard/18-docs-agent.md](../../../standard/18-docs-agent.md).
 
-**What was verified.** The excerpts, by a script; every diagram, by rendering it in dark and light with mermaid-cli 12.2.0; the commands of part 7 and the size of the docs section, by running them. **Not verified.** The fix-and-re-verify loop, which did not run in this docs section; and the labs.
+**What was verified.** The excerpts, by a script; every diagram, by rendering it in dark and light with mermaid-cli 12.2.0; the commands of part 7 and the size of the docs section, by running them. The fix-and-re-verify loop, once: PR 20 was amended to fix flagged code, and the docs section was rebased onto it and every check run again. **Not verified.** The labs.
 
 ## Practice
 

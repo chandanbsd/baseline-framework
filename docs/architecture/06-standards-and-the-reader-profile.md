@@ -14,6 +14,8 @@ The **reader profile** records who a project's documents are written for, with a
 
 ### A project starts with the intake
 
+The system chapter [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md) teaches this flow.
+
 The **intake** is the set of questions asked when a project starts. The baseline's skills are to provide it as `/baseline:init`; they do not exist, so it is run by hand: the same questions are put to the Software Engineer in the same order, and the files are written from the answers. This repository's own profile was made this way, and the bootstrap commit on `main`, `47615da`, holds what it produced: `docs/reader-profile.md`, `docs/standards/README.md` and `baseline.yml`, with `.gitignore`.
 
 ```mermaid
@@ -38,6 +40,8 @@ sequenceDiagram
 Adopting the baseline in an existing repository is the work of `/baseline:adopt`, which is to do the same and have the docs agent document the current code as a docs-only stack. The standard states it as a requirement, and no procedure for doing it by hand is written ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)).
 
 ### A preference becomes a standard
+
+The system chapter [A preference becomes a standard](../course/system/05-preference-to-standard.md) teaches this flow.
 
 ```mermaid
 sequenceDiagram

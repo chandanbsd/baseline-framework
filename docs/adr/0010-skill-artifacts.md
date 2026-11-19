@@ -98,3 +98,4 @@ A skill changes where or how it writes its artifacts.
 - Decision trail, entry 0010: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the artifact map into `standard/05-project-layout.md`.
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the seams into `standard/21-skills-seams.md`.
+- Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.

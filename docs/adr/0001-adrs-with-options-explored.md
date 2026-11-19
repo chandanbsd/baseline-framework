@@ -116,3 +116,4 @@ The skeleton proves too heavy for small decisions, which would move them to ruli
 - Design 1, Appendix A, 0001: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0001: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 9 of this stack (branch `standard/09-adrs-deployment-readme`), which writes the ADR template and its rules into `standard/11-adrs.md`.
+- Added at review: the course chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md), which follows this decision at work in the repository.

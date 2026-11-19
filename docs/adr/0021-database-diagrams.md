@@ -99,3 +99,5 @@ The same signal as for the diagram tooling and theme decision (Appendix A, 0020)
 - Added at review: PR 7 of this stack (branch `standard/07-feature-and-architecture`), which writes the current-state database diagram into `standard/07-architecture-reference.md`.
 - Added at review: PR 10 of this stack (branch `standard/10-pr-descriptions-and-agents`), which writes the schema diagram of a PR into `standard/14-pr-descriptions.md`.
 - Added at review: PR 11 of this stack (branch `standard/11-diagrams-and-evidence`), which writes the database diagram rules into `standard/16-diagrams.md`.
+- Added at review: the course chapter [How documents stay true](../course/system/07-how-documents-stay-true.md), which follows this decision at work in the repository.
+- Added at review: the lesson [Entity-relationship diagrams and the palette](../course/languages/mermaid/03-entity-relationship-diagrams-and-the-palette.md), which teaches what this decision chose.

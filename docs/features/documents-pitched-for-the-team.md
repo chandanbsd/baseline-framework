@@ -83,3 +83,4 @@ stateDiagram-v2
 
 - [The document set](document-set.md) and [Standards](standards.md).
 - For engineers: [standards and the reader profile](../architecture/06-standards-and-the-reader-profile.md) in the architecture reference.
+- For engineers, in the course: the course chapter [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md).

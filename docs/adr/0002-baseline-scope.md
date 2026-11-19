@@ -120,3 +120,4 @@ A rule recurs in most projects, which would promote it into the baseline through
 - Decision trail, entry 0002: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes the scope, the non-goals and the anti-goal of rigidity into `standard/01-why-and-scope.md`.
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes what the tooling does not check into `standard/22-tooling-requirements.md`.
+- Added at review: the course chapter [Why this exists](../course/system/01-why-this-exists.md), which follows this decision at work in the repository.

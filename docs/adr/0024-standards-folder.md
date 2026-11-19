@@ -98,3 +98,4 @@ Not recorded.
 - Decision trail, entry 0024: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the standards mechanism into `standard/19-standards-mechanism.md`.
 - Added at review: PR 17 of this stack (branch `standard/17-revision-2-standard`), which writes that neither record of `standards_enabled` wins into `standard/19-standards-mechanism.md` (revision 2).
+- Added at review: the course chapter [A preference becomes a standard](../course/system/05-preference-to-standard.md), which follows this decision at work in the repository.

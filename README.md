@@ -37,6 +37,7 @@ flowchart TB
 | Understand how it is built | [The architecture reference](docs/architecture/README.md), then [the decision records](docs/adr/README.md) |
 | Read the standard itself | [The standard's index](standard/README.md), in number order |
 | Learn the codebase | [The guided course](docs/course/README.md) |
+| Understand how the baseline works end to end | The system chapters, starting with [Why this exists](docs/course/system/01-why-this-exists.md) |
 | Contribute to it | [`AGENTS.md`](AGENTS.md), then [the playbooks](docs/agents/working-with-the-engineer.md), starting with working with the Software Engineer |
 | Operate it | [The deployment docs](docs/deploy/README.md): it is a repository on GitHub, and nothing is deployed |
 | Look up a term or a file | [The file map](docs/course/reference/file-map.md), the [technical glossary](docs/course/reference/glossary.md) and the [product glossary](docs/features/glossary.md) |

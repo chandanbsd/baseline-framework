@@ -100,3 +100,4 @@ Not recorded.
 - Design 1, Appendix A, 0008: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0008: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the docs agent into `standard/18-docs-agent.md`.
+- Added at review: the course chapter [The docs agent writes the docs section](../course/system/04-docs-agent-writes-the-docs-section.md), which follows this decision at work in the repository.

@@ -110,3 +110,4 @@ The Boost behaviour is confirmed (design 1, V3).
 - Decision trail, entry 0030: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 4 of this stack (branch `standard/04-playbooks`), which writes `AGENTS.md`, `CLAUDE.md` and the six playbooks.
 - Added at review: PR 10 of this stack (branch `standard/10-pr-descriptions-and-agents`), which writes their standard into `standard/15-agents-md-and-playbooks.md`.
+- Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.

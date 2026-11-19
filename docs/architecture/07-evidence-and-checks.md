@@ -12,6 +12,8 @@ This file holds one of the key flows and the section "Quality" of the architectu
 
 ### How documents stay true
 
+The system chapter [How documents stay true](../course/system/07-how-documents-stay-true.md) teaches this flow.
+
 The standard keeps its documents true in two layers. The first is the eleven evidence rules, which every descriptive document follows and which the docs agent applies as it writes. The second is the checks, which the standard requires the tooling to make on every PR, at the tip of a stack and every night. At this tip only the first layer exists: no checker, CI workflow or generator is in the repository.
 
 ```mermaid

@@ -87,3 +87,4 @@ stateDiagram-v2
 
 - [Documents written from what was built](documents-from-what-was-built.md) and [Documents that stay true](documents-that-stay-true.md).
 - For engineers: [the standard and its files](../architecture/02-the-standard.md) in the architecture reference.
+- For engineers, in the course: the course chapter [Why this exists](../course/system/01-why-this-exists.md).

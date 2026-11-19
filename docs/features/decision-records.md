@@ -87,3 +87,4 @@ stateDiagram-v2
 
 - [Work delivered as a stack](delivery-as-a-stack.md) and [Standards](standards.md).
 - For engineers: [decisions and decision records](../architecture/05-decisions-and-adrs.md) in the architecture reference, and the [index of the records](../adr/README.md).
+- For engineers, in the course: the course chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md).

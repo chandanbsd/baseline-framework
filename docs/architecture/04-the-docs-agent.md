@@ -14,6 +14,8 @@ The **docs agent** is a fresh agent, started from the finished tip of the stack,
 
 ### The docs agent writes the docs section
 
+The system chapter [The docs agent writes the docs section](../course/system/04-docs-agent-writes-the-docs-section.md) teaches this flow.
+
 ```mermaid
 sequenceDiagram
     participant E as Software Engineer

@@ -78,3 +78,4 @@ flowchart TD
 
 - [The document set](document-set.md), [Decision records](decision-records.md) and [Work delivered as a stack](delivery-as-a-stack.md).
 - For engineers: [the docs agent](../architecture/04-the-docs-agent.md) in the architecture reference.
+- For engineers, in the course: the course chapter [The docs agent writes the docs section](../course/system/04-docs-agent-writes-the-docs-section.md).

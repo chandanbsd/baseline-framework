@@ -121,3 +121,4 @@ Mid-build decisions of impact prove frequent and costly.
 - Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records who records an acceptance (revision 1, D5).
 - Added at review: PR 16 of this stack (branch `standard/16-revision-2-decisions`), which records who records a rejection, and that a status edit goes in a small PR (revision 2).
 - Added at review: [ADR 0033](0033-adr-status-recording.md), which extends this decision with who records an acceptance and a rejection, in a small PR (revision 3, D2).
+- Added at review: the course chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md), which follows this decision at work in the repository.

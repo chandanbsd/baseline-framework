@@ -113,3 +113,4 @@ Not recorded.
 - Design 1, Appendix A, 0013: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
 - Decision trail, entry 0013: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes constraint C1 into `standard/01-why-and-scope.md`.
+- Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.

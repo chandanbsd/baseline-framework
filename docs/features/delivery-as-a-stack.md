@@ -87,3 +87,4 @@ stateDiagram-v2
 
 - [Decision records](decision-records.md), [Documents written from what was built](documents-from-what-was-built.md) and [Working with the Software Engineer](working-with-the-software-engineer.md).
 - For engineers: [the stack model](../architecture/03-the-stack-model.md) in the architecture reference.
+- For engineers, in the course: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md) and the lesson [A stack of pull requests](../course/stacks/gh-stack/01-a-stack-of-pull-requests.md).

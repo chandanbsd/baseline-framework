@@ -93,3 +93,4 @@ Not recorded.
 - Decision trail, entry 0005: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes constraint C6 into `standard/01-why-and-scope.md`.
 - Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the levels into `standard/04-reader-profile.md`.
+- Added at review: the course chapter [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md), which follows this decision at work in the repository.

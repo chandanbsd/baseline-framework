@@ -85,3 +85,4 @@ stateDiagram-v2
 
 - [The document set](document-set.md) and [Documents written from what was built](documents-from-what-was-built.md).
 - For engineers: [evidence and checks](../architecture/07-evidence-and-checks.md) in the architecture reference.
+- For engineers, in the course: the course chapter [How documents stay true](../course/system/07-how-documents-stay-true.md).

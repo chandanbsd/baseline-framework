@@ -14,6 +14,8 @@ An **ADR**, an architecture decision record, is one file for one decision, with 
 
 ### A decision becomes an ADR
 
+The system chapter [A decision becomes an ADR](../course/system/03-decision-to-adr.md) teaches this flow.
+
 A decision comes up in one of two places, and the path to an ADR depends on which. A decision made in brainstorming is already recorded in the spec, so it needs no draft and the docs agent writes its ADR from the spec. A decision made during the build is tested against six criteria: a new technology or dependency, a data model or public interface, a security or trust boundary, the deployment topology, a contract between technology stacks, or anything hard to reverse. A decision that meets one is a **decision of impact** and gets a draft at once. A smaller call stays a **ruling**, recorded as `Ruling: what, why, cost if wrong`.
 
 ```mermaid

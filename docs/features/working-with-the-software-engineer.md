@@ -79,3 +79,4 @@ flowchart TD
 
 - [Work delivered as a stack](delivery-as-a-stack.md), [Decision records](decision-records.md) and [Standards](standards.md).
 - For engineers: [security and trust](../architecture/08-cross-cutting.md#security-and-trust) in the architecture reference.
+- For engineers, in the course: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).

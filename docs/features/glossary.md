@@ -6,48 +6,48 @@ The words the feature pages use, in plain language.
 
 **area decider.** A person who, once the team has grown, decides for one area of a project, and is named as the decider of the decision records in that area.
 
-**baseline.** A written standard for running a software project: which documents it keeps, who writes them and when, how work is put up for review, and how the rules that shape the code are recorded.
+**baseline.** A written standard for running a software project: which documents it keeps, who writes them and when, how work is put up for review, and how the rules that shape the code are recorded. Taught in [Why this exists](../course/system/01-why-this-exists.md).
 
-**brainstorming.** The first conversation about a piece of work, in which the Software Engineer and an agent agree what to build and pick an approach. Its result is the design.
+**brainstorming.** The first conversation about a piece of work, in which the Software Engineer and an agent agree what to build and pick an approach. Its result is the design. Taught in [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).
 
-**decision of impact.** A decision that gets a decision record of its own: something new the project depends on, how its data is shaped or what others can call, where one party's authority ends and another's begins, where and how the parts run, what two parts of the system promise each other, or anything hard to take back.
+**decision of impact.** A decision that gets a decision record of its own: something new the project depends on, how its data is shaped or what others can call, where one party's authority ends and another's begins, where and how the parts run, what two parts of the system promise each other, or anything hard to take back. Taught in [A decision becomes an ADR](../course/system/03-decision-to-adr.md).
 
-**decision record.** A file that records one decision: the problem, the options weighed with their evidence, what was chosen and why, and what follows.
+**decision record.** A file that records one decision: the problem, the options weighed with their evidence, what was chosen and why, and what follows. Taught in [A decision becomes an ADR](../course/system/03-decision-to-adr.md).
 
-**design.** The document that brainstorming produces: what will be built and why, with the approaches considered and the one picked.
+**design.** The document that brainstorming produces: what will be built and why, with the approaches considered and the one picked. Taught in [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).
 
-**docs agent.** A fresh AI agent, started once the building is finished, that writes the documents describing what was built. It never changes the work.
+**docs agent.** A fresh AI agent, started once the building is finished, that writes the documents describing what was built. It never changes the work. Taught in [The docs agent writes the docs section](../course/system/04-docs-agent-writes-the-docs-section.md).
 
-**document set.** The documents every project keeps: those that say what will be built and how the work is done, and those that say what was built.
+**document set.** The documents every project keeps: those that say what will be built and how the work is done, and those that say what was built. Taught in [Why this exists](../course/system/01-why-this-exists.md).
 
 **guides for agents.** The documents that tell the AI agents how to work under the baseline, each rule with its reason beside it.
 
-**instruction file.** The short file at the top of a repository that every agent reads first. It names the Software Engineer and points to the guides for agents.
+**instruction file.** The short file at the top of a repository that every agent reads first. It names the Software Engineer and points to the guides for agents. Taught in [A preference becomes a standard](../course/system/05-preference-to-standard.md).
 
-**ladder.** The steps the Software Engineer climbs toward working as a Distinguished Engineer: Lead Engineer, Principal Engineer and Solutions Architect, each a set of responsibilities they take on.
+**ladder.** The steps the Software Engineer climbs toward working as a Distinguished Engineer: Lead Engineer, Principal Engineer and Solutions Architect, each a set of responsibilities they take on. Taught in [Why this exists](../course/system/01-why-this-exists.md).
 
-**level.** How much the team already knows about a technology or a subject: new to it, comfortable with it or fluent in it. It decides only how much basic material a document explains.
+**level.** How much the team already knows about a technology or a subject: new to it, comfortable with it or fluent in it. It decides only how much basic material a document explains. Taught in [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md).
 
-**not verified.** The note that marks a statement that could not be checked, so that no reader takes it as checked.
+**not verified.** The note that marks a statement that could not be checked, so that no reader takes it as checked. Taught in [How documents stay true](../course/system/07-how-documents-stay-true.md).
 
-**plan.** The document that says, task by task, how a design will be built.
+**plan.** The document that says, task by task, how a design will be built. Taught in [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).
 
-**publish.** To put work where others can see it, such as putting a stack up for review on GitHub. In this repository it waits for the Software Engineer's yes.
+**publish.** To put work where others can see it, such as putting a stack up for review on GitHub. In this repository it waits for the Software Engineer's yes. Taught in [gh stack link and the stack on GitHub](../course/stacks/gh-stack/02-gh-stack-on-github.md).
 
-**pull request.** A proposed change put up for review, which is merged once it is approved.
+**pull request.** A proposed change put up for review, which is merged once it is approved. Taught in [A stack of pull requests](../course/stacks/gh-stack/01-a-stack-of-pull-requests.md).
 
-**reader profile.** The record of who a project's documents are written for: a level for each technology and each subject. It is also the bar the Software Engineer hires against.
+**reader profile.** The record of who a project's documents are written for: a level for each technology and each subject. It is also the bar the Software Engineer hires against. Taught in [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md).
 
-**recorded call.** A decision an agent took on the Software Engineer's behalf without stopping to ask, written down with why and what it would cost if it were wrong.
+**recorded call.** A decision an agent took on the Software Engineer's behalf without stopping to ask, written down with why and what it would cost if it were wrong. Taught in [A decision becomes an ADR](../course/system/03-decision-to-adr.md).
 
-**regular agent.** The AI agent that plans and builds the work.
+**regular agent.** The AI agent that plans and builds the work. Taught in [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).
 
-**rule.** A preference of the Software Engineer's that they approved and that is written down, with its reason, where it applies, its date and its source, to shape the code.
+**rule.** A preference of the Software Engineer's that they approved and that is written down, with its reason, where it applies, its date and its source, to shape the code. Taught in [A preference becomes a standard](../course/system/05-preference-to-standard.md).
 
-**skill.** A packaged set of instructions that an AI agent follows for one kind of work, such as brainstorming a design or writing a plan.
+**skill.** A packaged set of instructions that an AI agent follows for one kind of work, such as brainstorming a design or writing a plan. Taught in [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md).
 
-**Software Engineer.** The person who decides on a project, and the person the baseline is built for.
+**Software Engineer.** The person who decides on a project, and the person the baseline is built for. Taught in [Why this exists](../course/system/01-why-this-exists.md).
 
-**stack.** An ordered series of pull requests, each built on the one below it and merged from the bottom up.
+**stack.** An ordered series of pull requests, each built on the one below it and merged from the bottom up. Taught in [A stack of pull requests](../course/stacks/gh-stack/01-a-stack-of-pull-requests.md).
 
 **the team.** The people who read a project's documents, review its work and join it later.

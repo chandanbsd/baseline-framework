@@ -113,3 +113,4 @@ Not recorded.
 - Decision trail, entry 0006: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
 - Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the comparison setting into `standard/04-reader-profile.md`.
 - Added at review: PR 8 of this stack (branch `standard/08-course`), which writes the marked aside into `standard/08-course-lessons.md`.
+- Added at review: the course chapter [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md), which follows this decision at work in the repository.

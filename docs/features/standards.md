@@ -82,3 +82,4 @@ stateDiagram-v2
 
 - [Decision records](decision-records.md) and [Documents pitched for the team](documents-pitched-for-the-team.md).
 - For engineers: [standards and the reader profile](../architecture/06-standards-and-the-reader-profile.md) in the architecture reference.
+- For engineers, in the course: the course chapter [A preference becomes a standard](../course/system/05-preference-to-standard.md).

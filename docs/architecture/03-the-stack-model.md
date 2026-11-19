@@ -14,6 +14,8 @@ A **stack** is an ordered series of pull requests (PRs), each based on the one b
 
 ### A feature goes from brainstorm to merged stack
 
+The system chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md) teaches this flow.
+
 The flow below is the order that the stack model, the seams with the skills ([standard/21-skills-seams.md](../../standard/21-skills-seams.md)) and the working rules ([standard/20-working-rules.md](../../standard/20-working-rules.md)) give together. Every step is done by hand or by an agent following the text, because the commands of the baseline's skills do not exist.
 
 ```mermaid

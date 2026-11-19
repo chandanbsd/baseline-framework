@@ -1,12 +1,12 @@
 ---
 scope: "How work is delivered as one stack of PRs: the flow from brainstorm to merged stack, the workflow a PR of the stack goes through, and the contracts that make a stack: branch names, how a PR's kind is read from its paths, the PR description and gh stack link."
-verified_against: { commit: 9d4518e }
+verified_against: { commit: cb4fb22 }
 reading_time_min: 8
 ---
 
 # The stack model
 
-This file holds the parts of three minimum sections that belong to the stack model: one of the key flows, the stack's workflow among the state machines, and its interfaces and contracts. The rules are set in [standard/03-stack-model.md](../../standard/03-stack-model.md), and the playbook [stacks.md](../agents/stacks.md) states them as instructions with the commands. The examples are the baseline's own first stack, whose seventeen branches `standard/01-spec` to `standard/17-revision-2-standard` are at this tip.
+This file holds the parts of three minimum sections that belong to the stack model: one of the key flows, the stack's workflow among the state machines, and its interfaces and contracts. The rules are set in [standard/03-stack-model.md](../../standard/03-stack-model.md), and the playbook [stacks.md](../agents/stacks.md) states them as instructions with the commands. The examples are the baseline's own first stack, whose twenty branches `standard/01-spec` to `standard/20-revision-3-standard` are at this tip.
 
 A **stack** is an ordered series of pull requests (PRs), each based on the one below it and merged from the bottom up. It holds three kinds of PR: a **thinking PR** holds the prescriptive documents, a **code PR** holds code and tests, and a **description PR** holds the descriptive documents that the docs agent writes.
 
@@ -65,7 +65,7 @@ stateDiagram-v2
 
 *A PR moves from commits to a pointer to an open PR to a merge, and the one thing to notice is the loop on Open: once a stack is open, a fix goes on top as a new PR, and a rewrite of pushed history waits for the Software Engineer's yes.*
 
-In this repository PRs 1 and 2 are in the state Open, and PRs 3 to 17 are in the state Cut: their branches exist only in the local repository.
+In this repository PRs 1 and 2 are in the state Open, and PRs 3 to 20 are in the state Cut: their branches exist only in the local repository.
 
 ## Interfaces and contracts
 
@@ -101,7 +101,7 @@ flowchart TD
 
 *A path is sorted by asking where it lives, and the one thing to notice is that a stack folder holds paths of all three kinds: its README is description, its AGENTS.md is thinking and everything else in it is code.*
 
-The rule sorts the first stack as the stack table records it. PRs 1 and 2 touch only the artifact map's paths, PR 3 only ADR drafts and PR 4 only `AGENTS.md`, `CLAUDE.md` and the playbooks, so all four are thinking. PRs 5 to 12, 15 and 17 touch only files in `standard/` and, in PR 17, `baseline.yml`, so they are code. PR 13 holds `standard/README.md` beside two code files. That file became a description path only with revision 2, after PR 13 was committed, and it stays as committed: the repo map of `AGENTS.md` says that it keeps its form as the standard's index and that the docs agent only checks it against the tip. The paths were listed with `git diff --name-only` between each pair of neighbouring branches.
+The rule sorts the first stack as the stack table records it. PRs 1 and 2 touch only the artifact map's paths, PRs 3 and 19 only ADR drafts and PR 4 only `AGENTS.md`, `CLAUDE.md` and the playbooks. PRs 14, 16 and 18 each touch a revision document under the artifact map's paths, `AGENTS.md` and playbooks, PR 14 also the reader profile, and PR 18 also `standard/AGENTS.md`, a stack folder's own `AGENTS.md`, which is a thinking path. So all nine are thinking. PRs 5 to 12, 15, 17 and 20 touch only files in `standard/` other than its `AGENTS.md` and, in PR 17, `baseline.yml`, so they are code. PR 13 holds `standard/README.md` beside two code files. That file became a description path only with revision 2, after PR 13 was committed, and it stays as committed: the repo map of `AGENTS.md` says that it keeps its form as the standard's index and that the docs agent only checks it against the tip. The paths were listed with `git diff --name-only` between each pair of neighbouring branches.
 
 ### The versioning policy and the error model
 

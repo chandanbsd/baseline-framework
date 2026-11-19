@@ -1,12 +1,12 @@
 ---
 scope: "What the baseline is at this tip, the technology choices with the ADR that records each, the quality goals that drive the design, and the big picture: who and what the repository works with, and the parts it is made of."
-verified_against: { commit: 9d4518e }
+verified_against: { commit: cb4fb22 }
 reading_time_min: 8
 ---
 
 # Overview
 
-This file holds two of the thirteen minimum sections of the architecture reference: "What the system is" and "The big picture". The other files of the folder hold the rest, and [the index](README.md) says which file holds which section. Every sentence here was checked against the repository at commit `9d4518e`, the finished tip of the first stack, and every reason is taken from [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md) or from the [ADRs](../adr/README.md).
+This file holds two of the thirteen minimum sections of the architecture reference: "What the system is" and "The big picture". The other files of the folder hold the rest, and [the index](README.md) says which file holds which section. Every sentence here was checked against the repository at commit `cb4fb22`, the finished tip of the first stack, and every reason is taken from [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md) or from the [ADRs](../adr/README.md).
 
 ## What the system is
 
@@ -15,9 +15,9 @@ The baseline is a standard for documenting and delivering a software project of 
 At this tip the system is made of text. What exists is:
 
 - **The standard**: 22 numbered Markdown files and an index in `standard/`. It is the product of this repository, and `baseline.yml` lists `standard` among the stack folders, so a change to it is a code change.
-- **The rules for agents**: `AGENTS.md`, the two-line `CLAUDE.md` that points to it, and six playbooks in `docs/agents/` that state the standard's rules as instructions with the reason beside each.
+- **The rules for agents**: `AGENTS.md`, the two-line `CLAUDE.md` that points to it, `standard/AGENTS.md` with the commands and the layout of the standard's folder, and six playbooks in `docs/agents/` that state the standard's rules as instructions with the reason beside each.
 - **The project's own configuration and inputs**: `baseline.yml`, the reader profile in `docs/reader-profile.md` and the standards folder `docs/standards/`, which holds only its README because no standard has been approved yet.
-- **The thinking behind it**: design 1, its decision trail and two revisions in `docs/superpowers/specs/`, the plan in `docs/superpowers/plans/`, and 31 ADRs in `docs/adr/`.
+- **The thinking behind it**: design 1, its decision trail and three revisions in `docs/superpowers/specs/`, the plan in `docs/superpowers/plans/`, and 35 ADRs in `docs/adr/`.
 
 The tooling that is to apply the standard does not exist: the kit, the checkers and the baseline's own skills. The standard states what each must do as a requirement and says that nothing in it claims that any repository runs it today ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). The worked example of design 2 does not exist either. Everything the baseline does today, a person or an agent does by reading the standard and the playbooks and following them by hand.
 
@@ -26,9 +26,9 @@ flowchart LR
     subgraph EX["Exists at this tip"]
         direction TB
         ST["The standard<br/>22 files and an index"]
-        PB["The instruction file, its pointer<br/>and six playbooks"]
+        PB["Two instruction files, a pointer<br/>and six playbooks"]
         CF["The configuration, the reader profile<br/>and the standards folder"]
-        TH["The specs, the plan<br/>and 31 ADRs"]
+        TH["The specs, the plan<br/>and 35 ADRs"]
     end
     subgraph RQ["Required by the standard, not built"]
         direction TB
@@ -113,11 +113,12 @@ A Markdown repository has no deployable units or datastores. Its parts are folde
 | `CLAUDE.md` | A two-line pointer to `AGENTS.md`. |
 | `AGENTS.md` | The primary instruction for working in the repository: who decides, seven core rules with their reasons, the six playbooks and the repo map. |
 | `docs/agents/` | The six playbooks. |
+| `standard/AGENTS.md` | The instructions for working in `standard/`: no commands, because nothing in it is built or run, the layout of the folder and the rule for links between its numbered files. |
 | `standard/` | The product: 22 numbered files and the index, `standard/README.md`. |
 | `docs/reader-profile.md` | Who the documents are written for, as a YAML header and the text that explains it. |
 | `docs/standards/` | The project's approved preferences. It holds only its README. |
-| `docs/adr/` | The 31 ADRs and their index. |
-| `docs/superpowers/` | Design 1, its decision trail and two revisions under `specs/`, and the plan under `plans/`, as the skills wrote them. |
+| `docs/adr/` | The 35 ADRs and their index. |
+| `docs/superpowers/` | Design 1, its decision trail and three revisions under `specs/`, and the plan under `plans/`, as the skills wrote them. |
 | `baseline.yml` | The baseline's configuration for this repository: the pinned version, the artifact map, the stack folders and whether standards are enabled. |
 
 ```mermaid
@@ -126,6 +127,7 @@ flowchart TB
     AG["`AGENTS.md`"]
     PB["`docs/agents/`"]
     STD["`standard/`"]
+    SAG["`standard/AGENTS.md`"]
     RP["`docs/reader-profile.md`"]
     SF["`docs/standards/`"]
     ADR["`docs/adr/`"]
@@ -136,6 +138,8 @@ flowchart TB
     AG -->|"points to"| RP
     AG -->|"points to"| SF
     PB -->|"state the rules of"| STD
+    AG -->|"names"| SAG
+    SAG -->|"gives the layout of"| STD
     ADR -->|"record the why of"| STD
     SPC -->|"the intent behind"| STD
     BY -. "sorts every PR path into a kind" .-> STD

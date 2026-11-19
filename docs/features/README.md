@@ -1,6 +1,6 @@
 # What the baseline gives a project
 
-*Verified against commit 9d4518e.*
+*Verified against commit cb4fb22.*
 
 ## What the product is and who uses it
 

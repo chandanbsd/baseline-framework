@@ -1,6 +1,6 @@
 # Decision records
 
-*Verified against commit 9d4518e.*
+*Verified against commit cb4fb22.*
 
 ## What it is and why it exists
 
@@ -45,9 +45,9 @@ flowchart LR
 
 A decision of impact is one of six kinds: something new the project depends on, how its data is shaped or what others can call, where one party's authority ends and another's begins, where and how the parts run, what two parts of the system promise each other, or anything hard to take back. A decision taken while brainstorming the design needs no draft, because the design already records its options; its record is written from the design.
 
-This repository keeps 31 decision records. They were drafted from the record of the brainstorm, and the docs agent numbered all 31 and moved them to waiting for the Software Engineer.
+This repository keeps 35 decision records. Thirty-one were drafted from the record of the brainstorm. Four were drafted later, from the records of decisions taken after the first stack was built, and each extends one of the earlier records, which keeps what it decided. The docs agent numbered all 35 and moved them to waiting for the Software Engineer.
 
-**Evidence.** The written standard: its part on decision records sets the six kinds, the parts of a record and its life, and the repository's 31 records were counted in their folder. Both were read at the commit above, the numbering in the first group of documents.
+**Evidence.** The written standard: its part on decision records sets the six kinds, the parts of a record and its life, and the repository's 35 records were counted in their folder. Both were read at the commit above, the numbering in the first group of documents.
 
 ## The rules a person experiences
 
@@ -81,7 +81,7 @@ stateDiagram-v2
 
 - No check confirms that a record's status is valid, that its index matches or that an accepted record was not rewritten.
 - No check confirms that a change to what the project depends on, or to what others can call, is covered by a record or a recorded call.
-- Some decisions taken after this repository's first stack was built, recorded in two revisions of its design, change or extend earlier decisions and have no record of their own yet.
+- Three of the four records written after the first stack weigh one real option and "do nothing", because the record of the decision held no other, and the docs agent may not add one.
 
 ## Related
 

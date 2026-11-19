@@ -1,7 +1,7 @@
 ---
 scope: "How the documents are kept true: the flow from a claim to a sentence, the eleven evidence rules, the checks and the stack gate that the standard requires of the tooling, and the quality section: performance and the testing strategy at this tip."
-verified_against: { commit: 9d4518e }
-reading_time_min: 6
+verified_against: { commit: cb4fb22 }
+reading_time_min: 7
 ---
 
 # Evidence and checks
@@ -44,10 +44,10 @@ sequenceDiagram
 | 7 | Measure the numbers you quote. | Counts of files, PRs and ADRs were measured with `git`. |
 | 8 | Record the seed, the model and the versions of output that is not deterministic, or mark it illustrative. | No document quotes a model's answer. |
 | 9 | Never hand-edit a generated index. | The five indexes are written once per PR by the docs agent, the single writer of the stack. |
-| 10 | Keep a minimum section that does not apply as one line, `Not applicable: why`. | Sections such as Data in [08-cross-cutting.md](08-cross-cutting.md). |
+| 10 | Keep a minimum section that does not apply as one line, `Not applicable: why`. | Sections such as Data in [08-cross-cutting.md](08-cross-cutting.md), and three areas of the deployment docs, which therefore have no diagram. |
 | 11 | Where no generator exists, write the indexes in the format the generators will produce, as the single writer of the stack. | This is the baseline's own repository during its first stack, the one case the exception is for. |
 
-The five generated indexes are the course index (`docs/course/README.md`), the architecture reference's index ([README.md](README.md) of this folder), the file map, the glossaries and the ADR index ([docs/adr/README.md](../adr/README.md)). No generator exists, and no format for a generator's output is written anywhere in the repository, so the form of each index is the docs agent's choice.
+The five generated indexes are the course index (`docs/course/README.md`), the architecture reference's index ([README.md](README.md) of this folder), the file map, the technical glossary and the ADR index ([docs/adr/README.md](../adr/README.md)). The product glossary is not one of them: the docs agent writes it from the terms that the feature pages use ([standard/10-course-reference-pages.md](../../standard/10-course-reference-pages.md)). No generator exists, and no format for a generator's output is written anywhere in the repository, so the form of each index is the docs agent's choice.
 
 ### The checks the standard requires
 
@@ -76,7 +76,7 @@ Not applicable: the baseline at this tip is text that people and agents read, an
 
 ### The testing strategy
 
-The repository holds no tests, no CI workflow and no checker at commit `9d4518e` (`git ls-tree -r --name-only 9d4518e` lists 71 files, none of them code that runs, and the docs section adds only Markdown). The quality of the standard rests on three things that exist:
+The repository holds no tests, no CI workflow and no checker at commit `cb4fb22` (`git ls-tree -r --name-only cb4fb22` lists 77 files, none of them code that runs, and the docs section adds only Markdown). The quality of the standard rests on three things that exist:
 
 - **Review in the stack.** Each kind of PR is read in its own way: thinking for intent and soundness, code for correctness, and descriptions for whether they match the code. The Software Engineer reviews the whole stack before it merges.
 - **The evidence rules applied by the docs agent.** The docs agent checks every claim of the documents it writes against the tip and records how in each description PR.

@@ -1,12 +1,12 @@
 ---
 scope: "The minimum sections that cut across the whole baseline: data, the concurrency and failure model of stacks in flight, security and trust, the operations summary, the known limits found while documenting it, and where the decisions live."
-verified_against: { commit: 9d4518e }
-reading_time_min: 11
+verified_against: { commit: cb4fb22 }
+reading_time_min: 12
 ---
 
 # Cross-cutting sections
 
-This file holds six of the thirteen minimum sections of the architecture reference. Each either describes what exists at commit `9d4518e` or is one line that says why it does not apply.
+This file holds six of the thirteen minimum sections of the architecture reference. Each either describes what exists at commit `cb4fb22` or is one line that says why it does not apply.
 
 ## Data
 
@@ -43,7 +43,7 @@ The example's names and numbers are made up. A draft whose links give no id take
 
 A stack is merged from the bottom up, in one sitting, and only when the Software Engineer asks. Three invariants hold for a stack built to the standard; at this tip nothing checks them mechanically.
 
-- **Each PR builds on the one below it.** The branches form one chain: for each neighbouring pair, `git merge-base --is-ancestor <lower> <upper>` exits with status 0, and the top branch is the tip. For the first stack this holds for all seventeen branches, from `main` to `standard/17-revision-2-standard`, which equals `standard/build`.
+- **Each PR builds on the one below it.** The branches form one chain: for each neighbouring pair, `git merge-base --is-ancestor <lower> <upper>` exits with status 0, and the top branch is the tip. For the first stack this holds for all twenty branches, from `main` to `standard/20-revision-3-standard`. Two working branches point into the chain: `standard/build`, where the first build ended, equals PR 17, and `standard/revision-3`, where revision 3 was built, equals PR 20.
 - **Each commit holds one kind**, so a stack can be cut with pointers alone.
 - **An Accepted ADR is never rewritten**: only its status and its links are edited.
 
@@ -130,7 +130,7 @@ flowchart LR
         U1["GitHub's stacked-PR rules"]
         U2["GitHub's rendering of entity colours"]
         U3["Laravel Boost and generated instruction files"]
-        U4["How a fresh docs agent is dispatched"]
+        U4["How a fresh docs agent is dispatched,<br/>tried once"]
     end
     H(["Done by hand today"])
     NOT --> H
@@ -140,18 +140,18 @@ flowchart LR
 
 **Not built.** The kit, the checkers, CI, the stack gate, the baseline's skills with their nine commands, the generators of the five indexes and the worked example of design 2. The standard states each as a requirement ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). Every step that a command would take is done by hand, and the intake is the one with a written by-hand procedure ([standard/04-reader-profile.md](../../standard/04-reader-profile.md)).
 
-**Not confirmed.** That required checks are evaluated for every PR of a stack, that lower PRs show a pending status, and that a stack merges bottom-up on GitHub; whether GitHub's own Mermaid renders the colours of an entity; whether Laravel Boost generates `AGENTS.md` and from which source; and how a fresh docs agent is dispatched in practice. What was checked is that branches cut as pointers link cleanly with `gh stack link`, and what `gh stack view` shows in three states, on 2026-11-18 with `gh stack` 0.3.0 ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+**Not confirmed.** That required checks are evaluated for every PR of a stack, that lower PRs show a pending status, and that a stack merges bottom-up on GitHub; whether GitHub's own Mermaid renders the colours of an entity; whether Laravel Boost generates `AGENTS.md` and from which source; and how a fresh docs agent is dispatched in practice, which was tried once, by hand, on 2026-11-18, and is to be proven again before it is relied on ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). What was checked is that branches cut as pointers link cleanly with `gh stack link`, and what `gh stack view` shows in three states, on 2026-11-18 with `gh stack` 0.3.0 ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
 
 **The palette in dark.** The approved palette's tinted rows measure 3.6 to 4.4 to 1 contrast in the dark theme, below the 4.5 to 1 that WCAG AA asks of normal text, though they read well, and the final values are the tooling's to confirm ([revision 1, D9](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
 
 **Rough edges found while documenting.**
 
 - No format for a generator's output is written anywhere, so the docs agent chose the form of the five indexes.
-- No source file carries the one-line header comment, or the sidecar entry, from which the file map is to take its line for each file ([standard/10-course-reference-pages.md](../../standard/10-course-reference-pages.md)), so the docs agent wrote each line from the file.
-- A lesson's header declares terms with no mark that says whether a term belongs to the product glossary or to the technical glossary, so the docs agent decided which glossary each term goes to.
-- The deployment docs must have five diagrams, while an area that does not apply is one line; the standard says only for the architecture reference that such a line has no diagram.
+- A Markdown file's opening paragraph serves as its line in the file map, and the standard leaves to the tooling how the line is cut from it ([standard/10-course-reference-pages.md](../../standard/10-course-reference-pages.md)), so the docs agent wrote each line from the file. The two files that are not Markdown, `.gitignore` and `baseline.yml`, could carry a one-line header comment, and neither has one.
+- What an entry of the product glossary links to when no lesson or system chapter teaches its term is left open ([revision 3, section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
+- Three of the four ADRs that came with revision 3, [0032](../adr/0032-five-generated-indexes.md), [0034](../adr/0034-update-moves-baseline-version.md) and [0035](../adr/0035-pr-kinds-of-baseline-yml-and-folder-files.md), record one real option and "do nothing", where the template asks for at least two real options ([standard/11-adrs.md](../../standard/11-adrs.md)). Each says that its revision recorded no other, and the docs agent's review may not add one.
+- The reason of rule 6 of the stack, that the plan carries no layout, does not fit the first build, whose plan laid out the nine slices of the standard's text; whether the reason should change is left open ([revision 3, D7 and section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
 - The course has a language tier and a stack tier, and a product made only of Markdown has little code in either. Design 1 adapts the baseline's own course to the system-chapter form (section 16.4); the standard's text has no such adaptation.
-- The ordering rule that a standard file links only to lower numbers holds at this tip and is not written anywhere.
 
 ## Where decisions live
 
@@ -161,20 +161,20 @@ flowchart LR
 |---|---|
 | Purpose and scope | [0002](../adr/0002-baseline-scope.md), [0003](../adr/0003-delivery-standard-kit-skills.md), [0013](../adr/0013-one-repo-per-project.md), [0022](../adr/0022-reading-venue.md), [0027](../adr/0027-worked-example.md), [0028](../adr/0028-build-order.md), [0031](../adr/0031-software-engineer-and-the-ladder.md) |
 | The reader and the course | [0004](../adr/0004-reader-profile-is-the-target-team.md), [0005](../adr/0005-detail-always-maximum.md), [0006](../adr/0006-comparisons-in-marked-asides.md), [0014](../adr/0014-course-scope.md), [0015](../adr/0015-course-tiers.md), [0016](../adr/0016-practice-standard.md) |
-| The stack and the skills | [0007](../adr/0007-docs-at-top-of-stack.md), [0008](../adr/0008-fresh-docs-agent.md), [0009](../adr/0009-one-kind-per-pr.md), [0010](../adr/0010-skill-artifacts.md), [0029](../adr/0029-conventions.md), [0030](../adr/0030-agents-md-shape.md) |
-| Decisions and standards | [0001](../adr/0001-adrs-with-options-explored.md), [0011](../adr/0011-adr-authorship-and-approval.md), [0012](../adr/0012-adr-placement-in-stack.md), [0024](../adr/0024-standards-folder.md) |
-| The documents and their diagrams | [0017](../adr/0017-architecture-reference-form.md), [0018](../adr/0018-feature-docs.md), [0019](../adr/0019-generated-indexes.md), [0020](../adr/0020-diagram-tooling-and-theme.md), [0021](../adr/0021-database-diagrams.md) |
-| Enforcement and tooling | [0023](../adr/0023-enforcement.md), [0025](../adr/0025-update-mechanism.md), [0026](../adr/0026-checker-language.md) |
+| The stack and the skills | [0007](../adr/0007-docs-at-top-of-stack.md), [0008](../adr/0008-fresh-docs-agent.md), [0009](../adr/0009-one-kind-per-pr.md), [0010](../adr/0010-skill-artifacts.md), [0029](../adr/0029-conventions.md), [0030](../adr/0030-agents-md-shape.md), [0035](../adr/0035-pr-kinds-of-baseline-yml-and-folder-files.md) |
+| Decisions and standards | [0001](../adr/0001-adrs-with-options-explored.md), [0011](../adr/0011-adr-authorship-and-approval.md), [0012](../adr/0012-adr-placement-in-stack.md), [0024](../adr/0024-standards-folder.md), [0033](../adr/0033-adr-status-recording.md) |
+| The documents and their diagrams | [0017](../adr/0017-architecture-reference-form.md), [0018](../adr/0018-feature-docs.md), [0019](../adr/0019-generated-indexes.md), [0020](../adr/0020-diagram-tooling-and-theme.md), [0021](../adr/0021-database-diagrams.md), [0032](../adr/0032-five-generated-indexes.md) |
+| Enforcement and tooling | [0023](../adr/0023-enforcement.md), [0025](../adr/0025-update-mechanism.md), [0026](../adr/0026-checker-language.md), [0034](../adr/0034-update-moves-baseline-version.md) |
 
 ```mermaid
 flowchart LR
-    ADR(["31 ADRs, all Proposed"])
+    ADR(["35 ADRs, all Proposed"])
     ADR --> A1["Purpose and scope: 7"]
     ADR --> A2["The reader and the course: 6"]
-    ADR --> A3["The stack and the skills: 6"]
-    ADR --> A4["Decisions and standards: 4"]
-    ADR --> A5["The documents and their diagrams: 5"]
-    ADR --> A6["Enforcement and tooling: 3"]
+    ADR --> A3["The stack and the skills: 7"]
+    ADR --> A4["Decisions and standards: 5"]
+    ADR --> A5["The documents and their diagrams: 6"]
+    ADR --> A6["Enforcement and tooling: 4"]
 ```
 
-*The 31 ADRs fall in six areas, and the one thing to notice is that the areas are the docs agent's grouping: an ADR carries no area of its own, so the grouping is a ruling and not part of any ADR.*
+*The 35 ADRs fall in six areas, and the one thing to notice is that the areas are the docs agent's grouping: an ADR carries no area of its own, so the grouping is a ruling and not part of any ADR.*

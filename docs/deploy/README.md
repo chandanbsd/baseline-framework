@@ -18,6 +18,6 @@ The folder has one file for each of the eleven areas that [standard/12-deploymen
 | 10 | [Cost](10-cost.md) | No running cost; the GitHub plan was not checked. |
 | 11 | [Troubleshooting](11-troubleshooting.md) | What a reader or an agent may meet while the stack is half published. |
 
-Of the five diagrams that the standard asks of these documents, three are here: the topology, the pipeline and the deploy sequence. The rollback flow and the backup and restore flow belong to area 7, which does not apply, so they are not drawn.
+Of the five diagrams that the standard asks of these documents, three are here: the topology, the pipeline and the deploy sequence. The rollback flow and the backup and restore flow belong to area 7, which does not apply, so they are not drawn: an area that stays as one line has no diagram ([standard/12-deployment-docs.md](../../standard/12-deployment-docs.md)).
 
-Every command whose output is shown was run in the local repository on 2026-11-18. Publishing and merging were not run, because both are the Software Engineer's to do, so the steps that do them are marked "not verified".
+Every command whose output is shown was run in the local repository on 2026-11-18, and run again on 2026-11-19, after the docs section was rebased onto revision 3. Publishing and merging were not run, because both are the Software Engineer's to do, so the steps that do them are marked "not verified".

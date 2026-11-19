@@ -14,14 +14,14 @@ flowchart LR
 
 *The Software Engineer climbs toward the Distinguished Engineer one responsibility at a time, and the one thing to notice is that each rung keeps its responsibility on the way up: the baseline gives a document or a workflow for each one.*
 
-The baseline fixes which documents a project has and who writes them, how work is delivered through stacked pull requests (PRs), and how a project's approved preferences become the standards that drive code. At this tip it is text: the standard in `standard/`, the instruction file `AGENTS.md` and six playbooks in `docs/agents/` that state the standard's rules for agents, the repository's own reader profile and configuration, and 31 decision records. The kit, the checkers and the baseline's own skills that are to apply it automatically do not exist yet, so the standard is applied by hand, by following the playbooks.
+The baseline fixes which documents a project has and who writes them, how work is delivered through stacked pull requests (PRs), and how a project's approved preferences become the standards that drive code. At this tip it is text: the standard in `standard/`, the instruction file `AGENTS.md`, the standard folder's own `standard/AGENTS.md` and six playbooks in `docs/agents/` that state the standard's rules for agents, the repository's own reader profile and configuration, and 35 decision records. The kit, the checkers and the baseline's own skills that are to apply it automatically do not exist yet, so the standard is applied by hand, by following the playbooks.
 
 ```mermaid
 flowchart TB
     CL["The pointer file"] --> AG["The instruction file<br/>core rules and their reasons"]
     AG --> PB["Six playbooks<br/>the rules as instructions"]
     PB --> ST["The standard<br/>22 files and an index"]
-    ADR["31 ADRs<br/>why each decision"] --> ST
+    ADR["35 ADRs<br/>why each decision"] --> ST
     SP["Design 1 and its revisions<br/>the intent"] --> ST
     RP["The reader profile<br/>who the documents are for"] --> DOC["The descriptive documents<br/>this README, features, architecture,<br/>deployment, reference pages"]
     ST --> DOC
@@ -207,14 +207,14 @@ baseline-framework/
   AGENTS.md               the primary instruction for agents
   CLAUDE.md               a two-line pointer to AGENTS.md
   baseline.yml            the baseline's configuration for this repository
-  standard/               the standard: 22 files and its index
+  standard/               the standard: 22 files, its index and its AGENTS.md
   docs/
     reader-profile.md     who the documents are written for
     features/             what the baseline gives a project, in plain language
     architecture/         how the baseline is built
     deploy/               where it lives and how it reaches readers
     course/               the guided course and its reference pages
-    adr/                  the 31 decision records
+    adr/                  the 35 decision records
     agents/               the six playbooks
     standards/            the project's approved preferences, none yet
     superpowers/          design 1, its decision trail and revisions, and the plan, as the skills wrote them
@@ -222,7 +222,7 @@ baseline-framework/
 
 | Folder | Its README | Its AGENTS.md |
 |---|---|---|
-| `standard/` | [standard/README.md](standard/README.md), the standard's index | None: no folder has an `AGENTS.md` of its own yet, as the root `AGENTS.md` says |
+| `standard/` | [standard/README.md](standard/README.md), the standard's index | [standard/AGENTS.md](standard/AGENTS.md): no commands, because nothing in the folder is built or run, its layout, and the rule for links between its numbered files |
 | `docs/features/` | [docs/features/README.md](docs/features/README.md) | None |
 | `docs/architecture/` | [docs/architecture/README.md](docs/architecture/README.md), the generated index | None |
 | `docs/deploy/` | [docs/deploy/README.md](docs/deploy/README.md) | None |
@@ -246,13 +246,13 @@ Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0
 | Error | Fix |
 |---|---|
 | A branch from a stack table, such as `standard/05-foundations`, is not in a clone from GitHub. | Only `main`, `standard/01-spec` and `standard/02-plan` are on GitHub until the stack is published (`git ls-remote --heads origin` listed those three on 2026-11-18). Read the other branches in the repository where the stack was built. |
-| `gh stack view` prints `✗ current branch "standard/docs-18-reference" is not part of a stack`. | Expected for a stack made with `gh stack link`, which keeps no local record: check a published stack with `gh pr list --json number,headRefName,baseRefName,isDraft` instead ([docs/agents/stacks.md](docs/agents/stacks.md)). |
+| `gh stack view` prints `✗ current branch "standard/docs-21-reference" is not part of a stack`. | Expected for a stack made with `gh stack link`, which keeps no local record: check a published stack with `gh pr list --json number,headRefName,baseRefName,isDraft` instead ([docs/agents/stacks.md](docs/agents/stacks.md)). |
 | `gh stack` is not a command. | Install the extension: `gh extension install github/gh-stack`. Not verified: the extension was already installed where this was written. |
 
 ## Help, contributing and licence
 
 **Help.** Start with [`AGENTS.md`](AGENTS.md) and the playbook for your subject; each rule there has its reason beside it. For the standard's own words, use [its index](standard/README.md).
 
-**Contributing.** Work as a stack and keep each PR to one kind. A change to `standard/` is a code PR, a change to the playbooks, `AGENTS.md`, the reader profile or an ADR is a thinking PR, and the descriptive documents, this README among them, are written only by a fresh docs agent from the finished tip. Add no attribution line to a commit or a PR description.
+**Contributing.** Work as a stack and keep each PR to one kind. A change to `standard/` is a code PR, apart from its `README.md`, a description path, and its `AGENTS.md`, a thinking path; a change to the playbooks, `AGENTS.md`, the reader profile or an ADR is a thinking PR, and the descriptive documents, this README among them, are written only by a fresh docs agent from the finished tip. Add no attribution line to a commit or a PR description.
 
 **Licence.** The repository has no licence file. It is a private repository.

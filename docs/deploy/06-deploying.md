@@ -1,6 +1,6 @@
 ---
 scope: "The runbook for putting the first stack in front of readers: check the chain, publish the stack on GitHub with gh stack link, check the PRs, and merge bottom-up; what a successful publish and merge look like. Publishing and merging are the Software Engineer's steps."
-verified_against: { commit: 9d4518e, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: cb4fb22, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 reading_time_min: 4
 ---
 
@@ -35,7 +35,7 @@ sequenceDiagram
    prev=main; for b in $(git branch --list 'standard/[0-9]*' 'standard/docs-*' --format='%(refname:short)'); do if git merge-base --is-ancestor "$prev" "$b"; then echo "ok $prev -> $b"; else echo "BROKEN $prev -> $b"; fi; prev="$b"; done
    ```
 
-   Output, captured on 2026-11-18 while the reference PR of the docs section was being written, before the later docs branches existed:
+   Output, captured on 2026-11-19, after the docs section was rebased onto revision 3:
 
    ```text
    ok main -> standard/01-spec
@@ -55,7 +55,13 @@ sequenceDiagram
    ok standard/14-revision-1-decisions -> standard/15-revision-1-standard
    ok standard/15-revision-1-standard -> standard/16-revision-2-decisions
    ok standard/16-revision-2-decisions -> standard/17-revision-2-standard
-   ok standard/17-revision-2-standard -> standard/docs-18-reference
+   ok standard/17-revision-2-standard -> standard/18-revision-3-decisions
+   ok standard/18-revision-3-decisions -> standard/19-revision-3-adr-drafts
+   ok standard/19-revision-3-adr-drafts -> standard/20-revision-3-standard
+   ok standard/20-revision-3-standard -> standard/docs-21-reference
+   ok standard/docs-21-reference -> standard/docs-22-language-lessons
+   ok standard/docs-22-language-lessons -> standard/docs-23-stack-lessons
+   ok standard/docs-23-stack-lessons -> standard/docs-24-system-chapters
    ```
 
    Every line must start with `ok`. A `BROKEN` line means a branch does not contain the one below it, and the stack cannot be linked with the right bases until it is cut again.
@@ -66,7 +72,7 @@ sequenceDiagram
    git ls-remote --heads origin
    ```
 
-   Output, captured on 2026-11-18:
+   Output, captured on 2026-11-19:
 
    ```text
    47615dad80be4d0519d862e1a1b559b756dc685e	refs/heads/main
@@ -77,7 +83,7 @@ sequenceDiagram
 3. **Publish the whole stack, after the Software Engineer's yes.** List every branch from the first to the last, bottom to top. PRs 1 and 2 already exist and are reused.
 
    ```bash
-   gh stack link standard/01-spec standard/02-plan standard/03-adr-drafts standard/04-playbooks standard/05-foundations standard/06-profile-and-layout standard/07-feature-and-architecture standard/08-course standard/09-adrs-deployment-readme standard/10-pr-descriptions-and-agents standard/11-diagrams-and-evidence standard/12-docs-agent-standards-rules standard/13-seams-tooling-index standard/14-revision-1-decisions standard/15-revision-1-standard standard/16-revision-2-decisions standard/17-revision-2-standard standard/docs-18-reference standard/docs-19-language-lessons standard/docs-20-stack-lessons standard/docs-21-system-chapters --open
+   gh stack link standard/01-spec standard/02-plan standard/03-adr-drafts standard/04-playbooks standard/05-foundations standard/06-profile-and-layout standard/07-feature-and-architecture standard/08-course standard/09-adrs-deployment-readme standard/10-pr-descriptions-and-agents standard/11-diagrams-and-evidence standard/12-docs-agent-standards-rules standard/13-seams-tooling-index standard/14-revision-1-decisions standard/15-revision-1-standard standard/16-revision-2-decisions standard/17-revision-2-standard standard/18-revision-3-decisions standard/19-revision-3-adr-drafts standard/20-revision-3-standard standard/docs-21-reference standard/docs-22-language-lessons standard/docs-23-stack-lessons standard/docs-24-system-chapters --open
    ```
 
    **Not verified.** Running this command publishes the stack, which waits for the Software Engineer's yes, so it was not run. Its behaviour over branches cut as pointers was checked on 2026-11-18 with `gh stack` 0.3.0 in a throwaway repository and for PRs 1 and 2 of this repository ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).

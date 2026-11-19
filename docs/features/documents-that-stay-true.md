@@ -1,6 +1,6 @@
 # Documents that stay true
 
-*Verified against commit 9d4518e.*
+*Verified against commit cb4fb22.*
 
 ## What it is and why it exists
 

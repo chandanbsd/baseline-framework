@@ -1,6 +1,6 @@
 ---
 scope: "The two inputs that a project gives the baseline: the reader profile, made by the intake, and the standards, made from approved preferences. The flows by which each is made, the states a standard and a profile entry go through, and their formats, with baseline.yml."
-verified_against: { commit: 9d4518e }
+verified_against: { commit: cb4fb22 }
 reading_time_min: 7
 ---
 

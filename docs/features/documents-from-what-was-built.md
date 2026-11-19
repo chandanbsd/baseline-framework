@@ -1,6 +1,6 @@
 # Documents written from what was built
 
-*Verified against commit 9d4518e.*
+*Verified against commit cb4fb22.*
 
 ## What it is and why it exists
 
@@ -71,7 +71,7 @@ flowchart TD
 ## Limits today
 
 - There is no command that starts the docs agent: the Software Engineer starts it by hand, from its brief.
-- How a fresh docs agent is best started, and what its brief must hold, is not yet confirmed in practice. This repository's documents are the first run that tests it.
+- How a fresh docs agent is best started, and what its brief must hold, has been tried once, with this repository's first documents. The Software Engineer started it with a short instruction that named where to work, the two files that held what it could not read from the pull requests, and what not to do. Its report said what it had to find out on its own, and its brief now lists those points. One run is not yet proof.
 - Nothing checks automatically which documents a change made untrue, so the docs agent finds them by reading.
 
 ## Related

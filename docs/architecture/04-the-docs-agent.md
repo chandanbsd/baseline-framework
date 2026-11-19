@@ -1,7 +1,7 @@
 ---
 scope: "The docs agent as a procedure: the flow by which it writes the docs section, the states it goes through, and its contract: what it reads, what it never reads and what it produces."
-verified_against: { commit: 9d4518e }
-reading_time_min: 6
+verified_against: { commit: cb4fb22 }
+reading_time_min: 7
 ---
 
 # The docs agent
@@ -35,7 +35,7 @@ sequenceDiagram
 
 *The docs agent reads the tip and the sources the standard names, writes the four groups in reading order and hands over in a report, and the one thing to notice is the dashed message from the Software Engineer: the lists and the table come with the start instruction while the PRs are not open.*
 
-The dashed message is how the docs agent receives the "Rulings I made" lists and the stack table when PRs 3 and up are not open yet. The standard says they are in the PR descriptions and that how a fresh docs agent receives them when the PRs are not open is not yet confirmed in practice. Revision 1 picked handing them over as files, by path, in the instruction that starts the agent, and changed no file, so that the first docs run is the check of the claim ([revision 1, D1](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+The dashed message is how the docs agent receives the "Rulings I made" lists and the stack table when PRs 3 and up are not open yet. The standard says they are in the PR descriptions. Revision 1 picked handing them over as files, by path, in the instruction that starts the agent ([revision 1, D1](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)), and the first docs run, on 2026-11-18, was started that way and wrote the docs section from them. The standard records that this was tried once and says no more about how the docs agent receives them ([standard/18-docs-agent.md](../../standard/18-docs-agent.md)), and the brief lists what that run reported it lacked ([docs-agent.md](../agents/docs-agent.md)).
 
 ## State machines
 
@@ -111,10 +111,11 @@ flowchart LR
 | Output | Its form |
 |---|---|
 | The description PRs, in reading order: reference, language lessons, stack lessons, system chapters | Branches `<topic>/docs-<nn>-<slug>`, numbered on from the last branch of the stack. A group with nothing to write gets no PR. Each description has the header and four parts: what is documented and how it was checked, not verified, deviations from the plan, flagged code. |
-| The review of the ADR drafts | Each draft renamed `<id>-<slug>.md`, the number in the title, the status moved to Proposed, additions marked "Added at review", in the reference PR. |
+| The review of the ADR drafts | Each draft renamed `<id>-<slug>.md`, with the id from its Links or, where the Links give none, the next number that `docs/adr/` has not used, the number in the title, the status moved to Proposed, additions marked "Added at review", in the reference PR. |
 | The ADRs of decisions made in brainstorming | Written from the spec's Approaches section, where a decision has no draft. |
 | The generated sections of the reader profile | Who can contribute, prerequisites and reading paths by role, with the reading-path map. |
-| The indexes, while no generator exists | The course index, the architecture reference's index, the file map, the glossaries and the ADR index, written as the single writer of the stack. |
+| The product glossary | Written from the terms that the feature pages use, each linked to the lesson or system chapter that teaches it. |
+| The indexes, while no generator exists | The course index, the architecture reference's index, the file map, the technical glossary and the ADR index, written as the single writer of the stack. |
 | The report | Decisions needed, what is open for merge, what was verified, what was not verified, and rulings made. |
 
 Opening the PRs is publishing in this repository, so the docs agent cuts its branches and waits for the Software Engineer's yes before anything is opened (`AGENTS.md`, rule 4).

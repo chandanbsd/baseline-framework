@@ -1,7 +1,7 @@
 ---
-scope: "The components of the baseline: the 22 files of the standard and its index, grouped as the index groups them, the six playbooks and the instruction file that carry the rules to agents, what each is responsible for, and the direction in which they depend on each other."
-verified_against: { commit: 9d4518e }
-reading_time_min: 7
+scope: "The components of the baseline: the 22 files of the standard and its index, grouped as the index groups them, the six playbooks and the two instruction files that carry the rules to agents, what each is responsible for, and the direction in which they depend on each other."
+verified_against: { commit: cb4fb22 }
+reading_time_min: 8
 ---
 
 # The standard and its files
@@ -54,12 +54,12 @@ flowchart TB
 | `07-architecture-reference.md` | The technical reference: a folder with a generated index and thirteen minimum sections. |
 | `08-course-lessons.md` | The guided course's three tiers, the ten parts of a lesson, its header and the practice standard. |
 | `09-course-system-chapters.md` | The ten parts of a system chapter, its labs and its practice. |
-| `10-course-reference-pages.md` | The file map, the glossaries and the "what else it offers" map, and the generated indexes. |
+| `10-course-reference-pages.md` | The file map, which takes a Markdown file's line from its opening paragraph, the technical glossary assembled from the lessons, the product glossary that the docs agent writes, the "what else it offers" map, and the generated indexes. |
 | `11-adrs.md` | The ADR template, the six criteria of a decision of impact, the lifecycle, the docs agent's guard rail and the presence check. |
-| `12-deployment-docs.md` | The eleven areas of the deployment docs, the honesty rule and the five diagrams. |
+| `12-deployment-docs.md` | The eleven areas of the deployment docs, the honesty rule and the five diagrams, none of them for an area that does not apply. |
 | `13-project-readme.md` | The README's ten parts, the README of each stack folder and the CI job that keeps it true. |
 | `14-pr-descriptions.md` | The header every PR description starts with and the form for each kind of PR. |
-| `15-agents-md-and-playbooks.md` | `AGENTS.md`, `CLAUDE.md`, the six playbooks and the two rules for the files themselves. |
+| `15-agents-md-and-playbooks.md` | `AGENTS.md`, `CLAUDE.md`, the six playbooks, the two rules for all of these files and the third for the playbooks alone, that a playbook holds no Markdown link. |
 | `16-diagrams.md` | How diagrams are drawn, the minimum per document, the quality and theme rules, the approved palette and database diagrams. |
 | `17-evidence-and-truth.md` | The eleven evidence rules, "Not applicable: why" and the bootstrap exception for indexes. |
 | `18-docs-agent.md` | The docs agent: what it reads, what it never reads, what it produces and its six rules. |
@@ -68,12 +68,13 @@ flowchart TB
 | `21-skills-seams.md` | The nine seams with the skills and how another skill is added. |
 | `22-tooling-requirements.md` | What the kit, the checkers and the skills must do: the mechanical checks, the stack gate, the nine commands, the update flow and the checker language. |
 | `README.md` | The index and front door of the standard: what it is, the why, how to read it and the contents. |
+| `AGENTS.md` | The instructions for working in the folder: no commands, because nothing in it is built or run, its layout, and the rule for links between its numbered files. |
 
 Each file opens with a paragraph that says what it covers. Every file except `02-vocabulary.md` and `03-stack-model.md` then has a paragraph that explains the words it uses before the vocabulary defines them in full; those two define their words where they first use them, and the index has its own "A few words are used before the standard defines them in full" list.
 
-### The playbooks and the instruction file
+### The playbooks and the instruction files
 
-The rules of the standard reach an agent through `AGENTS.md`, which gives each of its seven core rules in one line with its reason and points to the playbook that explains it. `CLAUDE.md` holds nothing but a pointer to `AGENTS.md`. The table pairs each playbook with the standard file that sets its subject, as [standard/15-agents-md-and-playbooks.md](../../standard/15-agents-md-and-playbooks.md) pairs them.
+The rules of the standard reach an agent through `AGENTS.md`, which gives each of its seven core rules in one line with its reason and points to the playbook that explains it. `CLAUDE.md` holds nothing but a pointer to `AGENTS.md`. The standard's folder has its own instruction file, `standard/AGENTS.md`, which the repo map of `AGENTS.md` names; it is the only folder that has one at this tip. The table pairs each playbook with the standard file that sets its subject, as [standard/15-agents-md-and-playbooks.md](../../standard/15-agents-md-and-playbooks.md) pairs them.
 
 | Playbook | Its subject | The standard file for the same subject |
 |---|---|---|
@@ -105,7 +106,7 @@ flowchart LR
 
 ### The dependency direction
 
-A file of the standard links, with a Markdown link, only to files with a lower number, and names a file with a higher number in backticks without a link. The index links to all 22. This holds at this tip for every file: a check of the links in every numbered file finds no link to a higher number. The rule is not written in the standard, and the reason for it is not recorded in any source the docs agent reads.
+A file of the standard links, with a Markdown link, only to files with a lower number, and names a file with a higher number in backticks without a link. The index links to all 22. This holds at this tip for every file: a check of the links in every numbered file finds no link to a higher number. The rule is written in [standard/AGENTS.md](../../standard/AGENTS.md), the folder's own instructions, with its reason: every PR of a stack has to leave the repository working, and a link to a higher-numbered file would point at a file that only a later PR adds. The index and `AGENTS.md` have no number, so the rule does not reach them.
 
 ```mermaid
 flowchart LR
@@ -116,4 +117,4 @@ flowchart LR
 
 *A file links only backward in the reading order, and the one thing to notice is that a forward reference is a dotted line, a name in backticks with no link, so that the files can be read and checked in number order.*
 
-The playbooks hold no Markdown link at all at this tip: each names the other playbooks and the standard files in backticks. `AGENTS.md` is the file that links to each playbook. Neither pattern is written as a rule in the standard, and the reason is not recorded.
+The playbooks hold no Markdown link at all at this tip: each names the other playbooks and the standard files in backticks. `AGENTS.md` is the file that links to each playbook. This is the third of the rules for the files themselves in [standard/15-agents-md-and-playbooks.md](../../standard/15-agents-md-and-playbooks.md), and the repo map of `AGENTS.md` repeats it, with the reason that the playbooks are replaced on update in every project, and a project does not hold some of the files they name, the baseline's own standard, so a link would break there while a name in backticks cannot.

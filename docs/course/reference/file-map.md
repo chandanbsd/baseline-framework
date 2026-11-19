@@ -2,9 +2,9 @@
 
 # File map
 
-Every tracked file of the repository, with one line on what it does and the lesson or chapter of the course that explains it, taken from the `files` in each one's header. No source file carries a one-line header comment yet, so the docs agent wrote each line from the file.
+Every tracked file of the repository, with one line on what it does and the lesson or chapter of the course that explains it, taken from the `files` in each one's header. A Markdown file's opening paragraph serves as its line ([standard/10-course-reference-pages.md](../../../standard/10-course-reference-pages.md)), and the standard leaves to the tooling how the line is cut from it. No tool does that yet, so the docs agent wrote each line from the file, and for an ADR the line is its number and title. The two files that are not Markdown, `.gitignore` and `baseline.yml`, carry no one-line header comment, so their lines too were written from the file.
 
-Files: 108.
+Files: 114.
 
 | Path | What it does | The lesson that explains it |
 |---|---|---|
@@ -44,6 +44,10 @@ Files: 108.
 | [`docs/adr/0029-conventions.md`](../../../docs/adr/0029-conventions.md) | ADR 0029: Conventions. | None |
 | [`docs/adr/0030-agents-md-shape.md`](../../../docs/adr/0030-agents-md-shape.md) | ADR 0030: Shape of AGENTS.md. | None |
 | [`docs/adr/0031-software-engineer-and-the-ladder.md`](../../../docs/adr/0031-software-engineer-and-the-ladder.md) | ADR 0031: The Software Engineer and the ladder as the baseline's why. | None |
+| [`docs/adr/0032-five-generated-indexes.md`](../../../docs/adr/0032-five-generated-indexes.md) | ADR 0032: Five generated indexes. | None |
+| [`docs/adr/0033-adr-status-recording.md`](../../../docs/adr/0033-adr-status-recording.md) | ADR 0033: Who records an ADR's acceptance and rejection. | None |
+| [`docs/adr/0034-update-moves-baseline-version.md`](../../../docs/adr/0034-update-moves-baseline-version.md) | ADR 0034: The update's code group moves baseline_version. | None |
+| [`docs/adr/0035-pr-kinds-of-baseline-yml-and-folder-files.md`](../../../docs/adr/0035-pr-kinds-of-baseline-yml-and-folder-files.md) | ADR 0035: The PR kinds of baseline.yml and of a stack folder's README.md and AGENTS.md. | None |
 | [`docs/adr/README.md`](../../../docs/adr/README.md) | The generated index of the ADRs, by area and by number. | None |
 | [`docs/agents/adrs.md`](../../../docs/agents/adrs.md) | The playbook on ADR drafts, their lifecycle, the docs agent's guard rail and the presence check. | None |
 | [`docs/agents/docs-agent.md`](../../../docs/agents/docs-agent.md) | The brief of the docs agent: what it reads, never reads and produces, and when it stops and asks. | None |
@@ -93,6 +97,7 @@ Files: 108.
 | [`docs/superpowers/specs/2026-11-14-baseline-standard-design.md`](../../../docs/superpowers/specs/2026-11-14-baseline-standard-design.md) | Design 1, the standard: the spec of this repository, as brainstorming produced it. | None |
 | [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md) | Revision 1 of design 1: the Software Engineer's decisions after the first build. | None |
 | [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md) | Revision 2 of design 1: the answers to what revision 1 left open. | None |
+| [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md) | Revision 3 of design 1: the answers to the decisions in the first docs run's report. | None |
 | [`standard/01-why-and-scope.md`](../../../standard/01-why-and-scope.md) | The standard: who the baseline is for, the ladder, and the goals, non-goals, anti-goals and constraints. | None |
 | [`standard/02-vocabulary.md`](../../../standard/02-vocabulary.md) | The standard: the three roles and every term. | None |
 | [`standard/03-stack-model.md`](../../../standard/03-stack-model.md) | The standard: the stack of PRs, the three kinds, the thirteen rules and the conventions. | None |
@@ -115,4 +120,5 @@ Files: 108.
 | [`standard/20-working-rules.md`](../../../standard/20-working-rules.md) | The standard: who decides what, decisions, hand-overs and reports. | None |
 | [`standard/21-skills-seams.md`](../../../standard/21-skills-seams.md) | The standard: the nine seams with the skills. | None |
 | [`standard/22-tooling-requirements.md`](../../../standard/22-tooling-requirements.md) | The standard: what the kit, the checkers and the skills must do. | None |
+| [`standard/AGENTS.md`](../../../standard/AGENTS.md) | The instructions for working in `standard/`: no commands, its layout and the rule for links between its numbered files. | None |
 | [`standard/README.md`](../../../standard/README.md) | The standard's index: what it is, the why, how to read it and its contents. | None |

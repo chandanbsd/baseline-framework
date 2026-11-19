@@ -1,6 +1,6 @@
 ---
 scope: "The access model of the repository on GitHub and on the local machine, what was checked about it, and the network rules, hardening and audit logs, of which the baseline has none of its own."
-verified_against: { commit: 9d4518e, versions: { gh: "2.103.3" } }
+verified_against: { commit: cb4fb22, versions: { gh: "2.103.3" } }
 reading_time_min: 2
 ---
 
@@ -10,7 +10,7 @@ The baseline runs no service, so it has no network rules, no hardening steps and
 
 | Part | What is true | How it was checked |
 |---|---|---|
-| Visibility on GitHub | The repository `chandanbsd/baseline-framework` is private. | `gh repo view --json visibility` reported `PRIVATE` on 2026-11-18. |
+| Visibility on GitHub | The repository `chandanbsd/baseline-framework` is private. | `gh repo view --json visibility` reported `PRIVATE` on 2026-11-18 and again on 2026-11-19. |
 | Who can read and push on GitHub | GitHub's collaborators of the repository. | Not verified: the list of collaborators was not read. |
 | Who can merge | Only the Software Engineer decides a merge, by the standard. | The rule is text (`AGENTS.md`, rule 4); no branch protection was checked. Not verified. |
 | The local repository | Whoever uses the Software Engineer's machine. | Not verified. |

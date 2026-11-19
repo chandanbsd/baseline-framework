@@ -1,6 +1,6 @@
 ---
 scope: "How finished work reaches readers: there is no build, no artifact and no release workflow; a stack merged into main on GitHub is what readers read. Versioning and the gates that exist."
-verified_against: { commit: 9d4518e, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
+verified_against: { commit: cb4fb22, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
 reading_time_min: 2
 ---
 

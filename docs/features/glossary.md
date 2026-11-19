@@ -1,4 +1,4 @@
-<!-- Generated: the product glossary, in plain language. No generator exists yet, so the docs agent writes it as the single writer of its stack (standard/17-evidence-and-truth.md, rule 11). Do not edit it by hand. -->
+<!-- The product glossary, in plain language. The docs agent writes it from the terms that the feature pages use (standard/10-course-reference-pages.md). -->
 
 # Glossary
 

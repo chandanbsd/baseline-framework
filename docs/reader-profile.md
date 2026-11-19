@@ -113,7 +113,7 @@ No knowledge of `gh stack` or of stacked PRs is needed: the documents teach them
 |---|---|
 | A new team member | [README](../README.md), [the feature docs](features/README.md), [the architecture reference](architecture/README.md), [the decision records](adr/README.md) |
 | A Software Engineer applying the baseline to a project | [README](../README.md), especially "Get it running", [the feature docs](features/README.md), [the standard's index](../standard/README.md), [the working-with-the-engineer playbook](agents/working-with-the-engineer.md) |
-| A contributor to the standard | [`AGENTS.md`](../AGENTS.md), [the working-with-the-engineer playbook](agents/working-with-the-engineer.md), [the stacks playbook](agents/stacks.md), [the standard's index](../standard/README.md), [the architecture reference](architecture/README.md) |
+| A contributor to the standard | [`AGENTS.md`](../AGENTS.md), [the working-with-the-engineer playbook](agents/working-with-the-engineer.md), [the stacks playbook](agents/stacks.md), [the standard's index](../standard/README.md), [the standard folder's `AGENTS.md`](../standard/AGENTS.md), [the architecture reference](architecture/README.md) |
 | An architect or reviewer | [README](../README.md), [the architecture reference](architecture/README.md), [the decision records](adr/README.md), [design 1](superpowers/specs/2026-11-14-baseline-standard-design.md), [the deployment docs](deploy/README.md) |
 | The docs agent | [The docs agent's brief](agents/docs-agent.md), this reader profile, [the standard's index](../standard/README.md), [the decision records](adr/README.md) |
 
@@ -129,7 +129,7 @@ flowchart LR
     end
     subgraph CO["A contributor to the standard"]
         direction LR
-        C1["The instruction file"] --> C2["Working with<br/>the Software Engineer"] --> C3["Stacks"] --> C4["The standard"] --> C5["Architecture reference"]
+        C1["The instruction file"] --> C2["Working with<br/>the Software Engineer"] --> C3["Stacks"] --> C4["The standard"] --> C6["The standard folder's<br/>instruction file"] --> C5["Architecture reference"]
     end
     subgraph AR["An architect or reviewer"]
         direction LR

@@ -93,7 +93,7 @@ Each rule records its reason, its scope, its date and its source, beside the rul
 | Date | The date the rule was approved. |
 | Source | The PR or the conversation where the preference came up. |
 
-**Record the reason, the scope, the date and the source of every rule, beside the rule.** Because: every rule has its reason beside it, which is the first of the two rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and a coding preference goes to `docs/standards/` and never into a stack folder's `AGENTS.md`, so the scope of a rule can be one technology stack and a preference for one stack still has its home here ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)).
+**Record the reason, the scope, the date and the source of every rule, beside the rule.** Because: every rule has its reason beside it, which is the first of the rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and a coding preference goes to `docs/standards/` and never into a stack folder's `AGENTS.md`, so the scope of a rule can be one technology stack and a preference for one stack still has its home here ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)).
 
 The standard fixes the four records and not how they are laid out. The two rules below are made up for the hiking club app, in a layout that is only an illustration. The first has the whole project as its scope. Its source is the conversation after the first slice of the stack that "Where changes land" draws was built.
 
@@ -115,7 +115,7 @@ Date: 2027-03-09
 Source: the conversation while slice 2 was being built
 ```
 
-**Remove a rule whose reason is gone, in a PR, and let git keep the history.** Because: a rule whose reason is gone is removed, which is the second of the two rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and removing it loses nothing, since git keeps the history. A standards update is a thinking PR ([03-stack-model.md](03-stack-model.md)), so the removal is one too. The two kinds of document differ here: an Accepted ADR is changed only through a new ADR that supersedes it ([11-adrs.md](11-adrs.md)), while a rule whose reason is gone is removed.
+**Remove a rule whose reason is gone, in a PR, and let git keep the history.** Because: a rule whose reason is gone is removed, which is the second of the rules for the files themselves, applied here to the rules of `docs/standards/` ([15-agents-md-and-playbooks.md](15-agents-md-and-playbooks.md)); and removing it loses nothing, since git keeps the history. A standards update is a thinking PR ([03-stack-model.md](03-stack-model.md)), so the removal is one too. The two kinds of document differ here: an Accepted ADR is changed only through a new ADR that supersedes it ([11-adrs.md](11-adrs.md)), while a rule whose reason is gone is removed.
 
 ## Where changes land
 

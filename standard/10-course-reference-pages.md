@@ -12,8 +12,8 @@ The reference pages are three lookup pages in the course: the file map, the glos
 
 | Page | Where it lives | Contents | How it is produced |
 |---|---|---|---|
-| **File map** | `docs/course/reference/file-map.md` | A table of every tracked file: path, one line on what it does, the lesson that explains it. | **Generated.** Each source file states its purpose in a one-line header comment (files that cannot carry one get a small sidecar entry). The "lesson" column comes from each lesson's "files covered" header. |
-| **Glossaries** | `docs/features/glossary.md` for the product glossary, and `docs/course/reference/glossary.md` for the technical glossary | A plain-language product glossary (for the feature docs) and a technical glossary (for the course). Each entry has a plain definition and a link to the lesson that teaches it. | **Assembled** from the terms each lesson declares in its header, so no shared file is edited by every PR. |
+| **File map** | `docs/course/reference/file-map.md` | A table of every tracked file: path, one line on what it does, the lesson that explains it. | **Generated.** Each source file states its purpose in a one-line header comment (files that cannot carry one get a small sidecar entry, and a Markdown file's opening paragraph serves as its line). The "lesson" column comes from each lesson's "files covered" header. |
+| **Glossaries** | `docs/features/glossary.md` for the product glossary, and `docs/course/reference/glossary.md` for the technical glossary | A plain-language product glossary (for the feature docs) and a technical glossary (for the course). Each entry has a plain definition and a link to the lesson or system chapter that teaches it. | **Assembled:** the technical glossary, from the terms each lesson declares in its header, so no shared file is edited by every PR. **Written** by the docs agent: the product glossary, from the terms the feature pages use. |
 | **"What else it offers" map** | The `README.md` of the folder of each language, `docs/course/languages/<language>/`, and of each technology stack, `docs/course/stacks/<stack>/` | One short page per language and per stack, a table grouped by topic (types, memory, concurrency, errors, modules, tooling, ecosystem). Each row gives the feature, a one-line description, and whether it is used here (if used, a link to the lesson; if not, why not, linking an ADR when it was a decision), plus a link to the official docs. | **Written** by the docs agent. Stays short: it is a map, not a course. |
 
 **Write the reference pages in the reference PR, the first description PR of the docs section.** Because: the docs section is written in reading order from foundational to integrated, and the reference documents come first in it ([docs-agent.md](../docs/agents/docs-agent.md)).
@@ -30,11 +30,13 @@ The file map is a table of every tracked file, with three columns: the path, one
 | `api/src/signups.rs` | Stores a sign-up once, however often the request arrives. | The lesson on making a sign-up safe to repeat |
 | `web/package.json` | Lists the dependencies and the scripts of the front end. | The lesson on the front end's build |
 
-The one line on each file comes from the file itself. Each source file states its purpose in a one-line header comment, and a file that cannot carry a comment gets a small sidecar entry: `web/package.json` is JSON, which has no comments, so its line comes from a sidecar entry.
+The one line on each file comes from the file itself. Each source file states its purpose in a one-line header comment, and a file that cannot carry a comment gets a small sidecar entry: `web/package.json` is JSON, which has no comments, so its line comes from a sidecar entry. A Markdown file needs neither: its opening paragraph serves as its line.
 
 **Give every source file a one-line header comment that states its purpose, and give a file that cannot carry one a small sidecar entry.** The standard fixes that such a file gets a sidecar entry and leaves its form to the tooling. Because: the file map is generated and never edited by hand, so the one line on each file has to come from the file itself or from its sidecar entry, and the standard fixes only what the tooling must do and leaves how the tooling is built to the tooling (`22-tooling-requirements.md`).
 
 A header comment is a comment, and comments count as code ([03-stack-model.md](03-stack-model.md)), so it belongs to a code PR, and the docs agent, which never changes code, does not write it.
+
+**Let the opening paragraph of a Markdown file serve as its line.** The standard fixes that the opening paragraph serves as the line, and leaves to the tooling how the line is cut from it and what serves as the line of a file that does not open with a paragraph, such as a lesson, which opens with its header block, or an ADR, which opens with its status lines, as it leaves the form of a sidecar entry. Because: the file map's line has to come from the file itself, and every file of the standard opens with a paragraph that says what the file is for.
 
 **Take the lesson column from the header of each lesson, from its `files`.** Because: the file map is generated, so the lesson column comes from the lessons' own headers, in which each lesson lists the files that it covers ([08-course-lessons.md](08-course-lessons.md)).
 
@@ -42,19 +44,21 @@ A header comment is a comment, and comments count as code ([03-stack-model.md](0
 
 ## The glossaries
 
-There are two glossaries. The product glossary is a plain-language glossary for the feature docs, and it lives with them as `docs/features/glossary.md` ([06-feature-docs.md](06-feature-docs.md)). The technical glossary is for the course, and it lives with the other generated reference pages as `docs/course/reference/glossary.md`. Each entry of a glossary has a plain definition and a link to the lesson that teaches the term.
+There are two glossaries. The product glossary is a plain-language glossary for the feature docs, and it lives with them as `docs/features/glossary.md` ([06-feature-docs.md](06-feature-docs.md)). The technical glossary is for the course, and it lives with the other generated reference pages as `docs/course/reference/glossary.md`. Each entry of a glossary has a plain definition and a link to the lesson or system chapter that teaches the term.
 
-The terms come from the lessons. Each lesson declares the terms that it introduces in the `terms` of its header, each with a `term` and a plain `definition` ([08-course-lessons.md](08-course-lessons.md)), and the glossaries are assembled from them. An entry for the term "idempotent", which the example header in [08-course-lessons.md](08-course-lessons.md) declares, looks like this for a made-up lesson of the hiking club app. The layout of the page is an illustration.
+The terms of the technical glossary come from the lessons. Each lesson declares the terms that it introduces in the `terms` of its header, each with a `term` and a plain `definition` ([08-course-lessons.md](08-course-lessons.md)), and the technical glossary is assembled from them. A lesson's header does not mark a term as a product term or a technical one, so the product glossary does not come from the headers. The feature pages declare no terms or definitions either, so nothing could generate it: the docs agent writes the product glossary from the terms that the feature pages use, each linked to the lesson or system chapter that teaches it. An entry for the term "idempotent", which the example header in [08-course-lessons.md](08-course-lessons.md) declares, looks like this for a made-up lesson of the hiking club app. The layout of the page is an illustration.
 
 ```markdown
 **idempotent.** An operation is idempotent when doing it twice leaves the same result as doing it once. Taught in [Making a sign-up safe to repeat](../languages/rust/03-safe-to-repeat.md).
 ```
 
-**Declare in the header of each lesson the terms that the lesson introduces, and assemble the glossaries from them.** Because: no shared file is then edited by every PR.
+**Declare in the header of each lesson the terms that the lesson introduces, and assemble the technical glossary from them.** Because: no shared file is then edited by every PR.
 
-**Give every entry a plain definition and a link to the lesson that teaches the term.** Because: the glossaries are lookup pages, and the link takes a reader from a term to the lesson that teaches it.
+**Write the product glossary from the terms that the feature pages use, and link each entry to the lesson or system chapter that teaches it.** Because: a lesson's header does not mark a term as a product term or a technical one, and the feature pages declare no terms or definitions, so there is nothing for a generator to read.
 
-**Never edit a glossary by hand.** Because: a file that every PR in a stack edits conflicts at every rebase of the stack (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). "How each is produced" gives the rule and its exception.
+**Give every entry a plain definition and a link to the lesson or system chapter that teaches the term.** Because: the glossaries are lookup pages, and the link takes a reader from a term to the lesson or chapter that teaches it.
+
+**Never edit the technical glossary by hand.** Because: a file that every PR in a stack edits conflicts at every rebase of the stack (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). "How each is produced" gives the rule and its exception. The docs agent writes the product glossary, so this rule is about the technical glossary alone.
 
 The baseline's rules for diagrams say that a diagram's labels use the project's glossary terms (`16-diagrams.md`). The product glossary is part of the feature docs, which are always in plain language ([06-feature-docs.md](06-feature-docs.md)).
 
@@ -94,35 +98,41 @@ flowchart TD
 
 ## How each is produced
 
-The three pages are produced in three ways: the file map is generated, the glossaries are assembled and the map is written. The diagram shows what each page is made from.
+The reference pages are produced in three ways: the file map is generated, the technical glossary is assembled, and the product glossary and the maps are written. The diagram shows what each page is made from.
 
 ```mermaid
 flowchart LR
     subgraph SRC["What each page is made from"]
         direction TB
         HC["Each source file<br/>a one-line header comment,<br/>or a sidecar entry"]
+        MD["Each Markdown file<br/>its opening paragraph"]
         LF["Each lesson's header<br/>files"]
         LT["Each lesson's header<br/>terms"]
+        FP["The feature pages<br/>the terms they use"]
         DA["The docs agent"]
     end
     FM["File map<br/>generated"]
-    GL["Glossaries<br/>assembled"]
+    GL["Technical glossary<br/>assembled"]
+    PG["Product glossary<br/>written"]
     MP["What else it offers maps<br/>written"]
     HC --> FM
+    MD --> FM
     LF --> FM
     LT --> GL
+    FP --> PG
+    DA --> PG
     DA --> MP
 ```
 
-*The file map and the glossaries are made from what the files and the lessons say about themselves, and the one thing to notice is that the maps are the only page that no file or header feeds: the docs agent writes them.*
+*The file map and the technical glossary are made from what the files and the lessons say about themselves, and the one thing to notice is that the docs agent writes the product glossary, from the terms the feature pages use, and the maps, which no file or header feeds.*
 
-The file map is generated. Its one line on each file comes from the file's one-line header comment, or from its sidecar entry, and its lesson column comes from the `files` of each lesson's header. The glossaries are assembled from the `terms` that the lessons declare in their headers. The map is written by the docs agent.
+The file map is generated. Its one line on each file comes from the file's one-line header comment, from its sidecar entry or, for a Markdown file, from its opening paragraph, and its lesson column comes from the `files` of each lesson's header. The technical glossary is assembled from the `terms` that the lessons declare in their headers. The product glossary and the maps are written by the docs agent, the product glossary from the terms that the feature pages use.
 
 ### Indexes are generated and never hand-edited
 
-**Never edit a generated index by hand.** The evidence rules name five indexes, the course index, the architecture reference's index, the file map, the glossaries and the ADR index (`17-evidence-and-truth.md`). Two of them are reference pages, the file map and the glossaries. The course index is the generated index of the guided course and is not one of the three pages ([05-project-layout.md](05-project-layout.md) gives its place). [07-architecture-reference.md](07-architecture-reference.md) sets the architecture reference's index, and `11-adrs.md` sets the ADR index. Because: indexes are generated so that rebases never conflict on them, since a file that every PR in a stack edits conflicts at every rebase of the stack (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). The standard requires the checker to verify that a generated index matches a fresh generation (`22-tooling-requirements.md`).
+**Never edit a generated index by hand.** The evidence rules name five indexes, the course index, the architecture reference's index, the file map, the technical glossary and the ADR index (`17-evidence-and-truth.md`). Two of them are reference pages, the file map and the technical glossary. The course index is the generated index of the guided course and is not one of the three pages ([05-project-layout.md](05-project-layout.md) gives its place). [07-architecture-reference.md](07-architecture-reference.md) sets the architecture reference's index, and `11-adrs.md` sets the ADR index. Because: indexes are generated so that rebases never conflict on them, since a file that every PR in a stack edits conflicts at every rebase of the stack (anti-goal A7 in [01-why-and-scope.md](01-why-and-scope.md)). The standard requires the checker to verify that a generated index matches a fresh generation (`22-tooling-requirements.md`).
 
-The "what else it offers" map is not on that list. It is written by the docs agent, and "The what else it offers map" says what it holds.
+The product glossary and the "what else it offers" map are not on that list. The docs agent writes them, and "The what else it offers map" says what the map holds.
 
 ### While no generator exists
 
@@ -144,7 +154,7 @@ flowchart TD
 
 ### The pages and the lessons they draw on
 
-The docs agent writes the reference pages in the reference PR, and the PRs above it hold the language lessons, the stack lessons and the system chapters, in that order ([docs-agent.md](../docs/agents/docs-agent.md)). The pages draw on the lessons. The lesson column of the file map comes from the `files` of each lesson's header, the glossaries are assembled from the `terms` that the lessons declare, and a row of a map that is used here links the lesson that teaches the feature. The lessons are written in PRs above the reference PR.
+The docs agent writes the reference pages in the reference PR, and the PRs above it hold the language lessons, the stack lessons and the system chapters, in that order ([docs-agent.md](../docs/agents/docs-agent.md)). The pages draw on the lessons. The lesson column of the file map comes from the `files` of each lesson's header, the technical glossary is assembled from the `terms` that the lessons declare, the product glossary is written from the terms that the feature pages use, and a row of a map that is used here links the lesson that teaches the feature. The lessons are written in PRs above the reference PR.
 
 The standard does not settle how the pages are completed when what they draw on is written later in the order of the PRs. That is a call for the docs agent, which records it as a ruling, as [docs-agent.md](../docs/agents/docs-agent.md) says of what it leaves open.
 

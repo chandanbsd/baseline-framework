@@ -26,7 +26,7 @@ The folder holds four kinds of page. The table gives each one's place in a proje
 |---|---|---|---|
 | Overview | `docs/features/README.md` | What the product is and who uses it, a map of what it can do and a table of its features. | "The overview page" |
 | Users and access | `docs/features/access.md` | Who can do what: the kinds of user, the roles, the conditions that change rights, how access is gained, changed and lost, and the who-can-do-what matrix. | "The Users and access page" |
-| Glossary | `docs/features/glossary.md` | The plain-language glossary of the product's terms. It is a generated reference page, so it is never edited by hand (`10-course-reference-pages.md` says how it is produced). | "Evidence" |
+| Glossary | `docs/features/glossary.md` | The plain-language glossary of the product's terms. The docs agent writes it from the terms that the feature pages use (`10-course-reference-pages.md` says how). | "Evidence" |
 | One page for each feature | `docs/features/<feature>.md` | What one feature is, who can use it, what a person can do, its journeys, its rules, what happens when things go wrong, its limits today and what is related. | "Each feature page" |
 
 The diagram shows how the pages point to each other, and where the who-can-do-what matrix lives.
@@ -37,7 +37,7 @@ flowchart LR
         OV["Overview"]
         F["Feature pages<br/>one for each feature"]
         AC["Users and access<br/>the one home of the<br/>who-can-do-what matrix"]
-        GL["Glossary<br/>generated"]
+        GL["Glossary<br/>written by the docs agent"]
     end
     AR["Architecture reference<br/>technical, outside<br/>the feature docs"]
     OV -->|"features table"| F
@@ -385,8 +385,8 @@ What data a screenshot may show is not a rule of the baseline. The baseline sets
 | Say what you could not verify, in a "not verified" note. | A journey, an edge case or a guarantee that could not be run is named in a "not verified" note on the page. |
 | Measure the numbers you quote. | A limit, a count or a time that a page states is measured from the running system and never typed from memory. |
 | Record the seed, the model and the versions of output that is not deterministic, or mark it illustrative. | A transcript of an agent run carries them or says that it is illustrative. |
-| Never hand-edit a generated index. | The glossary is generated, so no one edits it by hand. |
+| Never hand-edit a generated index. | The feature docs hold no generated index: the docs agent writes the glossary. |
 | Keep a section that does not apply as one line, `Not applicable: why`. | A part of a feature page that does not apply to a feature stays, as one line. |
-| In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), write the indexes yourself, in the format that the generators will produce, as the single writer of your stack. | In such a repository, the docs agent writes the glossary in that way. |
+| In a repository whose generators do not exist yet (only the baseline's own, during its first stacks), write the indexes yourself, in the format that the generators will produce, as the single writer of your stack. | The feature docs hold no generated index, so the rule does not apply to them. |
 
 **Where there is nothing to run, as in a product made only of Markdown, the written text is the evidence.** Because: nothing can be captured by running it, and the written text is then the only source of what exists.

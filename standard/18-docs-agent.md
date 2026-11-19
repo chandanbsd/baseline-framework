@@ -53,7 +53,7 @@ The docs agent reads the sources in the table, and the table says why it reads e
 | The "Rulings I made" lists in the PR descriptions. | The deviations list is taken from them, because the execution skills promise that the lists are exhaustive ([14-pr-descriptions.md](14-pr-descriptions.md) says what a code PR lists there). |
 | The stack table. | It is where the grouping of the code into slices appears, so that the reviewer sees the shape before reading any code (rule 6 in [03-stack-model.md](03-stack-model.md)). |
 
-The "Rulings I made" lists and the stack table are in the descriptions of the PRs. How a fresh docs agent is started in practice, and where those lists and that table are when the PRs are not open yet, is not yet confirmed in practice, so the standard does not say how the docs agent receives them.
+The "Rulings I made" lists and the stack table are in the descriptions of the PRs. How a fresh docs agent receives them when the PRs are not open yet was tried once, on 2026-11-18: the start text handed it the two as files, by path, and it wrote the docs section from them. The standard does not say more than that about how the docs agent receives them.
 
 ## What it does not read
 

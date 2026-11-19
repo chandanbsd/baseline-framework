@@ -53,7 +53,7 @@ The table gives the minimum number of diagrams for each kind of document. The fi
 
 **Give every document at least the minimum number of diagrams that the table sets for it.** The numbers are minimums, so a document may draw more diagrams than the table asks for. The standard requires the checker to verify the minimum number of diagrams of every document type that is present (`22-tooling-requirements.md`). Because: the baseline asks for extensive diagrams in every document (goal G2 in [01-why-and-scope.md](01-why-and-scope.md)), and the minimums keep the count high. The third quality rule keeps it honest.
 
-A section of an architecture file that stays as one line, `Not applicable: why`, has no diagram, as [07-architecture-reference.md](07-architecture-reference.md) says. `17-evidence-and-truth.md` gives the rule for a section that does not apply.
+A section of an architecture file, or an area of the deployment docs, that stays as one line, `Not applicable: why`, has no diagram, as [07-architecture-reference.md](07-architecture-reference.md) and [12-deployment-docs.md](12-deployment-docs.md) say. `17-evidence-and-truth.md` gives the rule for a section that does not apply.
 
 ## Quality rules
 

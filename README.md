@@ -249,6 +249,7 @@ Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0
 |---|---|
 | A branch from a stack table, such as `standard/05-foundations`, is not in a clone from GitHub. | Only `main`, `standard/01-spec` and `standard/02-plan` are on GitHub until the stack is published (`git ls-remote --heads origin` listed those three on 2026-11-18). Read the other branches in the repository where the stack was built. |
 | `gh stack view` prints `✗ current branch "standard/docs-21-reference" is not part of a stack`. | Expected for a stack made with `gh stack link`, which keeps no local record: check a published stack with `gh pr list --json number,headRefName,baseRefName,isDraft` instead ([docs/agents/stacks.md](docs/agents/stacks.md)). |
+| A PR named by its place, such as PR 5, is a different PR when opened as #5 on GitHub. | The documents name a PR of the first stack by its place in the stack. GitHub gave number 3 to the stack itself, so from PR 3 up a PR's number is one more than its place, and PR 5 is #6 (`gh pr list --json number,headRefName`, run on 2026-11-20). The branch name carries the place: `standard/05-foundations` is PR 5. |
 | `gh stack` is not a command. | Install the extension: `gh extension install github/gh-stack`. Not verified: the extension was already installed where this was written. |
 
 ## Help, contributing and licence

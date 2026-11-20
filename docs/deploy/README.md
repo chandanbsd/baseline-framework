@@ -16,7 +16,7 @@ The folder has one file for each of the eleven areas that [standard/12-deploymen
 | 8 | [Operations](08-operations.md) | Not applicable. |
 | 9 | [Security and hardening](09-security-and-hardening.md) | A private repository; who has access was not checked. |
 | 10 | [Cost](10-cost.md) | No running cost; the GitHub plan was not checked. |
-| 11 | [Troubleshooting](11-troubleshooting.md) | What a reader or an agent may meet while the stack is half published. |
+| 11 | [Troubleshooting](11-troubleshooting.md) | What a reader or an agent may meet while the stack is half published and once it is open. |
 
 Of the five diagrams that the standard asks of these documents, three are here: the topology, the pipeline and the deploy sequence. The rollback flow and the backup and restore flow belong to area 7, which does not apply, so they are not drawn: an area that stays as one line has no diagram ([standard/12-deployment-docs.md](../../standard/12-deployment-docs.md)).
 

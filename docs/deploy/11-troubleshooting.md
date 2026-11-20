@@ -1,7 +1,7 @@
 ---
-scope: "Symptoms a reader or an agent may meet with the repository while its first stack is half published, with the check and the fix for each."
+scope: "Symptoms a reader or an agent may meet with the repository while its first stack is half published and once it is open, with the check and the fix for each."
 verified_against: { commit: bd7b1ce, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
-reading_time_min: 2
+reading_time_min: 3
 ---
 
 # Troubleshooting
@@ -12,6 +12,7 @@ reading_time_min: 2
 | `main` on GitHub has none of the standard. | `git ls-tree -r --name-only origin/main` lists four files: `.gitignore`, `baseline.yml`, `docs/reader-profile.md` and `docs/standards/README.md`. | Nothing to fix: `main` holds only the bootstrap commit until the stack is merged. The standard is on the stack's branches. |
 | `gh stack` is not found. | `gh extension list` lists the installed extensions; on the machine where this was written it listed `gh stack github/gh-stack v0.3.0`. | Install the extension `github/gh-stack` with `gh extension install github/gh-stack`. Not verified: the install was not run, because the extension was already installed. |
 | A link to a PR number, such as one written as PR 5, leads nowhere. | `gh pr list --state all` lists the PRs that exist; on 2026-11-19 it listed #1 and #2. | Nothing to fix until the stack is published: PRs 3 and up are named by their place in the stack and their branch until GitHub gives them numbers. |
+| On GitHub, #5 is not PR 5 of the stack. | `gh pr list --json number,headRefName` pairs each PR's number with its branch. On 2026-11-20 PRs 1 and 2 were #1 and #2, and PRs 3 to 24 were #4 to #25, because GitHub gave number 3 to the stack itself. | Nothing to fix: the documents name a PR by its place in the stack, and its branch name carries the place, so `standard/05-foundations` is PR 5, which is #6. |
 
 ```mermaid
 flowchart TD

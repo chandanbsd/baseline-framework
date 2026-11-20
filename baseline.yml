@@ -4,5 +4,5 @@ artifact_map:
   spec: ["docs/superpowers/specs/**"]
   plan: ["docs/superpowers/plans/**"]
   other: []
-# Folders whose changes are code for PR-kind purposes
+# Folders whose changes are code for PR-kind purposes, apart from each folder's own README.md and AGENTS.md
 stack_folders: [standard, kit, checkers, skills, examples]

@@ -1,7 +1,7 @@
 ---
 scope: "The runbook for putting the first stack in front of readers: check the chain, publish the stack on GitHub with gh stack link, check the PRs, and merge bottom-up; what a successful publish and merge look like. Publishing and merging are the Software Engineer's steps."
 verified_against: { commit: bd7b1ce, versions: { git: "2.54.0", gh: "2.103.3", gh-stack: "0.3.0" } }
-reading_time_min: 4
+reading_time_min: 5
 ---
 
 # Deploying
@@ -86,7 +86,7 @@ sequenceDiagram
    gh stack link standard/01-spec standard/02-plan standard/03-adr-drafts standard/04-playbooks standard/05-foundations standard/06-profile-and-layout standard/07-feature-and-architecture standard/08-course standard/09-adrs-deployment-readme standard/10-pr-descriptions-and-agents standard/11-diagrams-and-evidence standard/12-docs-agent-standards-rules standard/13-seams-tooling-index standard/14-revision-1-decisions standard/15-revision-1-standard standard/16-revision-2-decisions standard/17-revision-2-standard standard/18-revision-3-decisions standard/19-revision-3-adr-drafts standard/20-revision-3-standard standard/docs-21-reference standard/docs-22-language-lessons standard/docs-23-stack-lessons standard/docs-24-system-chapters --open
    ```
 
-   **Not verified.** Running this command publishes the stack, which waits for the Software Engineer's yes, so it was not run. Its behaviour over branches cut as pointers was checked on 2026-11-18 with `gh stack` 0.3.0 in a throwaway repository and for PRs 1 and 2 of this repository ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+   Run on 2026-11-19, after the Software Engineer's yes. It pushed the branches in one push, reused #1 and #2, opened PRs 3 to 24 and added them to the stack, which GitHub numbers as stack #3. GitHub had already given number 3 to the stack itself, so from PR 3 up a PR's number is one more than its place: PR 3 is #4 and PR 24 is #25. Its behaviour over branches cut as pointers had been checked on 2026-11-18 with `gh stack` 0.3.0 in a throwaway repository and for PRs 1 and 2 ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
 
 4. **Check every base, and that no PR is a draft.**
 
@@ -94,12 +94,12 @@ sequenceDiagram
    gh pr list --json number,headRefName,baseRefName,isDraft
    ```
 
-   It is done when the first PR's base is `main`, every other PR's base is the branch below it, and no PR has `"isDraft": true`. **Not verified**: it can be run meaningfully only after step 3.
+   It is done when the first PR's base is `main`, every other PR's base is the branch below it, and no PR has `"isDraft": true`. Run on 2026-11-19: 24 open PRs, the first based on `main`, every other on the branch below it, and none a draft.
 
-5. **Set every title and description**, each from a file, with `gh pr edit <number> --title "<title>" --body-file <file>`, and then rebuild the stack table in every PR's description, as [pr-descriptions.md](../agents/pr-descriptions.md) says. **Not verified**: it follows step 3.
+5. **Set every title and description**, each from a file, with `gh pr edit <number> --title "<title>" --body-file <file>`, and then rebuild the stack table in every PR's description, as [pr-descriptions.md](../agents/pr-descriptions.md) says. Done on 2026-11-19 for all 24 PRs, and every description checked against its file with `gh pr view <number> --json body`.
 
-6. **Review the whole stack, docs section included, and merge it bottom-up in one sitting**, when the Software Engineer asks for the merge. `gh stack merge` merges a stack on GitHub in one operation, and it is never run unless the Software Engineer asks. **Not verified**: nothing has been merged, and how GitHub merges a stack bottom-up has not been confirmed.
+6. **Review the whole stack, docs section included, and merge it bottom-up in one sitting**, when the Software Engineer asks for the merge. `gh stack merge` merges a stack on GitHub in one operation, and it is never run unless the Software Engineer asks. The Software Engineer merged the stack on 2026-11-20. `gh pr list --state all` shows every PR merged between 12:36:27 and 12:36:55 UTC, and every one names the same merge commit, `37ecd09`: one merge commit on `main` whose parents are the bootstrap commit and the top of the stack, so every commit of the stack is in `main`'s history. Whether the merge was started with `gh stack merge` or on GitHub's site is not recorded: not verified.
 
 ## What success looks like
 
-After step 3, `gh pr list` shows one open PR for each branch, none a draft, each based on the branch below it. After step 6, every PR of the stack is merged, and `main` on GitHub holds the same files as the tip of the stack: `git ls-tree -r --name-only origin/main` after a `git fetch` lists what `git ls-tree -r --name-only` lists for the top branch. **Not verified**: neither state has been reached.
+After step 3, `gh pr list` shows one open PR for each branch, none a draft, each based on the branch below it. After step 6, every PR of the stack is merged, and `main` on GitHub holds the same files as the tip of the stack: `git ls-tree -r --name-only origin/main` after a `git fetch` lists what `git ls-tree -r --name-only` lists for the top branch. Both states were reached: the first on 2026-11-19, and the second on 2026-11-20, when `git ls-tree -r --name-only origin/main` listed the same 128 files as `standard/docs-24-system-chapters` and `git diff` between the two printed nothing.

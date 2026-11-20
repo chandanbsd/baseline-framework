@@ -59,7 +59,7 @@ The reading paths by role, generated from the reader profile, are in [docs/reade
 
 ## Get it running
 
-The baseline does not run: what you get running is a new project that follows it. No command does this yet, so these steps do by hand what the intake and the kit are to do: run the intake by hand ([standard/04-reader-profile.md](standard/04-reader-profile.md)), copy what the kit is to copy, and make the one commit that goes straight to `main` ([standard/22-tooling-requirements.md](standard/22-tooling-requirements.md), `/baseline:init`). The output below was captured on 2026-11-18 in an empty folder; where a line names the folder, it is written `<your folder>`.
+The baseline does not run: what you get running is a new project that follows it. No command does this yet, so these steps do by hand what the intake and the kit are to do: run the intake by hand ([standard/04-reader-profile.md](standard/04-reader-profile.md)), copy what the kit is to copy, and make the one commit that goes straight to `main` ([standard/22-tooling-requirements.md](standard/22-tooling-requirements.md), `/baseline:init`). The output below was captured on 2026-11-20 in an empty folder, with a clone of `main` at `37ecd09`, the merge of the first stack; where a line names the folder, it is written `<your folder>`.
 
 1. **Check your tools.**
 
@@ -84,7 +84,7 @@ The baseline does not run: what you get running is a new project that follows it
    git clone git@github.com:chandanbsd/baseline-framework.git
    ```
 
-   **Not verified.** The clone from GitHub was not run, and until the first stack is merged, `main` on GitHub holds only the bootstrap commit, not the standard or the playbooks. The steps below were run against a clone of the local repository at the top of its stack.
+   The repository is private, so the clone needs access to it on GitHub. It was run on 2026-11-20, after the Software Engineer merged the first stack into `main` that day.
 
 3. **Create your project's repository.**
 
@@ -99,7 +99,7 @@ The baseline does not run: what you get running is a new project that follows it
    Initialized empty Git repository in <your folder>/my-project/.git/
    ```
 
-4. **Run the intake by hand, and write the reader profile.** Ask the Software Engineer, in this order: the project's name, kind and Software Engineer; the knowledge areas, with a level for each; the technologies already chosen, each with a level and a comparison setting; and once, whether to build standards from their preferences over time. Start from the baseline's own profile and replace its header and its "Read for this repository" list with the answers.
+4. **Run the intake by hand, and write the reader profile.** Ask the Software Engineer, in this order: the project's name, kind and Software Engineer; the knowledge areas, with a level for each; the technologies already chosen, each with a level and a comparison setting; and once, whether to build standards from their preferences over time. Start from the baseline's own profile and replace its header and its "Read for this repository" list with the answers. Then delete the three sections below the comment that marks them as generated: they describe the baseline's own documents, and the docs agent generates your project's when it writes its first docs section ([standard/04-reader-profile.md](standard/04-reader-profile.md)).
 
    ```bash
    mkdir -p docs/standards docs/agents
@@ -167,9 +167,9 @@ The baseline does not run: what you get running is a new project that follows it
     docs/agents/stacks.md                    | 287 +++++++++++++++++++++++++++++++
     docs/agents/standards.md                 | 129 ++++++++++++++
     docs/agents/working-with-the-engineer.md | 168 ++++++++++++++++++
-    docs/reader-profile.md                   |  78 +++++++++
+    docs/reader-profile.md                   | 144 ++++++++++++++++
     docs/standards/README.md                 |  71 ++++++++
-    11 files changed, 1521 insertions(+)
+    11 files changed, 1587 insertions(+)
    ```
 
    The line counts are those of the copied files before you edit them. The check that proves the bootstrap worked is that `git log --oneline` shows exactly one commit on `main`, and `git show --stat` lists these files.
@@ -247,9 +247,8 @@ Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0
 
 | Error | Fix |
 |---|---|
-| A branch from a stack table, such as `standard/05-foundations`, is not in a clone from GitHub. | Only `main`, `standard/01-spec` and `standard/02-plan` are on GitHub until the stack is published (`git ls-remote --heads origin` listed those three on 2026-11-18). Read the other branches in the repository where the stack was built. |
-| `gh stack view` prints `✗ current branch "standard/docs-21-reference" is not part of a stack`. | Expected for a stack made with `gh stack link`, which keeps no local record: check a published stack with `gh pr list --json number,headRefName,baseRefName,isDraft` instead ([docs/agents/stacks.md](docs/agents/stacks.md)). |
-| A PR named by its place, such as PR 5, is a different PR when opened as #5 on GitHub. | The documents name a PR of the first stack by its place in the stack. GitHub gave number 3 to the stack itself, so from PR 3 up a PR's number is one more than its place, and PR 5 is #6 (`gh pr list --json number,headRefName`, run on 2026-11-20). The branch name carries the place: `standard/05-foundations` is PR 5. |
+| `gh stack view` prints `✗ current branch "standard/docs-21-reference" is not part of a stack`. | Expected for a stack made with `gh stack link`, which keeps no local record: check the stack with `gh pr list --state all --json number,headRefName,baseRefName,state` instead ([docs/agents/stacks.md](docs/agents/stacks.md)). |
+| A PR named by its place, such as PR 5, is a different PR when opened as #5 on GitHub. | The documents name a PR of the first stack by its place in the stack. GitHub gave number 3 to the stack itself, so from PR 3 up a PR's number is one more than its place, and PR 5 is #6 (`gh pr list --state all --json number,headRefName`, run on 2026-11-20). The branch name carries the place: `standard/05-foundations` is PR 5. |
 | `gh stack` is not a command. | Install the extension: `gh extension install github/gh-stack`. Not verified: the extension was already installed where this was written. |
 
 ## Help, contributing and licence

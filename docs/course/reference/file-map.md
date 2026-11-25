@@ -91,7 +91,7 @@ Files: 128.
 | [`docs/deploy/08-operations.md`](../../../docs/deploy/08-operations.md) | Deployment: operations, not applicable. | None |
 | [`docs/deploy/09-security-and-hardening.md`](../../../docs/deploy/09-security-and-hardening.md) | Deployment: the repository's access model and what was checked about it. | None |
 | [`docs/deploy/10-cost.md`](../../../docs/deploy/10-cost.md) | Deployment: cost, with the GitHub plan not checked. | None |
-| [`docs/deploy/11-troubleshooting.md`](../../../docs/deploy/11-troubleshooting.md) | Deployment: symptoms while the stack is half published, with checks and fixes. | None |
+| [`docs/deploy/11-troubleshooting.md`](../../../docs/deploy/11-troubleshooting.md) | Deployment: symptoms now that the first stack is merged, with checks and fixes. | None |
 | [`docs/deploy/README.md`](../../../docs/deploy/README.md) | The front of the deployment docs: the eleven areas and what each says here. | None |
 | [`docs/features/README.md`](../../../docs/features/README.md) | Feature docs: what the baseline gives a project, its capability map and its features. | None |
 | [`docs/features/access.md`](../../../docs/features/access.md) | Feature docs: the kinds of user, the roles, the conditions and the who-can-do-what matrix. | None |

@@ -42,7 +42,7 @@ sequenceDiagram
 
 *A feature reaches GitHub in two publishes, the spec and the plan first and the rest of the stack once the docs section is on top, and the one thing to notice is that the Software Engineer's yes comes before each publish in this repository, because its `AGENTS.md` makes opening PRs a kind of publishing.*
 
-In this repository the first publish happened on 2026-11-18: PRs 1 and 2 are open on GitHub as [#1](https://github.com/chandanbsd/baseline-framework/pull/1) and [#2](https://github.com/chandanbsd/baseline-framework/pull/2), created that day, based on `main` and on `standard/01-spec`, and `main`, `standard/01-spec` and `standard/02-plan` are the only branches on the remote (`git ls-remote --heads origin` and `gh pr list --state all`, run on 2026-11-18). On 2026-11-19, when this was written, the second publish was waiting for the docs section and for the Software Engineer's yes.
+In this repository the first publish happened on 2026-11-18, when PRs 1 and 2 were opened as [#1](https://github.com/chandanbsd/baseline-framework/pull/1) and [#2](https://github.com/chandanbsd/baseline-framework/pull/2), based on `main` and on `standard/01-spec`. The second publish happened on 2026-11-19, once the docs section was in and the Software Engineer had said yes: `gh stack link` opened PRs 3 to 24 as #4 to #25, because GitHub had already given number 3 to the stack itself. The Software Engineer merged the whole stack on 2026-11-20 (`gh pr list --state all`, run on 2026-11-20).
 
 ## State machines
 
@@ -67,7 +67,7 @@ stateDiagram-v2
 
 *A PR moves from commits to a pointer to an open PR to a merge, and the one thing to notice is the loop on Open: once a stack is open, a fix goes on top as a new PR, and a rewrite of pushed history waits for the Software Engineer's yes.*
 
-On 2026-11-19, when this was written, PRs 1 and 2 of this repository were in the state Open, and PRs 3 to 20 were in the state Cut: their branches existed only in the local repository.
+On 2026-11-20 every PR of this repository's first stack is in the state Merged (`gh pr list --state all`).
 
 ## Interfaces and contracts
 

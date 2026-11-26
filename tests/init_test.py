@@ -1,25 +1,16 @@
 """baseline-init's init.py and kit.py: what an agent gets when it sets up a repository."""
 import hashlib
 import re
-import shutil
 import sys
-import tempfile
 import unittest
-from pathlib import Path
 
-from helpers import run, skill_dir, snapshot
+from helpers import TempRepoCase, run, skill_dir, snapshot
 
 sys.path.insert(0, str(skill_dir("baseline-init") / "scripts"))
 import kit  # noqa: E402
 
 INIT = skill_dir("baseline-init") / "scripts" / "init.py"
 BLOCK_ASSET = skill_dir("baseline-init") / "assets" / "kit" / "AGENTS.block.md"
-
-
-class TempRepoCase(unittest.TestCase):
-    def setUp(self):
-        self.t = Path(tempfile.mkdtemp())
-        self.addCleanup(shutil.rmtree, self.t)
 
 
 class InitTest(TempRepoCase):

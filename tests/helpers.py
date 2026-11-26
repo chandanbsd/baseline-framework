@@ -1,8 +1,11 @@
 """Shared helpers for the baseline package tests (standard library only)."""
 from __future__ import annotations
 
+import shutil
 import subprocess
 import sys
+import tempfile
+import unittest
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Optional
@@ -75,3 +78,11 @@ def run(script: Path, *args: str, cwd: Optional[Path] = None) -> subprocess.Comp
 def snapshot(root: Path) -> Dict[str, bytes]:
     """Every file under root, keyed by relative path, for before/after comparisons."""
     return {str(p.relative_to(root)): p.read_bytes() for p in sorted(root.rglob("*")) if p.is_file()}
+
+
+class TempRepoCase(unittest.TestCase):
+    """A test case whose self.t is a fresh empty directory, removed afterwards."""
+
+    def setUp(self):
+        self.t = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.t)

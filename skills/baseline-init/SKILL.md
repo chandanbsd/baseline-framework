@@ -20,4 +20,14 @@ The script is `scripts/init.py`. It never overwrites a file, and it refuses a re
 
 ## Update: bring a repository to the installed version
 
-Filled in by the next task.
+The skills are updated by the package manager first. Then, in the repo:
+
+1. Run `python3 scripts/update.py plan <repo>` and show the engineer its output: the versions, each pending migration with its dry run, and the state of the owned `AGENTS.md` block.
+2. For each pending migration, in order, put one decision to the engineer: the recommendation first, with one reason. Only after their yes, run `python3 scripts/update.py apply <repo> <migration-id>`.
+3. When none is pending, run `python3 scripts/update.py finish <repo>`. If it exits 4 the block was edited: show the engineer the edit and let them decide; `--discard-edits` replaces it.
+4. Leave committing and PRs to the repo's own conventions.
+
+Rules:
+- A migration may change project-owned files (standards, `baseline.yml`, ADRs, project docs) only after the engineer has seen its dry run and approved.
+- A declined migration stops the update. Say that the repo stays at its current version, and why. Never skip a migration and never record an override.
+- The script is `scripts/update.py`; the migration contract is in `migrations/README.md`.

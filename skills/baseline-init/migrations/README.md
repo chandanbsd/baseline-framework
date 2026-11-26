@@ -22,6 +22,10 @@ python3 migrate.py <repo> --confirm    apply it; exit non-zero on any failure
 - It may change project-owned files (standards, `baseline.yml`, ADRs, project docs) because the skill defines their layout. `update.py` runs it only after the engineer has seen the dry run and approved.
 - Ship a before-and-after fixture test with every migration.
 
+## Dry run and instructions
+
+`update.py plan` dry-runs only the next pending migration, because a later one may depend on what the earlier one changes; the later ones are listed by name. If a migration folder holds a `MIGRATION.md`, `plan` names it; the agent reads and follows it after the engineer approves, before running `apply`.
+
 ## Which migrations run
 
 Pending migrations are those with `from` at or above the repo's `baseline_version` and `to` at or below the installed version, in order of `from`.

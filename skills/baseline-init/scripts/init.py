@@ -35,8 +35,12 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     agents = target / "AGENTS.md"
     if agents.exists():
-        current = agents.read_text(encoding="utf-8")
-        verb = "update" if kit.find_block(current) else "append"
+        current = kit.read_text(agents)
+        try:
+            verb = "update" if kit.find_block(current) else "append"
+        except kit.BlockError as error:
+            print("error: AGENTS.md: %s" % error, file=sys.stderr)
+            return 2
     else:
         current, verb = NEW_AGENTS_MD, "create"
     print("%s AGENTS.md" % verb)
@@ -55,7 +59,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     for rel, content in writes:
         dest = target / rel
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(content, encoding="utf-8")
+        kit.write_text(dest, content)
     return 0
 
 

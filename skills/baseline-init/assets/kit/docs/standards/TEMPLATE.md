@@ -1,4 +1,3 @@
-<!-- baseline-owned version={{VERSION}} -->
 # <The rule in one line>
 
 ## End result

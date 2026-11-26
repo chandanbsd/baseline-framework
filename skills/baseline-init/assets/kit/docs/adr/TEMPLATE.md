@@ -1,4 +1,3 @@
-<!-- baseline-owned version={{VERSION}} -->
 # <Title of the decision>
 
 ## Decision

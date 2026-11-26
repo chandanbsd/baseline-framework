@@ -20,8 +20,7 @@ class InitTest(TempRepoCase):
         self.assertEqual((self.t / "baseline.yml").read_text(), "baseline_version: 0.2.0\n")
         self.assertEqual((self.t / "CLAUDE.md").read_text(), "@AGENTS.md\n")
         for rel in ("docs/adr/TEMPLATE.md", "docs/standards/TEMPLATE.md"):
-            first = (self.t / rel).read_text().splitlines()[0]
-            self.assertEqual(first, "<!-- baseline-owned version=0.2.0 -->")
+            self.assertTrue((self.t / rel).exists())
 
     def test_agents_md_block_carries_the_shipped_body_and_its_hash(self):
         run(INIT, self.t)
@@ -71,6 +70,34 @@ class InitTest(TempRepoCase):
         self.assertIn("nope", r.stderr)
 
 
+    def test_templates_do_not_claim_baseline_ownership(self):
+        # A file written from a template becomes the project's own; it must not carry a baseline-owned marker.
+        run(INIT, self.t)
+        for rel in ("docs/adr/TEMPLATE.md", "docs/standards/TEMPLATE.md"):
+            self.assertNotIn("baseline-owned", (self.t / rel).read_text())
+
+    def test_crlf_agents_md_is_kept_byte_for_byte(self):
+        original = b"# Mine\r\n\r\nline two\r\n"
+        (self.t / "AGENTS.md").write_bytes(original)
+        r = run(INIT, self.t)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        data = (self.t / "AGENTS.md").read_bytes()
+        self.assertTrue(data.startswith(original))
+        self.assertIn(b"<!-- baseline:begin version=0.2.0", data)
+        self.assertIsNone(re.search(rb"(?<!\r)\n", data))  # no bare LF anywhere in a CRLF file
+        block = kit.find_block(kit.read_text(self.t / "AGENTS.md"))
+        self.assertFalse(kit.block_is_edited(block))
+
+    def test_an_unpaired_marker_is_refused_and_nothing_changes(self):
+        broken = "# Mine\n\n<!-- baseline:begin version=0.2.0 sha256=" + "0" * 64 + " -->\nold\n\n## My later section\nkeep me\n"
+        (self.t / "AGENTS.md").write_text(broken)
+        before = snapshot(self.t)
+        r = run(INIT, self.t)
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("baseline block", r.stderr)
+        self.assertEqual(snapshot(self.t), before)
+
+
 class BlockTest(unittest.TestCase):
     BODY = "line one\nline two\n"
 
@@ -90,6 +117,22 @@ class BlockTest(unittest.TestCase):
 
     def test_find_block_returns_none_without_markers(self):
         self.assertIsNone(kit.find_block("# Title\n\nNo block here.\n"))
+
+    def test_find_block_refuses_unpaired_or_repeated_markers(self):
+        good = self.wrap(self.BODY)
+        cases = {
+            "no end marker": good.replace("<!-- baseline:end -->\n", ""),
+            "no begin marker": re.sub(r"<!-- baseline:begin[^\n]*\n", "", good),
+            "two blocks": good + good,
+        }
+        for name, text in cases.items():
+            with self.subTest(case=name):
+                with self.assertRaises(kit.BlockError):
+                    kit.find_block(text)
+
+    def test_a_crlf_block_is_not_seen_as_edited(self):
+        b = kit.find_block(self.wrap(self.BODY).replace("\n", "\r\n"))
+        self.assertFalse(kit.block_is_edited(b))
 
     def test_with_block_replaces_in_place_and_keeps_the_rest(self):
         text = "head\n\n" + kit.render_block("0.1.0") + "tail\n"

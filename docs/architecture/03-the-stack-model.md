@@ -84,7 +84,7 @@ The stack model's contracts are formats that the agents and GitHub rely on. No t
 
 ### How a PR's kind is read
 
-The kind comes from the paths, using two keys of `baseline.yml`. In this repository the artifact map lists `docs/superpowers/specs/**` for the spec and `docs/superpowers/plans/**` for the plan, and `stack_folders` lists `standard`, `kit`, `checkers`, `skills` and `examples`, of which only `standard` exists ([baseline.yml](../../baseline.yml)).
+The kind comes from the paths, using two keys of `baseline.yml`. In this repository the artifact map is empty, and `stack_folders` lists `standard`, `kit`, `checkers`, `skills` and `examples`, of which only `standard` exists ([baseline.yml](../../baseline.yml)).
 
 ```mermaid
 flowchart TD

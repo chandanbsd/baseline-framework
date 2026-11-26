@@ -104,7 +104,7 @@ flowchart TB
 
 **The markers.** Mermaid colours a whole entity and cannot colour one attribute or one relationship line. So a change to a column or a relationship is marked in the text: `+` added, `~` changed, `-` removed, inside the quoted comment of an attribute or the quoted label of a relationship. Colour then says which tables changed, and the markers say which columns and relationships, so colour never carries the meaning alone.
 
-**Why the palette is safe.** The standard records the test behind it: a first palette of solid fills with white text looked fine in dark and failed in light, where the white text sat on white rows; the tinted palette was rendered in both themes and was legible in each ([standard/16-diagrams.md](../../../../standard/16-diagrams.md)). Its tinted rows measure 3.6 to 4.4 to 1 contrast in dark, below the 4.5 to 1 that WCAG AA asks of normal text, though they read well, and the final values are the tooling's to confirm ([revision 1, D9](../../../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+**Why the palette is safe.** The standard records the test behind it: a first palette of solid fills with white text looked fine in dark and failed in light, where the white text sat on white rows; the tinted palette was rendered in both themes and was legible in each ([standard/16-diagrams.md](../../../../standard/16-diagrams.md)). Its tinted rows measure 3.6 to 4.4 to 1 contrast in dark, below the 4.5 to 1 that WCAG AA asks of normal text, though they read well, and the final values are the tooling's to confirm (revision 1, D9).
 
 ## In this codebase
 

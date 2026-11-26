@@ -112,6 +112,6 @@ A single-binary distribution becomes necessary.
 
 ## Links
 
-- Design 1, Appendix A, 0026: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0026: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0026
+- Decision trail, entry 0026
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the checker language into `standard/22-tooling-requirements.md`.

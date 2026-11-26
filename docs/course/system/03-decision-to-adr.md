@@ -2,7 +2,7 @@
 learn: "How a decision becomes an ADR: the test that tells a decision of impact from a ruling, the draft written at decision time, the docs agent's review within its guard rail, the number and the move to Proposed, and acceptance at the merge."
 prerequisites: [languages/mermaid/02-sequence-and-state-diagrams, stacks/gh-stack/01-a-stack-of-pull-requests]
 reading_time_min: 18
-files: [standard/11-adrs.md, docs/agents/adrs.md, docs/superpowers/specs/2026-11-14-baseline-decision-trail.md, docs/adr/0001-adrs-with-options-explored.md, docs/adr/README.md]
+files: [standard/11-adrs.md, docs/agents/adrs.md, docs/adr/0001-adrs-with-options-explored.md, docs/adr/README.md]
 terms:
   - term: "ADR"
     definition: "An architecture decision record: one file for one decision, with the options that were explored and the evidence for each."
@@ -24,7 +24,7 @@ verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.
 | What you will learn | How a decision becomes an ADR: the test that tells a decision of impact from a ruling, the draft written at decision time, the docs agent's review within its guard rail, the number and the move to Proposed, and acceptance at the merge. |
 | Lessons to read first | [Sequence and state diagrams](../languages/mermaid/02-sequence-and-state-diagrams.md), for the ADR lifecycle, and [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md). |
 | Reading time | 18 minutes, worked out from its length. |
-| Files it covers | `standard/11-adrs.md`, `docs/agents/adrs.md`, `docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`, `docs/adr/0001-adrs-with-options-explored.md`, `docs/adr/README.md` |
+| Files it covers | `standard/11-adrs.md`, `docs/agents/adrs.md`, `docs/adr/0001-adrs-with-options-explored.md`, `docs/adr/README.md` |
 | Versions verified against | Commit `bd7b1ce`, and git 2.54.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
@@ -116,7 +116,7 @@ flowchart TD
 
 In this repository, the first side is the decision trail, which records the brainstorm behind each decision; the second is the ADR drafted from it. Decision 0001 in the trail:
 
-*Excerpt from [`docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`](../../superpowers/specs/2026-11-14-baseline-decision-trail.md), lines 16 to 24.*
+*Excerpt from `docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`, lines 16 to 24.*
 
 ```text
 ## 0001. Record decisions as ADRs with the options explored

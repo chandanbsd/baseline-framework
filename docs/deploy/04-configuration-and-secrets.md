@@ -12,8 +12,8 @@ The baseline's configuration for this repository is in two files: `baseline.yml`
 |---|---|---|---|---|
 | `baseline_version` | The version of the baseline that the repository follows. Here `0.1.0`. | None | `baseline.yml` | Not secret |
 | `standards_enabled` | Whether standards are built from the Software Engineer's preferences. Here `true`. | None: it is the intake's answer | `baseline.yml`, and the reader profile's header | Not secret |
-| `artifact_map.spec` | Where skills write the spec. Here `docs/superpowers/specs/**`. | `docs/superpowers/specs/**` | `baseline.yml` | Not secret |
-| `artifact_map.plan` | Where skills write the plan. Here `docs/superpowers/plans/**`. | `docs/superpowers/plans/**` | `baseline.yml` | Not secret |
+| `artifact_map.spec` | Where skills write the spec. Here empty. | `docs/superpowers/specs/**` | `baseline.yml` | Not secret |
+| `artifact_map.plan` | Where skills write the plan. Here empty. | `docs/superpowers/plans/**` | `baseline.yml` | Not secret |
 | `artifact_map.other` | Where skills write any other kept document. Here empty. | Empty | `baseline.yml` | Not secret |
 | `stack_folders` | The folders whose changes are code, apart from each folder's own README and AGENTS.md. Here `standard`, `kit`, `checkers`, `skills` and `examples`, of which only `standard` exists. | None | `baseline.yml` | Not secret |
 | `project` | The project's name. Here `baseline-framework`. | None | The reader profile's header | Not secret |

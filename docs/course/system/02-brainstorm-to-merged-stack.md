@@ -2,7 +2,7 @@
 learn: "How one piece of work travels from a brainstorm to a merged stack: the spec and the plan as the first two PRs, the build that the baseline leaves untouched, the cut, the docs section on top, the publish and the merge, and where each step can go wrong."
 prerequisites: [stacks/gh-stack/01-a-stack-of-pull-requests, stacks/gh-stack/02-gh-stack-on-github]
 reading_time_min: 21
-files: [standard/03-stack-model.md, standard/21-skills-seams.md, docs/agents/stacks.md, AGENTS.md, docs/superpowers/specs/2026-11-14-baseline-standard-design.md]
+files: [standard/03-stack-model.md, standard/21-skills-seams.md, docs/agents/stacks.md, AGENTS.md]
 terms:
   - term: "thinking PR"
     definition: "A pull request that holds prescriptive documents, the ones that say what will be built or how work is done: the spec, the plan, ADRs, standards, the reader profile and the playbooks."
@@ -26,7 +26,7 @@ verified_against: { commit: bd7b1ce, versions: { mermaid-cli: "12.2.0", git: "2.
 | What you will learn | How one piece of work travels from a brainstorm to a merged stack: the spec and the plan as the first two PRs, the build that the baseline leaves untouched, the cut, the docs section on top, the publish and the merge, and where each step can go wrong. |
 | Lessons to read first | [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md) and [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md). |
 | Reading time | 21 minutes, worked out from its length. |
-| Files it covers | `standard/03-stack-model.md`, `standard/21-skills-seams.md`, `docs/agents/stacks.md`, `AGENTS.md`, `docs/superpowers/specs/2026-11-14-baseline-standard-design.md` |
+| Files it covers | `standard/03-stack-model.md`, `standard/21-skills-seams.md`, `docs/agents/stacks.md`, `AGENTS.md` |
 | Versions verified against | Commit `bd7b1ce`; git 2.54.0, `gh` 2.103.3 and `gh stack` 0.3.0 for parts 3 and 7; every diagram rendered in dark and light with mermaid-cli 12.2.0. |
 
 ## The scenario
@@ -88,7 +88,7 @@ sequenceDiagram
 
 On one side is the spec, committed exactly as the skill produced it. This repository's spec opens with its status as the skill wrote it:
 
-*Excerpt from [`docs/superpowers/specs/2026-11-14-baseline-standard-design.md`](../../superpowers/specs/2026-11-14-baseline-standard-design.md), lines 1 to 3.*
+*Excerpt from `docs/superpowers/specs/2026-11-14-baseline-standard-design.md`, lines 1 to 3.*
 
 ```text
 # The Baseline Standard: design 1 of 3
@@ -263,7 +263,7 @@ The bottleneck is the review. Each code PR is to stay at about 400 changed lines
 | 19 | thinking | 421 | 0 |
 | 20 | code | 47 | 36 |
 
-Six of the nine code PRs of the first build, 7 to 10, 12 and 13, are above the size guide of about 400 lines. Rule 6 makes the grouping of the code into slices a ruling of the agent, and its reason says that the plan carries no layout. The descriptions of those six PRs record the grouping as a ruling: the agent grouped the standard's text into nine slices by whole files, following the plan's layout of nine branches "of about 400 lines each", so this build departs from rule 6, and the Software Engineer decided on 2026-11-18 to keep the grouping ([revision 3, D7](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). Whether rule 6's reason should change is left open.
+Six of the nine code PRs of the first build, 7 to 10, 12 and 13, are above the size guide of about 400 lines. Rule 6 makes the grouping of the code into slices a ruling of the agent, and its reason says that the plan carries no layout. The descriptions of those six PRs record the grouping as a ruling: the agent grouped the standard's text into nine slices by whole files, following the plan's layout of nine branches "of about 400 lines each", so this build departs from rule 6, and the Software Engineer decided on 2026-11-18 to keep the grouping (revision 3, D7). Whether rule 6's reason should change is left open.
 
 ```mermaid
 flowchart LR

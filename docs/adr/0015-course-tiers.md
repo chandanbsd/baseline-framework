@@ -104,6 +104,6 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0015: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0015: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0015
+- Decision trail, entry 0015
 - Added at review: PR 8 of this stack (branch `standard/08-course`), which writes the three tiers into `standard/08-course-lessons.md` and `standard/09-course-system-chapters.md`.

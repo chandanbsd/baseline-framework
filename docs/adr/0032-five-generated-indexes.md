@@ -87,8 +87,8 @@ Not recorded.
 
 ## Links
 
-- Revision 1, D7: [revision 1](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)
-- Revision 3, D1: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
+- Revision 1, D7
+- Revision 3, D1
 - PR 14 of this stack (branch `standard/14-revision-1-decisions`) records the decision, and PR 15 (branch `standard/15-revision-1-standard`) writes the five indexes into the standard.
 - The decision it extends: ADR 0019, Indexes (design 1, Appendix A, 0019).
 - Added at review: [ADR 0019](0019-generated-indexes.md), the decision this one extends.

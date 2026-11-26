@@ -114,7 +114,7 @@ The team grows and areas get their own deciders.
 
 ## Links
 
-- Design 1, Appendix A, 0004: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0004: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0004
+- Decision trail, entry 0004
 - Added at review: PR 6 of this stack (branch `standard/06-profile-and-layout`), which writes the reader profile and the intake into `standard/04-reader-profile.md`.
 - Added at review: the course chapter [A project starts with the intake](../course/system/06-a-project-starts-with-the-intake.md), which follows this decision at work in the repository.

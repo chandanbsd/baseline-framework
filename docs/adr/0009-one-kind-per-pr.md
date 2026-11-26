@@ -97,8 +97,8 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0009: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0009: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0009
+- Decision trail, entry 0009
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes the three kinds of PR into `standard/03-stack-model.md`.
 - Added at review: PR 16 of this stack (branch `standard/16-revision-2-decisions`), which records the PR kinds of `baseline.yml` and of a stack folder's own `README.md` and `AGENTS.md` (revision 2).
 - Added at review: PR 17 of this stack (branch `standard/17-revision-2-standard`), which writes those kinds into `standard/03-stack-model.md` and `standard/05-project-layout.md`.

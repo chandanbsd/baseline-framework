@@ -95,6 +95,6 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0016: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0016: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0016
+- Decision trail, entry 0016
 - Added at review: PR 8 of this stack (branch `standard/08-course`), which writes the practice standard and the labs into `standard/08-course-lessons.md` and `standard/09-course-system-chapters.md`.

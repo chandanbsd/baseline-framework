@@ -116,7 +116,7 @@ The skills become the only consumers, which would justify collapsing the kit int
 
 ## Links
 
-- Design 1, Appendix A, 0003: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0003: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0003
+- Decision trail, entry 0003
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes what the baseline is and constraint C5 into `standard/01-why-and-scope.md`.
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the kit, the checkers and the skills as requirements into `standard/22-tooling-requirements.md`.

@@ -39,7 +39,7 @@ sequenceDiagram
 
 *A decision of impact becomes a draft at decision time, a reviewed and numbered ADR at the docs section and an accepted one at the merge, and the one thing to notice is that nothing waits for an approval before the code: the regular agent writes the draft and carries on.*
 
-The ADRs of this repository came another way, which the spec set for the baseline's own build: the 31 decisions of the brainstorm, listed in design 1's Appendix A, were written as drafts from the [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md) and committed together in PR 3 (design 1, section 16.5). Each draft names its Appendix A number under its links, which is where its ADR number comes from ([docs-agent.md](../agents/docs-agent.md)). No decision of the brainstorm is without a draft, so the docs agent wrote no ADR from the spec's Approaches section. Four more drafts came with revision 3: decisions of revisions 1 and 2 that extend ADRs 0009, 0011, 0019 and 0025, written after the fact from the revisions' records and committed together in PR 19, directly beneath the code PR of that revision ([revision 3, D1 and D2](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). Their links give no Appendix A number, so the docs agent gave them the next numbers that `docs/adr/` had not used, 0032 to 0035.
+The ADRs of this repository came another way, which the spec set for the baseline's own build: the 31 decisions of the brainstorm, listed in design 1's Appendix A, were written as drafts from the decision trail and committed together in PR 3 (design 1, section 16.5). Each draft names its Appendix A number under its links, which is where its ADR number comes from ([docs-agent.md](../agents/docs-agent.md)). No decision of the brainstorm is without a draft, so the docs agent wrote no ADR from the spec's Approaches section. Four more drafts came with revision 3: decisions of revisions 1 and 2 that extend ADRs 0009, 0011, 0019 and 0025, written after the fact from the revisions' records and committed together in PR 19, directly beneath the code PR of that revision (revision 3, D1 and D2). Their links give no Appendix A number, so the docs agent gave them the next numbers that `docs/adr/` had not used, 0032 to 0035.
 
 ## State machines
 
@@ -66,7 +66,7 @@ stateDiagram-v2
 | Rejected | Nothing: it ends here | None |
 | Superseded by NNNN | Nothing: it ends here | None |
 
-At commit `bd7b1ce` the 35 ADRs of this repository were drafts. The docs agent's review in the reference PR, the first PR of the docs section, numbered them and moved them to Proposed, and the [index](../adr/README.md) lists them. Where the small PR that records a rejection sits in a stack that has not merged is left open by revision 2 ([revision 2, section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md)).
+At commit `bd7b1ce` the 35 ADRs of this repository were drafts. The docs agent's review in the reference PR, the first PR of the docs section, numbered them and moved them to Proposed, and the [index](../adr/README.md) lists them. Where the small PR that records a rejection sits in a stack that has not merged is left open by revision 2 (revision 2, section 4).
 
 ## Interfaces and contracts
 

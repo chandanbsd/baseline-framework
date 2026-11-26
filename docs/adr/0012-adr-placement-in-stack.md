@@ -107,8 +107,8 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0012: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0012: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0012
+- Decision trail, entry 0012
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes rule 4 of the stack into `standard/03-stack-model.md`.
 - Added at review: PR 9 of this stack (branch `standard/09-adrs-deployment-readme`), which writes where a draft is committed into `standard/11-adrs.md`.
 - Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.

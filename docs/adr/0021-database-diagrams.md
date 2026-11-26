@@ -94,8 +94,8 @@ The same signal as for the diagram tooling and theme decision (Appendix A, 0020)
 
 ## Links
 
-- Design 1, Appendix A, 0021: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0021: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0021
+- Decision trail, entry 0021
 - Added at review: PR 7 of this stack (branch `standard/07-feature-and-architecture`), which writes the current-state database diagram into `standard/07-architecture-reference.md`.
 - Added at review: PR 10 of this stack (branch `standard/10-pr-descriptions-and-agents`), which writes the schema diagram of a PR into `standard/14-pr-descriptions.md`.
 - Added at review: PR 11 of this stack (branch `standard/11-diagrams-and-evidence`), which writes the database diagram rules into `standard/16-diagrams.md`.

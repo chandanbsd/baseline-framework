@@ -82,8 +82,8 @@ Not recorded.
 
 ## Links
 
-- Revision 1, D8: [revision 1](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)
-- Revision 3, D2: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
+- Revision 1, D8
+- Revision 3, D2
 - PR 14 of this stack (branch `standard/14-revision-1-decisions`) records the decision, and PR 15 (branch `standard/15-revision-1-standard`) writes it into the standard.
 - The decision it extends: ADR 0025, Update mechanism (design 1, Appendix A, 0025).
 - Added at review: [ADR 0025](0025-update-mechanism.md), the decision this one extends.

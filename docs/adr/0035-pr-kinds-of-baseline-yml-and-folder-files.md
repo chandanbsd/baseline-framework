@@ -90,8 +90,8 @@ Not recorded.
 
 ## Links
 
-- Revision 2, D11: [revision 2](../superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md)
-- Revision 3, D2: [revision 3](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)
+- Revision 2, D11
+- Revision 3, D2
 - PR 16 of this stack (branch `standard/16-revision-2-decisions`) records the decision, and PR 17 (branch `standard/17-revision-2-standard`) writes it into the standard.
 - The decision it extends: ADR 0009, One kind per PR (design 1, Appendix A, 0009).
 - Added at review: [ADR 0009](0009-one-kind-per-pr.md), the decision this one extends.

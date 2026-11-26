@@ -126,8 +126,8 @@ GitHub's bundled Mermaid proves not to render the styling (design 1, V2).
 
 ## Links
 
-- Design 1, Appendix A, 0020: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0020: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0020
+- Decision trail, entry 0020
 - Added at review: PR 11 of this stack (branch `standard/11-diagrams-and-evidence`), which writes the diagram rules and the approved palette into `standard/16-diagrams.md`.
 - Added at review: PR 14 of this stack (branch `standard/14-revision-1-decisions`), which records that mind maps are dropped and that fenced ASCII is its own source (revision 1, D9 and D11).
 - Added at review: PR 15 of this stack (branch `standard/15-revision-1-standard`), which writes both into `standard/16-diagrams.md`.

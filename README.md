@@ -14,7 +14,7 @@ flowchart LR
 
 *The Software Engineer climbs toward the Distinguished Engineer one responsibility at a time, and the one thing to notice is that each rung keeps its responsibility on the way up: the baseline gives a document or a workflow for each one.*
 
-The baseline fixes which documents a project has and who writes them, how work is delivered through stacked pull requests (PRs), and how a project's approved preferences become the standards that drive code. At this tip it is text: the standard in `standard/`, the instruction file `AGENTS.md`, the standard folder's own `standard/AGENTS.md` and six playbooks in `docs/agents/` that state the standard's rules for agents, the repository's own reader profile and configuration, and 35 decision records. The kit, the checkers and the baseline's own skills that are to apply it automatically do not exist yet, so the standard is applied by hand, by following the playbooks.
+The baseline fixes which documents a project has and who writes them, how work is delivered through stacked pull requests (PRs), and how a project's approved preferences become the standards that drive code. At this tip it is mostly text: the standard in `standard/`, the instruction file `AGENTS.md`, the standard folder's own `standard/AGENTS.md` and six playbooks in `docs/agents/` that state the standard's rules for agents, the repository's own reader profile and configuration, and 35 decision records. A first skeleton of the skills is in `skills/`: `baseline-init` and `baseline-desired-state` are built, `baseline-documentation` and `baseline-refactor` are stubs, and the checks that are to enforce the standard do not exist yet, so most of the standard is still applied by hand, by following the playbooks.
 
 ```mermaid
 flowchart TB
@@ -22,12 +22,58 @@ flowchart TB
     AG --> PB["Six playbooks<br/>the rules as instructions"]
     PB --> ST["The standard<br/>22 files and an index"]
     ADR["35 ADRs<br/>why each decision"] --> ST
-    SP["Design 1 and its revisions<br/>the intent"] --> ST
     RP["The reader profile<br/>who the documents are for"] --> DOC["The descriptive documents<br/>this README, features, architecture,<br/>deployment, reference pages"]
     ST --> DOC
 ```
 
 *An agent reaches the standard through the instruction file and the playbooks, and the one thing to notice is that the descriptive documents, this README among them, sit at the end of every arrow: they are written from the standard and the decisions, never the other way round.*
+
+## The problem it solves
+
+When AI agents write most of the code, one engineer keeps control only if two things hold: what they approved reaches every agent session, and the documents they review from tell the truth about what was built. By default neither holds.
+
+```mermaid
+flowchart LR
+    SE["Software Engineer<br/>decides and reviews"]
+    DOC["Documents<br/>the control surface"]
+    AG["Coding agents<br/>write most of the code"]
+    REPO["The repository"]
+    SE -->|"approves decisions and rules"| DOC
+    DOC -->|"steer"| AG
+    AG -->|"write"| REPO
+    REPO -->|"described by"| DOC
+    DOC -->|"read to review and challenge"| SE
+```
+
+*The engineer steers agents through documents and checks their work through documents, and the one thing to notice is that both directions pass through the same documents: when they are missing or false, control is lost both ways.*
+
+| What goes wrong | The baseline's answer |
+|---|---|
+| Decisions and preferences live in the chat, so the next session regenerates differently and wrong code gets patched instead of fixed at the source. | **ADRs and coding standards**, the only documents that steer code. The coding agent writes them when the decision is made and reads them before it generates code. When the code is wrong, the rule changes and the code is regenerated. |
+| The agent starts coding before the engineer has agreed the end state. | **`baseline-desired-state`**: a short summary with diagrams, reviewed in a PR before any code. |
+| Documents describe what was meant. The agent that built the code documents its intent, and one wrong sentence costs more than a missing one. | **`baseline-documentation`**: a fresh agent, after all coding, reads the code at the tip with the ADRs and standards and writes only what exists. |
+| Good practice is scattered across projects and tied to one tool, so copies drift and updates never arrive. | **Four Agent Skills in one package**, installed with one command, for any agent that reads `SKILL.md` and `AGENTS.md`. **`baseline-init`** sets up a repo and updates it through checked-in migration scripts. |
+| Code drifts from the rules over time. | **`baseline-refactor`**, manual only: review a branch against the ADRs and standards and decide, per violation, whether the rule or the code changes. |
+| The first answer was too heavy to read: design 1 is 22 files and 77,367 words, 35 ADRs with every option explored, a three-tier course and 11 groups of checks. | **Thin by design**: steer code only through ADRs and standards, control the documentation tightly, lead with diagrams and snippets, and let CI check three things (required sections, diagrams render, links resolve). |
+
+```mermaid
+flowchart TB
+    Q["Conversation:<br/>engineer and coding agent"] --> DS["baseline-desired-state<br/>end state, approved before code"]
+    DS --> DEC["ADRs and coding standards<br/>written when decided"]
+    DEC --> IMP["Implementation<br/>the agent's own way, untouched"]
+    IMP --> DOC["baseline-documentation<br/>fresh agent, from the finished code"]
+    IMP -. "a later decision" .-> DEC
+    RF["baseline-refactor<br/>manual"] -.-> DEC
+    INIT["baseline-init<br/>install, set up, update"] -.-> DEC
+```
+
+*The baseline touches only the steps around implementation, and the one thing to notice is that implementation itself is left alone: every new decision goes back to the decisions PR instead.*
+
+**Not its problem.** How an agent implements the code (PR size, stack shape, order of work). Security, dependency, privacy and release policy, and coding style: these are per-project standards, approved one rule at a time, because the baseline cannot know a project's kind or goal. Whole-language tutorials, a hosted docs site, and controlling where other skills write.
+
+**Where it stands.** `baseline-init` and `baseline-desired-state` are built and merged; `baseline-documentation` and `baseline-refactor` are stubs. Not verified, because nothing has been installed yet: that `npx skills add` carries `assets/` and `scripts/` through, that each agent follows the `AGENTS.md` routing, and Copilot's skills path. Still to do: the two stub skills, the check script and its CI workflow, real migrations, and retiring `standard/` and the old playbooks.
+
+**Where the design history lives.** The specs and plans that designed it were removed on 2026-11-26. They remain in git history at commit `3215c3b`, under `docs/superpowers/`.
 
 ## Where to go next
 
@@ -219,7 +265,6 @@ baseline-framework/
     adr/                  the 35 decision records
     agents/               the six playbooks
     standards/            the project's approved preferences, none yet
-    superpowers/          design 1, its decision trail and revisions, and the plan, as the skills wrote them
 ```
 
 | Folder | Its README | Its AGENTS.md |
@@ -231,7 +276,7 @@ baseline-framework/
 | `docs/course/` | [docs/course/README.md](docs/course/README.md), the generated course index | None |
 | `docs/adr/` | [docs/adr/README.md](docs/adr/README.md), the generated index | None |
 | `docs/standards/` | [docs/standards/README.md](docs/standards/README.md) | None |
-| `docs/agents/`, `docs/superpowers/` | None | None |
+| `docs/agents/` | None | None |
 
 ## How we work
 
@@ -241,7 +286,7 @@ AI agents write most of the work. They follow `AGENTS.md` and the six playbooks:
 
 ## Configuration
 
-Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0`, lists `standard`, `kit`, `checkers`, `skills` and `examples` as the stack folders and maps the superpowers paths as the spec and the plan, and the YAML header of `docs/reader-profile.md`. Nothing needs to be configured to read or work in the repository. The full table of settings is in [docs/deploy/04-configuration-and-secrets.md](docs/deploy/04-configuration-and-secrets.md).
+Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0`, lists `standard`, `kit`, `checkers`, `skills` and `examples` as the stack folders and leaves the artifact map empty, and the YAML header of `docs/reader-profile.md`. Nothing needs to be configured to read or work in the repository. The full table of settings is in [docs/deploy/04-configuration-and-secrets.md](docs/deploy/04-configuration-and-secrets.md).
 
 ## Troubleshooting the first hour
 

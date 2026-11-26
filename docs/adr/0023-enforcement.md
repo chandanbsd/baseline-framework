@@ -111,7 +111,7 @@ The gate cannot be made to work (design 1, V1).
 
 ## Links
 
-- Design 1, Appendix A, 0023: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0023: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0023
+- Decision trail, entry 0023
 - Added at review: PR 13 of this stack (branch `standard/13-seams-tooling-index`), which writes the mechanical checks and the stack gate as requirements into `standard/22-tooling-requirements.md`.
 - Added at review: the course chapter [How documents stay true](../course/system/07-how-documents-stay-true.md), which follows this decision at work in the repository.

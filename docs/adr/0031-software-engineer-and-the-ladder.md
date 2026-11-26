@@ -125,8 +125,8 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0031: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0031: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0031
+- Decision trail, entry 0031
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes the ladder and goal G1 into `standard/01-why-and-scope.md` and the roles into `standard/02-vocabulary.md`.
 - Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the working rules into `standard/20-working-rules.md`.
 - Added at review: the course chapter [Why this exists](../course/system/01-why-this-exists.md), which follows this decision at work in the repository.

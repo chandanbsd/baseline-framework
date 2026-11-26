@@ -113,8 +113,8 @@ The stack gate cannot be made to work on GitHub's stacked-PR feature (design 1, 
 
 ## Links
 
-- Design 1, Appendix A, 0007: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0007: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0007
+- Decision trail, entry 0007
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes rule 7 of the stack into `standard/03-stack-model.md`.
 - Added at review: PR 12 of this stack (branch `standard/12-docs-agent-standards-rules`), which writes the docs agent's PR order into `standard/18-docs-agent.md`.
 - Added at review: the course chapter [A feature goes from brainstorm to merged stack](../course/system/02-brainstorm-to-merged-stack.md), which follows this decision at work in the repository.

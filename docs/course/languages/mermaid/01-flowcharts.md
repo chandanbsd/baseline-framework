@@ -231,7 +231,7 @@ flowchart TB
 - `CODE -->|"..."| DESC` ends an edge at a subgraph: the docs agent writes the whole box of descriptive documents.
 - The three dotted edges carry the why and the pitch into the descriptive documents, the reasons that the code alone cannot give.
 
-**Rendered.** Each diagram quoted here was rendered as it stands in its file of the standard, in dark and light, with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0, the renderer that the baseline's own build pinned ([revision 1, D9](../../../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)). All of them drew without an error. How GitHub's own Mermaid draws them was not checked: not verified.
+**Rendered.** Each diagram quoted here was rendered as it stands in its file of the standard, in dark and light, with mermaid-cli 12.2.0, which bundles Mermaid 12.3.0, the renderer that the baseline's own build pinned (revision 1, D9). All of them drew without an error. How GitHub's own Mermaid draws them was not checked: not verified.
 
 ## Pitfalls
 

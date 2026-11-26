@@ -4,11 +4,11 @@
 
 Every tracked file of the repository, with one line on what it does and the lesson or chapter of the course that explains it, taken from the `files` in each one's header. A Markdown file's opening paragraph serves as its line ([standard/10-course-reference-pages.md](../../../standard/10-course-reference-pages.md)), and the standard leaves to the tooling how the line is cut from it. No tool does that yet, so the docs agent wrote each line from the file, and for an ADR the line is its number and title. The two files that are not Markdown, `.gitignore` and `baseline.yml`, carry no one-line header comment, so their lines too were written from the file.
 
-Files: 128.
+Files: 122.
 
 | Path | What it does | The lesson that explains it |
 |---|---|---|
-| [`.gitignore`](../../../.gitignore) | Keeps the build's scratch folder, `.superpowers/`, and `.DS_Store` out of git. | None |
+| [`.gitignore`](../../../.gitignore) | Keeps `.DS_Store` and `__pycache__/` out of git. | None |
 | [`AGENTS.md`](../../../AGENTS.md) | The primary instruction for agents: who decides, the seven core rules with their reasons, the playbooks and the repo map. | [A feature goes from brainstorm to merged stack](../system/02-brainstorm-to-merged-stack.md), [A preference becomes a standard](../system/05-preference-to-standard.md) |
 | [`CLAUDE.md`](../../../CLAUDE.md) | A two-line pointer to `AGENTS.md`. | None |
 | [`README.md`](../../../README.md) | The front door: why the baseline exists, what it is, how to apply it by hand and how to contribute. | [Why this exists](../system/01-why-this-exists.md) |
@@ -106,12 +106,6 @@ Files: 128.
 | [`docs/features/working-with-the-software-engineer.md`](../../../docs/features/working-with-the-software-engineer.md) | Feature page: who decides what, numbered decisions and reports. | None |
 | [`docs/reader-profile.md`](../../../docs/reader-profile.md) | Who the documents are written for: the header of levels, and the sections generated from it. | [The docs agent writes the docs section](../system/04-docs-agent-writes-the-docs-section.md), [A project starts with the intake](../system/06-a-project-starts-with-the-intake.md) |
 | [`docs/standards/README.md`](../../../docs/standards/README.md) | How the standards folder fills; it holds no approved rule yet. | [A preference becomes a standard](../system/05-preference-to-standard.md) |
-| [`docs/superpowers/plans/2026-11-14-baseline-standard.md`](../../../docs/superpowers/plans/2026-11-14-baseline-standard.md) | The plan of design 1's build, as `writing-plans` produced it. | None |
-| [`docs/superpowers/specs/2026-11-14-baseline-decision-trail.md`](../../../docs/superpowers/specs/2026-11-14-baseline-decision-trail.md) | The decision trail: the context, options and reasons behind design 1's 31 decisions. | [A decision becomes an ADR](../system/03-decision-to-adr.md) |
-| [`docs/superpowers/specs/2026-11-14-baseline-standard-design.md`](../../../docs/superpowers/specs/2026-11-14-baseline-standard-design.md) | Design 1, the standard: the spec of this repository, as brainstorming produced it. | [A feature goes from brainstorm to merged stack](../system/02-brainstorm-to-merged-stack.md) |
-| [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md) | Revision 1 of design 1: the Software Engineer's decisions after the first build. | None |
-| [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-2-design.md) | Revision 2 of design 1: the answers to what revision 1 left open. | None |
-| [`docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md`](../../../docs/superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md) | Revision 3 of design 1: the answers to the decisions in the first docs run's report. | None |
 | [`standard/01-why-and-scope.md`](../../../standard/01-why-and-scope.md) | The standard: who the baseline is for, the ladder, and the goals, non-goals, anti-goals and constraints. | [Why this exists](../system/01-why-this-exists.md) |
 | [`standard/02-vocabulary.md`](../../../standard/02-vocabulary.md) | The standard: the three roles and every term. | None |
 | [`standard/03-stack-model.md`](../../../standard/03-stack-model.md) | The standard: the stack of PRs, the three kinds, the thirteen rules and the conventions. | [Flowcharts](../languages/mermaid/01-flowcharts.md), [A stack of pull requests](../stacks/gh-stack/01-a-stack-of-pull-requests.md), [gh stack link and the stack on GitHub](../stacks/gh-stack/02-gh-stack-on-github.md), [A feature goes from brainstorm to merged stack](../system/02-brainstorm-to-merged-stack.md) |

@@ -96,6 +96,6 @@ Not recorded.
 
 ## Links
 
-- Design 1, Appendix A, 0018: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0018: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0018
+- Decision trail, entry 0018
 - Added at review: PR 7 of this stack (branch `standard/07-feature-and-architecture`), which writes the feature docs into `standard/06-feature-docs.md`.

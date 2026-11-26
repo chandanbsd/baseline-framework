@@ -105,7 +105,7 @@ The matrix of who can do what lives on the [Users and access page](../features/a
 
 ### Secrets and data protection
 
-No file at this tip holds a credential: the tracked files are Markdown, `baseline.yml`, which holds the four keys of the baseline's configuration, and `.gitignore`, which ignores `.superpowers/` and `.DS_Store`. The repository on GitHub is private (`gh repo view` reports `PRIVATE`). Who has access to it on GitHub was not checked: not verified.
+No file at this tip holds a credential: the tracked files are Markdown, `baseline.yml`, which holds the four keys of the baseline's configuration, and `.gitignore`, which ignores `.DS_Store` and `__pycache__/`. The repository on GitHub is private (`gh repo view` reports `PRIVATE`). Who has access to it on GitHub was not checked: not verified.
 
 ## Operations summary
 
@@ -140,17 +140,17 @@ flowchart LR
 
 **Not built.** The kit, the checkers, CI, the stack gate, the baseline's skills with their nine commands, the generators of the five indexes and the worked example of design 2. The standard states each as a requirement ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). Every step that a command would take is done by hand, and the intake is the one with a written by-hand procedure ([standard/04-reader-profile.md](../../standard/04-reader-profile.md)).
 
-**Not confirmed.** That required checks are evaluated for every PR of a stack, that lower PRs show a pending status, and that a stack merges bottom-up on GitHub; whether GitHub's own Mermaid renders the colours of an entity; whether Laravel Boost generates `AGENTS.md` and from which source; and how a fresh docs agent is dispatched in practice, which was tried once, by hand, on 2026-11-18, and is to be proven again before it is relied on ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). What was checked is that branches cut as pointers link cleanly with `gh stack link`, and what `gh stack view` shows in three states, on 2026-11-18 with `gh stack` 0.3.0 ([revision 1, section 3](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+**Not confirmed.** That required checks are evaluated for every PR of a stack, that lower PRs show a pending status, and that a stack merges bottom-up on GitHub; whether GitHub's own Mermaid renders the colours of an entity; whether Laravel Boost generates `AGENTS.md` and from which source; and how a fresh docs agent is dispatched in practice, which was tried once, by hand, on 2026-11-18, and is to be proven again before it is relied on ([standard/22-tooling-requirements.md](../../standard/22-tooling-requirements.md)). What was checked is that branches cut as pointers link cleanly with `gh stack link`, and what `gh stack view` shows in three states, on 2026-11-18 with `gh stack` 0.3.0 (revision 1, section 3).
 
-**The palette in dark.** The approved palette's tinted rows measure 3.6 to 4.4 to 1 contrast in the dark theme, below the 4.5 to 1 that WCAG AA asks of normal text, though they read well, and the final values are the tooling's to confirm ([revision 1, D9](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)).
+**The palette in dark.** The approved palette's tinted rows measure 3.6 to 4.4 to 1 contrast in the dark theme, below the 4.5 to 1 that WCAG AA asks of normal text, though they read well, and the final values are the tooling's to confirm (revision 1, D9).
 
 **Rough edges found while documenting.**
 
 - No format for a generator's output is written anywhere, so the docs agent chose the form of the five indexes.
 - A Markdown file's opening paragraph serves as its line in the file map, and the standard leaves to the tooling how the line is cut from it ([standard/10-course-reference-pages.md](../../standard/10-course-reference-pages.md)), so the docs agent wrote each line from the file. The two files that are not Markdown, `.gitignore` and `baseline.yml`, could carry a one-line header comment, and neither has one.
-- What an entry of the product glossary links to when no lesson or system chapter teaches its term is left open ([revision 3, section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
+- What an entry of the product glossary links to when no lesson or system chapter teaches its term is left open (revision 3, section 4).
 - Three of the four ADRs that came with revision 3, [0032](../adr/0032-five-generated-indexes.md), [0034](../adr/0034-update-moves-baseline-version.md) and [0035](../adr/0035-pr-kinds-of-baseline-yml-and-folder-files.md), record one real option and "do nothing", where the template asks for at least two real options ([standard/11-adrs.md](../../standard/11-adrs.md)). Each says that its revision recorded no other, and the docs agent's review may not add one.
-- The reason of rule 6 of the stack, that the plan carries no layout, does not fit the first build, whose plan laid out the nine slices of the standard's text; whether the reason should change is left open ([revision 3, D7 and section 4](../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)).
+- The reason of rule 6 of the stack, that the plan carries no layout, does not fit the first build, whose plan laid out the nine slices of the standard's text; whether the reason should change is left open (revision 3, D7 and section 4).
 - The course has a language tier and a stack tier, and a product made only of Markdown has little code in either. Design 1 adapts the baseline's own course to the system-chapter form (section 16.4); the standard's text has no such adaptation.
 
 ## Where decisions live

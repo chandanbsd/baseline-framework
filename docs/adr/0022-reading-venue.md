@@ -104,6 +104,6 @@ The Software Engineer wants a site.
 
 ## Links
 
-- Design 1, Appendix A, 0022: [design 1](../superpowers/specs/2026-11-14-baseline-standard-design.md)
-- Decision trail, entry 0022: [decision trail](../superpowers/specs/2026-11-14-baseline-decision-trail.md)
+- Design 1, Appendix A, 0022
+- Decision trail, entry 0022
 - Added at review: PR 5 of this stack (branch `standard/05-foundations`), which writes constraint C2 and non-goal N5 into `standard/01-why-and-scope.md`.

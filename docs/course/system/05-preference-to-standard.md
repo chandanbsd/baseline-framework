@@ -206,7 +206,7 @@ flowchart TD
 
 ## How it scales and what breaks first
 
-At commit `bd7b1ce` this repository's standards folder holds one file, its README, and no rule. The nearest case is revision 3's two link rules: the agent proposed each with a reason, the Software Engineer approved both, and they were written in `standard/AGENTS.md`, `standard/15-agents-md-and-playbooks.md` and `AGENTS.md`, not in `docs/standards/` ([revision 3, D8](../../superpowers/specs/2026-11-18-baseline-standard-revision-3-design.md)). As a project's standards grow, what breaks first is finding the rule that applies: the folder has one file for each topic, and each rule's scope says where it applies, so an agent reads only what concerns the work in front of it. The second limit is rules that outlive their reasons, which the removal rule answers: a rule whose reason is gone is removed, and git keeps its history.
+At commit `bd7b1ce` this repository's standards folder holds one file, its README, and no rule. The nearest case is revision 3's two link rules: the agent proposed each with a reason, the Software Engineer approved both, and they were written in `standard/AGENTS.md`, `standard/15-agents-md-and-playbooks.md` and `AGENTS.md`, not in `docs/standards/` (revision 3, D8). As a project's standards grow, what breaks first is finding the rule that applies: the folder has one file for each topic, and each rule's scope says where it applies, so an agent reads only what concerns the work in front of it. The second limit is rules that outlive their reasons, which the removal rule answers: a rule whose reason is gone is removed, and git keeps its history.
 
 ```mermaid
 flowchart LR

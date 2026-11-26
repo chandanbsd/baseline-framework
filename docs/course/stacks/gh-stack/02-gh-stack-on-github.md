@@ -431,6 +431,6 @@ The help says a numeric first argument is treated as a stack only when it matche
 
 <details><summary>Model solution</summary>
 
-`gh stack checkout <stack number>`, then `gh stack view`; and `gh stack unstack --local` to remove the local tracking only. These are the three states checked in a throwaway repository on 2026-11-18 ([revision 1, section 3](../../../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)); not run here.
+`gh stack checkout <stack number>`, then `gh stack view`; and `gh stack unstack --local` to remove the local tracking only. These are the three states checked in a throwaway repository on 2026-11-18 (revision 1, section 3); not run here.
 
 </details>

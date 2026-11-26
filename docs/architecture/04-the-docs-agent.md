@@ -37,7 +37,7 @@ sequenceDiagram
 
 *The docs agent reads the tip and the sources the standard names, writes the four groups in reading order and hands over in a report, and the one thing to notice is the dashed message from the Software Engineer: the lists and the table come with the start instruction while the PRs are not open.*
 
-The dashed message is how the docs agent receives the "Rulings I made" lists and the stack table when PRs 3 and up are not open yet. The standard says they are in the PR descriptions. Revision 1 picked handing them over as files, by path, in the instruction that starts the agent ([revision 1, D1](../superpowers/specs/2026-11-18-baseline-standard-revision-1-design.md)), and the first docs run, on 2026-11-18, was started that way and wrote the docs section from them. The standard records that this was tried once and says no more about how the docs agent receives them ([standard/18-docs-agent.md](../../standard/18-docs-agent.md)), and the brief lists what that run reported it lacked ([docs-agent.md](../agents/docs-agent.md)).
+The dashed message is how the docs agent receives the "Rulings I made" lists and the stack table when PRs 3 and up are not open yet. The standard says they are in the PR descriptions. Revision 1 picked handing them over as files, by path, in the instruction that starts the agent (revision 1, D1), and the first docs run, on 2026-11-18, was started that way and wrote the docs section from them. The standard records that this was tried once and says no more about how the docs agent receives them ([standard/18-docs-agent.md](../../standard/18-docs-agent.md)), and the brief lists what that run reported it lacked ([docs-agent.md](../agents/docs-agent.md)).
 
 ## State machines
 

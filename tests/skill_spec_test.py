@@ -60,7 +60,7 @@ class SkillSpecTest(unittest.TestCase):
 
     def test_skills_share_nothing(self):
         for s in all_skills():
-            for f in sorted(p for p in s.dir.rglob("*") if p.is_file()):
+            for f in sorted(p for p in s.dir.rglob("*") if p.is_file() and "__pycache__" not in p.parts):
                 text = f.read_text(encoding="utf-8")
                 with self.subTest(file=str(f.relative_to(ROOT))):
                     self.assertNotIn("../", text)

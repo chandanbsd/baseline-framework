@@ -1,6 +1,7 @@
 ---
 name: baseline-refactor
 description: Skeleton stub, not implemented yet. Will review a branch against the ADRs and coding standards and rewrite it. Use only when the engineer explicitly asks.
+license: Apache-2.0
 metadata:
   version: "0.2.0"
 ---

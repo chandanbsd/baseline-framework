@@ -2,6 +2,7 @@
 name: baseline-documentation
 description: Write and update the repository's documentation inside baseline/docs from the accepted code, in a fresh session or subagent that reads the diff and the code. Use only after the engineer has accepted the code, when adopting a repository that has no baseline documents, and when the engineer sends review comments on the documentation PRs.
 compatibility: Python 3.9+ (standard library only), git
+license: Apache-2.0
 metadata:
   version: "0.2.0"
 ---

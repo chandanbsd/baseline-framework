@@ -193,6 +193,8 @@ baseline-framework/
   AGENTS.md               the primary instruction for agents
   CLAUDE.md               a two-line pointer to AGENTS.md
   baseline.yml            the baseline's configuration for this repository
+  LICENSE                 the Apache License, Version 2.0
+  NOTICE                  the copyright notice
   standard/               the standard: 22 files, its index and its AGENTS.md
   skills/                 the four Agent Skills, installed with npx skills add
   tests/                  unittest suite: the skill rules, init, update and the version bump
@@ -246,4 +248,4 @@ Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0
 
 **Contributing.** Work as a stack and keep each PR to one kind. A change to `standard/` is a code PR, apart from its `README.md`, a description path, and its `AGENTS.md`, a thinking path; a change to the playbooks, `AGENTS.md`, the reader profile or an ADR is a thinking PR, and the descriptive documents, this README among them, are written only by a fresh docs agent from the finished tip. Add no attribution line to a commit or a PR description.
 
-**Licence.** The repository is public and has no licence file yet, so no permission to reuse it is granted until the Software Engineer adds one.
+**Licence.** The repository is public and licensed under the Apache License, Version 2.0: the full text is in [LICENSE](LICENSE) and the copyright notice is in [NOTICE](NOTICE). Each of the four skills also names the licence in the `license` field of its `SKILL.md`.

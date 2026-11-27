@@ -2,6 +2,7 @@
 name: baseline-brainstorm
 description: Ask the engineer questions about new work one at a time, each with a diagram, then write the desired-state file they review and accept before any code. Use when the engineer describes new work and you have questions, and when a decision during coding deviates from the accepted file.
 compatibility: Python 3.9+ (standard library only)
+license: Apache-2.0
 metadata:
   version: "0.2.0"
 ---

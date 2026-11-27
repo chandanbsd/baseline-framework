@@ -8,7 +8,7 @@ from pathlib import Path
 from helpers import ROOT, run, snapshot
 
 TOOL = ROOT / "tools" / "bump_version.py"
-NAMES = ["baseline-desired-state", "baseline-documentation", "baseline-refactor", "baseline-init"]
+NAMES = ["baseline-brainstorm", "baseline-documentation", "baseline-refactor", "baseline-init"]
 
 
 def read_version(root: Path, name: str) -> str:

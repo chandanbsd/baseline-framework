@@ -54,3 +54,8 @@ They are in `docs/agents/`. Read the one that fits when its subject comes up.
 - `docs/agents/` holds the playbooks above.
 - `standard/`, `docs/adr/` (35 ADRs), `docs/architecture/`, `docs/course/`, `docs/deploy/`, `docs/features/`, `docs/standards/`, `docs/reader-profile.md` and the root `baseline.yml` are the first design, kept as an archive until `baseline-documentation` can reshape them. They are not rules. `standard/AGENTS.md` keeps its own instructions.
 - `README.md` describes the project. It is a descriptive document: when something it says becomes untrue, say so in your report.
+
+## Baseline
+
+Before you generate code, read `baseline/adr/` and `baseline/standards/`.
+The rest of the baseline's instructions are in `baseline/baseline.md`. Read it before your first task.

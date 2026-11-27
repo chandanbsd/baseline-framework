@@ -170,6 +170,7 @@ def render(blocks: List[Tuple[str, Block]], errors: List[str], notices: List[str
             config = Path(tmp) / "puppeteer.json"
             config.write_text('{"args": ["--no-sandbox"]}')
             extra = ["-p", str(config)]
+        rendered = 0
         for number, (rel, block) in enumerate(blocks):
             source = Path(tmp) / ("block%d.mmd" % number)
             source.write_text("\n".join(block.body) + "\n", encoding="utf-8")
@@ -184,6 +185,10 @@ def render(blocks: List[Tuple[str, Block]], errors: List[str], notices: List[str
             if done.returncode != 0:
                 detail = " ".join((done.stderr or done.stdout).strip().splitlines()[-3:])
                 errors.append("%s:%d: Mermaid block does not render: %s" % (rel, block.start, detail))
+            else:
+                rendered += 1
+        if rendered:
+            notices.append("mermaid: rendered %d block(s) with mmdc" % rendered)
 
 
 def check(repo: Path, do_render: bool) -> Tuple[List[str], List[str]]:

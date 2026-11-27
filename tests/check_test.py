@@ -268,13 +268,25 @@ class CheckTest(TempRepoCase):
         self.all_docs()
         self.assertNotIn("not rendered", self.check().stdout)
 
-    def test_a_renderer_that_accepts_the_blocks_passes_without_a_notice(self):
+    def test_a_renderer_that_accepts_the_blocks_passes_and_says_how_many_it_rendered(self):
+        # A passing CI log must show that rendering happened, not only that nothing failed.
         self.baseline_yml()
         self.all_docs()
-        self.doc("README.md", DOCS["README.md"], extra=FLOW)
+        self.doc("README.md", DOCS["README.md"], extra=FLOW + "\n" + FLOW)
         r = self.check(env=self.with_fake_renderer())
         self.assertEqual(r.returncode, 0, r.stdout)
         self.assertNotIn("not rendered", r.stdout)
+        self.assertIn("rendered 2 block(s) with mmdc", r.stdout)
+
+    def test_the_count_leaves_out_the_blocks_that_failed_to_render(self):
+        self.baseline_yml()
+        self.all_docs()
+        extra = FLOW + "\n```mermaid\nflowchart LR\n    BROKEN\n```\n"
+        self.doc("README.md", DOCS["README.md"], extra=extra)
+        r = self.check(env=self.with_fake_renderer())
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("rendered 1 block(s) with mmdc", r.stdout)
+        self.assertIn("Parse error", r.stdout)
 
     def test_a_renderer_error_fails_and_names_the_file(self):
         self.baseline_yml()

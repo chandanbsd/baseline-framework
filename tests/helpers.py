@@ -65,11 +65,14 @@ def read_skill(name: str) -> Skill:
     )
 
 
-def run(script: Path, *args: str, cwd: Optional[Path] = None) -> subprocess.CompletedProcess:
-    """Run a script the way an agent would: a command line, captured text output, never raises."""
+def run(script: Path, *args: str, cwd: Optional[Path] = None, env: Optional[Dict[str, str]] = None) -> subprocess.CompletedProcess:
+    """Run a script the way an agent would: a command line, captured text output, never raises.
+
+    env replaces the whole environment when given, so a test can control PATH."""
     return subprocess.run(
         [sys.executable, str(script), *[str(a) for a in args]],
         cwd=str(cwd) if cwd else None,
+        env=env,
         capture_output=True,
         text=True,
     )

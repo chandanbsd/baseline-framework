@@ -29,6 +29,18 @@ class ReferencesTest(unittest.TestCase):
                 headings = re.findall(r"^- `(#{1,3} [^`]+)`", match.group(1), re.M)
                 self.assertGreaterEqual(len(headings), 1)
 
+    def test_the_checks_required_sections_match_the_references(self):
+        sys.path.insert(0, str(skill_dir("baseline-init") / "assets" / "kit" / "baseline"))
+        import check  # noqa: E402
+
+        for family in kit.FAMILIES:
+            text = (DOC / "references" / ("%s.md" % family)).read_text(encoding="utf-8")
+            match = REQUIRED_RE.search(text)
+            in_reference = set(re.findall(r"^- `(#{1,3} [^`]+)`", match.group(1), re.M))
+            in_check = {heading for _, _, headings in check.REQUIRED[family] for heading in headings}
+            with self.subTest(family=family):
+                self.assertEqual(in_check, in_reference)
+
     def test_the_flags_reference_names_every_kind_the_skill_can_write(self):
         text = (DOC / "references" / "flags.md").read_text(encoding="utf-8")
         for kind in ("empty-family", "stale-doc", "breaks-rule", "inferred-reason",

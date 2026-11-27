@@ -17,7 +17,7 @@
 
 ## File
 
-One file per flag, named `<kind>-<slug>.md`:
+One file per flag, named `<kind>-<slug>.md`. The check reads one thing from it: for an `empty-family` flag, `about:` is the family's key (`deployment`, not a path), and the file is named `empty-family-<family>.md`.
 
 ```markdown
 # <one line: what is wrong>

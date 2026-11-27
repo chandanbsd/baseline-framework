@@ -8,3 +8,4 @@ This repository follows the baseline. This file is replaced whole when the basel
 - **The contract.** An accepted file in `baseline/desired-state/` is the contract for the work. Re-read it after a compaction.
 - **Documentation.** The engineer accepts the code first. Then run the `baseline-documentation` skill in a fresh session or subagent.
 - **Refactor.** Run the `baseline-refactor` skill only when the engineer asks.
+- **The check.** CI runs `python3 baseline/check.py` through `.github/workflows/baseline.yml`. Run it yourself before a PR that touches `baseline/`. It renders Mermaid when `mmdc` is installed.

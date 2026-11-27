@@ -1,4 +1,4 @@
-"""Shared by init.py and update.py: the kit files, the baseline-owned baseline.md and the AGENTS.md pointer."""
+"""Shared by init.py and update.py: the kit files, the baseline-owned files and the AGENTS.md pointer."""
 from __future__ import annotations
 
 import hashlib
@@ -11,8 +11,29 @@ SKILL_DIR = Path(__file__).resolve().parent.parent
 KIT_DIR = SKILL_DIR / "assets" / "kit"
 FAMILIES = ("readme", "architecture", "course", "features", "deployment", "reference")
 POINTER_TOKEN = "baseline/baseline.md"
-OWNED_HEADER_RE = re.compile(r"^<!-- baseline version=(\S+) sha256=([0-9a-f]{64}) -->$")
+HEADER_RE = re.compile(
+    r"^(?:<!-- baseline version=(\S+) sha256=([0-9a-f]{64}) -->|# baseline version=(\S+) sha256=([0-9a-f]{64}))$"
+)
 VERSION_RE = re.compile(r'^[ \t]+version:[ \t]*"?([^"\n]+?)"?[ \t]*$', re.M)
+
+
+@dataclass(frozen=True)
+class OwnedFile:
+    """A file the baseline owns whole: init creates it and update replaces it."""
+
+    path: str  # where it lives in a repository
+    asset: str  # where its body lives under assets/kit/ (never a hidden folder, so every installer copies it)
+    style: str  # "html" for a Markdown file, "hash" for a file that takes # comments
+    label: str  # what update.py plan calls it
+    recreate: bool  # update writes it again when it is missing
+
+
+OWNED = (
+    OwnedFile("baseline/baseline.md", "baseline/baseline.md", "html", "baseline.md", True),
+    OwnedFile("baseline/check.py", "baseline/check.py", "hash", "check.py", False),
+    OwnedFile(".github/workflows/baseline.yml", "github-workflow/baseline.yml", "hash", "workflow", False),
+)
+BY_PATH = {owned.path: owned for owned in OWNED}
 
 
 @dataclass
@@ -54,10 +75,12 @@ def _digest(body: str) -> str:
 def parse_owned(text: str) -> Owned:
     """Read the header line of a baseline-owned file. A file with no valid header has version None."""
     first, sep, rest = text.partition("\n")
-    m = OWNED_HEADER_RE.match(first.rstrip("\r"))
-    if not m:
+    match = HEADER_RE.match(first.rstrip("\r"))
+    if not match:
         return Owned(None, None, _lf(text))
-    return Owned(m.group(1), m.group(2), _lf(rest if sep else ""))
+    version = match.group(1) or match.group(3)
+    digest = match.group(2) or match.group(4)
+    return Owned(version, digest, _lf(rest if sep else ""))
 
 
 def owned_is_edited(owned: Owned) -> bool:
@@ -65,12 +88,19 @@ def owned_is_edited(owned: Owned) -> bool:
     return owned.version is None or _digest(owned.body) != owned.sha256
 
 
-def render_baseline_md(version: str, newline: str = "\n") -> str:
-    body = _lf(read_text(KIT_DIR / "baseline" / "baseline.md"))
+def render_owned(path: str, version: str, newline: str = "\n") -> str:
+    """The shipped body of an owned file with its header: the version and a hash of the body."""
+    spec = BY_PATH[path]
+    body = _lf(read_text(KIT_DIR / spec.asset))
     if not body.endswith("\n"):
         body += "\n"
-    text = "<!-- baseline version=%s sha256=%s -->\n%s" % (version, _digest(body), body)
+    template = "<!-- baseline version=%s sha256=%s -->" if spec.style == "html" else "# baseline version=%s sha256=%s"
+    text = template % (version, _digest(body)) + "\n" + body
     return text if newline == "\n" else text.replace("\n", newline)
+
+
+def render_baseline_md(version: str, newline: str = "\n") -> str:
+    return render_owned("baseline/baseline.md", version, newline)
 
 
 def pointer_text() -> str:
@@ -108,11 +138,9 @@ def baseline_yml(version: str, skipped: List[str]) -> str:
 
 def kit_files(version: str, skipped: Optional[List[str]] = None) -> Dict[str, str]:
     """Relative path -> content for every kit file except AGENTS.md (which gets the pointer)."""
-    files = {
-        "baseline/baseline.md": render_baseline_md(version),
-        "baseline/baseline.yml": baseline_yml(version, skipped or []),
-        "CLAUDE.md": "@AGENTS.md\n",
-    }
+    files = {owned.path: render_owned(owned.path, version) for owned in OWNED}
+    files["baseline/baseline.yml"] = baseline_yml(version, skipped or [])
+    files["CLAUDE.md"] = "@AGENTS.md\n"
     for rel in ("baseline/adr/TEMPLATE.md", "baseline/standards/TEMPLATE.md"):
         files[rel] = read_text(KIT_DIR / rel)
     return files

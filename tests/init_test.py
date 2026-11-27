@@ -16,9 +16,12 @@ LAYOUT = {
     "CLAUDE.md",
     "baseline/baseline.md",
     "baseline/baseline.yml",
+    "baseline/check.py",
     "baseline/adr/TEMPLATE.md",
     "baseline/standards/TEMPLATE.md",
+    ".github/workflows/baseline.yml",
 }
+HASH_HEADER_RE = re.compile(r"^# baseline version=(\S+) sha256=([0-9a-f]{64})$")
 
 
 class InitTest(TempRepoCase):
@@ -38,6 +41,36 @@ class InitTest(TempRepoCase):
         shipped = (KIT / "baseline" / "baseline.md").read_text()
         self.assertEqual(body, shipped)
         self.assertEqual(first, "<!-- baseline version=0.2.0 sha256=%s -->" % hashlib.sha256(shipped.encode("utf-8")).hexdigest())
+
+    def test_check_and_workflow_are_the_shipped_assets_with_a_hashed_header(self):
+        run(INIT, self.t)
+        for rel, asset in (
+            ("baseline/check.py", KIT / "baseline" / "check.py"),
+            (".github/workflows/baseline.yml", KIT / "github-workflow" / "baseline.yml"),
+        ):
+            with self.subTest(file=rel):
+                first, _, body = (self.t / rel).read_text().partition("\n")
+                shipped = asset.read_text()
+                self.assertEqual(body, shipped)
+                match = HASH_HEADER_RE.match(first)
+                self.assertIsNotNone(match, first)
+                self.assertEqual(match.group(1), "0.2.0")
+                self.assertEqual(match.group(2), hashlib.sha256(shipped.encode("utf-8")).hexdigest())
+
+    def test_a_fresh_init_passes_its_own_check(self):
+        run(INIT, self.t)
+        r = run(self.t / "baseline" / "check.py", env={"PATH": str(self.t)})  # no renderer on the PATH
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("not yet documented", r.stdout)
+
+    def test_an_existing_workflow_is_kept(self):
+        workflow = self.t / ".github" / "workflows" / "baseline.yml"
+        workflow.parent.mkdir(parents=True)
+        workflow.write_text("name: ours\n")
+        r = run(INIT, self.t)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual(workflow.read_text(), "name: ours\n")
+        self.assertIn("keep .github/workflows/baseline.yml", r.stdout)
 
     def test_agents_md_gets_the_pointer_and_no_markers(self):
         run(INIT, self.t)
@@ -159,6 +192,16 @@ class OwnedFileTest(unittest.TestCase):
         owned = kit.parse_owned(kit.render_baseline_md("0.2.0"))
         self.assertEqual(owned.version, "0.2.0")
         self.assertFalse(kit.owned_is_edited(owned))
+
+    def test_a_hash_style_header_round_trips_for_the_other_owned_files(self):
+        for rel in ("baseline/check.py", ".github/workflows/baseline.yml"):
+            with self.subTest(file=rel):
+                text = kit.render_owned(rel, "0.2.0")
+                self.assertTrue(text.startswith("# baseline version=0.2.0 sha256="))
+                owned = kit.parse_owned(text)
+                self.assertEqual(owned.version, "0.2.0")
+                self.assertFalse(kit.owned_is_edited(owned))
+                self.assertTrue(kit.owned_is_edited(kit.parse_owned(text + "# an edit\n")))
 
     def test_a_changed_body_counts_as_edited(self):
         text = kit.render_baseline_md("0.2.0").replace("Read both", "Skim both")

@@ -3,14 +3,16 @@
 
 Usage:
   update.py plan   <repo>                              the next pending migration with its dry run, the later ones by name,
-                                                       the state of baseline/baseline.md and of the AGENTS.md pointer
+                                                       the state of baseline.md, check.py and the workflow, and of the
+                                                       AGENTS.md pointer
   update.py apply  <repo> <migration-id> [--dry-run]   apply the next pending migration, then move baseline_version
-  update.py finish <repo> [--discard-edits] [--dry-run]  replace baseline/baseline.md, then move baseline_version
+  update.py finish <repo> [--discard-edits] [--dry-run]  replace baseline/baseline.md, baseline/check.py and the
+                                                       workflow (the last two only if they exist), then move baseline_version
 Options on every command: --installed-version V and --migrations-dir DIR (both exist for tests).
 Update never writes AGENTS.md: the pointer is added by init only, and plan reports when it is missing.
 
 Exit codes: 0 ok; 1 a migration failed; 2 refused (not initialised, out of order, migrations pending, unreadable
-baseline_version); 3 the repo is newer than the installed skills; 4 baseline/baseline.md was edited and
+baseline_version); 3 the repo is newer than the installed skills; 4 a baseline-owned file was edited and
 --discard-edits was not given.
 """
 from __future__ import annotations
@@ -98,13 +100,9 @@ def scan(current: str, installed: str, migrations_dir: Path) -> Tuple[List[Migra
     return sorted(found, key=lambda mig: vtuple(mig.frm)), ignored
 
 
-def baseline_md_path(repo: Path) -> Path:
-    return repo / "baseline" / "baseline.md"
-
-
-def baseline_md_status(repo: Path, installed: str) -> str:
+def owned_status(repo: Path, spec: kit.OwnedFile, installed: str) -> str:
     """missing, edited (no header, or the body no longer matches its hash), outdated or unchanged."""
-    path = baseline_md_path(repo)
+    path = repo / spec.path
     if not path.exists():
         return "missing"
     try:
@@ -156,13 +154,17 @@ def cmd_plan(repo: Path, installed: str, migrations_dir: Path) -> int:
                 print_indented(err)
     for name in ignored:
         print("ignored %s: no migrate.py" % name)
-    status = baseline_md_status(repo, installed)
+    current_files = True
+    for spec in kit.OWNED:
+        status = owned_status(repo, spec, installed)
+        print("%s: %s" % (spec.label, status))
+        if not (status == "unchanged" or (status == "missing" and not spec.recreate)):
+            current_files = False
     pointer = pointer_status(repo)
-    print("baseline.md: %s" % status)
     print("AGENTS.md pointer: %s" % pointer)
     if failed:
         return 1
-    if not pending and current == installed and status == "unchanged" and pointer == "present":
+    if not pending and current == installed and current_files and pointer == "present":
         print("up to date")
     return 0
 
@@ -197,20 +199,30 @@ def cmd_finish(repo: Path, installed: str, migrations_dir: Path, discard_edits: 
     pending, _ = scan(current, installed, migrations_dir)
     if pending:
         raise Stop("migrations pending: %s" % ", ".join(m.id for m in pending), 2)
-    if baseline_md_status(repo, installed) == "edited" and not discard_edits:
-        raise Stop("baseline/baseline.md was edited; run again with --discard-edits to replace it, or leave it as it is", 4)
+    edited = [spec.label for spec in kit.OWNED if owned_status(repo, spec, installed) == "edited"]
+    if edited and not discard_edits:
+        raise Stop(
+            "%s was edited; run again with --discard-edits to replace %s, or leave %s as %s"
+            % (", ".join(edited), "it" if len(edited) == 1 else "them", "it" if len(edited) == 1 else "them",
+               "it is" if len(edited) == 1 else "they are"),
+            4,
+        )
+    # A file the team deleted on purpose (the check, the workflow) stays deleted; baseline.md is written again.
+    to_write = [spec for spec in kit.OWNED if (repo / spec.path).exists() or spec.recreate]
+    names = ", ".join(spec.path for spec in to_write)
     if dry_run:
-        print("would replace baseline/baseline.md and set baseline_version to %s" % installed)
+        print("would replace %s and set baseline_version to %s" % (names, installed))
         return 0
-    path = baseline_md_path(repo)
-    try:
-        newline = kit.newline_of(kit.read_text(path)) if path.exists() else "\n"
-    except UnicodeDecodeError:
-        newline = "\n"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    kit.write_text(path, kit.render_baseline_md(installed, newline))
+    for spec in to_write:
+        path = repo / spec.path
+        try:
+            newline = kit.newline_of(kit.read_text(path)) if path.exists() else "\n"
+        except UnicodeDecodeError:
+            newline = "\n"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        kit.write_text(path, kit.render_owned(spec.path, installed, newline))
     write_current(repo, installed)
-    print("replaced baseline/baseline.md; baseline_version is now %s" % installed)
+    print("replaced %s; baseline_version is now %s" % (names, installed))
     return 0
 
 

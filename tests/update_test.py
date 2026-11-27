@@ -47,12 +47,15 @@ class UpdateTest(TempRepoCase):
         self.config.write_text("baseline_version: %s\ndocuments_skipped: []\n" % version)
         (self.t / "docs" / "old").mkdir(parents=True)
         (self.t / "docs" / "old" / "note.txt").write_text("x")
-        # the baseline.md that init wrote carries the installed version; age it to the repo's version
-        self.age_baseline_md(version)
+        # the owned files that init wrote carry the installed version; age them to the repo's version
+        self.age_owned(version)
 
-    def age_baseline_md(self, version):
-        path = self.t / "baseline" / "baseline.md"
-        path.write_text(re.sub(r"version=\S+", "version=%s" % version, path.read_text(), count=1))
+    OWNED = ("baseline/baseline.md", "baseline/check.py", ".github/workflows/baseline.yml")
+
+    def age_owned(self, version):
+        for rel in self.OWNED:
+            path = self.t / rel
+            path.write_text(re.sub(r"version=\S+", "version=%s" % version, path.read_text(), count=1))
 
     @property
     def config(self):
@@ -195,6 +198,56 @@ class UpdateTest(TempRepoCase):
         self.assertNotIn("up to date", r.stdout)
         self.assertEqual(self.upd("finish", installed="0.2.1").returncode, 0)
         self.assertEqual(agents.read_text(), "# Ours, with no pointer\n")
+
+    def test_plan_reports_the_check_and_the_workflow(self):
+        self.make_repo("0.2.0")
+        r = self.upd("plan", installed="0.2.1")
+        self.assertIn("baseline.md: outdated", r.stdout)
+        self.assertIn("check.py: outdated", r.stdout)
+        self.assertIn("workflow: outdated", r.stdout)
+        r = self.upd("plan", installed="0.2.0")
+        self.assertIn("check.py: unchanged", r.stdout)
+        self.assertIn("workflow: unchanged", r.stdout)
+        self.assertIn("up to date", r.stdout)
+
+    def test_finish_overwrites_the_check_and_the_workflow(self):
+        self.make_repo("0.2.0")
+        r = self.upd("finish", installed="0.2.1")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        for rel in self.OWNED:
+            with self.subTest(file=rel):
+                self.assertIn("version=0.2.1 ", (self.t / rel).read_text().splitlines()[0] + " ")
+        self.assertNotIn("outdated", self.upd("plan", installed="0.2.1").stdout)
+
+    def test_an_edited_check_or_workflow_is_reported_protected_and_named(self):
+        for rel, label in (("baseline/check.py", "check.py"), (".github/workflows/baseline.yml", "workflow")):
+            with self.subTest(file=rel):
+                self.t = Path(tempfile.mkdtemp())
+                self.addCleanup(shutil.rmtree, self.t)
+                self.make_repo("0.2.0")
+                path = self.t / rel
+                path.write_text(path.read_text() + "# our own line\n")
+                self.assertIn("%s: edited" % label, self.upd("plan", installed="0.2.1").stdout)
+                before = snapshot(self.t)
+                r = self.upd("finish", installed="0.2.1")
+                self.assertEqual(r.returncode, 4)
+                self.assertIn(label, r.stderr)
+                self.assertEqual(snapshot(self.t), before)
+                r = self.upd("finish", "--discard-edits", installed="0.2.1")
+                self.assertEqual(r.returncode, 0, r.stderr)
+                self.assertNotIn("our own line", path.read_text())
+
+    def test_a_deleted_check_or_workflow_is_not_recreated_but_baseline_md_is(self):
+        self.make_repo("0.2.0")
+        for rel in self.OWNED:
+            (self.t / rel).unlink()
+        plan = self.upd("plan", installed="0.2.1").stdout
+        for label in ("baseline.md", "check.py", "workflow"):
+            self.assertIn("%s: missing" % label, plan)
+        self.assertEqual(self.upd("finish", installed="0.2.1").returncode, 0)
+        self.assertTrue((self.t / "baseline" / "baseline.md").exists())
+        self.assertFalse((self.t / "baseline" / "check.py").exists())
+        self.assertFalse((self.t / ".github" / "workflows" / "baseline.yml").exists())
 
     def test_plan_dry_runs_only_the_next_migration(self):
         self.make_repo("0.2.0")

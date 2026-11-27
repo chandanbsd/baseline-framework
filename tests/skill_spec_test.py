@@ -4,7 +4,7 @@ import unittest
 
 from helpers import ROOT, read_skill
 
-NAMES = {"baseline-desired-state", "baseline-documentation", "baseline-refactor", "baseline-init"}
+NAMES = {"baseline-brainstorm", "baseline-documentation", "baseline-refactor", "baseline-init"}
 PATH_RE = re.compile(r"`((?:scripts|assets|references|migrations)/[^`<>\s]*)`")
 
 

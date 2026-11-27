@@ -63,11 +63,14 @@ flowchart TB
 
 ```
 repo/
+├─ .github/workflows/
+│  └─ baseline.yml        runs the check, owned by the baseline, replaced on update (D31)
 ├─ AGENTS.md              the team's, plus a short pointer (the baseline's only edit here)
 ├─ CLAUDE.md              @AGENTS.md, created only if absent
 └─ baseline/              the only place the baseline writes
    ├─ baseline.md         owned by the baseline, replaced whole on update
    ├─ baseline.yml        the project's: version, documents_skipped
+   ├─ check.py            the check (2.8), owned by the baseline, replaced on update
    ├─ adr/                ADRs, with TEMPLATE.md
    ├─ standards/          coding standards, with TEMPLATE.md
    ├─ desired-state/      00012-short-name.md, one file per topic
@@ -78,6 +81,7 @@ repo/
 - The folder is a convention for what the baseline defines. It is not enforced: the coding agent may write anywhere the repository or the engineer wants (the root README, other documents, a note in a baseline document). There is no guard script and no diff check.
 - The baseline never writes the root `README.md`. A flag suggests linking `baseline/docs/README.md`.
 - The CI check looks only inside `baseline/`, so documents outside it can never fail it.
+- Outside `baseline/` the baseline writes the `AGENTS.md` pointer, `CLAUDE.md` when absent and the CI workflow. GitHub reads workflows only from `.github/workflows/`, which is why that one file cannot live in `baseline/` (D31).
 
 ### 2.3 The pointer and `baseline.md`
 
@@ -102,7 +106,7 @@ The rest of the baseline's instructions are in baseline/baseline.md. Read it bef
 
 | Skill | Trigger | Does | State |
 |---|---|---|---|
-| `baseline-init` | The engineer asks to set up, adopt or update | Writes `baseline/` and the pointer, asks one question (D4), updates through migrations | Built for the old layout, to change |
+| `baseline-init` | The engineer asks to set up, adopt or update | Writes `baseline/` (with the check), the pointer and the CI workflow, asks one question (D4), updates through migrations | Built for the old layout, to change |
 | `baseline-brainstorm` | The engineer describes new work and there are questions | The questions protocol, the desired-state file, the handoff | New. It replaces `baseline-desired-state` |
 | `baseline-documentation` | The engineer accepts the code | Writes and updates the six families | Stub |
 | `baseline-refactor` | The engineer asks | Reviews a branch against the ADRs and standards | Stub, out of scope here |
@@ -208,10 +212,12 @@ One small Python script (3.9, standard library) run by CI. It reads only the sta
 
 A needed family that is not written yet is a notice, not a failure. Links to code and to outside URLs are not checked. Nothing else. (Amended by D30. As first accepted, it failed on any needed family that was not written.)
 
+`init` copies the script to `baseline/check.py` and a workflow to `.github/workflows/baseline.yml`. Both are owned by the baseline: `init` creates them and `update` overwrites them (D31). The workflow installs Node and Mermaid's CLI (`mmdc`) so that CI really renders the diagrams. The script renders them when `mmdc` is on the PATH, and when it is not it checks that each block is well-formed and prints a notice that it did not render.
+
 ## 3. Expected result
 
 - [ ] `npx skills add` of the repository installs four skills: `baseline-init`, `baseline-brainstorm`, `baseline-documentation`, `baseline-refactor` (the last may stay a stub).
-- [ ] `baseline-init` on a fresh repository creates the `baseline/` layout (2.2) and the pointer (2.3), after a dry run the engineer approves, and asks the one question of D4. On a repository with an `AGENTS.md` it appends the pointer and touches nothing else outside `baseline/`. Update replaces `baseline.md` whole and runs migrations as before.
+- [ ] `baseline-init` on a fresh repository creates the `baseline/` layout (2.2), the pointer (2.3) and the CI workflow (2.8), after a dry run the engineer approves, and asks the one question of D4. On a repository with an `AGENTS.md` it appends the pointer and touches nothing else outside `baseline/` except the workflow. Update replaces `baseline.md`, `check.py` and the workflow whole and runs migrations as before.
 - [ ] `baseline-brainstorm` runs the protocol (2.5), writes the file (2.6), and hands off with the prompt. It replaces `baseline-desired-state`, which no longer exists.
 - [ ] A decision during coding that deviates from the file is confirmed explicitly by the engineer, and the agent amends the file (D29). The gate-2 report lists the amendments.
 - [ ] `baseline-documentation` writes and updates the six families in `baseline/docs/` as D2 to D14 say, with `covers:` lines, flags, revise mode and adopt.
@@ -287,7 +293,7 @@ Not taken: the old fixed lists (13 architecture sections, 11 deployment areas, 8
 Why: `AGENTS.md` is the cross-agent file the team owns. Whole-file ownership removes the marker, hash and line-ending machinery, where the review found the riskiest bugs. No repository has the block yet, so there is no migration.
 Not taken: keeping the block in `AGENTS.md`. A pointer alone, because the one instruction that must always be seen would then be a hop away. The cost: a reference is followed by choice, not always loaded. Claude Code can import it with `@`, and Codex and Copilot have to open it.
 
-**D16. Everything the baseline writes lives in `baseline/`: `baseline.md`, `baseline.yml` (moved from the root), `adr/`, `standards/`, `desired-state/`, `flags/`, `docs/`.**
+**D16. Everything the baseline writes lives in `baseline/`: `baseline.md`, `baseline.yml` (moved from the root), `check.py`, `adr/`, `standards/`, `desired-state/`, `flags/`, `docs/`.** The CI workflow is the one exception (D31).
 Why: one place says that the repository uses the baseline, other documentation skills cannot collide with it, and the check can be scoped to it.
 Not taken: a root `baseline.md` beside a root `baseline.yml`. `baseline.yml` staying at the root, because the ownership argument for it was weak. `docs/adr` and `docs/standards` staying under `docs/`.
 
@@ -355,6 +361,10 @@ Not taken: the agent amending without asking, which is silent drift. Listing dev
 Why: CI runs on every PR of a stack, and the code PRs sit below the docs PRs, so a rule that failed on any unwritten needed family would turn a freshly initialised repository and every code PR red, and each docs PR until the last family landed. A link from a document to a code file would fail a code PR that renames the file, and the `stale-doc` flag is the net for that.
 Not taken: failing on any needed family that is not written, as first accepted in 2.8 and D6. Checking links to code or to outside URLs. Having the check know whether the baseline skill wrote a document, which it does not need.
 
+**D31. `init` also creates the CI workflow `.github/workflows/baseline.yml`, `update` overwrites it, and `baseline/check.py` is copied the same way. The check renders Mermaid when `mmdc` is on the PATH and notes that it did not when it is not, and the workflow installs the renderer.** Confirmed by the engineer in the same message that chose how far the Mermaid check goes: "We want the github workflow for now. Create and update overwrites that workflow." It amends 4.4 (`init` copies `check.py`, the team adds one CI step, the baseline writes no workflow) and D16 (everything the baseline writes lives in `baseline/`).
+Why: a check nobody runs does nothing. GitHub reads workflows only from `.github/workflows/`, so the one file that cannot live in `baseline/` is the one that makes CI run the check. Rendering when possible keeps the script standard-library only and still gives CI the real check.
+Not taken: no workflow, with the team adding one CI step, which is what 4.4 first chose. A workflow the team owns and edits freely, because an update could not keep it current. Always requiring the renderer, because every repository would need Node to pass. A syntax-only Mermaid check, because a subtle error would pass.
+
 ## 5. Settles, not verified, open
 
 **Settles.** No ADR or standard is written for this. The decisions are recorded here, and this repository has no `baseline/adr/` yet. If the engineer wants any of D15 to D18 as an ADR, they say so.
@@ -363,11 +373,12 @@ Not taken: failing on any needed family that is not written, as first accepted i
 - Codex and Copilot: that they discover skills in `.agents/skills/`, and that they follow the `AGENTS.md` pointer to `baseline/baseline.md`.
 - That Claude Code imports through `CLAUDE.md` to `AGENTS.md` to `baseline.md` with `@`. It is believed to chain up to five hops.
 - That the Mermaid diagrams in this file render. They use only simple flowcharts.
+- That the CI workflow runs on GitHub, and that Mermaid's CLI renders in its runner.
 
 **Open, left to the builder.**
 - The path of each family under `baseline/docs/` and of `baseline/flags/`, and the format of a flag file.
 - The layout of `baseline-documentation`: `SKILL.md` plus one reference file per family, loaded only when that family is written.
-- How the check finds the required sections, and how CI finds the check.
+- The check's table of required sections. It carries the table itself, and a test pins it to the references of `baseline-documentation`.
 - How the agent finds the accepted file after a compaction. The prompt names it, and `baseline.md` says to re-read it.
 - An existing `CLAUDE.md` is kept untouched by `init`, so Claude Code would not see the pointer unless that file imports `AGENTS.md`. Decide at build whether `init` flags it.
 - The eight deferred minors listed in PR #32.

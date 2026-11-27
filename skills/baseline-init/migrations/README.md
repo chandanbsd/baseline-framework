@@ -19,7 +19,7 @@ python3 migrate.py <repo> --confirm    apply it; exit non-zero on any failure
 ```
 
 - Standard library only, non-interactive.
-- It may change project-owned files (standards, `baseline.yml`, ADRs, project docs) because the skill defines their layout. `update.py` runs it only after the engineer has seen the dry run and approved.
+- It may change project-owned files (`baseline/baseline.yml`, ADRs, standards, project docs) because the skill defines their layout. `update.py` runs it only after the engineer has seen the dry run and approved.
 - Ship a before-and-after fixture test with every migration.
 
 ## Dry run and instructions

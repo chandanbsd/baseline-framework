@@ -31,4 +31,4 @@ A one-off choice that touches one place and is easy to change. Write no document
 | "We will use Postgres, not DynamoDB." | ADR |
 | "Call that variable `total`." | Neither |
 
-One decision per file. Write it from the `TEMPLATE.md` in `docs/adr/` or `docs/standards/`.
+One decision per file. Write it from the `TEMPLATE.md` in `baseline/adr/` or `baseline/standards/`.

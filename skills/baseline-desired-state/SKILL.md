@@ -15,7 +15,7 @@ The questions are done and you would now wait for the engineer's approval to sta
 
 ## 1. Write the desired state
 
-Write `docs/desired-state/<YYYY-MM-DD>-<topic>.md` in the repo from `assets/desired-state-template.md`.
+Write `baseline/desired-state/<YYYY-MM-DD>-<topic>.md` in the repo from `assets/desired-state-template.md`.
 
 - Condensed: diagrams and snippets first, little prose. The engineer reads it in two minutes.
 - It is engineer-only. It replaces nothing a skill already wrote (a spec, a plan), and it is never maintained: it may go stale.
@@ -27,7 +27,7 @@ Put the file on its own branch and open a PR if the repo has a GitHub remote and
 
 ## 3. After approval: the decisions PR
 
-Write each ADR and standard you listed yourself, in this session, from the `TEMPLATE.md` in `docs/adr/` or `docs/standards/`. Put them in the next PR above the desired-state PR: the decisions PR. The engineer reviews it. Then implement.
+Write each ADR and standard you listed yourself, in this session, from the `TEMPLATE.md` in `baseline/adr/` or `baseline/standards/`. Put them in the next PR above the desired-state PR: the decisions PR. The engineer reviews it. Then implement.
 
 ## 4. Implement
 

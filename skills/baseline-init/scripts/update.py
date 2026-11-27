@@ -3,14 +3,15 @@
 
 Usage:
   update.py plan   <repo>                              the next pending migration with its dry run, the later ones by name,
-                                                       and the state of the owned AGENTS.md block
+                                                       the state of baseline/baseline.md and of the AGENTS.md pointer
   update.py apply  <repo> <migration-id> [--dry-run]   apply the next pending migration, then move baseline_version
-  update.py finish <repo> [--discard-edits] [--dry-run]  replace the owned AGENTS.md block, then move baseline_version
+  update.py finish <repo> [--discard-edits] [--dry-run]  replace baseline/baseline.md, then move baseline_version
 Options on every command: --installed-version V and --migrations-dir DIR (both exist for tests).
+Update never writes AGENTS.md: the pointer is added by init only, and plan reports when it is missing.
 
 Exit codes: 0 ok; 1 a migration failed; 2 refused (not initialised, out of order, migrations pending, unreadable
-baseline_version, AGENTS.md markers that do not form exactly one block); 3 the repo is newer than the installed
-skills; 4 the owned block was edited and --discard-edits was not given.
+baseline_version); 3 the repo is newer than the installed skills; 4 baseline/baseline.md was edited and
+--discard-edits was not given.
 """
 from __future__ import annotations
 
@@ -52,20 +53,24 @@ def vtuple(version: str) -> Tuple[int, ...]:
     return tuple(int(part) for part in version.split("."))
 
 
+def config_path(repo: Path) -> Path:
+    return repo / "baseline" / "baseline.yml"
+
+
 def read_current(repo: Path) -> str:
-    path = repo / "baseline.yml"
+    path = config_path(repo)
     if not path.exists():
-        raise Stop("%s has no baseline.yml; run init first" % repo, 2)
+        raise Stop("%s has no baseline/baseline.yml; run init first" % repo, 2)
     m = CURRENT_RE.search(kit.read_text(path))
     if not m:
-        raise Stop("baseline.yml has no baseline_version line", 2)
+        raise Stop("baseline/baseline.yml has no baseline_version line", 2)
     if not SEMVER_RE.match(m.group(2)):
         raise Stop("baseline_version must look like 1.2.3 (found %r)" % m.group(2), 2)
     return m.group(2)
 
 
 def write_current(repo: Path, version: str) -> None:
-    path = repo / "baseline.yml"
+    path = config_path(repo)
     text = CURRENT_RE.sub(lambda m: m.group(1) + version + m.group(3) + m.group(4) + m.group(5), kit.read_text(path), count=1)
     kit.write_text(path, text)
 
@@ -93,23 +98,32 @@ def scan(current: str, installed: str, migrations_dir: Path) -> Tuple[List[Migra
     return sorted(found, key=lambda mig: vtuple(mig.frm)), ignored
 
 
-def read_block(repo: Path) -> Optional[kit.Block]:
+def baseline_md_path(repo: Path) -> Path:
+    return repo / "baseline" / "baseline.md"
+
+
+def baseline_md_status(repo: Path, installed: str) -> str:
+    """missing, edited (no header, or the body no longer matches its hash), outdated or unchanged."""
+    path = baseline_md_path(repo)
+    if not path.exists():
+        return "missing"
+    try:
+        owned = kit.parse_owned(kit.read_text(path))
+    except UnicodeDecodeError:
+        return "edited"
+    if kit.owned_is_edited(owned):
+        return "edited"
+    return "unchanged" if owned.version == installed else "outdated"
+
+
+def pointer_status(repo: Path) -> str:
     path = repo / "AGENTS.md"
     if not path.exists():
-        return None
-    try:
-        return kit.find_block(kit.read_text(path))
-    except kit.BlockError as error:
-        raise Stop("AGENTS.md: %s" % error, 2)
-
-
-def block_status(repo: Path, installed: str) -> str:
-    block = read_block(repo)
-    if block is None:
         return "missing"
-    if kit.block_is_edited(block):
-        return "edited"
-    return "unchanged" if block.version == installed else "outdated"
+    try:
+        return "present" if kit.has_pointer(kit.read_text(path)) else "missing"
+    except UnicodeDecodeError:
+        return "missing"
 
 
 def run_migration(migration: Migration, repo: Path, mode: str) -> Tuple[int, str, str]:
@@ -142,11 +156,13 @@ def cmd_plan(repo: Path, installed: str, migrations_dir: Path) -> int:
                 print_indented(err)
     for name in ignored:
         print("ignored %s: no migrate.py" % name)
-    status = block_status(repo, installed)
-    print("owned AGENTS.md block: %s" % status)
+    status = baseline_md_status(repo, installed)
+    pointer = pointer_status(repo)
+    print("baseline.md: %s" % status)
+    print("AGENTS.md pointer: %s" % pointer)
     if failed:
         return 1
-    if not pending and current == installed and status == "unchanged":
+    if not pending and current == installed and status == "unchanged" and pointer == "present":
         print("up to date")
     return 0
 
@@ -181,17 +197,20 @@ def cmd_finish(repo: Path, installed: str, migrations_dir: Path, discard_edits: 
     pending, _ = scan(current, installed, migrations_dir)
     if pending:
         raise Stop("migrations pending: %s" % ", ".join(m.id for m in pending), 2)
-    block = read_block(repo)
-    if block and kit.block_is_edited(block) and not discard_edits:
-        raise Stop("the AGENTS.md block was edited; run again with --discard-edits to replace it, or leave it as it is", 4)
+    if baseline_md_status(repo, installed) == "edited" and not discard_edits:
+        raise Stop("baseline/baseline.md was edited; run again with --discard-edits to replace it, or leave it as it is", 4)
     if dry_run:
-        print("would replace the AGENTS.md block and set baseline_version to %s" % installed)
+        print("would replace baseline/baseline.md and set baseline_version to %s" % installed)
         return 0
-    path = repo / "AGENTS.md"
-    text = kit.read_text(path) if path.exists() else ""
-    kit.write_text(path, kit.with_block(text, installed))
+    path = baseline_md_path(repo)
+    try:
+        newline = kit.newline_of(kit.read_text(path)) if path.exists() else "\n"
+    except UnicodeDecodeError:
+        newline = "\n"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    kit.write_text(path, kit.render_baseline_md(installed, newline))
     write_current(repo, installed)
-    print("replaced the AGENTS.md block; baseline_version is now %s" % installed)
+    print("replaced baseline/baseline.md; baseline_version is now %s" % installed)
     return 0
 
 
@@ -207,9 +226,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     apply_.add_argument("repo", type=Path)
     apply_.add_argument("migration_id")
     apply_.add_argument("--dry-run", action="store_true", help="show the migration's dry run and change nothing")
-    finish = sub.add_parser("finish", parents=[common], help="replace the owned block and move the version")
+    finish = sub.add_parser("finish", parents=[common], help="replace baseline/baseline.md and move the version")
     finish.add_argument("repo", type=Path)
-    finish.add_argument("--discard-edits", action="store_true", help="replace the AGENTS.md block even if it was edited")
+    finish.add_argument("--discard-edits", action="store_true", help="replace baseline/baseline.md even if it was edited")
     finish.add_argument("--dry-run", action="store_true", help="say what would happen and change nothing")
     args = parser.parse_args(argv)
 

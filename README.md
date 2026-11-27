@@ -52,7 +52,7 @@ flowchart LR
 | Decisions and preferences live in the chat, so the next session regenerates differently and wrong code gets patched instead of fixed at the source. | **ADRs and coding standards**, the only documents that steer code. The coding agent writes them when the decision is made and reads them before it generates code. When the code is wrong, the rule changes and the code is regenerated. |
 | The agent starts coding before the engineer has agreed the end state. | **`baseline-desired-state`**: a short summary with diagrams, reviewed in a PR before any code. |
 | Documents describe what was meant. The agent that built the code documents its intent, and one wrong sentence costs more than a missing one. | **`baseline-documentation`**: a fresh agent, after all coding, reads the code at the tip with the ADRs and standards and writes only what exists. |
-| Good practice is scattered across projects and tied to one tool, so copies drift and updates never arrive. | **Four Agent Skills in one package**, installed with one command, for any agent that reads `SKILL.md` and `AGENTS.md`. **`baseline-init`** sets up a repo and updates it through checked-in migration scripts. |
+| Good practice is scattered across projects and tied to one tool, so copies drift and updates never arrive. | **Four Agent Skills in one package**, installed with `npx skills add chandanbsd/baseline-framework`, for any agent that reads `SKILL.md` and `AGENTS.md`. **`baseline-init`** sets up a repo and updates it through checked-in migration scripts. |
 | Code drifts from the rules over time. | **`baseline-refactor`**, manual only: review a branch against the ADRs and standards and decide, per violation, whether the rule or the code changes. |
 | The first answer was too heavy to read: design 1 is 22 files and 77,367 words, 35 ADRs with every option explored, a three-tier course and 11 groups of checks. | **Thin by design**: steer code only through ADRs and standards, control the documentation tightly, lead with diagrams and snippets, and let CI check three things (required sections, diagrams render, links resolve). |
 
@@ -71,7 +71,7 @@ flowchart TB
 
 **Not its problem.** How an agent implements the code (PR size, stack shape, order of work). Security, dependency, privacy and release policy, and coding style: these are per-project standards, approved one rule at a time, because the baseline cannot know a project's kind or goal. Whole-language tutorials, a hosted docs site, and controlling where other skills write.
 
-**Where it stands.** `baseline-init` and `baseline-desired-state` are built and merged; `baseline-documentation` and `baseline-refactor` are stubs. Not verified, because nothing has been installed yet: that `npx skills add` carries `assets/` and `scripts/` through, that each agent follows the `AGENTS.md` routing, and Copilot's skills path. Still to do: the two stub skills, the check script and its CI workflow, real migrations, and retiring `standard/` and the old playbooks.
+**Where it stands.** `baseline-init` and `baseline-desired-state` are built and merged; `baseline-documentation` and `baseline-refactor` are stubs. **Verified on 2026-11-26**, in Claude Code on a real project: `npx skills add` finds the four skills, copies each folder whole into `.claude/skills/` (`scripts/`, `assets/`, `references/` and `migrations/` match the source byte for byte), the skills load, and the `baseline-init` dry run lists the five files it would create. **Not verified:** Codex and Copilot (Copilot's skills path is unconfirmed), the real write of `baseline-init` on a real project, `npx skills update`, and that each agent follows the `AGENTS.md` routing. Still to do: the two stub skills, the check script and its CI workflow, real migrations, and retiring `standard/` and the old playbooks.
 
 **Where the design history lives.** The specs and plans that designed it were removed on 2026-11-26. They remain in git history at commit `3215c3b`, under `docs/superpowers/`.
 
@@ -79,6 +79,7 @@ flowchart TB
 
 | You want to | Read |
 |---|---|
+| Use it in a project | [Get it running](#get-it-running) |
 | Understand what the baseline gives a project | [The feature docs](docs/features/README.md) |
 | Understand how it is built | [The architecture reference](docs/architecture/README.md), then [the decision records](docs/adr/README.md) |
 | Read the standard itself | [The standard's index](standard/README.md), in number order |
@@ -98,136 +99,73 @@ The reading paths by role, generated from the reader profile, are in [docs/reade
 | GitHub CLI, `gh` | 2.103.3 | From [cli.github.com](https://cli.github.com/). |
 | The `gh stack` extension | 0.3.0 | `gh extension install github/gh-stack` |
 | An AI agent harness | Claude Code is the primary harness; the standard does not depend on it | From Claude Code's documentation. |
+| Node.js | 26.13.0; the `skills` CLI needs 22.20 or later | From [nodejs.org](https://nodejs.org/), or your system's package manager. It brings `npx`. |
+| Python 3 | 3.9.6; the `baseline-init` scripts need 3.9 or later and use only the standard library | From [python.org](https://www.python.org/downloads/), or your system's package manager. |
+| The `skills` CLI | 1.9.0 | Nothing to install: `npx skills` fetches it on first use. |
 
-**Not verified.** The install commands were not run: every tool was already installed on the machine where this README was written. The versions are those that `git --version`, `gh --version` and `gh stack --version` printed there on 2026-11-18.
+**Not verified.** The install commands were not run: every tool was already installed on the machine where this README was written. The versions of git, `gh` and `gh stack` are those that `git --version`, `gh --version` and `gh stack --version` printed there on 2026-11-18; the versions of Node.js, Python and the `skills` CLI are those that `node --version`, `python3 --version` and `npx skills --version` printed on 2026-11-26.
 
-**Accounts and access.** A GitHub account with access to the private repository `chandanbsd/baseline-framework`, to clone it and to read its PRs.
+**Accounts and access.** The repository is public, so installing the skills and cloning it need no account. A GitHub account is needed to open PRs.
 
 ## Get it running
 
-The baseline does not run: what you get running is a new project that follows it. No command does this yet, so these steps do by hand what the intake and the kit are to do: run the intake by hand ([standard/04-reader-profile.md](standard/04-reader-profile.md)), copy what the kit is to copy, and make the one commit that goes straight to `main` ([standard/22-tooling-requirements.md](standard/22-tooling-requirements.md), `/baseline:init`). The output below was captured on 2026-11-20 in an empty folder, with a clone of `main` at `37ecd09`, the merge of the first stack; where a line names the folder, it is written `<your folder>`.
+The baseline is four Agent Skills. You install them into a project, then ask the agent to set the project up. The steps below were run on 2026-11-26 in Claude Code, on a real project, from the public repository at commit `d007083`. Codex and Copilot were not tried.
 
-1. **Check your tools.**
+```mermaid
+flowchart LR
+    A["npx skills add<br/>chandanbsd/baseline-framework"] --> B[".claude/skills/<br/>four skills and<br/>skills-lock.json"]
+    B --> C["You ask the agent:<br/>initialise the baseline<br/>in this repo"]
+    C --> D["baseline-init<br/>dry run, then your yes"]
+    D --> E["AGENTS.md block, CLAUDE.md, baseline.yml,<br/>ADR and standard templates;<br/>nothing committed"]
+```
+
+*Installing puts the skills in the project and setting up writes the project's files, and the one thing to notice is that between the two the agent only shows a dry run and waits for your yes, and it commits nothing.*
+
+1. **Install the skills**, from the root of your project. `-a claude-code` installs for Claude Code and `--skill '*'` takes all four.
 
    ```bash
-   git --version
-   gh --version
-   gh stack --version
+   npx skills add chandanbsd/baseline-framework --skill '*' -a claude-code -y
    ```
 
-   You should see:
+   You should see, shortened:
 
    ```text
-   git version 2.54.0 (Apple Git-157)
-   gh version 2.103.3 (2026-10-26)
-   https://github.com/cli/cli/releases/tag/v2.103.3
-   gh stack version 0.3.0
+   Installed 4 skills
+   ✓ baseline-desired-state (copied)
+   ✓ baseline-documentation (copied)
+   ✓ baseline-init (copied)
+   ✓ baseline-refactor (copied)
    ```
 
-2. **Clone the baseline next to where your project will be.**
+   `git status` then shows `.claude/` and `skills-lock.json` as untracked. `skills-lock.json` pins the commit the skills came from, so commit both and teammates and CI use the same version. The CLI sends telemetry unless `DISABLE_TELEMETRY=1` is set.
 
-   ```bash
-   git clone git@github.com:chandanbsd/baseline-framework.git
-   ```
+2. **Open a new agent session in the project**, because a session loads its skills when it starts. Ask which skills it has. You should see `baseline-desired-state`, `baseline-documentation`, `baseline-init` and `baseline-refactor`.
 
-   The repository is private, so the clone needs access to it on GitHub. It was run on 2026-11-20, after the Software Engineer merged the first stack into `main` that day.
-
-3. **Create your project's repository.**
-
-   ```bash
-   mkdir my-project && cd my-project
-   git init -b main
-   ```
-
-   You should see:
+3. **Set the project up.** Ask: "initialise the baseline in this repo". `baseline-init` runs `python3 scripts/init.py <repo> --dry-run`, shows you its lines and waits. For a project with no `AGENTS.md` you should see:
 
    ```text
-   Initialized empty Git repository in <your folder>/my-project/.git/
+   create AGENTS.md
+   create baseline.yml
+   create CLAUDE.md
+   create docs/adr/TEMPLATE.md
+   create docs/standards/TEMPLATE.md
+   dry run: nothing written
    ```
 
-4. **Run the intake by hand, and write the reader profile.** Ask the Software Engineer, in this order: the project's name, kind and Software Engineer; the knowledge areas, with a level for each; the technologies already chosen, each with a level and a comparison setting; and once, whether to build standards from their preferences over time. Start from the baseline's own profile and replace its header and its "Read for this repository" list with the answers. Then delete the three sections below the comment that marks them as generated: they describe the baseline's own documents, and the docs agent generates your project's when it writes its first docs section ([standard/04-reader-profile.md](standard/04-reader-profile.md)).
+   It never overwrites a file: where `AGENTS.md` exists it appends its block and leaves the rest as it is. After your yes it runs the script again without `--dry-run`, and still commits nothing.
 
-   ```bash
-   mkdir -p docs/standards docs/agents
-   cp ../baseline-framework/docs/reader-profile.md docs/reader-profile.md
-   ```
+4. **Update later.** `npx skills update` moves the installed skills to the latest commit. Then ask the agent to update the baseline: `baseline-init` runs `scripts/update.py plan`, and applies each pending migration after your yes. No migration ships yet, so today the plan reports "up to date".
 
-5. **If the answer about standards was yes, create the standards folder with its README.** On a no, skip this step: there is no folder.
-
-   ```bash
-   cp ../baseline-framework/docs/standards/README.md docs/standards/README.md
-   ```
-
-6. **Copy the playbooks.** They are the files the kit is to copy, and they belong to the baseline.
-
-   ```bash
-   cp ../baseline-framework/docs/agents/*.md docs/agents/
-   ls docs/agents
-   ```
-
-   You should see:
-
-   ```text
-   adrs.md
-   docs-agent.md
-   pr-descriptions.md
-   stacks.md
-   standards.md
-   working-with-the-engineer.md
-   ```
-
-7. **Write `baseline.yml`, `AGENTS.md` and `CLAUDE.md`.** `baseline.yml` holds the four keys of [standard/05-project-layout.md](standard/05-project-layout.md), with your stack folders in place of `web` and `api`:
-
-   ```yaml
-   baseline_version: 0.1.0
-   standards_enabled: true
-   artifact_map:
-     spec: ["docs/superpowers/specs/**"]
-     plan: ["docs/superpowers/plans/**"]
-     other: []
-   # Folders whose changes are code for PR-kind purposes, apart from each folder's own README.md and AGENTS.md
-   stack_folders: [web, api]
-   ```
-
-   `AGENTS.md` holds the four parts of [standard/15-agents-md-and-playbooks.md](standard/15-agents-md-and-playbooks.md): who and what, the seven core rules, the playbooks and the repo map. This repository's [`AGENTS.md`](AGENTS.md) is a real example to start from; rewrite its "Who and what" and its repo map for your project. `CLAUDE.md` is the two lines of this repository's [`CLAUDE.md`](CLAUDE.md).
-
-8. **Make the bootstrap commit, the one commit that goes straight to `main`, and check it.**
-
-   ```bash
-   git add .
-   git commit -q -m "chore: bootstrap the repository with its reader profile, standards folder and baseline.yml"
-   git show --stat --format=%s HEAD
-   ```
-
-   You should see:
-
-   ```text
-   chore: bootstrap the repository with its reader profile, standards folder and baseline.yml
-
-    AGENTS.md                                | 102 +++++++++++
-    CLAUDE.md                                |   2 +
-    baseline.yml                             |   8 +
-    docs/agents/adrs.md                      | 156 +++++++++++++++++
-    docs/agents/docs-agent.md                | 283 ++++++++++++++++++++++++++++++
-    docs/agents/pr-descriptions.md           | 237 +++++++++++++++++++++++++
-    docs/agents/stacks.md                    | 287 +++++++++++++++++++++++++++++++
-    docs/agents/standards.md                 | 129 ++++++++++++++
-    docs/agents/working-with-the-engineer.md | 168 ++++++++++++++++++
-    docs/reader-profile.md                   | 144 ++++++++++++++++
-    docs/standards/README.md                 |  71 ++++++++
-    11 files changed, 1587 insertions(+)
-   ```
-
-   The line counts are those of the copied files before you edit them. The check that proves the bootstrap worked is that `git log --oneline` shows exactly one commit on `main`, and `git show --stat` lists these files.
-
-From here the first stack follows the playbooks: the spec as PR 1, the plan as PR 2, the build, and the docs section on top ([docs/agents/stacks.md](docs/agents/stacks.md)). The CI workflow and the PR template that the kit is also to copy do not exist in the baseline yet, so there is nothing to copy for them.
+`baseline-documentation` and `baseline-refactor` are stubs: if invoked, each says it is not implemented yet and stops.
 
 ## The daily loop
 
-Work in this repository is itself delivered as a stack. There is no build, no test suite, no formatter and no linter, because the product is text and the tooling does not exist; the commands you repeat are the git commands of the stack.
+Work in this repository is itself delivered as a stack. There is no build, formatter or linter. The skills' scripts have a test suite, one command moves the version of all four skills together, and the other commands you repeat are the git commands of the stack.
 
 | What you do | The command |
 |---|---|
+| Run the 48 tests of the skills | `python3 -m unittest discover -s tests -p '*_test.py'` |
+| Set one version for the four skills | `python3 tools/bump_version.py <new_version>` |
 | See the commits of the stack and the paths each touches | `git log --reverse --name-only --format='%h %s' main..HEAD` |
 | See which paths a PR touches, to read its kind | `git diff --name-only <lower branch> <upper branch>` |
 | Cut a pointer at the end of a PR's commits | `git branch <topic>/<nn>-<slug> <commit>` |
@@ -256,6 +194,9 @@ baseline-framework/
   CLAUDE.md               a two-line pointer to AGENTS.md
   baseline.yml            the baseline's configuration for this repository
   standard/               the standard: 22 files, its index and its AGENTS.md
+  skills/                 the four Agent Skills, installed with npx skills add
+  tests/                  unittest suite: the skill rules, init, update and the version bump
+  tools/                  bump_version.py, one version for the four skills
   docs/
     reader-profile.md     who the documents are written for
     features/             what the baseline gives a project, in plain language
@@ -270,6 +211,9 @@ baseline-framework/
 | Folder | Its README | Its AGENTS.md |
 |---|---|---|
 | `standard/` | [standard/README.md](standard/README.md), the standard's index | [standard/AGENTS.md](standard/AGENTS.md): no commands, because nothing in the folder is built or run, its layout, and the rule for links between its numbered files |
+| `skills/` | None | None |
+| `tests/` | None | None |
+| `tools/` | None | None |
 | `docs/features/` | [docs/features/README.md](docs/features/README.md) | None |
 | `docs/architecture/` | [docs/architecture/README.md](docs/architecture/README.md), the generated index | None |
 | `docs/deploy/` | [docs/deploy/README.md](docs/deploy/README.md) | None |
@@ -302,4 +246,4 @@ Two files configure the baseline here: `baseline.yml`, which pins version `0.1.0
 
 **Contributing.** Work as a stack and keep each PR to one kind. A change to `standard/` is a code PR, apart from its `README.md`, a description path, and its `AGENTS.md`, a thinking path; a change to the playbooks, `AGENTS.md`, the reader profile or an ADR is a thinking PR, and the descriptive documents, this README among them, are written only by a fresh docs agent from the finished tip. Add no attribution line to a commit or a PR description.
 
-**Licence.** The repository has no licence file. It is a private repository.
+**Licence.** The repository is public and has no licence file yet, so no permission to reuse it is granted until the Software Engineer adds one.

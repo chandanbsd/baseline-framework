@@ -199,7 +199,14 @@ Required sections per family. The check enforces them. Other sections appear onl
 
 ### 2.8 The check
 
-One small Python script (3.9, standard library) run by CI, over `baseline/` only: every needed family exists with its required sections, Mermaid blocks render, links resolve. Nothing else.
+One small Python script (3.9, standard library) run by CI. It reads only the state of `baseline/` and never asks who wrote what. With no `baseline/baseline.yml` it passes, because there is nothing to check. It fails when:
+
+- a document that exists lacks a required section;
+- a Mermaid block does not render;
+- a link between baseline documents does not resolve;
+- an `empty-family` flag exists whose family is neither in `documents_skipped` nor written.
+
+A needed family that is not written yet is a notice, not a failure. Links to code and to outside URLs are not checked. Nothing else. (Amended by D30. As first accepted, it failed on any needed family that was not written.)
 
 ## 3. Expected result
 
@@ -208,7 +215,7 @@ One small Python script (3.9, standard library) run by CI, over `baseline/` only
 - [ ] `baseline-brainstorm` runs the protocol (2.5), writes the file (2.6), and hands off with the prompt. It replaces `baseline-desired-state`, which no longer exists.
 - [ ] A decision during coding that deviates from the file is confirmed explicitly by the engineer, and the agent amends the file (D29). The gate-2 report lists the amendments.
 - [ ] `baseline-documentation` writes and updates the six families in `baseline/docs/` as D2 to D14 say, with `covers:` lines, flags, revise mode and adopt.
-- [ ] The check (2.8) passes on a repository documented this way and fails on a missing needed family.
+- [ ] The check (2.8) passes on a repository documented this way and on a fresh repository with no documents yet. It fails on an unresolved `empty-family` flag, a document missing a required section, a Mermaid block that does not render and a broken link between baseline documents.
 - [ ] All tests pass. Scripts are Python 3.9, standard library only. Each `SKILL.md` stays under 500 lines and passes the spec lint.
 - [ ] No commit or PR description carries a co-author trailer or a "generated with" line.
 
@@ -238,9 +245,9 @@ Not taken: the agent deciding from the code which families apply, because the ch
 Why: a family added in a later version is needed by default, with no migration.
 Not taken: an allow-list, because each new family would need a migration to be added. A second config file for it.
 
-**D6. A needed family with nothing to document gets no page. One flag says so, and the check fails until the engineer skips the family or fills it. The agent never edits `documents_skipped`.**
+**D6. A needed family with nothing to document gets no page. One flag says so, and the check fails while that flag stands, unless the engineer has since skipped the family or written it (amended by D30). The agent never edits `documents_skipped`.**
 Why: the failure forces the declaration to be fixed, and the declaration stays the engineer's.
-Not taken: a short "nothing here" page, because hollow pages pass silently for ever. The agent adding the family to the skip list itself, because it would rewrite a declaration the engineer made.
+Not taken: a short "nothing here" page, because hollow pages pass silently for ever. The agent adding the family to the skip list itself, because it would rewrite a declaration the engineer made. The check failing on any needed family that is not written, as first accepted: changed by D30, because it would turn a fresh repository and every code PR below the docs PRs red.
 
 **D7. The flags folder holds the current set. Each run replaces it with the flags that are true at the tip, and git history is the record.** A flag is one of: a needed family with nothing to document; a document outside the diff that the tip contradicts; code that contradicts an ADR or a standard; a guessed reason in the course to confirm.
 Why: flags derive from the tip like every document, so handled flags vanish without cleanup.
@@ -343,6 +350,10 @@ Not taken: waiting for the rewrite in D26.
 **D29. A decision during coding that deviates from the file is confirmed explicitly by the engineer, and the coding agent then amends the file.** A deviation is a decision that contradicts or changes something the file says. Where the file is silent, the agent decides. The amendment changes the arrival decision or the end state, keeps the old option under "Not taken" with the reason it changed, and says so in one line. It goes into the desired-state PR, so the contract is current there. The gate-2 report lists the amendments.
 Why: until the code is accepted the file is the contract, and a session that re-reads it after a compaction must find the decisions as they stand, not as they were.
 Not taken: the agent amending without asking, which is silent drift. Listing deviations only in the gate-2 report, because a re-read after a compaction would restore the old decision. Freezing the file, which would leave the contract disagreeing with what the engineer chose.
+
+**D30. The check reads only the state of `baseline/`. A needed family that is not written yet is a notice, and a missing family fails the check only through an `empty-family` flag that nothing has resolved. Links are checked between baseline documents only.** Confirmed by the engineer after they asked how CI would know the baseline was used, and whether it would fail code PRs. The first half (the flag) was the question they answered; limiting links to baseline documents was proposed in the same message. It amends 2.8, D6 and one checklist item.
+Why: CI runs on every PR of a stack, and the code PRs sit below the docs PRs, so a rule that failed on any unwritten needed family would turn a freshly initialised repository and every code PR red, and each docs PR until the last family landed. A link from a document to a code file would fail a code PR that renames the file, and the `stale-doc` flag is the net for that.
+Not taken: failing on any needed family that is not written, as first accepted in 2.8 and D6. Checking links to code or to outside URLs. Having the check know whether the baseline skill wrote a document, which it does not need.
 
 ## 5. Settles, not verified, open
 

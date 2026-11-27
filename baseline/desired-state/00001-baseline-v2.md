@@ -53,10 +53,11 @@ flowchart TB
     DOC --> PRS["one PR per family touched,<br/>flags PR on top"]
     PRS --> REV["engineer reviews"]
     REV -->|"comments"| DOC
+    IMP -.->|"a confirmed deviation"| DS
     RF["baseline-refactor<br/>manual only"] -.-> DEC
 ```
 
-*The baseline touches only the boxes around implementation. Both gates are explicit acceptances by the engineer. Nothing merges, deploys or publishes unless the engineer asks.*
+*The baseline touches only the boxes around implementation. Both gates are explicit acceptances by the engineer. A deviation from the file during implementation also needs the engineer's explicit confirmation, and the agent then amends the file (D29). Nothing merges, deploys or publishes unless the engineer asks.*
 
 ### 2.2 The `baseline/` folder
 
@@ -131,10 +132,13 @@ The handoff prompt, given in the same session when the engineer accepts the file
 The engineer accepted baseline/desired-state/00012-order-refunds.md.
 It is the intended result: implement it, following the ADRs and standards it lists.
 If something in it is unclear or wrong, ask the engineer. Do not guess.
-When the code is done, compare it with the file: what was built, what differs, why.
+If the engineer decides something that differs from the file, get their explicit confirmation, then amend the file: change the arrival decision, keep the old option under "Not taken", and say so in one line.
+When the code is done, report against the file: what was built, what differs, why, and the amendments made.
 Ask the engineer to accept the code. Start baseline-documentation only after they do.
 After any compaction, re-read the file.
 ```
+
+Questions that come up during coding follow the same protocol: one at a time, each with the diagram that fits. A deviation is a decision that contradicts or changes something the file says. Where the file is silent, the agent decides and needs no confirmation.
 
 ### 2.6 The desired-state file
 
@@ -154,7 +158,7 @@ Not taken: an option, why it lost. Another option, why it lost.
 The ADRs and standards this leads to, as links, or "none".
 ```
 
-The number is the highest on the branch's base plus 1. Two parallel branches may pick the same number, which is harmless because the names differ. The file is allowed to go out of sync with the code. It is a historical account.
+The number is the highest on the branch's base plus 1. Two parallel branches may pick the same number, which is harmless because the names differ. Until the engineer accepts the code, the file is the contract, and a confirmed deviation amends it (D29). After that it is not maintained and may go out of sync with the code on purpose: it is a historical account.
 
 ### 2.7 `baseline-documentation`
 
@@ -202,6 +206,7 @@ One small Python script (3.9, standard library) run by CI, over `baseline/` only
 - [ ] `npx skills add` of the repository installs four skills: `baseline-init`, `baseline-brainstorm`, `baseline-documentation`, `baseline-refactor` (the last may stay a stub).
 - [ ] `baseline-init` on a fresh repository creates the `baseline/` layout (2.2) and the pointer (2.3), after a dry run the engineer approves, and asks the one question of D4. On a repository with an `AGENTS.md` it appends the pointer and touches nothing else outside `baseline/`. Update replaces `baseline.md` whole and runs migrations as before.
 - [ ] `baseline-brainstorm` runs the protocol (2.5), writes the file (2.6), and hands off with the prompt. It replaces `baseline-desired-state`, which no longer exists.
+- [ ] A decision during coding that deviates from the file is confirmed explicitly by the engineer, and the agent amends the file (D29). The gate-2 report lists the amendments.
 - [ ] `baseline-documentation` writes and updates the six families in `baseline/docs/` as D2 to D14 say, with `covers:` lines, flags, revise mode and adopt.
 - [ ] The check (2.8) passes on a repository documented this way and fails on a missing needed family.
 - [ ] All tests pass. Scripts are Python 3.9, standard library only. Each `SKILL.md` stays under 500 lines and passes the spec lint.
@@ -332,6 +337,12 @@ Not taken: MIT. No licence. A handle or an organisation as the holder. Bundling 
 **D28. Fix the `AGENTS.md` repo map now.** Open as #36.
 Why: agents read it every session and it said `skills/` did not exist.
 Not taken: waiting for the rewrite in D26.
+
+### F. Added after the engineer accepted the file, the same day
+
+**D29. A decision during coding that deviates from the file is confirmed explicitly by the engineer, and the coding agent then amends the file.** A deviation is a decision that contradicts or changes something the file says. Where the file is silent, the agent decides. The amendment changes the arrival decision or the end state, keeps the old option under "Not taken" with the reason it changed, and says so in one line. It goes into the desired-state PR, so the contract is current there. The gate-2 report lists the amendments.
+Why: until the code is accepted the file is the contract, and a session that re-reads it after a compaction must find the decisions as they stand, not as they were.
+Not taken: the agent amending without asking, which is silent drift. Listing deviations only in the gate-2 report, because a re-read after a compaction would restore the old decision. Freezing the file, which would leave the contract disagreeing with what the engineer chose.
 
 ## 5. Settles, not verified, open
 

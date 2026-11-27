@@ -157,6 +157,13 @@ def link_target(doc: Path, target: str, repo: Path) -> Optional[Path]:
     return Path(os.path.normpath(str(start / target.lstrip("/"))))
 
 
+def error_detail(output: str) -> str:
+    """The first lines of a renderer's error that say what is wrong, without its stack frames."""
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    useful = [line for line in lines if not line.startswith("at ") and "node_modules" not in line and "file://" not in line]
+    return " ".join((useful or lines[-1:])[:3])
+
+
 def render(blocks: List[Tuple[str, Block]], errors: List[str], notices: List[str]) -> None:
     if not blocks:
         return
@@ -183,8 +190,7 @@ def render(blocks: List[Tuple[str, Block]], errors: List[str], notices: List[str
                 errors.append("%s:%d: the Mermaid renderer could not run: %s" % (rel, block.start, error))
                 continue
             if done.returncode != 0:
-                detail = " ".join((done.stderr or done.stdout).strip().splitlines()[-3:])
-                errors.append("%s:%d: Mermaid block does not render: %s" % (rel, block.start, detail))
+                errors.append("%s:%d: Mermaid block does not render: %s" % (rel, block.start, error_detail(done.stderr or done.stdout)))
             else:
                 rendered += 1
         if rendered:

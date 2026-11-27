@@ -30,7 +30,12 @@ while [ $# -gt 0 ]; do
   shift
 done
 while IFS= read -r line; do
-  case "$line" in *BROKEN*) echo "Parse error on line 2" >&2; exit 1;; esac
+  case "$line" in *BROKEN*)
+    echo "Error: Parse error on line 2" >&2
+    echo "    at async CdpPage.eval (file:///x/node_modules/puppeteer/page.js:1:1)" >&2
+    echo "    at async render (file:///x/node_modules/mermaid-cli/index.js:2:2)" >&2
+    exit 1;;
+  esac
 done < "$input"
 exit 0
 """
@@ -277,6 +282,17 @@ class CheckTest(TempRepoCase):
         self.assertEqual(r.returncode, 0, r.stdout)
         self.assertNotIn("not rendered", r.stdout)
         self.assertIn("rendered 2 block(s) with mmdc", r.stdout)
+
+    def test_a_render_error_shows_the_message_and_not_the_stack_frames(self):
+        # Real renderer output ends in stack frames; the line that says what is wrong comes first.
+        self.baseline_yml()
+        self.all_docs()
+        self.doc("README.md", DOCS["README.md"], extra="```mermaid\nflowchart LR\n    BROKEN\n```\n")
+        r = self.check(env=self.with_fake_renderer())
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("Parse error on line 2", r.stdout)
+        self.assertNotIn("node_modules", r.stdout)
+        self.assertNotIn("at async", r.stdout)
 
     def test_the_count_leaves_out_the_blocks_that_failed_to_render(self):
         self.baseline_yml()

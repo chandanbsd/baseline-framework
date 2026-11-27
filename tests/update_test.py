@@ -1,4 +1,5 @@
 """baseline-init's update.py: what an agent runs to bring a repository to the installed version."""
+import hashlib
 import re
 import shutil
 import tempfile
@@ -209,6 +210,21 @@ class UpdateTest(TempRepoCase):
         self.assertIn("check.py: unchanged", r.stdout)
         self.assertIn("workflow: unchanged", r.stdout)
         self.assertIn("up to date", r.stdout)
+
+    def test_a_file_from_an_older_body_at_the_same_version_is_outdated_and_replaced(self):
+        # The shipped body can change without a version bump while the skills are developed.
+        self.make_repo("0.2.0")
+        path = self.t / "baseline" / "baseline.md"
+        body = "old instructions\n"
+        digest = hashlib.sha256(body.encode("utf-8")).hexdigest()
+        path.write_text("<!-- baseline version=0.2.0 sha256=%s -->\n%s" % (digest, body))
+        plan = self.upd("plan", installed="0.2.0").stdout
+        self.assertIn("baseline.md: outdated", plan)
+        self.assertNotIn("up to date", plan)
+        r = self.upd("finish", installed="0.2.0")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertNotIn("old instructions", path.read_text())
+        self.assertIn("baseline.md: unchanged", self.upd("plan", installed="0.2.0").stdout)
 
     def test_finish_overwrites_the_check_and_the_workflow(self):
         self.make_repo("0.2.0")

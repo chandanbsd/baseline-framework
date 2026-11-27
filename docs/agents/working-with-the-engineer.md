@@ -27,7 +27,8 @@ flowchart TD
 - Anything that changes how work is done: branching, release, CI, tooling.
 - Merging, deploying, releasing and publishing. Opening a PR is publishing.
 - Anything that persists or ships and cannot be undone: production data, destructive migrations, domains, accounts, secrets, billing and third-party sign-ups.
-- Approving a standard, and what to do with a finding that cannot be fixed, such as dismissing an alert or accepting a risk.
+- Approving an ADR or a standard. They may say "this is an ADR" or "make this a standard" first, or you suggest one and they say yes.
+- What to do with a finding that cannot be fixed, such as dismissing an alert or accepting a risk.
 
 **You decide, and record a ruling:** the order of work, names, how the code is cut into PRs, small conflicts where the desired state is silent, how to fix review findings, and dependency bumps that the tests show are safe.
 

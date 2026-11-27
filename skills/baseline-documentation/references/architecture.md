@@ -20,7 +20,7 @@ Where: `baseline/docs/architecture/README.md`, the overview, plus further files 
 covers: how the system is built: its parts, how they talk and the main flows
 
 ## What the system is
-A paragraph on the purpose, then the technology choices, each linking to its ADR in `baseline/adr/`.
+A paragraph on the purpose, then the technology choices, each linking to its ADR in `baseline/adr/`. Where there is no ADR, say so in one line.
 
 ## Big picture
 A context diagram (users and outside systems) and a container diagram (deployable parts, datastores and protocols).
@@ -29,7 +29,7 @@ A context diagram (users and outside systems) and a container diagram (deployabl
 The module map, the direction of dependencies and the rule that keeps it so. One line of responsibility per module.
 
 ## Key flows
-One sequence diagram per major flow. Link each to its course chapter.
+One sequence diagram per major flow. Do not link forward to the course: it is written after this family, and a link to a file that does not exist yet fails the check. The course chapters link back to these flows.
 ```
 
 ## Notes

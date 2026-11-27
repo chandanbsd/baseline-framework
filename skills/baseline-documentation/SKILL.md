@@ -15,7 +15,7 @@ Paths are relative to this skill's folder. Run the script with `python3`.
 
 You are a fresh agent: a new session or a subagent, started after the engineer accepted the code. You document what the code at the tip does, and nothing else.
 
-Read the code at the tip, `baseline/adr/`, `baseline/standards/`, `baseline/baseline.yml` and the documents already in `baseline/docs/`. Do not read `baseline/desired-state/` or the conversation: they say what was meant, and a document says what exists.
+Read the code at the tip, `baseline/adr/`, `baseline/standards/`, `baseline/baseline.yml` and the documents already in `baseline/docs/`. Do not read `baseline/desired-state/` or the conversation: they say what was meant, and a document says what exists. In a repository of instructions, scripts or skills, the instruction files (`AGENTS.md`, the README, every `SKILL.md`), the scripts and the tests are the code, so read them too: they are where a command such as an install line comes from.
 
 ## The families
 
@@ -43,7 +43,7 @@ There are six. Each is needed unless `documents_skipped` in `baseline/baseline.y
 ## 1. Find what to write
 
 - **Update** (the normal run). Take the stack's diff: `git diff --name-only <base>...HEAD`, where the base is the stack's base branch, usually `main`. Run `python3 scripts/covers.py <repo>` and pick the documents whose behaviour the diff changes. Always reopen the README and the architecture overview. A diff that creates an outcome no chapter covers gets a new course chapter, and a new feature gets a feature page. Never regroup the existing chapters unless the engineer asks.
-- **Adopt** (no `baseline/docs/` yet). Document the whole repository. Never rewrite an existing document outside `baseline/docs/`: write the baseline's documents inside the folder and raise an `overlap` flag for each existing document that covers the same ground. The team deletes the superseded ones in review.
+- **Adopt** (no `baseline/docs/` yet). Document the whole repository. Never rewrite an existing document outside `baseline/docs/`: write the baseline's documents inside the folder and raise an `overlap` flag for each existing folder or group of documents that covers the same ground, one flag for a folder and not one for each file. The team deletes the superseded ones in review.
 - **Revise** (the engineer comments on the documentation PRs). Edit in place per the comments and keep each `covers:` line right. If a comment asks for something the code at the tip cannot back, raise a `not-backed` flag and do not write it. Run no review or verify loops of your own.
 
 A document outside the diff that the tip contradicts gets a `stale-doc` flag. Do not rewrite it.
@@ -54,7 +54,7 @@ Write the families in this order, so later ones can link to earlier ones: `archi
 
 ## 3. Run commands
 
-Run only commands that change nothing beyond the checkout: build, test, lint, dry runs and `--help`. Record the short commit and the result beside the command, for example `ran on 9f3c2a1: 41 passed`. Never run deploy, publish or migrate commands or anything that touches an outside system: write `not run`. If a command fails for an environment reason, raise a `command-failed` flag.
+Run only commands that change nothing beyond the checkout: build, test, lint, dry runs and `--help`. Record the short commit and the result beside the command, for example `ran on 9f3c2a1: 41 passed`. A document cannot name the commit that will hold it, so name the commit the run started from, or say "with this file added". Never run deploy, publish or migrate commands or anything that touches an outside system: write `not run`. If a command fails for an environment reason, raise a `command-failed` flag.
 
 ## 4. Flags
 
@@ -62,6 +62,6 @@ Run only commands that change nothing beyond the checkout: build, test, lint, dr
 
 ## 5. PRs
 
-One PR per family you touched, stacked on the accepted code in the order you wrote them, then a flags PR on top. Follow the repository's own conventions for branches and descriptions. Each description says what was documented, how it was checked and what was not verified. Do not merge, deploy or publish.
+One PR per family you touched, stacked on the accepted code in the order you wrote them, then a flags PR on top. Follow the repository's own conventions for branches and descriptions. Each description says what was documented, how it was checked and what was not verified. If `mmdc` is not on the PATH, say that the diagrams were checked for form and not rendered. Do not merge, deploy or publish.
 
 If the root README does not link `baseline/docs/README.md`, raise a `link-readme` flag.

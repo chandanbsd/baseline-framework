@@ -26,6 +26,7 @@ Send one short message: your questions, one line each, and a proposed name for t
 - Give the options, your recommendation first, and one reason.
 - Stay on the question until the engineer says done. Follow-up questions about the same decision come before the next question.
 - Keep notes of every decision as you go: the decision, why, and the options not taken. Write no file yet.
+- When an answer is a coding preference or an architectural decision worth keeping, suggest it: "I would make this a standard" or "I would make this an ADR". `references/deciding-adrs-and-standards.md` tells them apart. The engineer may say so first. Only their yes puts it in Settles.
 - Keep text short. The engineer reads the diagram first.
 
 ## 3. Write the desired-state file
@@ -34,14 +35,14 @@ When no question is left, write `baseline/desired-state/<number>-<name>.md` from
 
 - **End state:** diagrams, then the expected result as a checklist.
 - **Arrival decisions:** one per answer that shaped the work: the decision, why, and each option not taken with a line on why it lost. Do not paste the Q&A.
-- **Settles:** the ADRs and standards this leads to, or `none`. Use `references/deciding-adrs-and-standards.md` to decide.
+- **Settles:** the ADRs and standards the engineer said yes to, or `none`.
 - Write for two readers: the engineer, who reviews it before any code, and the coding agent, which gets it as its single context. It must stand alone. Say what and why, never how.
 
 Put it on its own branch and open a PR if the repo has a GitHub remote and `gh` works. Otherwise commit it on a branch and say so. Tell the engineer to read it. If they comment, edit the file and wait again. Do not start coding before they accept it.
 
 ## 4. After acceptance
 
-1. Write each ADR and standard you listed, yourself, in this session, from the `TEMPLATE.md` in `baseline/adr/` or `baseline/standards/`. Put them in the next PR above the desired-state PR: the decisions PR. The engineer reviews it.
+1. Write each ADR and standard in Settles, yourself, in this session, from the `TEMPLATE.md` in `baseline/adr/` or `baseline/standards/`. Put them in the next PR above the desired-state PR: the decisions PR. The engineer reviews it.
 2. Implement in this same session, not in a subagent. Start from this prompt, with the path of the accepted file:
 
 ```text
@@ -68,4 +69,4 @@ A deviation is a decision that contradicts or changes something the file says. W
 
 Report against the file (what was built, what differs, why, the amendments) and ask the engineer to accept the code. Run `baseline-documentation` in a fresh session or subagent only after they accept.
 
-A later decision or repeatable rule that comes up goes into the decisions PR as an ADR or a standard.
+A later decision or repeatable rule is suggested in the chat, or the engineer says "this is an ADR" or "make this a standard". After their yes it goes into the decisions PR.

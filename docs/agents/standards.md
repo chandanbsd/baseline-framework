@@ -17,7 +17,7 @@ public sealed class CreateOrderDto { public Guid CustomerId { get; set; } }     
 
 *The rule: payloads and contracts are records, not classes.*
 
-A standard answers "how is code written, always". A decision with a real choice behind it (use Postgres, not DynamoDB) is an ADR. A one-off choice that touches one place and is easy to change needs neither.
+A standard captures coding taste: how is code written, always. An ADR captures an architectural decision, which may carry domain reasoning for one pathway (use Postgres, not DynamoDB; in billing, a refund keeps the tax rate of the order). A one-off choice that touches one place and is easy to change needs neither. The Software Engineer says "make this a standard" or "this is an ADR", and you may suggest either.
 
 ## How a preference becomes a standard
 
@@ -40,7 +40,7 @@ sequenceDiagram
 
 *A rule is written only after their yes, and the branch for a no ends with nothing written.*
 
-1. **Notice a preference.** Those are the places where they say how they want the work done.
+1. **Notice a preference, or hear "make this a standard".** You may suggest one while you ask the questions of `baseline-brainstorm` and while you code. Those are the places where they say how they want the work done.
 2. **Propose the rule in the chat, and ask.** Give the rule, the reason in their words and the scope, which is the whole project or one folder. Put it as a question with your recommendation first. Where they have not said why, ask for the reason, and do not supply one of your own.
 3. **Write nothing until they approve.** Nothing is inferred silently. If the answer is no, nothing is written.
 4. **Write the approved rule** in `baseline/standards/` in the decisions PR, with the reason in the commit message or the PR description and the conversation or PR where it came up as the source.

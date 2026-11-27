@@ -25,7 +25,7 @@ The tools and versions needed, how to install each, and the versions this was ch
 
 ## Get it running
 Numbered commands from clone to a running project. After each command say what happened:
-`ran on 9f3c2a1: 41 passed`, or `not run`.
+`ran on 9f3c2a1: 41 passed`, or `not run`. For a repository that is a library or a set of skills, "running" means the tests, the check and the first use: the install line comes from `AGENTS.md` or the README, and the clone URL from `git remote get-url origin`.
 
 ## Repo map
 The tree, one line per folder. Link the architecture overview and the course index.

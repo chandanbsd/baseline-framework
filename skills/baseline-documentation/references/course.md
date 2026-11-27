@@ -49,4 +49,5 @@ covers: the course index, one chapter per outcome the system delivers
 
 - Nothing the code uses goes untaught, and nothing the code does not use is taught. There are no whole-language tutorials. Repeating an idea in two chapters is fine, because its context differs.
 - The existing `covers:` lines are the list of outcomes. Add a chapter only for an outcome no chapter covers, and never regroup unless the engineer asks.
-- Where a reason is your best guess, label it `inferred` and raise an `inferred-reason` flag.
+- A reason is stated when an ADR, a code comment, a rule in a `SKILL.md` or a test name gives it. Say where. A reason that nothing gives is your best guess: label it `inferred` and raise an `inferred-reason` flag.
+- Link each chapter back to the key flow it follows in the architecture overview, with a relative link. Links go from later families to earlier ones, never forward.

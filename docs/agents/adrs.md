@@ -6,6 +6,8 @@ An **architecture decision record**, or **ADR**, is one file for one decision, w
 
 ADRs and coding standards are the only documents that steer the code agents write. Both are living documents: edit, rewrite or delete them in place, and git history is the record. There is no draft or accepted status and no append-only rule.
 
+An ADR captures an architectural decision, which may carry domain reasoning for one pathway and some coding preference. A standard captures coding taste (`standards.md`). The Software Engineer says "this is an ADR". You may also suggest one, in the chat, and you write it only after their yes.
+
 ## When to write one
 
 Write an ADR for a **decision of impact**, and test every decision you make against these six.
@@ -22,11 +24,11 @@ flowchart TD
     A["A decision comes up"] --> B{"Settled in the questions of<br/>baseline-brainstorm?"}
     B -->|"yes"| C["It is an arrival decision in the desired state.<br/>If it is a decision of impact, the decisions PR<br/>writes it as an ADR"]
     B -->|"no"| D{"Does it meet one of the six?"}
-    D -->|"yes"| E["Write the ADR now and carry on"]
+    D -->|"yes"| E["Suggest it in the chat, carry on,<br/>and write it after their yes"]
     D -->|"no"| F["It is a ruling:<br/>Ruling: what, why, cost if wrong"]
 ```
 
-*A decision of impact gets an ADR at once, and a smaller call stays a ruling. The six are a test and not a gate: write the ADR and carry on.*
+*A decision of impact is suggested at once and written after their yes, and a smaller call stays a ruling. The six are a test and not a gate: suggest the ADR and carry on.*
 
 A dependency is a decision of impact, but a dependency bump that the tests show is safe is a ruling.
 

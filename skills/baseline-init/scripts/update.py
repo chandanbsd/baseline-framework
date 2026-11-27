@@ -111,7 +111,9 @@ def owned_status(repo: Path, spec: kit.OwnedFile, installed: str) -> str:
         return "edited"
     if kit.owned_is_edited(owned):
         return "edited"
-    return "unchanged" if owned.version == installed else "outdated"
+    # The shipped body can change without a version bump, so the recorded hash is compared too.
+    shipped = kit.parse_owned(kit.render_owned(spec.path, installed))
+    return "unchanged" if owned.version == installed and owned.sha256 == shipped.sha256 else "outdated"
 
 
 def pointer_status(repo: Path) -> str:
